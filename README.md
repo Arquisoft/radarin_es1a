@@ -1,5 +1,5 @@
 ![CI for radarin](https://github.com/arquisoft/radarin_es1a/workflows/CI%20for%20radarin/badge.svg)
-[![codecov](https://codecov.io/gh/Arquisoft/radarin_es1a/branch/master/graph/badge.svg?token=c4bsWzIxFp)](https://codecov.io/gh/Arquisoft/radarin_es1a)
+[![codecov](https://codecov.io/gh/Arquisoft/radarin_es1b/branch/master/graph/badge.svg?token=t0x1Xm6pHF)](https://codecov.io/gh/Arquisoft/radarin_es1b)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fa512d0abbe345f287f59b5259d99ae4)](https://www.codacy.com/gh/Arquisoft/radarin_es1a/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arquisoft/radarin_es1a&amp;utm_campaign=Badge_Grade)
 
 # Radarin project structure
