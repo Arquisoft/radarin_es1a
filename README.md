@@ -36,9 +36,6 @@ cd restapi
 npm install
 npm start
 ```
-Colaboradores:
-```
-Victoria Álvarez Sordo. UO266618
 
 You should be able to access the application in [http://localhost:3000](http://localhost:3000) and the documentation in [http://localhost:3000/docs](http://localhost:3000/docs)
 
@@ -48,4 +45,4 @@ Kevin Barbón García
 Alba Aparicio Pérez
 Ernesto Estrada Álvarez
 Taso Rodriguez Meana
-
+Victoria Álvarez Sordo
