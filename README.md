@@ -47,3 +47,5 @@ Colaboradores
 Kevin Barbón García
 Alba Aparicio Pérez
 Ernesto Estrada Álvarez
+Taso Rodriguez Meana
+
