@@ -44,15 +44,9 @@ Colaboradores
 ```
 Kevin Barbón García
 Alba Aparicio Pérez
-Ismael Alba Areces
 Daniel Menéndez Ron
 Ernesto Estrada Álvarez
 Taso Rodriguez Meana
 Victoria Álvarez Sordo
 Ismael Alba Areces
 ```
-
-
-
-
->>>>>>> baf8015e2a35ac1ef5fb79136ebe1aefd84b046a
