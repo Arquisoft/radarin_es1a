@@ -42,4 +42,10 @@ Colaboradores
 
 Kevin Barbón García
 Alba Aparicio Pérez
+<<<<<<< HEAD
 Daniel Menéndez Ron
+=======
+Ernesto Estrada Álvarez
+Taso Rodriguez Meana
+
+>>>>>>> f80df51bf8c08681809cee5cdcac94a9a9797961
