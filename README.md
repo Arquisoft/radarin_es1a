@@ -42,3 +42,4 @@ Colaboradores
 
 Kevin Barbón García
 Alba Aparicio Pérez
+Ismael Alba Areces
