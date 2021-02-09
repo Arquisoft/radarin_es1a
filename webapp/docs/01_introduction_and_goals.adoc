@@ -1,8 +1,6 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
-
-Radarin busca facilitar encuentros entre amigos haciendo uso de la ubicación de cada uno de ellos. Está basado en las especificaciones SOLID y garantiza la seguridad del usuario ya que solo
-almacena su localización en un momento determinado y bajo su consentimiento.
+Radarin seeks to facilitate meetings between friends making use of the location of each of them. It is based on SOLID specifications and guarantees user safety as it only stores your location at a specific time and with your consent.
 
 === Requirements Overview
 
