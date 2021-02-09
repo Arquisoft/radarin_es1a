@@ -3,7 +3,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fa512d0abbe345f287f59b5259d99ae4)](https://www.codacy.com/gh/Arquisoft/radarin_es1a/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arquisoft/radarin_es1a&amp;utm_campaign=Badge_Grade)
 
 # Radarin project structure
-Link to the deployed sample application: [radarin0](https://radarin0webapp.herokuapp.com/). Note that sometimes **it can take a while to load** because Heroku in the free plan, takes the containers to sleep when they are not used for some time and taking them up takes time.
+Link to the deployed sample application: [radarinES1a](https://radarines1awebapp.herokuapp.com/). Note that sometimes **it can take a while to load** because Heroku in the free plan, takes the containers to sleep when they are not used for some time and taking them up takes time.
 
 ## Quick start guide
 If you want to execute the project you will need [git](https://git-scm.com/downloads), [Node.js and npm](https://www.npmjs.com/get-npm) and [Docker](https://docs.docker.com/get-docker/). Make sure the three of them are installed in your system. Download the project with `git clone https://github.com/pglez82/radarin_0`. The fastest way to launch everything is with docker:
@@ -41,13 +41,12 @@ You should be able to access the application in [http://localhost:3000](http://l
 
 Colaboradores
 
+```
 Kevin Barbón García
 Alba Aparicio Pérez
 Daniel Menéndez Ron
 Ernesto Estrada Álvarez
 Taso Rodriguez Meana
 Victoria Álvarez Sordo
-
-
->>>>>>> f80df51bf8c08681809cee5cdcac94a9a9797961
->>>>>>> 7837c4c54364692659477eb2dfadde302328ec84
+Ismael Alba Areces
+```
