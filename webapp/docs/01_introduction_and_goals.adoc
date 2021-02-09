@@ -1,67 +1,37 @@
+:hide-uri-scheme:
+
 [[section-introduction-and-goals]]
 == Introduction and Goals
-Radarin seeks to facilitate meetings between friends making use of the location of each of them. It is based on SOLID specifications and guarantees user safety as it only stores your location at a specific time and with your consent.
+Radarin seeks to facilitate meetings between friends making use of the location of each of them. It is based on SOLID specifications and guarantees user safety as it only stores your location at a specific time and with his consent.
 
 === Requirements Overview
+In every application there are high-level requirements that are sought to be met and completed, in the case of Radarin:
 
-[role="arc42help"]
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
-
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
-
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
-****
+.Mandatory requirements
+* It is based on a decentralized architecture where the location data storage is located on a server.
+* Users can manage and view their locations.
+* A user receives notifications from other known users who are nearby
+* The information of the users, like their friends, will be saved in the user's Pod.
+* There must be administration options for user management.
+* Server status can be monitored.
 
 === Quality Goals
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
-
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+.Quality goals
+|===
+|Quality Goal|Motivation|Importance
+| Privacy | Control over user information will be decentralized, guaranteeing the security and privacy of their data | High
+| Usability | Any user, with or without experience in the use of the application, must be able to understand and use it easily | High
+| System robustness | Ability to handle errors while users are using the application | High
+| Efficiency | Use the least amount of resources possible to generate the greatest amount of results, in order to improve response and load times | Medium - High
+|===
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
-
-[options="header",cols="1,2,2"]
+.General stakeholders
 |===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+|Role/Name|Expectations
+| Application users | They expect the application to be easy to use and intuitive without having to know the technologies used
+| Development team | Learn new technologies such as SOLID and work more efficiently and effectively in a group 
+| https://inrupt.com/[*Inrupt*^,role=blue] and https://www.empathy.co/[*Empathy*^,role=blue] companies | They expect the development team to create an application that is compatible with the SOLID project and satisfy divers criteria for usability, creativity, security, originality, efficiency, and quality
 |===
