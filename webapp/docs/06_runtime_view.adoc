@@ -2,17 +2,20 @@
 == Runtime View
 The next schemes are some of scenarios for the app radarin 
 
+=== Share Information as an User
+
 [role="arc42help"]
 ****
-
-=== <Share Information as an User>
-
 The Radarin app is a decentralized system that will use the Solid system to store user information in PODS with the following user interaction system:
 
 image:images/06_Share User Ubication.png["Way that an user  shares a Ubication"]
+****
 
-=== <Represent near users in the app>
-For interaction between users, each will share their location with the application and the user uploading the map to their mobile device will collect the information of other users who are in the radio of action selected by the subject user (city, province, country...)
+=== Represent near users in the app
+[role="arc42help"]
+****
+For interaction between users, each will share their location with the application and the user uploading the map to their mobile device will collect the information of other users who are in the radio of action selected by the subject user (city, province, country...).
+
 image:images/06_Represent map.png["Way that an user get the Ubication of near Users"]
-
+****
 === <Runtime Scenario n>
