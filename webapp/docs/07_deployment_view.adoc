@@ -10,7 +10,9 @@ image::images/07_DeploymentView.png[Deployment View]
 
 Motivation::
 
-With this deployment structure the user can interact with the application in their phones, which must be conected to the Internet. This application will comunicate with the application server via the protocol HTTP.
+With this deployment structure the user can interact with the application in their phones, which must be conected to the Internet. This application will comunicate with the application server via the protocol HTTP, and the application server will comunicate with the SOLID server, so the users can access to their own data which is in their respective POD, or access the PODS of other users who have given them permission to do so.
+
+With this design the users can interact with other users safely.
 
 Quality and/or Performance Features::
 
