@@ -17,3 +17,37 @@ If needed you can subdivide them into
 technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
+
+=== Technical constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Explanation
+| Javascript | The bulk of the application will be written using javascript, as it's the most popular scripting language for web based apps. Or course we will also be using html and css to construct the web side.
+| Node.js | The server side of the application will be used using node.js, based on the javascript language.
+| React | The interface side of the project will be developed using REACT. React is an open source library for javascript that allows to easily update the interface when the data changes, facilitating the implementation of the map part of the application.
+| SOLID | Any functionality added must be constantly and thoroughly tested by the development team, making use of the testing tools available (Cucumber, Travis, Codecov).
+| POD | PODs are part of the solid specifications, storing the users data in their own dispositives, this descentralized aproach serves as a replacement for the traditional sql-based database.
+|===
+
+=== Organizational and political constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Explanation
+| Team | Due to the nature of the course, the development time for the "finished" product is extremely small, consisting only of seven weeks.
+| Git | Our work will be coordinated though gitHub, where we hace a repository to store the code, do the versions control and deploy the application and the documentation.
+| Time | The time constraint will be determined by the reality of this project, that is a college project of one of many subjects, as such, it will only last for a few months. Due to that the application we'll develop will be a prototype.
+| Microsoft Teams | Due to the current pandemic, we will be using microsoft teams, where we will host our meetings to discuss anything we deem necesary to the correct development of the product.
+|===
+
+=== Conventions
+
+[options="header",cols="1,2"]
+|===
+| Constraint | Explanation
+| Solid especifications | As the main data technology of this project, we will try to follow the conventions, recomendations and best practices decided by the Solid community.
+| UI Desing | The user interface has to be easy to use and learn, following the common usability recomendations for mobile apps.
+| TBD | TBD.
+|===
+
