@@ -8,7 +8,7 @@
 
 The general system is represented in a white box and composed of different elements such as the black box and building blocks.
 
-_**<Overview Diagram>**_
+image:05_diagrama_whitebox1.png["First design of general system"]
 
 The user interacts with his own Pod, over which he has control and ownership of his data. It also interacts with the Radarin application, which is represented as a black box in this diagram. On the other hand, Radarin interacts with the Pod in order to access the files that are in it, being able to save and load data.
 
@@ -31,3 +31,4 @@ Contained blackboxes::
 
 === Level 2
 
+image:05_diagrama_whitebox2.png["First design inside Radarin"]
