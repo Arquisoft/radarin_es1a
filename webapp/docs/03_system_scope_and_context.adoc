@@ -23,7 +23,7 @@ Radarin should have the following features:
 | Friends | Notifications from server and other friend location. | Their current locations. 
 | Web server | The shared locations of the users.| The relative notifications to each user if needed.
 |===
-image:images/03_diagrama_negocio2.png["Business & Tecnical Context"]
+image:03_diagrama_negocio.png["Business & Tecnical Context"]
 
 
 === Technical Context
@@ -38,4 +38,4 @@ To accomplish this we will use PODs that will store the user information and sen
 
 The application will use the React technology that is an open source Javascript library designed to create user interfaces with the aim of facilitating application development on a single page. It is maintained by Facebook and the free software community, will help us a lot on the development.
 
-image:images/03_diagrama_tecnico.png["Technical Context"]
+image:03_diagrama_tecnico.png["Technical Context"]
