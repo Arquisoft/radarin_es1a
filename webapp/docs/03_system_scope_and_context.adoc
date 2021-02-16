@@ -1,7 +1,6 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-
 Radarin can get access to the mobile phone localization of the users who voluntarily activate it and will allow other users who are their friends to know when they are near them. Our main goal is to follow the Solid project.
 
 Radarin should have the following features:
@@ -10,7 +9,6 @@ Radarin should have the following features:
 * The system will be compatible with the SOLID project and it will not store personal information in a centralized way.
 * The system only can store locations and timestamps in which those locations happens.
 *  The system will avoid to store any other type of personal information about the users.
-
 
 
 === Business Context
@@ -27,10 +25,6 @@ image:03_diagrama_negocio.png["Business & Tecnical Context"]
 
 
 === Technical Context
-
-
-->REVISAR 
-
 
 Our goal is to follow Solid (Social Linked Data) is a web decentralization project led by Tim Berners-Lee. The project aims to give users the control of his own data by developing a platform for linked-data applications that are completely decentralized and fully under users' control rather than controlled by other entities.
 
