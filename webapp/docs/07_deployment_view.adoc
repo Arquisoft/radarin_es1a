@@ -6,7 +6,7 @@
 === Infrastructure Level 1
 
 
-image::images/07_DeploymentView.png[Deployment View]
+image::07_DeploymentView.png[Deployment View]
 
 Motivation::
 
