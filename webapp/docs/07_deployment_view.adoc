@@ -8,21 +8,24 @@
 
 image::07_DeploymentView.png[Deployment View]
 
-Motivation::
+.Motivation
 
 With this deployment structure the user can interact with the application in their phones, which must be conected to the Internet. This application will comunicate with the application server via the protocol HTTP, and the application server will comunicate with the SOLID server, so the users can access to their own data which is in their respective POD, or access the PODS of other users who have given them permission to do so.
 
 With this design the users can interact with other users safely.
 
-Quality and/or Performance Features::
+.Quality and/or Performance Features
 
 In our application, we try to write the best possible code to maximize the quality and speed.
 
 As this application is designed for mobile devices, it must be very fast.
 In order to achieve this we will use some important coding rules like the DRY principle.
 
-Mapping of Building Blocks to Infrastructure::
+.Mapping of Building Blocks to Infrastructure
 The main components of the infrastructure are:
+
+.Deployment View
+[options="header",cols="1,2"]
 |===
 |Node|Description
 | User Device | Is the device that the user will use for the application, it will usually be a mobile phone, but depending on the deployment of the project it could be also possible a computer.
