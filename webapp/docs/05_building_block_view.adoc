@@ -13,7 +13,7 @@ image:05_diagrama_whitebox1.png["First design of general system"]
 The user interacts with his own Pod, over which he has control and ownership of his data. It also interacts with the Radarin application, which is represented as a black box in this diagram. On the other hand, Radarin interacts with the Pod in order to access the files that are in it, being able to save and load data.
 
 
-Contained blackboxes::
+.Contained blackboxes
   
 [options="header"]
 .Black box descriptions of Overall System 
@@ -22,13 +22,20 @@ Contained blackboxes::
 |Radarin|It is the part of the system that manages the requests made by the user.
 |===
 
-
-
-
-
-
-
-
-=== Level 2
+=== Level 1
 
 image:05_diagrama_whitebox2.png["First design inside Radarin"]
+
+It seeks to intercommunicate the user interface (Front End), the business logic (Back End) and the authentication system. The Front End needs the services of the Back End layer so that it sends data and results of actions to it so that it can display them to the user.
+On the other hand, the Front End interacts with the authentication system so that the user can log in with their WebID or through a provider. The Back End is also related to the authentication system, in order to access the POD data of the user who is currently in session.
+
+.Contained blackboxes
+
+[options="header"]
+.Black box descriptions of level 1
+|===
+|Name|Responsability
+|Authentication System | It takes care of the login by verifying the user's account.
+|Front End | It interacts with the end user, collects the input data provided by him and displays all the information pertinent to the actions carried out by him within the application.
+|Back End | It receives the data provided by the user through the Front End module, processes them and performs the necessary operations obtaining results that are sent, again, to the previously mentioned module.
+|===
