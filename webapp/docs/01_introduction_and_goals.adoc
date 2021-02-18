@@ -2,7 +2,7 @@
 
 [[section-introduction-and-goals]]
 == Introduction and Goals
-Radarin seeks to facilitate meetings between friends making use of the location of each of them. It is based on SOLID specifications and guarantees user safety as it only stores your location at a specific time and with his consent.
+Radarin seeks to facilitate meetings between friends making use of the location of each of them. It is based on SOLID specifications and guarantees user safety as it only stores his location at a specific time and with his consent.
 
 === Requirements Overview
 In every application there are high-level requirements that are sought to be met and completed, in the case of Radarin:
@@ -10,13 +10,14 @@ In every application there are high-level requirements that are sought to be met
 .Mandatory requirements
 * It is based on a decentralized architecture where the location data storage is located on a server.
 * Users can manage and view their locations.
-* A user receives notifications from other known users who are nearby
+* A user receives notifications from other known users who are nearby and can know their locations.
 * The information of the users, like their friends, will be saved in the user's Pod.
 * There must be administration options for user management.
 * Server status can be monitored.
 
 === Quality Goals
 
+[options="header"]
 .Quality goals
 |===
 |Quality Goal|Motivation|Importance
@@ -28,10 +29,12 @@ In every application there are high-level requirements that are sought to be met
 
 === Stakeholders
 
+[options="header"]
 .General stakeholders
 |===
 |Role/Name|Expectations
+| Development team | Learn new technologies like SOLID and work more efficiently and effectively in a group. They expect to develop an application with the requested requirements
 | Application users | They expect the application to be easy to use and intuitive without having to know the technologies used
-| Development team | Learn new technologies such as SOLID and work more efficiently and effectively in a group 
+| Client | Monitor the development of the project to ensure that pre-established requirements are met and expect a fully functional application. 
 | https://inrupt.com/[*Inrupt*^,role=blue] and https://www.empathy.co/[*Empathy*^,role=blue] companies | They expect the development team to create an application that is compatible with the SOLID project and satisfy divers criteria for usability, creativity, security, originality, efficiency, and quality
 |===
