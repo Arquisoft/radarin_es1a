@@ -50,4 +50,3 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | UI Desing | The user interface has to be easy to use and learn, following the common usability recomendations for mobile apps.
 | TBD | TBD.
 |===
-

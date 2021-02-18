@@ -56,12 +56,24 @@ image:08_dom_diagram.png["Example UML Diagram"]
 
 
 
-=== _<Concept 2>_
+=== _<Security and consistency>_
 
-_<explanation>_
+Security is one of the key aspect of any software project, and as such it'll be one of the main focus of our application, we will be following the SOLID recommendations in terms of security
+as well as using secure web protocols like HTTPS. Also we must be certain that the data we are managing is consistent both in the server side as well as in the client.
 
-...
+=== _<Code Quality standards>_
 
-=== _<Concept n>_
+Nowadays software applications are never in a fixed state, they are always change, be it to add new functionality or to adapt to new technology, for this reason, the code of an application should 
+always be well structured to allow for easy comprehension by other members of the team (or future software developers) and allow for mantainment, scalability and reusability.
+To archive this, we will be using automatic code-analyzing tools to find any problems in our code, and desing patterns to get to the best solution.
 
-_<explanation>_
+=== _<Internationalization>_
+Our application will only be in Spanish and English in its first version, but by using standarized ways of internationalization from the beginning it should be easy to add
+any language that we deem necesary in the future.
+
+=== _<Usability>_
+On the modern mobile market, usability is one of the most important features for the succes of any application. One of our main focus is to provide the user the most easy and satisfying experience while
+using our application, and will be a focus from the start, specially in the desing of the UI.
+
+=== _<Package Structure>_
+TBD 
