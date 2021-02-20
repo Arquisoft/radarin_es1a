@@ -29,5 +29,5 @@ Potentially more columns in case you need translations.
 | Solid     |  Is a web decentralization project led by Tim Berners-Lee,the goal of Solid is to allow users to have full control of their own data, including access control and storage location
 | arc42     | Provides a template for documentation and communication of software and system architectures.
 | Pod     | Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data.
-| React     | Es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.
+| React     | It is an open source Javascript library designed to create user interfaces with the aim of facilitating the development of applications on a single page. 
 |===
