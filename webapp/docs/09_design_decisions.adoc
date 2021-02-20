@@ -33,4 +33,5 @@ The client side of the application will be accesed on a web page and not though 
 |===
 |Decision |Meaning |Motivation
 |Application deployed on web:| The client side of the application will be accesed on a web page and not though a native android app. |Due to our limited time and experience we decided to go only for a web app to cover most mobile devices.
+|Application that shows you work on a map:| Most of the app will be an interactive map for users | Due to the large number of apis dedicated to the use of available maps and the documentation available to them, along with the usability they provide to the user for this application, we have decided that it is the right decision
 |===
