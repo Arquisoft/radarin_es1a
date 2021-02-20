@@ -22,6 +22,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 
 [options="header",cols="1,2"]
 |===
+.Technical constraints
 |Constraint|Explanation
 | Javascript | The bulk of the application will be written using javascript, as it's the most popular scripting language for web based apps. Or course we will also be using html and css to construct the web side.
 | Node.js | The server side of the application will be used using node.js, based on the javascript language.
@@ -33,6 +34,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 === Organizational and political constraints
 
 [options="header",cols="1,2"]
+.Organizational constraints
 |===
 |Constraint|Explanation
 | Team | Due to the nature of the course, the development time for the "finished" product is extremely small, consisting only of seven weeks.
@@ -44,9 +46,11 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 === Conventions
 
 [options="header",cols="1,2"]
+.Conventions
 |===
 | Constraint | Explanation
 | Solid especifications | As the main data technology of this project, we will try to follow the conventions, recomendations and best practices decided by the Solid community.
 | UI Desing | The user interface has to be easy to use and learn, following the common usability recomendations for mobile apps.
-| TBD | TBD.
+| W3C Standards | We will try to follow as close as possible the rules and recommendation stated by the W3C organization in order to comply with international standards.
+| Documentation | We will follow the Arc32 arquitechture for the realization of this documentation.
 |===
