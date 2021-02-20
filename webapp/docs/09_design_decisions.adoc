@@ -1,37 +1,17 @@
 [[section-design-decisions]]
 == Design Decisions
 
-
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
-
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
-
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
-
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-.Form
-Various options:
-
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
-
-Application deployed on web:
-The client side of the application will be accesed on a web page and not though a native android app.
-
 [options="header"]
 .Desing Decisions
 |===
 |Decision |Meaning |Motivation
-|Application deployed on web:| The client side of the application will be accesed on a web page and not though a native android app. |Due to our limited time and experience we decided to go only for a web app to cover most mobile devices.
-|Application that shows you work on a map:| Most of the app will be an interactive map for users | Due to the large number of apis dedicated to the use of available maps and the documentation available to them, along with the usability they provide to the user for this application, we have decided that it is the right decision
+|Application deployed on web | The client will be able to access through a web application that will also be accessible from mobile phones | Due to our limited time and experience we decided to go only for a web app to cover most mobile devices.
+|Application that shows you work on a map | Most of the app will be an interactive map for users | Due to the large number of apis dedicated to the use of available maps and the documentation available to them, along with the usability they provide to the user for this application, we have decided that it is the right decision
+|===
+
+[options="header"]
+.Rejected alternatives
+|===
+|Decision rejected| Reason
+|Use React Native | It has been decided not to use it due to its complexity and the short period of time that the development team has to learn about and experiment with this technology
 |===
