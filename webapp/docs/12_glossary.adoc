@@ -30,5 +30,5 @@ Potentially more columns in case you need translations.
 | arc42     | Provides a template for documentation and communication of software and system architectures.
 | Pod     | Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data.
 | React     | It is an open source Javascript library designed to create user interfaces with the aim of facilitating the development of applications on a single page. 
- API     | A set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service. 
+|API     | A set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service. 
 |===
