@@ -39,3 +39,7 @@ On the other hand, the Front End interacts with the authentication system so tha
 |Front End | It interacts with the end user, collects the input data provided by him and displays all the information pertinent to the actions carried out by him within the application.
 |Back End | It receives the data provided by the user through the Front End module, processes them and performs the necessary operations obtaining results that are sent, again, to the previously mentioned module.
 |===
+
+=== Level 2 
+
+TBD
