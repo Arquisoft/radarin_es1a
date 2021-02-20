@@ -9,6 +9,14 @@ List of risks we can face during development and possible strategies to address 
 | Lack of synchronization of the user's location with the application. | If you are not able to make a real-time (or every X time passed) update, you will be looking to update on demand each time the user opens the application.
 | Impossibility or difficulty sending notifications to the user.
 | If notifications cannot be sent directly to the user's device, the open app will show close friends to the user once the app starts.
+| No experience with SOLID technology.
+| We will have to maintain at all times a level of investigation that allows us to be
+independent and develop the application correctly. For this we will consult
+pages and forums specialized in SOLID.
+| First development of a project with a large team.
+| We will have to learn to work as a team, in addition to leaving the team members
+develop and present their own ideas. All this must be complemented with a correct
+use of github.
 |===
 .Technical Debts
 * We must commit to correct documentation and functional application within 3 months of the start of the project.
