@@ -21,8 +21,8 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 === Technical constraints
 
 [options="header",cols="1,2"]
-|===
 .Technical constraints
+|===
 |Constraint|Explanation
 | Javascript | The bulk of the application will be written using javascript, as it's the most popular scripting language for web based apps. Or course we will also be using html and css to construct the web side.
 | Node.js | The server side of the application will be used using node.js, based on the javascript language.
