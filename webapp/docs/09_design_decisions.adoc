@@ -24,3 +24,13 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+Application deployed on web:
+The client side of the application will be accesed on a web page and not though a native android app.
+
+[options="header"]
+.Desing Decisions
+|===
+|Decision |Meaning |Motivation
+|Application deployed on web:| The client side of the application will be accesed on a web page and not though a native android app. |Due to our limited time and experience we decided to go only for a web app to cover most mobile devices.
+|===
