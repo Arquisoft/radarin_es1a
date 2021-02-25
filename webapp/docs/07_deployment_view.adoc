@@ -6,7 +6,7 @@
 === Infrastructure Level 1
 
 
-image::07_DeploymentView.png[Deployment View]
+image::07_Deployment_View.PNG[Deployment View]
 
 .Motivation
 
@@ -29,9 +29,9 @@ The main components of the infrastructure are:
 |===
 |Node|Description
 | User Device | Is the device that the user will use for the application, it will usually be a mobile phone, but it could be also possible a computer.
-| Web App | The web application which would be accessed by the user from a browser.
-| Application Server | Is the web hosting server where the web application is allocated.
-| Heroku | The web hosting server that we are going to use.
-| SOLID | The SOLID server is where we are going to store the users's data securely in decentralized data stores, the PODS.
+| Browser | Is the software that allows access to the application. The most famous ones like Safari, Google or Firefox will be compatible.
+| Web Server | Is the web hosting server where the Radarin is allocated.
+| Heroku | It's a Cloud Application Platform that we are going to use as a Web Server.
+| SOLID Server | The SOLID server is where we are going to store the users's data securely in decentralized data stores, the PODS.
 | User POD | The user POD is where their data is stored. Each user has their own POD and they can control who and what can access it.
 |===
