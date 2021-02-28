@@ -14,3 +14,7 @@ For interaction between users, each will share their location with the applicati
 
 image:06_Represent_Map.png["Way that an user get the Ubication of near Users"]
 
+=== Adding an User as a Friend
+
+A user who wants to be able to access the location of another and their user information, the user must pre-send a friend request and this be a user by the target user as follows:
+image:06_Add_A_Friend.png["Adding a Friend to your POD"]
