@@ -24,11 +24,11 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 .Technical constraints
 |===
 |Constraint|Explanation
-| Javascript | The bulk of the application will be written using javascript, as it's the most popular scripting language for web based apps. Or course we will also be using html and css to construct the web side.
-| Node.js | The server side of the application will be used using node.js, based on the javascript language.
-| React | The interface side of the project will be developed using REACT. React is an open source library for javascript that allows to easily update the interface when the data changes, facilitating the implementation of the map part of the application.
-| SOLID | A requirement of this project is the use of SOLID as the data storage technology, Solid is based around decentralization of the data, secured in the users PODs.
-| POD | PODs are part of the solid specifications, storing the users data in their own dispositives, this descentralized aproach serves as a replacement for the traditional sql-based database.
+| Software Components | A web app that runs on a server and stores locations and a mobile app that sends locations and recieves notifications from other users.
+| Testing | Automated tests must be develop to test the functionality of the application.
+| SOLID and PODs| A requirement of this project is the use of SOLID as the data storage technology, Solid is based around decentralization of the data, secured in the users PODs.
+| Github | The code will be deployed in a public gitHub repository.
+
 |===
 
 === Organizational and political constraints
@@ -38,9 +38,9 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 |===
 |Constraint|Explanation
 | Team | Due to the nature of the course, our team is static and composed only of students with very limited experience in the technology and organizational methods, as well as no budget for any licensed technologies.
-| Git | Our work will be coordinated though gitHub, where we hace a repository to store the code, do the versions control and deploy the application and the documentation.
+| Git | Our work will be coordinated though gitHub, where we hace a repository to store the code, do the versions control and deploy the application and the documentation. Git of Github (tecnologico)
 | Time | The time constraint will be determined by the reality of this project, that is a college project of one of many subjects, as such, it will only last for a few months. Due to that the application we'll develop will be a prototype.
-| Microsoft Teams | Due to the current pandemic, we will be using microsoft teams, where we will host our meetings to discuss anything we deem necesary to the correct development of the product.
+| Remote work | Due to the current pandemic, all the work will be done remotely from the personal computer of each team member, likewise the meetings will be done telematicly.
 |===
 
 === Conventions
@@ -49,8 +49,8 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 .Conventions
 |===
 | Constraint | Explanation
-| Solid especifications | As the main data technology of this project, we will try to follow the conventions, recomendations and best practices decided by the Solid community.
 | UI Desing | The user interface has to be easy to use and learn, following the common usability recomendations for mobile apps.
 | W3C Standards | We will try to follow as close as possible the rules and recommendation stated by the W3C organization in order to comply with international standards.
-| Documentation | We will follow the Arc32 arquitechture for the realization of this documentation.
+| Documentation | We will follow the Arc42 arquitechture for the realization of this documentation, also it will be written in it's entirety in English.
+| Acessibility | We will develop the UI of the application aiming to provide a good user experience to people with colorblind issues.
 |===
