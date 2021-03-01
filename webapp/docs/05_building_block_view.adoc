@@ -30,6 +30,7 @@ image:05_diagrama_level2.png["First design level 2"]
 
 It seeks to intercommunicate the user interface (Front End), the business logic (Back End) and the authentication system. The Front End needs the services of the Back End layer so that it sends data and results of actions to it so that it can display them to the user.
 On the other hand, the Front End interacts with the authentication system so that the user can log in with their WebID or through a provider. The Back End is also related to the authentication system, in order to access the POD data of the user who is currently in session.
+
 .Contained blackboxes
 
 [options="header"]
@@ -44,3 +45,34 @@ On the other hand, the Front End interacts with the authentication system so tha
 === Level 3
 
 image:05_diagrama_level3.png["First design level 3"]
+
+.Contained blackboxes
+
+==== Authentication System WhiteBox
+
+[options="header"]
+.Black box descriptions of Authentication System
+|===
+|Name|Responsability
+|Login Manager | Manage the user's login credentials by connecting to his pod
+|===
+
+==== Front End WhiteBox
+
+[options="header"]
+.Black box descriptions of Front End 
+|===
+|Name|Responsability
+|List of friends | It shows to the user, through the graphical interface, their friends, their friend requests, send requests to other users and manage their friends with the typical options of accepting or rejecting requests and deleting friendships
+|===
+
+==== Back End WhiteBox
+
+[options="header"]
+.Black box descriptions of Back End 
+|===
+|Name|Responsability
+|Locations Manager | Treat the data of the locations and save them in a database only while the user is in session
+|Notifications Manager | Treat the notifications that will be received by the user as when a friend of his is nearby
+|Requests Manager | Manages the addition or deletion made by the user in his list of friends, relating his pod with the pod of his friends
+|===
