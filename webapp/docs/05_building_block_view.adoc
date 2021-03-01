@@ -42,4 +42,4 @@ On the other hand, the Front End interacts with the authentication system so tha
 
 === Level 3
 
-image:05_diagrama_nivel3.png["First design level 3"]
+image:05_diagrama_level3.png["First design level 3"]
