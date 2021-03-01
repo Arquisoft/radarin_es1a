@@ -36,5 +36,5 @@ In every application there are high-level requirements that are sought to be met
 | Development team | Learn new technologies like SOLID and work more efficiently and effectively in a group. They expect to develop an application with the requested requirements
 | Application users | They expect the application to be easy to use and intuitive without having to know the technologies used
 | Client | Monitor the development of the project to ensure that pre-established requirements are met and expect a fully functional application. 
-| https://inrupt.com/[*Inrupt*^,role=blue] company] companies | They expect the development team to create an application that is compatible with the SOLID project and satisfy divers criteria for usability, creativity, security, originality, efficiency, and quality
+| https://inrupt.com/[*Inrupt*^,role=blue] company| They expect the development team to create an application that is compatible with the SOLID project and satisfy divers criteria for usability, creativity, security, originality, efficiency, and quality
 |===
