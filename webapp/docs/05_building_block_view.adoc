@@ -24,7 +24,7 @@ The user interacts with his own Pod, over which he has control and ownership of 
 
 === Level 2
 
-image:05_diagrama_whitebox2.png["First design inside Radarin"]
+image:05_diagrama_level2.png["First design level 2"]
 
 It seeks to intercommunicate the user interface (Front End), the business logic (Back End) and the authentication system. The Front End needs the services of the Back End layer so that it sends data and results of actions to it so that it can display them to the user.
 On the other hand, the Front End interacts with the authentication system so that the user can log in with their WebID or through a provider. The Back End is also related to the authentication system, in order to access the POD data of the user who is currently in session.
