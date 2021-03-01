@@ -7,8 +7,10 @@
 === Whitebox Overall System
 
 The general system is represented in a white box and composed of different elements such as the black box and building blocks.
+image:05_diagrama_general.png["First design of general system"]
 
-image:05_diagrama_level1.png["First design of general system"]
+
+image:05_diagrama_level1.png["First design of level 1 system"]
 
 The user interacts with his own Pod over which he has control and ownership of his data, the user performs operations such as creating it or modifying the permissions to his data. It also interacts with the Radarin application, which is represented as a black box in this diagram. On the other hand, Radarin interacts with the Pod in order to access the files that are in it, being able to save and load data.
 
