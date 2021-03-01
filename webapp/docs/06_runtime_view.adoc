@@ -2,6 +2,11 @@
 == Runtime View
 The next schemes are some of scenarios for the app radarin 
 
+=== Login as an User
+The app will ask the user for their name and password before accessing the other views of the application, it will then validate the information with the System Pod, and if successful, you will be given access to the rest of the application.
+
+image:06_Add_A_Friend.png["Way that an user get Logged in the App"]
+
 === Share Information as an User
 
 The Radarin app is a decentralized system that will use the Solid system to store user information in PODS with the following user interaction system:
