@@ -2,13 +2,13 @@
 
 
 == Building Block View
+An overview of the building blocks is presented, showing the static decomposition of each level of the system as well as the dependencies between them.
 
+image:05_diagrama_general.png["First design of general system"]
 
 === Whitebox Overall System
 
 The general system is represented in a white box and composed of different elements such as the black box and building blocks.
-image:05_diagrama_general.png["First design of general system"]
-
 
 image:05_diagrama_level1.png["First design of level 1 system"]
 
