@@ -1,36 +1,15 @@
 [[section-glossary]]
 == Glossary
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-****
-
 [options="header"]
 |===
 | Term         | Definition
-| Solid     |  Is a web decentralization project led by Tim Berners-Lee,the goal of Solid is to allow users to have full control of their own data, including access control and storage location
-| arc42     | Provides a template for documentation and communication of software and system architectures.
-| Pod     | Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data.
-| React     | It is an open source Javascript library designed to create user interfaces with the aim of facilitating the development of applications on a single page. 
-|API     | A set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service. 
-|W3C    |The W3C (World Wide Web Consortium) is a committee dedicated to implementing uniform technologies in the use and development of the Internet.
-|Heroku | Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+| API | A set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service 
+| arc42 | Provides a template for documentation and communication of software and system architectures
+| Heroku | Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud
+| Pod | Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data
+| React | It is an open source Javascript library designed to create user interfaces with the aim of facilitating the development of applications on a single page
+| Server | Program that uses HTTP to serve the files that make up Web pages to users, in response to their requests, being forwarded by the HTTP clients of their computers
+| Solid |  Is a web decentralization project led by Tim Berners-Lee,the goal of Solid is to allow users to have full control of their own data, including access control and storage location
+| W3C |The W3C (World Wide Web Consortium) is a committee dedicated to implementing uniform technologies in the use and development of the Internet.
 |===
