@@ -22,7 +22,7 @@ The user interacts with his own Pod, over which he has control and ownership of 
 |Radarin|It is the part of the system that manages the requests made by the user.
 |===
 
-=== Level 1
+=== Level 2
 
 image:05_diagrama_whitebox2.png["First design inside Radarin"]
 
@@ -32,7 +32,7 @@ On the other hand, the Front End interacts with the authentication system so tha
 .Contained blackboxes
 
 [options="header"]
-.Black box descriptions of level 1
+.Black box descriptions of level 2
 |===
 |Name|Responsability
 |Authentication System | It takes care of the login by verifying the user's account.
@@ -40,6 +40,6 @@ On the other hand, the Front End interacts with the authentication system so tha
 |Back End | It receives the data provided by the user through the Front End module, processes them and performs the necessary operations obtaining results that are sent, again, to the previously mentioned module.
 |===
 
-=== Level 2 
+=== Level 3
 
-TBD
+image:05_diagrama_nivel3.png["First design level 3"]
