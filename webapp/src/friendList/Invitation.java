@@ -21,4 +21,12 @@ public class Invitation{
     public String getDestinatary(){
         return destinatary;
     }
+    public boolean isAccepted(){
+        return accepted;
+    }
+
+    public String toString(){
+        String state = (accepted ? "aceptada" : "pendiente");
+        return "Remitente: " + remitent + " Destinatario: " + destinatary + " " + state ;
+    }
 }
