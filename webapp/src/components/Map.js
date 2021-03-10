@@ -8,7 +8,6 @@ function Map() {
 
     const [ui, setUi] = useState(null);
 
-
     const mapRef = useCallback((nodo) => {
         const H = window.H;
         const platform = new H.service.Platform({
@@ -39,9 +38,6 @@ function Map() {
         // This variable is unused
         setUi(H.ui.UI.createDefault(map, defaultLayers));
 
-
-
-
         setMap(map);
 
     }, [setMap]); //regenera mapref cada vez que cambie el map
@@ -52,6 +48,9 @@ function Map() {
             navigator.geolocation.getCurrentPosition((position) => {
                 console.log(position);
                 const H = window.H;
+
+                //Resize of map in window
+                window.addEventListener("resize", () => map.getViewPort().resize());
 
                 var LocationOfMarker = { lat: position.coords.latitude, lng: position.coords.longitude };
 
@@ -70,10 +69,6 @@ function Map() {
                 }, false);
                 // show info bubble
 
-
-
-
-
                 // Add the marker to the map:
                 map.addObject(marker);
 
@@ -84,12 +79,13 @@ function Map() {
                 map?.dispose();
             }
         }
-    }, [map])
+    }, [map]);
 
     return (
         // Set a height on the map so it will display
         <div ref={mapRef} id="map" />
     );
+    
 }
 
 export default Map;
