@@ -1,29 +1,34 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import 'here-js-api/styles/mapsjs-ui.css';
+
 function Map() {
 
     const [map, setMap] = useState(null);
 
+    const [ui, setUi] = useState(null);
 
-    const mapRef = useCallback((nodo)=> {
+
+    const mapRef = useCallback((nodo) => {
         const H = window.H;
         const platform = new H.service.Platform({
             apikey: "s13roZogcqn6MI6dAT_MLNQ7PLMXbdmFMHSZfAEH1aI"
         });
-    
+
         const defaultLayers = platform.createDefaultLayers();
-    
+
         // Create an instance of the map
         const map = new H.Map(
-          nodo,
-          defaultLayers.vector.normal.map,
-          {
-            // This map is centered over Europe
-            center: { lat: 50, lng: 5 },
-            zoom: 4,
-            pixelRatio: window.devicePixelRatio || 1
-          }
+            nodo,
+            defaultLayers.vector.normal.map,
+            {
+                // This map is centered over Europe
+                center: { lat: 50, lng: 5 },
+                zoom: 4,
+                pixelRatio: window.devicePixelRatio || 1
+            }
         );
+
 
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
@@ -32,16 +37,19 @@ function Map() {
 
         // Create the default UI components to allow the user to interact with them
         // This variable is unused
-        H.ui.UI.createDefault(map, defaultLayers);
-             
+        setUi(H.ui.UI.createDefault(map, defaultLayers));
+
+
+
+
         setMap(map);
-        
+
     }, [setMap]); //regenera mapref cada vez que cambie el map
 
     useEffect(() => {
         if (map) {
             console.log(navigator.geolocation);
-            navigator.geolocation.getCurrentPosition((position)=>{
+            navigator.geolocation.getCurrentPosition((position) => {
                 console.log(position);
                 const H = window.H;
 
@@ -49,27 +57,39 @@ function Map() {
 
                 // Create a marker icon from an image URL:
                 //var icon = new H.map.Icon('/img/marker.png');
-        
+
                 // Create a marker using the previously instantiated icon:
                 ///var marker = new H.map.Marker(LocationOfMarker, { icon: icon });  
-                var marker = new H.map.Marker(LocationOfMarker);    
-                
+                var marker = new H.map.Marker(LocationOfMarker);
+
+                marker.addEventListener('tap', logEvent => {
+                    var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude + 2 }, {
+                        content: '<b>Usuario A</b>'
+                    });
+                    ui.addBubble(bubble);
+                }, false);
+                // show info bubble
+
+
+
+
+
                 // Add the marker to the map:
                 map.addObject(marker);
 
-            } , (error)=>{
+            }, (error) => {
                 console.error(error);
             })
-            return () =>{
+            return () => {
                 map?.dispose();
-            }    
+            }
         }
     }, [map])
 
     return (
         // Set a height on the map so it will display
         <div ref={mapRef} id="map" />
-      );
+    );
 }
 
 export default Map;
