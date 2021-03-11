@@ -52,14 +52,16 @@ function Map() {
                 //Resize of map in window
                 window.addEventListener("resize", () => map.getViewPort().resize());
 
+                // Create a marker icon from an image URL:
+                var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+
                 var LocationOfMarker = { lat: position.coords.latitude, lng: position.coords.longitude };
 
-                // Create a marker icon from an image URL:
-                //var icon = new H.map.Icon('/img/marker.png');
+
 
                 // Create a marker using the previously instantiated icon:
                 ///var marker = new H.map.Marker(LocationOfMarker, { icon: icon });  
-                var marker = new H.map.Marker(LocationOfMarker);
+                var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
 
                 marker.addEventListener('tap', logEvent => {
                     var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude + 2 }, {
@@ -85,7 +87,7 @@ function Map() {
         // Set a height on the map so it will display
         <div ref={mapRef} id="map" />
     );
-    
+
 }
 
 export default Map;
