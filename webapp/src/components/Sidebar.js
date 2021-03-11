@@ -22,21 +22,22 @@ class SideNav extends React.Component {
             {
               path: '/', /* path is used as id to check which NavItem is active basically */
               name: 'Home',
-              css: 'fa fa-fw fa-home',
+              css: 'fa fa-fw fa-map-marker-alt',
               key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
+            },
+            {
+              path: '/FriendList',
+              name: 'FriendList',
+              css: 'fas fa-users',
+              key: 2
             },
             {
               path: '/about',
               name: 'About',
-              css: 'fa fa-fw fa-clock',
-              key: 2
-            },
-            {
-              path: '/NoMatch',
-              name: 'NoMatch',
-              css: 'fas fa-hashtag',
+              css: 'fa fa-fw fa-user-plus',
               key: 3
             },
+            
           ]
         }  
       }

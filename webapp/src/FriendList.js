@@ -5,8 +5,8 @@ const Wrapper = styled.div`
   margin-left: 6em;
   margin-right: 6em;
 `;
-export const NoMatch = () => (
+export const FriendList = () => (
   <Wrapper>
-    <h2>No Match</h2>
+    <h2>FriendList</h2>
   </Wrapper>
 )
