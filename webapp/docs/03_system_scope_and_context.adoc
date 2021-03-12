@@ -21,7 +21,7 @@ Radarin should have the following features:
 | Friends | Notifications from server and other friend location. | Their current locations. 
 | Web server | The shared locations of the users.| The relative notifications to each user if needed.
 |===
-image:03_diagrama_negocio.png["Business & Tecnical Context"]
+image:03_ContextDiagram.png["Business & Tecnical Context"]
 
 
 === Technical Context
@@ -31,5 +31,3 @@ Our goal is to follow Solid (Social Linked Data) is a web decentralization proje
 To accomplish this we will use PODs that will store the user information and send this to the server and other friends/users when the user decides it.
 
 The application will use the React technology that is an open source Javascript library designed to create user interfaces with the aim of facilitating application development on a single page. It is maintained by Facebook and the free software community, will help us a lot on the development.
-
-image:03_diagrama_tecnico.png["Technical Context"]
