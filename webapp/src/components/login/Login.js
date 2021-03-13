@@ -1,5 +1,5 @@
 import { ProviderLogin } from '@inrupt/solid-react-components';
-import { LogoutButton, LoggedIn, LoggedOut, Link } from '@solid/react';
+import { Link } from '@solid/react';
 import {
   Container,
   Card,
@@ -12,7 +12,7 @@ import './login.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin:'50% auto',
+    margin:'30% auto',
   },
 }));
 
@@ -24,7 +24,7 @@ export default function Login() {
       <Container component="main" maxWidth="sm">
         <Card
           className={classes.root}
-          elevation={4}
+          elevation={10}
           style={{
             display: 'grid'
           }}
@@ -49,17 +49,7 @@ export default function Login() {
               }}
               providers={Provider.getIdentityProviders()}
             />
-
             <Link href="https://solidcommunity.net/register">Don't have a Solid Pod? Sign Up</Link>
-
-            <LoggedIn>
-              <LogoutButton />
-            </LoggedIn>
-
-            <LoggedOut>
-              console.log("No estas logueado");
-            </LoggedOut>
-
           </CardContent>
         </Card>
       </Container>
