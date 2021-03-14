@@ -16,4 +16,6 @@
 |===
 |Decision rejected| Reason
 |Use React Native | It has been decided not to use it due to its complexity and the short period of time that the development team has to learn about and experiment with this technology
+|Pigeon Maps | The map was in black and white and also, the location markers can give problems
+|Google Maps | It works correctly but we have to enter a credit card to use it
 |===
