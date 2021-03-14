@@ -1,5 +1,7 @@
-#root {
-    /* background-image: url("../img/map_preview.PNG");*/
-    background-repeat: no-repeat, repeat;
+.login {
+    background-image: url("../img/map_preview.PNG");
+    background-repeat:  repeat;
     background-size: cover;
+	padding-top:5%;
+	padding-bottom:20%;
 }
