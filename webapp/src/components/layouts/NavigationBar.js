@@ -4,15 +4,16 @@ import { LoggedIn, LoggedOut } from '@solid/react';
 import auth from 'solid-auth-client';
 import styled from 'styled-components';
 const Styles = styled.div`
-  .navbar { background-color: #222; }
+  .navbar { background-color: #303030; }
   a, .navbar-nav, .navbar-light .nav-link {
-    color: #9FFFCB;
-    &:hover { color: white; }
+    color: #99DE9F;
+    &:hover { color: #FFC3A2; }
   }
   .navbar-brand {
-    font-size: 1.4em;
-    color: #9FFFCB;
-    &:hover { color: white; }
+    font-size: 1.6em;
+    font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+    color: #99DE9F;
+    &:hover { color: #FFC3A2; }
   }
   .form-center {
     position: absolute !important;
@@ -24,7 +25,7 @@ export const NavigationBar = () => (
   <Styles>
     <LoggedIn>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">Radarin Es1A</Navbar.Brand>
+      <Navbar.Brand href="/">Radarin</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Form className="form-center">
         <FormControl type="text" placeholder="Search" className="" />
@@ -40,7 +41,7 @@ export const NavigationBar = () => (
     </LoggedIn>
     <LoggedOut>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">Radarin Es1A</Navbar.Brand>
+      <Navbar.Brand href="/">Radarin</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">

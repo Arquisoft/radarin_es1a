@@ -8,7 +8,7 @@ height: 100%;
 width: 75px;     /* Set the width of the sidebar */
 z-index: 1;      /* Stay on top of everything */
 top: 3.4em;      /* Stay at the top */
-background-color: #222; /* Black */
+background-color: #303030; /* Black */
 overflow-x: hidden;     /* Disable horizontal scroll */
 padding-top: 10px;
 `;
@@ -70,9 +70,10 @@ const StyledNavItem = styled.div`
   margin-bottom: 0;   /* Puts space between NavItems */
   a {
     font-size: 2.7em;
-    color: ${(props) => props.active ? "white" : "#9FFFCB"};
+    color: ${(props) => props.active ? "white" : "#99DE9F"};
     :hover {
       opacity: 0.7;
+      &:hover { color: #FFC3A2; }
       text-decoration: none; /* Gets rid of underlining of icons */
     }  
   }

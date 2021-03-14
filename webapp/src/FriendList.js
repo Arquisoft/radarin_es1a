@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import UserList from './components/UserList'
 const Wrapper = styled.div`
   margin-top: 1em;
   margin-left: 6em;
@@ -8,5 +9,7 @@ const Wrapper = styled.div`
 export const FriendList = () => (
   <Wrapper>
     <h2>FriendList</h2>
+    <UserList/>
   </Wrapper>
+  
 )
