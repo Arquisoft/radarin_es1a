@@ -8,14 +8,13 @@
 ****
 
 
-
-Our application will have a front-end based in react and the data will be treated with Solid technology 
-
 === Technology decisions
+The radarin app will be a web app capable of run on smartphones.
 
-* React: is a Javascript open source library designed for create user interfaces which we are going to realize the inferface from our application.
-* Solid: is a proposed set of conventions and tools for building decentralized social applications based on Linked Data principles. Our application is based in this philosophy.
-* Visual studio code: is a  code editor which we are going to use for development our application.
+* React: it makes easy the portability of the App between platforms and there is plenty of documentation to check out if we need it.
+* HereAPI: is the biggest free map API , and we don't want to depend of Google because of the obligation of using credit card to use it. Is plenty of  documentation and highly customizable.
+* Material-ui: makes it easy to create login components , and info cards.
+* Solid-react-components: is an API provided by Inrupt, is managing the solid session across the app.
 
 
 
