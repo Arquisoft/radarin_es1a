@@ -2,6 +2,28 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import 'here-js-api/styles/mapsjs-ui.css';
 
+
+
+function addFriends(map,ui) {
+    const H = window.H;
+    var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+
+
+    var LocationOfMarker = { lat:40.4, lng: -3.6833 };
+
+    var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
+    map.addObject(marker);
+
+    marker.addEventListener('tap', logEvent => {
+        var bubble = new H.ui.InfoBubble({lat: 40.4, lng: -3.6833+2 }, {
+            content: '<b>Usuario Amigo</b>'
+        });
+        ui.addBubble(bubble);
+    }, false);
+
+ 
+}
+
 function Map() {
 
     const [map, setMap] = useState(null);
@@ -51,6 +73,12 @@ function Map() {
 
                 //Resize of map in window
                 window.addEventListener("resize", () => map.getViewPort().resize());
+
+                addFriends(map,ui);
+
+
+
+
 
                 // Create a marker icon from an image URL:
                 var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
