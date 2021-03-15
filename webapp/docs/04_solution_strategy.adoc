@@ -11,10 +11,13 @@
 === Technology decisions
 The radarin app will be a web app capable of run on smartphones.
 
-* React: it makes easy the portability of the App between platforms and there is plenty of documentation to check out if we need it.
+* React: Is a Javascript open source library designed for create user interfaces which we are going to realize the inferface from our application, it simplyfies the portability of the App between platforms and there is plenty of documentation to check out if we need it.
 * HereAPI: is the biggest free map API , and we don't want to depend of Google because of the obligation of using credit card to use it. Is plenty of  documentation and highly customizable.
-* Material-ui: makes it easy to create login components , and info cards.
+* Material-ui: makes it easy to create login components and info cards.
 * Solid-react-components: is an API provided by Inrupt, is managing the solid session across the app.
+* Solid-Auth-Client: is an API which allows users to safely login into their SOLID pods.
+
+
 
 
 
