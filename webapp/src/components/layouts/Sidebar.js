@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const StyledSideNav = styled.div`
 position: fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */

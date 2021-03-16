@@ -76,10 +76,6 @@ function Map() {
 
                 addFriends(map,ui);
 
-
-
-
-
                 // Create a marker icon from an image URL:
                 var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
 
@@ -109,7 +105,7 @@ function Map() {
                 map?.dispose();
             }
         }
-    }, [map]);
+}, [map]);
 
     return (
         // Set a height on the map so it will display
