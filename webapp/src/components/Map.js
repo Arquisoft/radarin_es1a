@@ -2,8 +2,6 @@ import React, { useRef, useLayoutEffect } from 'react';
 
 import 'here-js-api/styles/mapsjs-ui.css';
 
-
-
 function addFriends(map,ui) {
     const H = window.H;
     var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
@@ -70,16 +68,10 @@ function Map() {
 
             addFriends(map, ui);
 
-
-
-
-
             // Create a marker icon from an image URL:
             var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
 
             var LocationOfMarker = { lat: position.coords.latitude, lng: position.coords.longitude };
-
-
 
             // Create a marker using the previously instantiated icon:
             ///var marker = new H.map.Marker(LocationOfMarker, { icon: icon });  
@@ -102,15 +94,12 @@ function Map() {
         return () => {
             map.dispose();
         }
-
-
     }, [mapRef]);
 
     return (
         // Set a height on the map so it will display
         <div ref={mapRef} id="map" />
     );
-
 }
 
 export default Map;

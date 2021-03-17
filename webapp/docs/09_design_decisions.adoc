@@ -9,6 +9,7 @@
 |Application that shows you work on a map | Most of the app will be an interactive map for users | Due to the large number of apis dedicated to the use of available maps and the documentation available to them, along with the usability they provide to the user for this application, we have decided that it is the right decision
 |Friend list on PODs| We will use the user's PODs to access their friend list as well as any personal data needed for the function of our application. | To secure the privacy of the users the sensible information will remain under the control of the users.
 |Location on server | The locaiton of the users will be saved in real time in the server side of the application | To ensure the application runs smothly, we will do most of the calculations regarding position on the server.
+|UI color pallete | We will use 5 colors as the main colors of our application, making all the components from those colors. | To mantain a clean look and create a more pleasant visual experience to the user as well as a more consistent and professional look.
 |===
 
 [options="header"]
