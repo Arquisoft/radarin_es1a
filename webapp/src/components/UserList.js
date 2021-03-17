@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ListGroup from "react-bootstrap/ListGroup";
 
 
-class UserList extends React.Component{
-    render() {
+function UserList() {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/api/users/list")
+            .then((resultado)=>resultado.json())
+            .then((users) => setUsers(users));
+
+    }, [setUsers])
+
+        //recorrer usarios para mostrarlos
         return (
             <div className="UserList">
                 <h3>List of already registered users</h3>

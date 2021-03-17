@@ -6,7 +6,9 @@ const Wrapper = styled.div`
   margin-left: 6em;
   margin-right: 6em;
 `;
-export const FriendList = () => (
+export const FriendList = () => 
+
+
   <Wrapper>
     <h2>FriendList</h2>
     <UserList/>
