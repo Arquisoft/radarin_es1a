@@ -4,7 +4,7 @@ const feature = loadFeature('./features/register-form.feature');
 defineFeature(feature, test => {
   
   beforeEach(async () => {
-    await global.page.goto('http://localhost:3000')
+    await global.page.goto('http://localhost:3000', {waitUntil: 'load', timeout: 0})
   })
 
   test('The user is not registered in the site', ({given,when,then}) => {
