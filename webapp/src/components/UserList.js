@@ -4,7 +4,9 @@ import ListGroup from "react-bootstrap/ListGroup";
 
 function UserList() {
 
-    const [users, setUsers] = useState([]);
+    const [
+	//users,
+	setUsers] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5000/api/users/list")
@@ -24,7 +26,7 @@ function UserList() {
            </div>
         )
     }
-}
+
 /** 
 const webID= "https://uo247134.solidcommunity.net/profile/card#me"
 let MyDataset = await getSolidDataset(webID);
