@@ -19,10 +19,10 @@ function App() {
       navigator.geolocation.getCurrentPosition((position) => {
 
         const datos = {
-          "solidId":solidId,
+          "solidId": solidId,
           "posicion": {
-              "latitud": position.coords.latitude,
-              "longitud": position.coords.longitude
+            "latitud": position.coords.latitude,
+            "longitud": position.coords.longitude
           }
         }
         //Cambia cuando este subido a heroku
@@ -38,22 +38,25 @@ function App() {
 
   };
 
+
+
   useEffect(() => {
-    setInterval(enviarUbicacionAServidor, 30000);
+    //setInterval(enviarUbicacionAServidor, 30000);
+
+
   });
 
-  console.log(solidId);
 
 
   return (
     <React.Fragment>
       <Router>
-      <HomeView/>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={LoginView} />
-            <Route path="/about" component={About} />
-            <Route path="/FriendList" component={FriendList} />
+        <HomeView />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={LoginView} />
+          <Route path="/about" component={About} />
+          <Route path="/FriendList" component={FriendList} />
         </Switch>
       </Router>
     </React.Fragment>

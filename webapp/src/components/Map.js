@@ -2,25 +2,34 @@ import React, { useRef, useLayoutEffect } from 'react';
 
 import 'here-js-api/styles/mapsjs-ui.css';
 
-function addFriends(map,ui) {
+
+function addFriends(map, ui) {
+
+    console.log("ahora")
+    getRespuesta(map, ui);
+}
+var getRespuesta = async function (map, ui) {
+    var respuesta = await fetch('http://localhost:5000/api/users/lista')
+    var response = await respuesta.json();
     const H = window.H;
     var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+    response.map((item, index) => {
+        var LocationOfMarker = { lat: item.latitud, lng: item.longitud };
+        var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
+        map.addObject(marker);
 
-
-    var LocationOfMarker = { lat:40.4, lng: -3.6833 };
-
-    var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
-    map.addObject(marker);
-
-    marker.addEventListener('tap', logEvent => {
-        var bubble = new H.ui.InfoBubble({lat: 40.4, lng: -3.6833+2 }, {
-            content: '<b>Usuario Amigo</b>'
-        });
-        ui.addBubble(bubble);
-    }, false);
-
- 
+        marker.addEventListener('tap', logEvent => {
+            var bubble = new H.ui.InfoBubble({ lat: item.latitud, lng: item.longitud }, {
+                content: '<b>{item.solidId}</b>'
+            });
+            ui.addBubble(bubble);
+        }, false);
+        console.log(item)
+    }
+    )
 }
+
+
 
 function Map() {
 
@@ -28,7 +37,7 @@ function Map() {
 
     useLayoutEffect(() => {
 
-        if (!mapRef.current) return ;
+        if (!mapRef.current) return;
 
         const H = window.H;
         const platform = new H.service.Platform({
@@ -58,7 +67,7 @@ function Map() {
         // Create the default UI components to allow the user to interact with them
         // This variable is unused
         const ui = H.ui.UI.createDefault(map, defaultLayers);
-      
+
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position);
             const H = window.H;
@@ -66,7 +75,7 @@ function Map() {
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());
 
-            addFriends(map, ui);
+
 
             // Create a marker icon from an image URL:
             var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
@@ -76,17 +85,18 @@ function Map() {
             // Create a marker using the previously instantiated icon:
             ///var marker = new H.map.Marker(LocationOfMarker, { icon: icon });  
             var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
-
+            // Add the marker to the map:
+            map.addObject(marker);
             marker.addEventListener('tap', logEvent => {
-                var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude + 2 }, {
+                var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude }, {
                     content: '<b>Usuario A</b>'
                 });
                 ui.addBubble(bubble);
             }, false);
             // show info bubble
+            addFriends(map, ui)
 
-            // Add the marker to the map:
-            map.addObject(marker);
+
 
         }, (error) => {
             console.error(error);

@@ -1,13 +1,15 @@
 const express = require("express")
 const User = require("./models/users")
 const router = express.Router()
-/*
-// Get all users
-router.get("/users/list", async (req, res) => {
-    const users = await User.find({}).sort('-_id') //Inverse order
-	res.send(users)
-})
 
+// Get all users
+router.get("/users/lista", async (req, res) => {
+    const users = await User.find({}).sort('-_id') //Inverse order
+
+   // res.json({ message: users });
+   res.send(users)
+})
+/*
 //register a new user
 router.post("/users/add", async (req, res) => {
     let name = req.body.name;
@@ -40,6 +42,8 @@ router.post("/users/location", async (req, res) => {
            solidId
        });
    }
+
+   
    await user.save();
     res.send(user); //aqui debe devolver los amigos
 })
