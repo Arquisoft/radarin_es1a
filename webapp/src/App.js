@@ -41,7 +41,7 @@ function App() {
 
 
   useEffect(() => {
-    //setInterval(enviarUbicacionAServidor, 30000);
+    setInterval(enviarUbicacionAServidor, 30000);
 
 
   });

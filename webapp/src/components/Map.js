@@ -1,41 +1,52 @@
 import React, { useRef, useLayoutEffect } from 'react';
+import { useWebId } from '@solid/react';
 
 import 'here-js-api/styles/mapsjs-ui.css';
 
 
-function addFriends(map, ui) {
 
-    console.log("ahora")
-    getRespuesta(map, ui);
-}
-var getRespuesta = async function (map, ui) {
-    var respuesta = await fetch('http://localhost:5000/api/users/lista')
-    var response = await respuesta.json();
-    const H = window.H;
-    var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
-    response.map((item, index) => {
-        var LocationOfMarker = { lat: item.latitud, lng: item.longitud };
-        var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
-        map.addObject(marker);
-
-        marker.addEventListener('tap', logEvent => {
-            var bubble = new H.ui.InfoBubble({ lat: item.latitud, lng: item.longitud }, {
-                content: '<b>{item.solidId}</b>'
-            });
-            ui.addBubble(bubble);
-        }, false);
-        console.log(item)
-    }
-    )
-}
 
 
 
 function Map() {
 
     const mapRef = useRef(null);
+    const solidId = useWebId();
+
+    var getRespuesta = async function (map, ui) {
+        var respuesta = await fetch('http://localhost:5000/api/users/lista')
+        var response = await respuesta.json();
+        const H = window.H;
+        var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+        map.removeObjects(map.getObjects())
+
+        response.map((item, index) => {
+
+            var LocationOfMarker = { lat: item.latitud, lng: item.longitud };
+            var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
+            map.addObject(marker);
+
+            marker.addEventListener('tap', logEvent => {
+                var bubble = new H.ui.InfoBubble({ lat: item.latitud, lng: item.longitud }, {
+                    content: item.solidId
+                });
+                ui.addBubble(bubble);
+            }, false);
+            console.log(item)
+        }
+        )
+    }
+
 
     useLayoutEffect(() => {
+
+        function addFriends(map, ui) {
+
+            console.log("ahora")
+            getRespuesta(map, ui);
+        }
+
+
 
         if (!mapRef.current) return;
 
@@ -89,12 +100,14 @@ function Map() {
             map.addObject(marker);
             marker.addEventListener('tap', logEvent => {
                 var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude }, {
-                    content: '<b>Usuario A</b>'
+                    content: 'Mi usuario'
                 });
                 ui.addBubble(bubble);
             }, false);
             // show info bubble
-            addFriends(map, ui)
+
+          
+            setInterval(()=>{ addFriends(map, ui); }, 30000);
 
 
 
