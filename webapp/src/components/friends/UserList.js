@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ListGroup from "react-bootstrap/ListGroup";
-
+import { GetUserFriends} from './FriendManager.js';
 
 function UserList() {
-
+    /** 
     const [
 	//users,
 	setUsers] = useState([]);
@@ -13,16 +13,13 @@ function UserList() {
             .then((resultado)=>resultado.json())
             .then((users) => setUsers(users));
 
-    }, [setUsers])
-
+    }, [setUsers])*/
+        var friendList = GetUserFriends;
         //recorrer usarios para mostrarlos
         return (
             <div className="UserList">
                 <h3>List of already registered users</h3>
-                <ListGroup>
-                    
-                </ListGroup>
-                
+                <b>GetUserFriends[0].getName</b>
            </div>
         )
     }
