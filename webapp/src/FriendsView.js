@@ -6,9 +6,11 @@ const Wrapper = styled.div`
   margin-left: 6em;
   margin-right: 6em;
 `;
-export const FriendList = () => {
+export const FriendsView = () => {
+  return(
   <Wrapper>
     <h2>FriendList</h2>
     <UserList/>
   </Wrapper>
-};
+
+  );};
