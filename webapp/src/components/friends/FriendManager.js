@@ -21,16 +21,15 @@ export async function GetUserFriends() {
 
         let friendWebIdLDflexValue = friendLDflexValue.value;
         const webId = data[friendWebIdLDflexValue];
-
         //Use the await to retrieve the data from the Promise object.
         const name = await GetSpecificName(webId);
         const profilePic = await GetSpecificProfileImage(webId);
 
         let friendAux = new Friend(webId.toString(), name, profilePic);
-
+        console.log(friendAux.toString());
         friendsAux.push(friendAux);
     });
-
+    
     return friendsAux;
 };
 

@@ -17,6 +17,9 @@ class Friend {
         return this.photo;
     }
 
+    toString(){
+        return "Usuario: "+this.webId+" con Nombre: "+this.getName();
+    }
     toJson() {
         return JSON.stringify(
             {

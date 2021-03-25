@@ -3,18 +3,12 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { GetUserFriends} from './FriendManager.js';
 
 function UserList() {
-    /** 
-    const [
-	//users,
-	setUsers] = useState([]);
-
-    useEffect(() => {
-        fetch("http://localhost:5000/api/users/list")
-            .then((resultado)=>resultado.json())
-            .then((users) => setUsers(users));
-
-    }, [setUsers])*/
-        var friendList = GetUserFriends;
+ 
+        var friendList = GetUserFriends();
+        var friends = ["Mario", "Luigi", "Waluigi"];
+        console.log("USUARIOS:");
+        console.log(friendList);
+        
         //recorrer usarios para mostrarlos
         return (
             <div className="UserList">
@@ -31,6 +25,3 @@ let MyDataset = await getSolidDataset(webID);
 
 
 export default UserList;
-//{this.props.users.map(function(user, i){
- //return <ListGroup.Item id={i} key={i}>{user.name + ' (' + user.email +')'}</ListGroup.Item>
-//})}
