@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ProfileFriends from './components/friends/FriendList'
 import UserList from './components/friends/UserList'
 const Wrapper = styled.div`
   margin-top: 1em;
@@ -9,8 +10,7 @@ const Wrapper = styled.div`
 export const FriendsView = () => {
   return(
   <Wrapper>
-    <h2>FriendList</h2>
-    <UserList/>
+    <ProfileFriends/>
   </Wrapper>
 
   );};

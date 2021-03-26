@@ -1,6 +1,13 @@
 import { useLDflexValue, useLDflexList } from '@solid/react';
 import Friend from '../../entities/Friend';
+
 const { default: data } = require('@solid/query-ldflex');
+
+export function GetUserName() {
+    const name = useLDflexValue('user.name') || 'unknown';
+    console.log("The name is: "+name.value);
+    return name.value;
+};
 
 export async function GetUserWebId() {
     const auth = require('solid-auth-client');
@@ -10,6 +17,10 @@ export async function GetUserWebId() {
     } catch (TypeError) {
         return null;
     }
+};
+export async function GetUserProfileImage() {
+    const photo = useLDflexValue('user.vcard_hasPhoto') || 'unknown';
+    return photo.value;
 };
 
 export async function GetUserFriends() {
