@@ -11,6 +11,7 @@ import 'here-js-api/styles/mapsjs-ui.css';
 function Map() {
 
     const mapRef = useRef(null);
+    // eslint-disable-next-line
     const solidId = useWebId();
 
     var getRespuesta = async function (map, ui) {
@@ -20,6 +21,7 @@ function Map() {
         var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
         map.removeObjects(map.getObjects())
 
+        // eslint-disable-next-line
         response.map((item, index) => {
 
             var LocationOfMarker = { lat: item.latitud, lng: item.longitud };

@@ -5,12 +5,11 @@ const router = express.Router()
 // Get all users
 router.get("/users/lista", async (req, res) => {
     const users = await User.find({}).sort('-_id') //Inverse order
-
-   // res.json({ message: users });
-   res.send(users)
+	res.send(users)
 })
-/*
+
 //register a new user
+/*
 router.post("/users/add", async (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
@@ -26,26 +25,24 @@ router.post("/users/add", async (req, res) => {
         await user.save()
         res.send(user)
     }
-})
-*/
-router.post("/users/location", async (req, res) => {
-   const solidId= req.body.solidId;
-   const latitud = req.body.posicion.latitud;
-   const longitud = req.body.posicion.longitud;
+    */
+    router.post("/users/location", async (req, res) => {
+        const solidId= req.body.solidId;
+        const latitud = req.body.posicion.latitud;
+        const longitud = req.body.posicion.longitud;
+     
+        let user = await User.findOne({ solidId });
+     
+        if (user==null){
+            user = new User({
+                latitud,
+                longitud,
+                solidId
+            });
+        }
+        await user.save();
+         res.send(user); //aqui debe devolver los amigos
 
-   let user = await User.findOne({ solidId });
-
-   if (user==null){
-       user = new User({
-           latitud,
-           longitud,
-           solidId
-       });
-   }
-
-   
-   await user.save();
-    res.send(user); //aqui debe devolver los amigos
-})
+     })
 
 module.exports = router
