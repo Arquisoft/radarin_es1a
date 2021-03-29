@@ -69,7 +69,6 @@ function Map() {
 
         function addFriends(map, ui, userPosition) {
 
-            console.log("ahora")
             getRespuesta(map, ui, userPosition);
         }
 
@@ -94,6 +93,8 @@ function Map() {
             }
         );
 
+     
+
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
@@ -107,6 +108,9 @@ function Map() {
             console.log(position);
             const H = window.H;
 
+            map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
+            map.setZoom(13);
+            
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());
 
