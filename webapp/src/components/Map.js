@@ -3,18 +3,16 @@ import { useWebId } from '@solid/react';
 
 import 'here-js-api/styles/mapsjs-ui.css';
 
-
-
-
-
-
 function Map() {
 
     const mapRef = useRef(null);
     // eslint-disable-next-line
     const solidId = useWebId();
 
-    var getRespuesta = async function (map, ui) {
+    // Default distanceRadius  5 km
+    const distanceRadius = 5;
+
+    var getRespuesta = async function (map, ui, userPosition) {
         var respuesta = await fetch('http://localhost:5000/api/users/lista')
         var response = await respuesta.json();
         const H = window.H;
@@ -24,31 +22,56 @@ function Map() {
         // eslint-disable-next-line
         response.map((item, index) => {
 
-            var LocationOfMarker = { lat: item.latitud, lng: item.longitud };
-            var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
-            map.addObject(marker);
+            if (distanceFilter(item.latitud, item.longitud, userPosition)) {
+                var LocationOfMarker = { lat: item.latitud, lng: item.longitud };
+                var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
+                map.addObject(marker);
 
-            marker.addEventListener('tap', logEvent => {
-                var bubble = new H.ui.InfoBubble({ lat: item.latitud, lng: item.longitud }, {
-                    content: item.solidId
-                });
-                ui.addBubble(bubble);
-            }, false);
-            console.log(item)
+                marker.addEventListener('tap', logEvent => {
+                    var bubble = new H.ui.InfoBubble({ lat: item.latitud, lng: item.longitud }, {
+                        content: item.solidId
+                    });
+                    ui.addBubble(bubble);
+                }, false);
+
+                console.log(item)
+            }
         }
         )
     }
 
+    // Calculates the distance between two coordinates according to Haversine Formule.
+    var distanceFilter = function (lat2, lng2, userPosition) {
+        var RadioTierraKm = 6378.0;
+
+        var lat1 = userPosition.coords.latitude;
+        var lng1 = userPosition.coords.longitude;
+        var difLat = toRadianes(lat2 - lat1);
+        var difLng = toRadianes(lng2 - lng1);
+
+        var a = Math.pow(Math.sin(difLat / 2), 2) +
+            Math.cos(toRadianes(lat1)) *
+            Math.cos(toRadianes(lat2)) *
+            Math.pow(Math.sin(difLng / 2), 2);
+
+        var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+
+        if (c > distanceRadius)
+            return false;
+        return true;
+    }
+
+    var toRadianes = function (valor) {
+        return (Math.PI / 180) * valor;
+    }
 
     useLayoutEffect(() => {
 
-        function addFriends(map, ui) {
+        function addFriends(map, ui, userPosition) {
 
             console.log("ahora")
-            getRespuesta(map, ui);
+            getRespuesta(map, ui, userPosition);
         }
-
-
 
         if (!mapRef.current) return;
 
@@ -71,7 +94,6 @@ function Map() {
             }
         );
 
-
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
@@ -88,8 +110,6 @@ function Map() {
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());
 
-
-
             // Create a marker icon from an image URL:
             var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
 
@@ -100,6 +120,7 @@ function Map() {
             var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
             // Add the marker to the map:
             map.addObject(marker);
+
             marker.addEventListener('tap', logEvent => {
                 var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude }, {
                     content: 'Mi usuario'
@@ -108,10 +129,11 @@ function Map() {
             }, false);
             // show info bubble
 
-          
-            setInterval(()=>{ addFriends(map, ui); }, 30000);
+            // First iteration
+            addFriends(map, ui, position);
 
-
+            // Then repeat each 30000
+            setInterval(() => { addFriends(map, ui, position); }, 30000);
 
         }, (error) => {
             console.error(error);
@@ -119,7 +141,8 @@ function Map() {
         return () => {
             map.dispose();
         }
-    }, [mapRef]);
+    }, // eslint-disable-next-line 
+        [mapRef]);
 
     return (
         // Set a height on the map so it will display
