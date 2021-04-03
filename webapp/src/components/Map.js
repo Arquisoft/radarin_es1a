@@ -42,8 +42,6 @@ function Map() {
     var getRespuesta = async function (map, ui, userPosition) {
         var respuesta = await fetch('http://localhost:5000/api/users/lista')
         var response = await respuesta.json();
-        const H = window.H;
-        var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
         
         //Borra la ubicación del usuario en sesión ELIMINAR
         map.removeObjects(map.getObjects())
@@ -134,6 +132,7 @@ function Map() {
         // This variable is unused
         const ui = H.ui.UI.createDefault(map, defaultLayers);
 		setUI(ui);
+
 
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position);

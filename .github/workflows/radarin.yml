@@ -2,7 +2,7 @@ name: CI for radarin
 
 on:
   push:
-    branches: [master]
+    branches: [cambiadaParaProducccion]
 
 jobs:
   build-test-webapp:
