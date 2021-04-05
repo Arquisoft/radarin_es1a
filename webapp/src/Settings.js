@@ -16,6 +16,7 @@ class Settings extends React.Component {
     constructor(props) {
         super(props);
         var radius = 5;
+        radius.valueOf();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         
