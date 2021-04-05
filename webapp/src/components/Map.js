@@ -38,8 +38,15 @@ function Map() {
     const [map, setMap] = useState(null);
     const [userPosition, setUserPosition] = useState(null);
 
+
     // Default distanceRadius  5 km
-    const distanceRadius = 5;
+    const radius = () => {
+        if (window.sessionStorage.getItem("radius") != null)
+            return window.sessionStorage.getItem("radius").valueOf();
+        else
+            window.sessionStorage.setItem("radius", "5");
+        return window.sessionStorage.getItem("radius").valueOf();
+    };
 
     var getRespuesta = async function (map, ui, userPosition) {
         var respuesta = await fetch('http://localhost:5000/api/users/lista')
@@ -49,6 +56,7 @@ function Map() {
         map.removeObjects(map.getObjects())
 
         var nuevasMarcas = [];
+
         // eslint-disable-next-line
         response.map((item, index) => {
 
@@ -59,26 +67,30 @@ function Map() {
                     webId: item.solidId
                 });
             }
+
         }
         );
-        
-        paintRadius(map,userPosition);
+
+        //Pinta el radio filtrado sobre el mapa
+        paintRadius(map, userPosition);
 
         /*
                 var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
                 map.addObject(marker);
         */
+
         setMarcas(nuevasMarcas);
     }
 
-    var paintRadius = function(map,userPosition) {
+    // Paint the filter radius around user
+    var paintRadius = function (map, userPosition) {
         const H = window.H;
         //Paint radius on map
         map.addObject(new H.map.Circle(
             // The central point of the circle
             { lat: userPosition.coords.latitude, lng: userPosition.coords.longitude },
             // The radius of the circle in meters
-            distanceRadius * 1000,
+            radius() * 1000,
             {
                 style: {
                     strokeColor: 'rgba(231, 76, 60, 0.6)', // Color of the perimeter
@@ -105,17 +117,18 @@ function Map() {
 
         var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 
-        if (c > distanceRadius)
+        if (c > radius())
             return false;
 
         return true;
     }
 
+    // Auxiliar method to convert coords to radians.
     var toRadianes = function (valor) {
         return (Math.PI / 180) * valor;
     }
 
-    
+
 
     useLayoutEffect(() => {
 
@@ -159,12 +172,31 @@ function Map() {
 
 
         navigator.geolocation.getCurrentPosition((position) => {
+
             console.log(position);
             setUserPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
             const H = window.H;
 
             map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-            map.setZoom(13);
+
+            // Circulo auxiliar para calcular el zoom al iniciar el mapa.
+            var circle = new H.map.Circle(
+                // The central point of the circle
+                { lat: position.coords.latitude, lng: position.coords.longitude },
+                // The radius of the circle in meters
+                radius() * 1000,
+                {
+                    style: {
+                        strokeColor: 'rgba(231, 76, 60, 0.6)', // Color of the perimeter
+                        lineWidth: 2,
+                        fillColor: 'rgba(231, 76, 60, 0.1)'  // Color of the circle
+                    }
+                }
+            );
+            map.addObject(circle);
+            map.getViewModel().setLookAtData({
+                bounds: circle.getBoundingBox()
+            });
 
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());

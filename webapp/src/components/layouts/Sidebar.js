@@ -14,57 +14,57 @@ padding-top: 10px;
 `;
 
 class SideNav extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          activePath: '/',
-          items: [
-            {
-              path: '/', /* path is used as id to check which NavItem is active basically */
-              name: 'Home',
-              css: 'fa fa-fw fa-map-marker-alt',
-              key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
-            },
-            {
-              path: '/FriendsView',
-              name: 'FriendsView',
-              css: 'fas fa-users',
-              key: 2
-            },
-            {
-              path: '/about',
-              name: 'About',
-              css: 'fa fa-fw fa-user-plus',
-              key: 3
-            }, {
-              path: '/settings',
-              name: 'Settings',
-              css: 'fa fa-cogs',
-              key: 4
-            },
-            
-          ]
-        }  
-      }
-      onItemClick = (path) => {
-        this.setState({ activePath: path }); /* Sets activePath which causes rerender which causes CSS to change */
-      }
-      render() {
-        const { items, activePath } = this.state;
-        return (
-          <StyledSideNav>
-            {
-              /* items = just array AND map() loops thru that array AND item is param of that loop */
-              items.map((item) => {
-                /* Return however many NavItems in array to be rendered */
-                return (
-                  <NavItem path={item.path} name={item.name} css={item.css} onItemClick={this.onItemClick} /* Simply passed an entire function to onClick prop */ active={item.path === activePath} key={item.key}/>
-                )
-              })
-            }
-          </StyledSideNav>
-        );
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      activePath: '/',
+      items: [
+        {
+          path: '/', /* path is used as id to check which NavItem is active basically */
+          name: 'Home',
+          css: 'fa fa-fw fa-map-marker-alt',
+          key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
+        },
+        {
+          path: '/FriendsView',
+          name: 'FriendsView',
+          css: 'fas fa-users',
+          key: 2
+        },
+        {
+          path: '/about',
+          name: 'About',
+          css: 'fa fa-fw fa-user-plus',
+          key: 3
+        }, {
+          path: '/settings',
+          name: 'Settings',
+          css: 'fa fa-cogs',
+          key: 4
+        },
+
+      ]
+    }
+  }
+  onItemClick = (path) => {
+    this.setState({ activePath: path }); /* Sets activePath which causes rerender which causes CSS to change */
+  }
+  render() {
+    const { items, activePath } = this.state;
+    return (
+      <StyledSideNav>
+        {
+          /* items = just array AND map() loops thru that array AND item is param of that loop */
+          items.map((item) => {
+            /* Return however many NavItems in array to be rendered */
+            return (
+              <NavItem path={item.path} name={item.name} css={item.css} onItemClick={this.onItemClick} /* Simply passed an entire function to onClick prop */ active={item.path === activePath} key={item.key} />
+            )
+          })
+        }
+      </StyledSideNav>
+    );
+  }
 }
 
 
@@ -86,25 +86,25 @@ const StyledNavItem = styled.div`
 const NavIcon = styled.div`
 `;
 class NavItem extends React.Component {
-    handleClick = () => {
-        const { path, onItemClick } = this.props;
-        onItemClick(path);
-      }
-    render() {
-        const { active } = this.props;
-      return (
-        <StyledNavItem active={active}>
+  handleClick = () => {
+    const { path, onItemClick } = this.props;
+    onItemClick(path);
+  }
+  render() {
+    const { active } = this.props;
+    return (
+      <StyledNavItem active={active}>
         <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
           <NavIcon></NavIcon>
         </Link>
       </StyledNavItem>
-      );
-    }
+    );
   }
+}
 export default class Sidebar extends React.Component {
   render() {
     return (
-        <SideNav></SideNav>
+      <SideNav></SideNav>
     );
   }
 }
