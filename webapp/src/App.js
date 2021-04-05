@@ -2,13 +2,13 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { HomeView } from './components/layouts/HomeView';
-import { LoginView } from './components/login/LoginView';
+import { LoginView } from './components/layouts/LoginView';
 import { Home } from './Home';
 import { About } from './About';
 import { Settings } from './Settings';
 import { FriendsView } from './FriendsView';
 import React, { useEffect } from 'react';
-import { useWebId } from '@solid/react';
+import { LoggedIn, LoggedOut, useWebId } from '@solid/react';
 
 function App() {
 
@@ -52,7 +52,8 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        <HomeView />
+        <LoggedIn><HomeView /></LoggedIn>
+        <LoggedOut><LoginView /></LoggedOut>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={LoginView} />
