@@ -5,8 +5,8 @@ import { HomeView } from './components/layouts/HomeView';
 import { LoginView } from './components/login/LoginView';
 import { Home } from './Home';
 import { About } from './About';
-import { FriendList } from './FriendList';
 import { Settings } from './Settings';
+import { FriendsView } from './FriendsView';
 import React, { useEffect } from 'react';
 import { useWebId } from '@solid/react';
 
@@ -57,8 +57,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={LoginView} />
           <Route path="/about" component={About} />
-          <Route path="/FriendList" component={FriendList} />
           <Route path="/settings" component={Settings} />
+          <Route path="/FriendsView" component={FriendsView} />
         </Switch>
       </Router>
     </React.Fragment>
