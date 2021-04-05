@@ -51,17 +51,19 @@ function App() {
 
   return (
     <React.Fragment>
-      <Router>
-        <LoggedIn><HomeView /></LoggedIn>
-        <LoggedOut><LoginView /></LoggedOut>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={LoginView} />
-          <Route path="/about" component={About} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/FriendsView" component={FriendsView} />
-        </Switch>
-      </Router>
+      <LoggedOut><LoginView /></LoggedOut>
+      <LoggedIn>
+        <Router>
+          <HomeView />        
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={LoginView} />
+            <Route path="/about" component={About} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/FriendsView" component={FriendsView} />
+          </Switch>
+        </Router>
+      </LoggedIn>
     </React.Fragment>
   );
 }
