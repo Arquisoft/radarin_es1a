@@ -1,8 +1,4 @@
-/*import React, { useEffect, useState } from 'react';
-import ListGroup from "react-bootstrap/ListGroup";
-import { GetUserFriends, GetUserName, GetUserWebId} from './FriendManager.js';
-*/
-import cache from './UserCache';
+import cache from "./UserCache";
 
 function UserList() {
  

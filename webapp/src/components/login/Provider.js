@@ -1,5 +1,5 @@
-import logo_inrupt from '../img/providers/inrupt.svg'
-import logo_solid from '../img/providers/solidcommunity.png';
+import logo_inrupt from "../img/providers/inrupt.svg";
+import logo_solid from "../img/providers/solidcommunity.png";
 
 type ProviderEntity = {
     label: String,

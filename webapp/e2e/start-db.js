@@ -1,2 +1,2 @@
-const server = require('../../restapi/tests/server-for-tests')
-server.startdb()
+const server = require("../../restapi/tests/server-for-tests");
+server.startdb();

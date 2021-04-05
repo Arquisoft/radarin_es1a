@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -16,4 +16,4 @@ export const About = () => (
     <p>I am a kitty cat, sup, feed me, no cares in the world</p>
     <p>Meow meow, I tell my human purr for no reason but to chase after</p>
   </GridWrapper>
-)
+);

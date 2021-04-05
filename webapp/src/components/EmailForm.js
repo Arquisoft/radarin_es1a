@@ -10,7 +10,7 @@ class EmailForm extends React.Component{
   }
 
   componentDidMount(){
-    this.fetchUsers()
+    this.fetchUsers();
   }
 
   changeEmail(e) {
@@ -25,25 +25,25 @@ class EmailForm extends React.Component{
 
   async registerUser(){
       let response = await addUser(this.state.username,this.state.email)
-      console.log(response)
-      if (response.error)
-        this.setState({welcomeMsg:response.error})
-      else if (response.name===this.state.username)
-        this.setState({welcomeMsg:"Welcome to ASW"})
-      else
-        this.setState({welcomeMsg:"Unexpected error, maybe the restapi is still sleeping..."})
+      console.log(response);
+      if (response.error){
+        this.setState({welcomeMsg:response.error})}
+      else if (response.name===this.state.username){
+        this.setState({welcomeMsg:"Welcome to ASW"})}
+      else{
+        this.setState({welcomeMsg:"Unexpected error, maybe the restapi is still sleeping..."})}
       //Refresh the users
-      this.fetchUsers()
+      this.fetchUsers();
   }
 
   async fetchUsers(){
     try{
-      let users = await getUsers()
-      this.props.refreshUsers(users)
+      let users = await getUsers();
+      this.props.refreshUsers(users);
     }
     catch(error)
     {
-      console.log("Error fetching user list from restapi. Is it on?")
+      console.log("Error fetching user list from restapi. Is it on?");
     }
   }
 
@@ -51,7 +51,7 @@ class EmailForm extends React.Component{
     e.preventDefault()
     //Add the user to the database
     if (this.state.username && this.state.email){
-      this.registerUser()
+      this.registerUser();
     }
     else
         this.setState({welcomeMsg:'ERROR: You must fill both fields!'})
@@ -76,10 +76,10 @@ class EmailForm extends React.Component{
               Submit
             </Button>
             <div>
-              <span hidden={this.state.welcomeMsg===''}>{this.state.welcomeMsg}</span>
+              <span hidden={this.state.welcomeMsg===""}>{this.state.welcomeMsg}</span>
             </div>
           </Form>
-    )
+    );
   }
 }
 

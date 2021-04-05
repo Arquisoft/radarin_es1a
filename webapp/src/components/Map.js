@@ -1,7 +1,6 @@
-import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from 'react';
-import { useLDflexValue, useWebId } from '@solid/react';
-
-import 'here-js-api/styles/mapsjs-ui.css';
+import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
+import { useLDflexValue, useWebId } from "@solid/react";
+import "here-js-api/styles/mapsjs-ui.css";
 
 function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
@@ -41,19 +40,19 @@ function Map() {
 
     // Default distanceRadius  5 km
     const radius = () => {
-        if (window.sessionStorage.getItem("radius") != null)
-            return window.sessionStorage.getItem("radius").valueOf();
-        else
-            window.sessionStorage.setItem("radius", "5");
+        if (window.sessionStorage.getItem("radius") != null){
+            return window.sessionStorage.getItem("radius").valueOf();}
+        else{
+            window.sessionStorage.setItem("radius", "5");}
         return window.sessionStorage.getItem("radius").valueOf();
     };
 
     var getRespuesta = async function (map, ui, userPosition) {
-        var respuesta = await fetch('http://localhost:5000/api/users/lista')
+        var respuesta = await fetch('http://localhost:5000/api/users/lista');
         var response = await respuesta.json();
 
         //Borra la ubicación del usuario en sesión ELIMINAR
-        map.removeObjects(map.getObjects())
+        map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
 
@@ -117,8 +116,8 @@ function Map() {
 
         var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 
-        if (c > radius())
-            return false;
+        if (c > radius()){
+            return false;}
 
         return true;
     }
@@ -150,7 +149,6 @@ function Map() {
             mapRef.current,
             defaultLayers.vector.normal.map,
             {
-                // This map is centered over Europe
                 center: { lat: 50, lng: 5 },
                 zoom: 4,
                 pixelRatio: window.devicePixelRatio || 1
@@ -229,7 +227,7 @@ function Map() {
 
         }, (error) => {
             console.error(error);
-        })
+        });
         return () => {
             map.dispose();
         }

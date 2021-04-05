@@ -1,5 +1,5 @@
-import { ProviderLogin } from '@inrupt/solid-react-components';
-import { Link } from '@solid/react';
+import { ProviderLogin } from "@inrupt/solid-react-components";
+import { Link } from "@solid/react";
 import {
   Container,
   Card,
@@ -7,8 +7,8 @@ import {
   makeStyles,
   CardContent
 } from "@material-ui/core";
-import Provider from './Provider';
-import './login.css';
+import Provider from "./Provider";
+import "./login.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {

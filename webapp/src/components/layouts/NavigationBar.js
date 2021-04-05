@@ -1,8 +1,8 @@
-import React from 'react';
-import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
-import { LoggedIn, LoggedOut } from '@solid/react';
-import auth from 'solid-auth-client';
-import styled from 'styled-components';
+import React from "react";
+import { Nav, Navbar, Form, FormControl } from "react-bootstrap";
+import { LoggedIn, LoggedOut } from "@solid/react";
+import auth from "solid-auth-client";
+import styled from "styled-components";
 const Styles = styled.div`
   .navbar { background-color: #303030; }
   a, .navbar-nav, .navbar-light .nav-link {
@@ -54,4 +54,4 @@ export const NavigationBar = () => (
     </LoggedOut>
     
   </Styles>
-)
+);

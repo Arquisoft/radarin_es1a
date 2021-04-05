@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, CardHeader } from '@material-ui/core';
-import cache from './UserCache';
-import { GetUserWebId } from './FriendManager';
+import React, { useEffect, useState } from "react";
+import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, CardHeader } from "@material-ui/core";
+import cache from "./UserCache";
+import { GetUserWebId } from "./FriendManager";
 
 export default function ProfileFriends() {
     return (

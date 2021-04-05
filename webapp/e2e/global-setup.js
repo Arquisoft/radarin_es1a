@@ -1,4 +1,4 @@
-const { setup: setupDevServer } = require("jest-dev-server")
+const { setup: setupDevServer } = require("jest-dev-server");
 module.exports = async () => {
     await setupDevServer([
     {

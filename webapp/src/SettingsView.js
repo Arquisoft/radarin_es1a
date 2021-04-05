@@ -1,5 +1,5 @@
-import React from 'react';
-import SettingsForm from './Settings'
+import React from "react";
+import SettingsForm from "./Settings";
 
 
 export const SettingsView = () => {

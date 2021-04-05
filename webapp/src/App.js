@@ -1,14 +1,14 @@
-import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { HomeView } from './components/layouts/HomeView';
-import { LoginView } from './components/layouts/LoginView';
-import { Home } from './Home';
-import { About } from './About';
-import { SettingsView } from './SettingsView';
-import { FriendsView } from './FriendsView';
-import React, { useEffect } from 'react';
-import { LoggedIn, LoggedOut, useWebId } from '@solid/react';
+import { HomeView } from "./components/layouts/HomeView";
+import { LoginView } from "./components/layouts/LoginView";
+import { Home } from "./Home";
+import { About } from "./About";
+import { SettingsView } from "./SettingsView";
+import { FriendsView } from "./FriendsView";
+import React, { useEffect } from "react";
+import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
             "latitud": position.coords.latitude,
             "longitud": position.coords.longitude
           }
-        }
+        };
         //Cambia cuando este subido a heroku
         fetch('http://localhost:5000/api/users/location', {
           method: "post",
@@ -37,7 +37,7 @@ function App() {
       });
     }
 
-  };
+  }
 
 
 
