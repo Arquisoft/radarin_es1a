@@ -6,6 +6,7 @@ import { LoginView } from './components/login/LoginView';
 import { Home } from './Home';
 import { About } from './About';
 import { FriendList } from './FriendList';
+import { Settings } from './Settings';
 import React, { useEffect } from 'react';
 import { useWebId } from '@solid/react';
 
@@ -57,6 +58,7 @@ function App() {
           <Route path="/login" component={LoginView} />
           <Route path="/about" component={About} />
           <Route path="/FriendList" component={FriendList} />
+          <Route path="/settings" component={Settings} />
         </Switch>
       </Router>
     </React.Fragment>

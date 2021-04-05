@@ -58,6 +58,7 @@ function Map() {
 
         if (c > distanceRadius)
             return false;
+
         return true;
     }
 

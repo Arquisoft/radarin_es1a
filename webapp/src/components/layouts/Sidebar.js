@@ -36,6 +36,11 @@ class SideNav extends React.Component {
               name: 'About',
               css: 'fa fa-fw fa-user-plus',
               key: 3
+            }, {
+              path: '/settings',
+              name: 'Settings',
+              css: 'fa fa-cogs',
+              key: 4
             },
             
           ]
