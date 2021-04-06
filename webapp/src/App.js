@@ -9,6 +9,8 @@ import { SettingsView } from "./SettingsView";
 import { FriendsView } from "./FriendsView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 function App() {
 
@@ -47,10 +49,9 @@ function App() {
 
   });
 
-
-
-  return (
+  return (    
     <React.Fragment>
+      <ReactNotification />
       <LoggedOut><LoginView /></LoggedOut>
       <LoggedIn>
         <Router>
