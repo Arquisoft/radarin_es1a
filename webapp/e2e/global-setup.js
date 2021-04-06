@@ -19,4 +19,4 @@ module.exports = async () => {
         debug: true,
         port: 3000
     }])
-}
+};

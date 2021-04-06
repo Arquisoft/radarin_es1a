@@ -5,4 +5,4 @@ module.exports = {
     globalSetup: './global-setup.js',
     globalTeardown: './global-teardown.js',
     setupFilesAfterEnv: ["expect-puppeteer"]
-}
+};

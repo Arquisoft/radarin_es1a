@@ -12,4 +12,4 @@ export const HomeView = () => {
             </LoggedIn>
         </React.Fragment>
     );
-}
+};

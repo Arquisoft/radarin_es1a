@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/users/lista", async (req, res) => {
     const users = await User.find({}).sort('-_id'); //Inverse order
 	res.send(users);
-})
+});
 
     router.post("/users/location", async (req, res) => {
         const solidId= req.body.solidId;

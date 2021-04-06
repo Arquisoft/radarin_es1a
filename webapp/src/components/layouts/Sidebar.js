@@ -44,7 +44,7 @@ class SideNav extends React.Component {
         },
 
       ]
-    }
+    };
   }
   onItemClick = (path) => {
     this.setState({ activePath: path }); /* Sets activePath which causes rerender which causes CSS to change */
@@ -59,7 +59,7 @@ class SideNav extends React.Component {
             /* Return however many NavItems in array to be rendered */
             return (
               <NavItem path={item.path} name={item.name} css={item.css} onItemClick={this.onItemClick} /* Simply passed an entire function to onClick prop */ active={item.path === activePath} key={item.key} />
-            )
+            );
           })
         }
       </StyledSideNav>

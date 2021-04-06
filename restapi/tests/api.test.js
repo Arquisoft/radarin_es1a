@@ -20,7 +20,7 @@ afterEach(async () => await server.clearDatabase());
 afterAll(async () => {
     await server.closeServer(); //finish the server
     await server.closeDB();
-})
+});
 
 /**
  * Product test suite.
