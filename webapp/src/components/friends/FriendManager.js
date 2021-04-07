@@ -7,7 +7,7 @@ export function GetUserName() {
     const name = useLDflexValue('user.name') || 'unknown';
     console.log("The name is: "+name.value);
     return name.value;
-};
+}
 
 export async function GetUserWebId() {
     const auth = require('solid-auth-client');

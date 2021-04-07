@@ -25,11 +25,11 @@ afterAll(async () => {
 /**
  * Product test suite.
  */
-describe('user ', () => {
+describe("user ", () => {
     /**
      * Test that we can list users without any error.
      */
-    it('can be listed',async () => {
+    it("can be listed",async () => {
         const response = await request(app).get("/api/users/lista");
         expect(response.statusCode).toBe(200);
     });

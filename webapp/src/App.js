@@ -27,7 +27,7 @@ function App() {
           }
         };
         //Cambia cuando este subido a heroku
-        fetch('http://localhost:5000/api/users/location', {
+        fetch("http://localhost:5000/api/users/location", {
           method: "post",
           headers: {
             "Content-Type": "application/json"
