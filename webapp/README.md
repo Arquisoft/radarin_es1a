@@ -1,6 +1,6 @@
 ## The webapp
 In this case we are using React for the webapp. Lets create the app in the directory webapp with the following command (make sure you have npm installed in your system):
-```
+```bash
 npx create-react-app webapp
 ```
 At this point we can already run the app with:
@@ -85,12 +85,12 @@ In order to use Gatling for doing the load tests in our application we need to [
 
 Once we have downloaded Gatling we need to start the [recorder](https://gatling.io/docs/current/http/recorder). This works as a proxy that intercepts all the actions that we make in our browser. That means that we have to configure our browser to use a proxy. We have to follow this steps:
 
- 1. Configure the recorder in **HTTP proxy mode**.
- 2. Configure the **HTTPs mode** to Certificate Authority.
- 3. Generate a **CA certificate** and key. For this, press the Generate CA button. You will have to choose a folder to generate the certificates. Two pem files will be generated.
- 4. Configure Firefox to use this **CA certificate** (Preferences>Certificates, import the generated certificate).
- 5. Configure Firefox to use a **proxy** (Preferences>Network configuration). The proxy will be localhost:8000.
- 6. Configure Firefox so it uses this proxy even if the call is to a local address. In order to do this, we need to set the property `network.proxy.allow_hijacking_localhost` to `true` in `about:config`. 
+  1.Configure the recorder in **HTTP proxy mode**.
+  2.Configure the **HTTPs mode** to Certificate Authority.
+  3.Generate a **CA certificate** and key. For this, press the Generate CA button. You will have to choose a folder to generate the certificates. Two pem files will be generated.
+  4.Configure Firefox to use this **CA certificate** (Preferences>Certificates, import the generated certificate).
+  5.Configure Firefox to use a **proxy** (Preferences>Network configuration). The proxy will be localhost:8000.
+  6.Configure Firefox so it uses this proxy even if the call is to a local address. In order to do this, we need to set the property `network.proxy.allow_hijacking_localhost` to `true` in `about:config`. 
 
 Once we have the recorder configured, and the application running (in Heroku for instance), we can start recording our first test. We must specify a package and class name. This is just for test organization. Package will be a folder and Class name the name of the test. In my case I have used `GetUsersList` without package name. After pressing start the recorder will start capturing our actions in the browser. So here you should perform all the the actions that you want to record. In my case I just browsed to the Heroku deployed webapp. Once we stop recording the simulation will be stored under the `user-files/simulations` directory, written in [Scala](https://www.scala-lang.org/) language. I have copied the generated file under `webapp/loadtestexample` just in case you want to see how a test file in gatling looks like.
 

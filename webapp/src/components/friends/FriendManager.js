@@ -1,16 +1,16 @@
-import { useLDflexValue, useLDflexList } from '@solid/react';
-import Friend from '../../entities/Friend';
+import { useLDflexValue, useLDflexList } from "@solid/react";
+import Friend from "../../entities/Friend";
 
-const { default: data } = require('@solid/query-ldflex');
+const { default: data } = require("@solid/query-ldflex");
 
 export function GetUserName() {
-    const name = useLDflexValue('user.name') || 'unknown';
+    const name = useLDflexValue("user.name") || "unknown";
     console.log("The name is: "+name.value);
     return name.value;
 }
 
 export async function GetUserWebId() {
-    const auth = require('solid-auth-client');
+    const auth = require("solid-auth-client");
     try {
         let session = await auth.currentSession();
         return session.webId;
@@ -19,12 +19,12 @@ export async function GetUserWebId() {
     }
 };
 export async function GetUserProfileImage() {
-    const photo = useLDflexValue('user.vcard_hasPhoto') || 'unknown';
+    const photo = useLDflexValue("user.vcard_hasPhoto") || "unknown";
     return photo.value;
 };
 
 export async function GetUserFriends() {
-    const friends = useLDflexList('user.friends');
+    const friends = useLDflexList("user.friends");
     let friendsAux = [];
 
     //For each value (LDflexValue) in friends(LDflexValue [])
