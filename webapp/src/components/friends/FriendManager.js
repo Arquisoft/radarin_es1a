@@ -1,30 +1,30 @@
-import { useLDflexValue, useLDflexList } from '@solid/react';
-import Friend from '../../entities/Friend';
+import { useLDflexValue, useLDflexList } from "@solid/react";
+import Friend from "../../entities/Friend";
 
-const { default: data } = require('@solid/query-ldflex');
+const { default: data } = require("@solid/query-ldflex");
 
 export function GetUserName() {
-    const name = useLDflexValue('user.name') || 'unknown';
-    console.log("The name is: "+name.value);
+    const name = useLDflexValue("user.name") || "unknown";
     return name.value;
-};
+}
 
 export async function GetUserWebId() {
-    const auth = require('solid-auth-client');
+    const auth = require("solid-auth-client");
     try {
         let session = await auth.currentSession();
         return session.webId;
     } catch (TypeError) {
         return null;
     }
-};
+}
+
 export async function GetUserProfileImage() {
-    const photo = useLDflexValue('user.vcard_hasPhoto') || 'unknown';
+    const photo = useLDflexValue("user.vcard_hasPhoto") || "unknown";
     return photo.value;
-};
+}
 
 export async function GetUserFriends() {
-    const friends = useLDflexList('user.friends');
+    const friends = useLDflexList("user.friends");
     let friendsAux = [];
 
     //For each value (LDflexValue) in friends(LDflexValue [])
@@ -37,12 +37,11 @@ export async function GetUserFriends() {
         const profilePic = await GetSpecificProfileImage(webId);
 
         let friendAux = new Friend(webId.toString(), name, profilePic);
-        console.log(friendAux.toString());
         friendsAux.push(friendAux);
     });
     
     return friendsAux;
-};
+}
 
 export async function GetSpecificName(webId) {
     const personName = await webId.name;
@@ -52,7 +51,7 @@ export async function GetSpecificName(webId) {
 
         return webId.toString().substring(8, webId.toString().length - 1);
     }
-};
+}
 
 export async function GetSpecificProfileImage(webId) {
     const photo = await webId.vcard_hasPhoto;

@@ -11,12 +11,13 @@ import { ProfileView } from "./components/layouts/ProfileView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
 import ReactNotification from 'react-notifications-component'
+import cache from "./components/friends/UserCache";
 import 'react-notifications-component/dist/theme.css'
 
 function App() {
-
   const solidId = useWebId();
-
+  cache.loadFriends();
+ 
   function enviarUbicacionAServidor() {
     if (solidId) {
       console.log("Enviando ubicacion");
@@ -30,7 +31,7 @@ function App() {
           }
         };
         //Cambia cuando este subido a heroku
-        fetch('http://localhost:5000/api/users/location', {
+        fetch("http://localhost:5000/api/users/location", {
           method: "post",
           headers: {
             "Content-Type": "application/json"
@@ -39,15 +40,10 @@ function App() {
         });
       });
     }
-
   }
-
-
-
+  
   useEffect(() => {
     setInterval(enviarUbicacionAServidor, 30000);
-
-
   });
 
   return (    

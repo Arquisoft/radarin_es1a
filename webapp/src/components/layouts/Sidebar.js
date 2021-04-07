@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -17,35 +17,35 @@ class SideNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePath: '/',
+      activePath: "/",
       items: [
         {
-          path: '/', /* path is used as id to check which NavItem is active basically */
-          name: 'Home',
-          css: 'fa fa-fw fa-map-marker-alt',
+          path: "/", /* path is used as id to check which NavItem is active basically */
+          name: "Home",
+          css: "fa fa-fw fa-map-marker-alt",
           key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
         },
         {
-          path: '/profile',
-          name: 'Profile',
-          css: 'fas fa-user',
+          path: "/profile",
+          name: "Profile",
+          css: "fas fa-user",
           key: 2
         },
         {
-          path: '/friends',
-          name: 'FriendsView',
-          css: 'fas fa-users',
+          path: "/friends",
+          name: "FriendsView",
+          css: "fas fa-users",
           key: 2
         },
         {
-          path: '/about',
-          name: 'About',
-          css: 'fa fa-fw fa-user-plus',
+          path: "/about",
+          name: "About",
+          css: "fa fa-fw fa-user-plus",
           key: 3
         }, {
-          path: '/settings',
-          name: 'Settings',
-          css: 'fa fa-cogs',
+          path: "/settings",
+          name: "Settings",
+          css: "fa fa-cogs",
           key: 4
         },
 
