@@ -14,7 +14,7 @@ function UserList() {
                 <h3>Amigos</h3>
                 
            </div>
-        )
+        );
     }
 
 /** 

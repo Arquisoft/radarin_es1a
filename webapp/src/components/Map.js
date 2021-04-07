@@ -1,6 +1,7 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
 import { useLDflexValue, useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
+import { store } from "react-notifications-component";
 
 function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
@@ -12,7 +13,7 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
             var marker = new H.map.Marker(locationOfMarker, { icon: pngIcon });
             map.addObject(marker);
 
-            marker.addEventListener('tap', logEvent => {
+            marker.addEventListener("tap", logEvent => {
                 var bubble = new H.ui.InfoBubble({ lat: locationOfMarker.lat, lng: locationOfMarker.lng }, {
                     content: `${nombre}`
                 });
@@ -38,17 +39,20 @@ function Map() {
     const [userPosition, setUserPosition] = useState(null);
 
 
+
     // Default distanceRadius  5 km
     const radius = () => {
-        if (window.sessionStorage.getItem("radius") != null){
-            return window.sessionStorage.getItem("radius").valueOf();}
-        else{
-            window.sessionStorage.setItem("radius", "5");}
+        if (window.sessionStorage.getItem("radius") != null) {
+            return window.sessionStorage.getItem("radius").valueOf();
+        }
+        else {
+            window.sessionStorage.setItem("radius", "5");
+        }
         return window.sessionStorage.getItem("radius").valueOf();
     };
 
     var getRespuesta = async function (map, ui, userPosition) {
-        var respuesta = await fetch('http://localhost:5000/api/users/lista');
+        var respuesta = await fetch("http://localhost:5000/api/users/lista");
         var response = await respuesta.json();
 
         //Borra la ubicación del usuario en sesión ELIMINAR
@@ -79,7 +83,7 @@ function Map() {
         */
 
         setMarcas(nuevasMarcas);
-    }
+    };
 
     // Paint the filter radius around user
     var paintRadius = function (map, userPosition) {
@@ -92,14 +96,17 @@ function Map() {
             radius() * 1000,
             {
                 style: {
-                    strokeColor: 'rgba(231, 76, 60, 0.6)', // Color of the perimeter
+                    strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
                     lineWidth: 2,
-                    fillColor: 'rgba(231, 76, 60, 0.1)'  // Color of the circle
+                    fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
                 }
             }
         ));
     }
-
+    // Auxiliar method to convert coords to radians.
+    var toRadianes = function (valor) {
+        return (Math.PI / 180) * valor;
+    }
     // Calculates the distance between two coordinates according to Haversine Formule.
     var distanceFilter = function (lat2, lng2, userPosition) {
         var RadioTierraKm = 6378.0;
@@ -116,17 +123,12 @@ function Map() {
 
         var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 
-        if (c > radius()){
-            return false;}
+        if (c > radius()) {
+            return false;
+        }
 
         return true;
     }
-
-    // Auxiliar method to convert coords to radians.
-    var toRadianes = function (valor) {
-        return (Math.PI / 180) * valor;
-    }
-
 
 
     useLayoutEffect(() => {
@@ -135,7 +137,7 @@ function Map() {
             getRespuesta(map, ui, userPosition);
         }
 
-        if (!mapRef.current) return;
+        if (!mapRef.current) { return; }
 
         const H = window.H;
         const platform = new H.service.Platform({
@@ -168,6 +170,18 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
+        store.addNotification({
+            title: "Notificación",
+            message: "Bienvenido a Radarin!",
+            type: "default",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+                duration: 5000
+            }
+        });
 
         navigator.geolocation.getCurrentPosition((position) => {
 
@@ -185,9 +199,9 @@ function Map() {
                 radius() * 1000,
                 {
                     style: {
-                        strokeColor: 'rgba(231, 76, 60, 0.6)', // Color of the perimeter
+                        strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
                         lineWidth: 2,
-                        fillColor: 'rgba(231, 76, 60, 0.1)'  // Color of the circle
+                        fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
                     }
                 }
             );
@@ -210,9 +224,9 @@ function Map() {
             // Add the marker to the map:
             map.addObject(marker);
 
-            marker.addEventListener('tap', logEvent => {
+            marker.addEventListener("tap", logEvent => {
                 var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude }, {
-                    content: 'Mi usuario'
+                    content: "Mi usuario"
                 });
                 ui.addBubble(bubble);
             }, false);
@@ -236,6 +250,7 @@ function Map() {
 
     return (
         // Set a height on the map so it will display
+
         <Fragment>
             <div ref={mapRef} id="map" />
             {

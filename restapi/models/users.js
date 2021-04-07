@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 
 const schema = mongoose.Schema({
@@ -14,6 +14,6 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     }
-})
+});
 
-module.exports = mongoose.model("User", schema)
+module.exports = mongoose.model("User", schema);

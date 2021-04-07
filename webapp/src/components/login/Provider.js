@@ -1,5 +1,5 @@
-import logo_inrupt from "../img/providers/inrupt.svg";
-import logo_solid from "../img/providers/solidcommunity.png";
+import logoInrupt from "../img/providers/inrupt.svg";
+import logoSolid from "../img/providers/solidcommunity.png";
 
 type ProviderEntity = {
     label: String,
@@ -18,7 +18,7 @@ export default class Provider {
             {
                 id: "inrupt",
                 label: "Inrupt",
-                image: logo_inrupt,
+                image: logoInrupt,
                 value: "https://inrupt.net/auth",
                 registerLink: "https://inrupt.net/register",
                 description: "Lorem ipsum dolor sit amet non ipsom dolor",
@@ -26,7 +26,7 @@ export default class Provider {
             {
                 id: "solid-community",
                 label: "Solid Community",
-                image: logo_solid,
+                image: logoSolid,
                 value: "https://solidcommunity.net",
                 registerLink: "https://solidcommunity.net/register",
                 description: "Lorem ipsum dolor sit non consectetur",
