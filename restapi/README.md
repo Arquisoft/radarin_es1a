@@ -2,14 +2,14 @@
 The objective for this part is to make a rest API using Express, Node.js and MongoDB as the database (Mongose for accessing it). We will implement only two functions, one push petition, for registering a new user and a get petition, to list all the users in the system. The webservice will be deployed using docker.
 
 Lets start creating the directory `restapi` and installing the tools to make a nodejs webservice there:
-```
+```bash
 mkdir restapi
 cd restapi
 npm init -y
 npm install express mongoose
 ```
 Now lets run the database. Note that for the volume, docker only accepts **absolute paths**.
-```
+```bash
 mkdir data
 docker run -d -p 27017:27017 -v `pwd`/data:/data/db mongo
 ```
@@ -17,7 +17,7 @@ The code is quite straight forward, the [server.js](restapi/server.js) file laun
 
 ### Testing the rest api
 In this part we will use an in-memory mongodb database, very suitable for testing. Also we need something for making the api requests, in this case we are using [Supertest](https://www.npmjs.com/package/supertest).
-```
+```bash
 npm install --save-dev jest mongodb-memory-server
 npm install supertest --save-dev
 ```
@@ -36,12 +36,12 @@ Check the `docker-compose.yaml` to understand how each service is created and lo
 ## Monitoring (Prometheus and Grafana)
 In this step we are going use [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) to monitor the restapi. First step is modifying the restapi launch to capture profiling data. In nodejs this is very easy. First install the required packages:
 
-```
+```bash
 npm install prom-client express-prom-bundle
 ```
 
 Then, modify the `restapi/server.js` in order to capture the profiling data adding:
-```
+```javascript
 const metricsMiddleware = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 ```
@@ -55,7 +55,7 @@ For running Prometheus and Grafana we can use several docker images. Check `dock
 
 Once launched all the system is launched (see the Quick Start Guide), we can simulate a few petitions to our webservice:
 
-```
+```bash
 sudo apt-get install apache2-utils
 ab -m GET -n 10000 -c 100 http://localhost:5000/api/users/list
 ```

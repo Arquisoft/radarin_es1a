@@ -5,7 +5,7 @@ const { default: data } = require("@solid/query-ldflex");
 
 export function GetUserName() {
     const name = useLDflexValue("user.name") || "unknown";
-    console.log("The name is: "+name.value);
+    console.log("The name is: " + name.value);
     return name.value;
 }
 
@@ -17,11 +17,12 @@ export async function GetUserWebId() {
     } catch (TypeError) {
         return null;
     }
-};
+}
+
 export async function GetUserProfileImage() {
     const photo = useLDflexValue("user.vcard_hasPhoto") || "unknown";
     return photo.value;
-};
+}
 
 export async function GetUserFriends() {
     const friends = useLDflexList("user.friends");
@@ -42,7 +43,7 @@ export async function GetUserFriends() {
     });
     
     return friendsAux;
-};
+}
 
 export async function GetSpecificName(webId) {
     const personName = await webId.name;
@@ -52,7 +53,7 @@ export async function GetSpecificName(webId) {
 
         return webId.toString().substring(8, webId.toString().length - 1);
     }
-};
+}
 
 export async function GetSpecificProfileImage(webId) {
     const photo = await webId.vcard_hasPhoto;

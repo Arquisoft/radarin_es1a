@@ -1,12 +1,12 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { addUser, getUsers } from "../api/api"
+import { addUser, getUsers } from "../api/api";
 
 class EmailForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", enabled: false, welcomeMsg: "" }
+    this.state = { email: "", enabled: false, welcomeMsg: "" };
   }
 
   componentDidMount() {
@@ -24,16 +24,16 @@ class EmailForm extends React.Component {
   }
 
   async registerUser() {
-    let response = await addUser(this.state.username, this.state.email)
+    let response = await addUser(this.state.username, this.state.email);
    
     if (response.error) {
-      this.setState({ welcomeMsg: response.error })
+      this.setState({ welcomeMsg: response.error });
     }
     else if (response.name === this.state.username) {
-      this.setState({ welcomeMsg: "Welcome to ASW" })
+      this.setState({ welcomeMsg: "Welcome to ASW" });
     }
     else {
-      this.setState({ welcomeMsg: "Unexpected error, maybe the restapi is still sleeping..." })
+      this.setState({ welcomeMsg: "Unexpected error, maybe the restapi is still sleeping..." });
     }
     //Refresh the users
     this.fetchUsers();
@@ -55,7 +55,7 @@ class EmailForm extends React.Component {
       this.registerUser();
     }
     else {
-      this.setState({ welcomeMsg: "ERROR: You must fill both fields!" })
+      this.setState({ welcomeMsg: "ERROR: You must fill both fields!" });
     }
   }
 

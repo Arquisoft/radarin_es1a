@@ -1,6 +1,6 @@
 const express = require("express");
 const promBundle = require("express-prom-bundle");
-const cors = require('cors');
+const cors = require("cors");
 const mongoose = require("mongoose");
 const api = require("./api"); 
 
@@ -15,7 +15,7 @@ function connect(){
         app.use(metricsMiddleware);
 
         app.use(cors());
-        app.options('*', cors());
+        app.options("*", cors());
         app.use(express.json());
         app.use("/api", api);
 
@@ -23,7 +23,7 @@ function connect(){
         app.listen(process.env.PORT || 5000, () => {
             console.log("Server has started! Using db in "+mongo_uri);
         });
-    })
+    });
 }
 
 // Connect to MongoDB database, the wait is for giving time to mongodb to finish loading

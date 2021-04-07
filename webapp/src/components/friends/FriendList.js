@@ -9,7 +9,7 @@ export default function ProfileFriends() {
                 <h3>Your friends</h3>
                 <FriendCardList />
             </div>
-    )
+    );
 }
 
 function FriendCardList() {
@@ -70,7 +70,7 @@ function FriendCard(props) {
                     <Avatar src={photo} className={classes.fPhoto} />
                 }
             />
-            <CardContent style={{ textAlign: 'center' }}>
+            <CardContent style={{ textAlign: "center" }}>
                 <Typography variant="h6" color="textSecondary" component="p">
                     {name}
                 </Typography>
@@ -81,18 +81,18 @@ function FriendCard(props) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
     },
     main: {
         marginTop: theme.spacing(8),
         marginBottom: theme.spacing(2),
     },
     paper: {
-        borderBottom: '1px solid #e8e8e8',
+        borderBottom: "1px solid #e8e8e8",
         marginTop: theme.spacing(2),
         backgroundColor: "#99de9f",
-        width: '100%'
+        width: "100%"
     },
     friends: {
         marginTop: theme.spacing(5),
@@ -100,16 +100,16 @@ const useStyles = makeStyles((theme) => ({
     fPhoto: {
         width: theme.spacing(13),
         height: theme.spacing(13),
-        marginLeft: '3rem',
-        marginTop: '1rem'
+        marginLeft: "3rem",
+        marginTop: "1rem"
     },
     fCard: {
-        display: 'block',
-        width: '15rem',
+        display: "block",
+        width: "15rem",
         height: theme.spacing(30)
     },
     friendsList: {
-        textAlign: 'center',
+        textAlign: "center",
         marginTop: theme.spacing(7),
         marginBottom: theme.spacing(50)
     }

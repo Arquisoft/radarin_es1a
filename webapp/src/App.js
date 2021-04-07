@@ -10,8 +10,8 @@ import { FriendsView } from "./components/layouts/FriendsView";
 import { ProfileView } from "./components/layouts/ProfileView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
-import ReactNotification from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 function App() {
 
