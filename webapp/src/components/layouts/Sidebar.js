@@ -26,7 +26,13 @@ class SideNav extends React.Component {
           key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
         },
         {
-          path: '/FriendsView',
+          path: '/profile',
+          name: 'Profile',
+          css: 'fas fa-user',
+          key: 2
+        },
+        {
+          path: '/friends',
           name: 'FriendsView',
           css: 'fas fa-users',
           key: 2
@@ -44,7 +50,7 @@ class SideNav extends React.Component {
         },
 
       ]
-    }
+    };
   }
   onItemClick = (path) => {
     this.setState({ activePath: path }); /* Sets activePath which causes rerender which causes CSS to change */
@@ -59,7 +65,7 @@ class SideNav extends React.Component {
             /* Return however many NavItems in array to be rendered */
             return (
               <NavItem path={item.path} name={item.name} css={item.css} onItemClick={this.onItemClick} /* Simply passed an entire function to onClick prop */ active={item.path === activePath} key={item.key} />
-            )
+            );
           })
         }
       </StyledSideNav>

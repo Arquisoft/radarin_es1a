@@ -1,5 +1,5 @@
-const { teardown: teardownDevServer } = require("jest-dev-server")
+const { teardown: teardownDevServer } = require("jest-dev-server");
 
 module.exports = async () => {
-    await teardownDevServer()
-}
+    await teardownDevServer();
+};

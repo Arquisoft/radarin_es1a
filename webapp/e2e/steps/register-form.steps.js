@@ -4,8 +4,8 @@ const feature = loadFeature('./features/register-form.feature');
 defineFeature(feature, test => {
   
   beforeEach(async () => {
-    await global.page.goto('http://localhost:3000')
-  })
+    await global.page.goto('http://localhost:3000');
+  });
 
   test('The user is not registered in the site', ({given,when,then}) => {
     
@@ -13,18 +13,18 @@ defineFeature(feature, test => {
     let username;
 
     given('An unregistered user', () => {
-      email = "newuser@test.com"
-      username = "newuser"
+      email = "newuser@test.com";
+      username = "newuser";
     });
 
     when('I fill the data in the form and press submit', async () => {
-      await expect(page).toMatch('Hi, ASW students')
+      await expect(page).toMatch('Hi, ASW students');
       await expect(page).toFillForm('form[name="register"]', {
         username: username,
         email: email,
       })
-      await expect(page).toClick('button', { text: 'Submit' })
-      await expect(page).toMatch('Welcome to ASW')
+      await expect(page).toClick('button', { text: 'Submit' });
+      await expect(page).toMatch('Welcome to ASW');
     });
 
     then('A welcome message should be shown in the screen', async () => {

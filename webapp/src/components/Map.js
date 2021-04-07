@@ -1,6 +1,7 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
 import { useLDflexValue, useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
+import { store } from 'react-notifications-component';
 
 function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
@@ -36,6 +37,7 @@ function Map() {
     const [ui, setUI] = useState(null);
     const [map, setMap] = useState(null);
     const [userPosition, setUserPosition] = useState(null);
+
 
 
     // Default distanceRadius  5 km
@@ -156,7 +158,7 @@ function Map() {
         );
         setMap(map);
 
-
+        
 
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
@@ -168,6 +170,18 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
+        store.addNotification({
+            title: "Notificación",
+            message: "Bienvenido a Radarin!",
+            type: "default",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 5000
+            }
+          });
 
         navigator.geolocation.getCurrentPosition((position) => {
 
@@ -236,6 +250,7 @@ function Map() {
 
     return (
         // Set a height on the map so it will display
+
         <Fragment>
             <div ref={mapRef} id="map" />
             {

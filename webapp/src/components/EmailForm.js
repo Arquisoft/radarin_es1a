@@ -49,13 +49,13 @@ class EmailForm extends React.Component {
   }
 
   async handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     //Add the user to the database
     if (this.state.username && this.state.email) {
       this.registerUser();
     }
     else {
-      this.setState({ welcomeMsg: 'ERROR: You must fill both fields!' })
+      this.setState({ welcomeMsg: "ERROR: You must fill both fields!" })
     }
   }
 
@@ -85,4 +85,4 @@ class EmailForm extends React.Component {
   }
 }
 
-export default EmailForm
+export default EmailForm;

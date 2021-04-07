@@ -17,4 +17,4 @@ class CustomEnvironment extends NodeEnvironemnt {
         await super.teardown();
     }
 }
-module.exports = CustomEnvironment
+module.exports = CustomEnvironment;

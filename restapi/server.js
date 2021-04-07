@@ -22,9 +22,9 @@ function connect(){
 
         app.listen(process.env.PORT || 5000, () => {
             console.log("Server has started! Using db in "+mongo_uri);
-        })
+        });
     })
 }
 
 // Connect to MongoDB database, the wait is for giving time to mongodb to finish loading
-setTimeout(connect,5000)
+setTimeout(connect,5000);
