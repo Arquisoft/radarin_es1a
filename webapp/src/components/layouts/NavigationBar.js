@@ -16,25 +16,27 @@ const Styles = styled.div`
   }
   .form-center {
     position: absolute !important;
-    left: 25%;
-    right: 25%;
+    left: 40%;
+    right: 40%;
   }
 `;
+
 export const NavigationBar = () => (
+  
   <Styles>
     <Navbar expand="lg">
       <Navbar.Brand href="/">Radarin</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+      <Navbar aria-controls="basic-navbar-nav"/>
       <Form className="form-center">
         <FormControl type="text" placeholder="Search" className="" />
       </Form>
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
           <Nav.Item><Nav.Link href="/about">About</Nav.Link></Nav.Item>
           <Nav.Item><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item>
         </Nav>
-      </Navbar.Collapse>
+      </Navbar>
     </Navbar>    
   </Styles>
 );
