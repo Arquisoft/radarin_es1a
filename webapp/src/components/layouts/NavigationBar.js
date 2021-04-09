@@ -25,7 +25,6 @@ export const NavigationBar = () => (
   
   <Styles>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">Radarin</Navbar.Brand>
       <Navbar aria-controls="basic-navbar-nav"/>
       <Form className="form-center">
         <FormControl type="text" placeholder="Search" className="" />
