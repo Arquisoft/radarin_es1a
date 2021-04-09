@@ -28,7 +28,7 @@ const Styles = styled.div`
   
   /* Color/shape of close button cross */
   .bm-cross {
-    background: #bdc3c7;
+    background: #99DE9F;
   }
   
   /*
@@ -42,25 +42,30 @@ const Styles = styled.div`
   
   /* General sidebar styles */
   .bm-menu {
-    background: #373a47;
-    padding: 2.5em 1.5em 0;
+    background: #303030;
+    padding: 0.5em 1.5em 0;
     font-size: 1.15em;
+    
   }
   
   /* Morph shape necessary with bubble or elastic */
   .bm-morph-shape {
-    fill: #373a47;
+    fill: #303030;
   }
   
   /* Wrapper for item list */
   .bm-item-list {
-    color: #b8b7ad;
+    color: #99DE9F;
     padding: 0.8em;
+    margin-left: 15px;
+    font-size: 1.5em;
   }
   
   /* Individual item */
   .bm-item {
+    padding-top: 5%;
     display: inline-block;
+    color: #99DE9F;
   }
   
   /* Styling of overlay */
@@ -79,10 +84,22 @@ class MenuBar extends React.Component {
         return (
             <Styles>
                 <Menu>
-                    <a id="home" className="menu-item" href="/">Home</a>
-                    <a id="about" className="menu-item" href="/about">About</a>
-                    <a id="contact" className="menu-item" href="/contact">Contact</a>
-                    <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a>
+                    <a id="home" className="menu-item" class= "bm-item" href="/">
+                        <i class="fa fa-fw fa-map-marker-alt"></i>
+                        <span>Home</span>
+                    </a>
+                    <a id="friends" className="menu-item" class="bm-item" href="/friends">
+                        <i class="fas fa-users"></i>
+                        <span>Friends</span>
+                    </a>
+                    <a id="about" className="menu-item" class="bm-item" href="/about">
+                        <i class="fa fa-fw fa-user-plus"></i>
+                        <span>About</span>
+                    </a>
+                    <a onClick={ this.showSettings } id="settings" className="menu-item" class="bm-item" href="/settings">
+                        <i class="fa fa-cogs"></i>
+                        <span>Settings</span>
+                    </a>
                 </Menu>
             </Styles>
         );

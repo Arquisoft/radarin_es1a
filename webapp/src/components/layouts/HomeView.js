@@ -7,7 +7,6 @@ export const HomeView = () => {
     return (
         <React.Fragment>
             <NavigationBar />
-            <Sidebar/>
             <Menubar/>
         </React.Fragment>
     );
