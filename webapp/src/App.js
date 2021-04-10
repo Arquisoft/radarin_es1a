@@ -42,7 +42,8 @@ function App() {
   const solidId = useWebId();
   cache.loadFriends();
 
-  const adminId = "https://ismaelsolid.solidcommunity.net/profile/card#m";
+  // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
+  const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
 
   function enviarUbicacionAServidor() {
     if (solidId) {

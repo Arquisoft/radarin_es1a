@@ -28,6 +28,13 @@ router.post("/users/location", async (req, res) => {
 
 });
 
+// Deletes the user that has the id send on the body.
+router.post("/users/delete", async (req, res) => {
+    const user = await User.find({ "solidId": req.body.solidId });
+    await user[0].remove();
+    res.send(true);
+});
+
 // Get all admins ids.
 router.get("/admin/list", async (req, res) => {
     const admins = await Admin.find({});
@@ -36,14 +43,13 @@ router.get("/admin/list", async (req, res) => {
 
 router.post("/admin/add", async (req, res) => {
     const solidId = req.body.solidId;
-   
+
     let admin = await Admin.findOne({ solidId });
 
     if (admin == null) {
         admin = new Admin({
             solidId
         });
-        Admin.insertOne(admin);
     }
     await admin.save();
     res.send(admin); //aqui debe devolver el admin

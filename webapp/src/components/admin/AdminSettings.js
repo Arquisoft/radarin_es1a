@@ -5,6 +5,7 @@ function AdminSettingsPage() {
     const usersRef = useRef(null);
     const [users, setUsers] = useState([]);
 
+    // Function that loads the users, SHOULD CHANGE WHEN HEROKU DEPLOY (?)
     var getRespuesta = async function () {
         var respuesta = await fetch("http://localhost:5000/api/users/lista");
         var response = await respuesta.json();
@@ -19,6 +20,29 @@ function AdminSettingsPage() {
         setUsers(newUsers);
     }
 
+    // Function that deletes the user with the passed id,  SHOULD CHANGE WHEN HEROKU DEPLOY (?)
+    var deleteUser = async function (id) {
+
+        const datos = {
+            "solidId": id
+        }
+
+        var respuesta = await fetch("http://localhost:5000/api/users/delete", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        var response = await respuesta.json();
+        console.log("Peticion de borrado :" + response);
+
+        // Reload the ref of userList.
+        getRespuesta();
+    }
+
+    // LayoutEffect to load the userList.
     useLayoutEffect(() => {
 
         function addUsers() {
@@ -29,19 +53,27 @@ function AdminSettingsPage() {
 
         addUsers();
 
-
     }, [usersRef]);
 
     return (
-
         <Fragment>
 
-            <h2>Admin Panel</h2>
+            <h1>Admin Panel</h1>
+            <h2>Some analytics panel or somewhat</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Total users</th>
+                    </tr>
 
-            <p>Some analytics panel or somewhat.</p>
+                    <tr>
+                        <td>{users.length}</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <Fragment>
-                <h3>User List</h3>
+                <h2>User List</h2>
                 <div ref={usersRef} id="userList" />
                 <table>
                     <tbody>
@@ -56,7 +88,7 @@ function AdminSettingsPage() {
                                     <td><a href={user.solidId} >{user.solidId}</a></td>
                                     <td>{user.lat}</td>
                                     <td>{user.lng}</td>
-                                    <td><a href={"http://localhost:5000/api/user/delete/" + user.solidId}>Delete</a></td>
+                                    <td><button onClick={() => deleteUser(user.solidId)}>Delete</button></td>
                                 </tr>
                             )
                         }
@@ -65,10 +97,7 @@ function AdminSettingsPage() {
             </Fragment>
 
         </Fragment >
-
     );
 }
-
-
 
 export default AdminSettingsPage;
