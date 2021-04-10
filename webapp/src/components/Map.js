@@ -14,10 +14,10 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
             var pngIcon;
 
             if (webId === solidId) {
-                pngIcon  = new H.map.Icon("/img/gps.png", { size: { w: 24, h: 24 } });
+                pngIcon = new H.map.Icon("/img/gps.png", { size: { w: 24, h: 24 } });
             }
             else {
-                 pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+                pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
             }
             var marker = new H.map.Marker(locationOfMarker, { icon: pngIcon });
             map.addObject(marker);
@@ -30,7 +30,6 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
             }, false);
         }
     }, [webId, nombre, locationOfMarker, ui, map, solidId]);
-
 
     return null;
 }
@@ -166,8 +165,6 @@ function Map() {
         );
         setMap(map);
 
-
-
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
@@ -239,7 +236,6 @@ function Map() {
                 ui.addBubble(bubble);
             }, false);
             // show info bubble
-
 
             // First iteration
             addFriends(map, ui, position);

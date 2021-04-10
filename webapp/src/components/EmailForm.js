@@ -15,12 +15,16 @@ class EmailForm extends React.Component {
 
   changeEmail(e) {
     const email = e.target.value;
-    this.setState({ email: email });
+    this.setState({ 
+      email: email,
+    });
   }
 
   changeUserName(e) {
     const username = e.target.value;
-    this.setState({ username: username });
+    this.setState({ 
+      username: username, 
+    });
   }
 
   async registerUser() {
@@ -45,6 +49,7 @@ class EmailForm extends React.Component {
       this.props.refreshUsers(users);
     }
     catch (error) {
+      alert(error);
     }
   }
 
