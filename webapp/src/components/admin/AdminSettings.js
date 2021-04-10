@@ -18,7 +18,7 @@ function AdminSettingsPage() {
         });
 
         setUsers(newUsers);
-    }
+    };
 
     // Function that deletes the user with the passed id,  SHOULD CHANGE WHEN HEROKU DEPLOY (?)
     var deleteUser = async function (id) {
@@ -27,7 +27,7 @@ function AdminSettingsPage() {
             "solidId": id
         }
 
-        var respuesta = await fetch("http://localhost:5000/api/users/delete", {
+        await fetch("http://localhost:5000/api/users/delete", {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -35,8 +35,8 @@ function AdminSettingsPage() {
             body: JSON.stringify(datos)
         });
 
-        var response = await respuesta.json();
-        console.log("Peticion de borrado :" + response);
+        //var response = await respuesta.json();
+        //console.log("Peticion de borrado :" + response);
 
         // Reload the ref of userList.
         getRespuesta();

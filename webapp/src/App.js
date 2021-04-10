@@ -8,7 +8,7 @@ import { About } from "./About";
 import { SettingsView } from "./components/layouts/SettingsView";
 import { FriendsView } from "./components/layouts/FriendsView";
 import { ProfileView } from "./components/layouts/ProfileView";
-import { AdminView } from "./components/layouts/AdminView"
+import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
 import { Nav, Navbar } from "react-bootstrap";
@@ -72,10 +72,11 @@ function App() {
   useEffect(() => {
     let isMounted = true; // note this flag denote mount status
 
-    if (solidId !== adminId && isMounted)
+    if (solidId !== adminId && isMounted) {
       setInterval(enviarUbicacionAServidor, 30000);
-      
-    return () => { isMounted = false }; // use effect cleanup to set flag false, if unmounted
+    }
+
+    return () => { isMounted = false; }; // use effect cleanup to set flag false, if unmounted
   });
 
 
