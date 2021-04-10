@@ -14,19 +14,24 @@ const Styles = styled.div`
     color: #99DE9F;
     &:hover { color: #FFC3A2; }
   }
+  #basic-navbar-nav{
+    left: 15%
+    right: 10%;
+  }
   .form-center {
     position: absolute !important;
-    left: 40%;
-    right: 40%;
+    left: 60%
+    right: 10%;
   }
+
+
 `;
 
 export const NavigationBar = () => (
   
   <Styles>
     <Navbar expand="lg">
-      <Navbar aria-controls="basic-navbar-nav"/>
-      <Form className="form-center">
+      <Form class= "d-none d-m-up" className="form-center">
         <FormControl type="text" placeholder="Search" className="" />
       </Form>
       <Navbar id="basic-navbar-nav">
@@ -36,6 +41,7 @@ export const NavigationBar = () => (
           <Nav.Item><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item>
         </Nav>
       </Navbar>
+
     </Navbar>    
   </Styles>
 );
