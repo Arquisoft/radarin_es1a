@@ -5,16 +5,25 @@ import { store } from "react-notifications-component";
 
 function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
+    const solidId = useWebId();
+
     useEffect(() => {
         if (webId && nombre && locationOfMarker && ui && map) {
             const H = window.H;
-            var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+            var pngIcon;
+
+            if (webId === solidId) {
+                pngIcon  = new H.map.Icon("/img/gps.png", { size: { w: 24, h: 24 } });
+            }
+            else {
+                 pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+            }
             var marker = new H.map.Marker(locationOfMarker, { icon: pngIcon });
             map.addObject(marker);
 
             marker.addEventListener("tap", logEvent => {
                 var bubble = new H.ui.InfoBubble({ lat: locationOfMarker.lat, lng: locationOfMarker.lng }, {
-                    content: `${nombre}`,                  
+                    content: `${nombre}`,
                 });
                 ui.addBubble(bubble);
             }, false);
