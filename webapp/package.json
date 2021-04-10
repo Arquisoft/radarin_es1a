@@ -16,10 +16,11 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
+    "react-notifications-component": "^3.0.3",
     "react-router-dom": "^5.0.1",
     "react-scripts": "4.0.1",
     "react-select": "^4.2.1",
-    "react-notifications-component": "^3.0.3",
+    "react-swipeable-views": "^0.13.9",
     "solid-auth-client": "^2.5.5",
     "styled-components": "^4.4.1",
     "web-vitals": "^0.2.4"

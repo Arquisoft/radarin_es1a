@@ -8,6 +8,7 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
     const solidId = useWebId();
 
     useEffect(() => {
+        
         if (webId && nombre && locationOfMarker && ui && map) {
             const H = window.H;
             var pngIcon;
@@ -28,7 +29,7 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
                 ui.addBubble(bubble);
             }, false);
         }
-    }, [webId, nombre, locationOfMarker, ui, map]);
+    }, [webId, nombre, locationOfMarker, ui, map, solidId]);
 
 
     return null;
@@ -60,7 +61,7 @@ function Map() {
     };
 
     var getRespuesta = async function (map, ui, userPosition) {
-        var respuesta = await fetch("http://localhost:5000/api/users/lista");
+        var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
 
         //Borra la ubicación del usuario en sesión ELIMINAR
@@ -78,7 +79,6 @@ function Map() {
                     webId: item.solidId
                 });
             }
-
         }
         );
 
