@@ -14,7 +14,7 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
 
             marker.addEventListener("tap", logEvent => {
                 var bubble = new H.ui.InfoBubble({ lat: locationOfMarker.lat, lng: locationOfMarker.lng }, {
-                    content: `${nombre}`,                  
+                    content: `${nombre}`,
                 });
                 ui.addBubble(bubble);
             }, false);
@@ -157,8 +157,6 @@ function Map() {
         );
         setMap(map);
 
-
-
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
@@ -230,8 +228,7 @@ function Map() {
                 ui.addBubble(bubble);
             }, false);
             // show info bubble
-
-
+            
             // First iteration
             addFriends(map, ui, position);
 

@@ -4,9 +4,6 @@ import SettingsForm from "../../Settings";
 
 export const SettingsView = () => {
     return (
-
         <SettingsForm />
-
-
     );
 };
