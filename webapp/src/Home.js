@@ -1,7 +1,8 @@
 import React from "react";
-import Map from "./components/Map";
+import FriendsSolidId from "./components/FriendsSolidId";
 
 
-export const Home = (props) => (
-    <Map/>
-);
+export const Home = (props) => {
+    console.log("entro home");
+    return <FriendsSolidId/>;
+};

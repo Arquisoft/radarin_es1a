@@ -1,11 +1,14 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
-import { useLDflexValue, useWebId } from "@solid/react";
+import { useLDflexValue, useWebId, useLDflexList } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 import { store } from "react-notifications-component";
 
 function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
     const solidId = useWebId();
+
+    const solidFriends = useLDflexList(`[${webId}].knows`).map(friend=> `${friend}`);
+    console.log(solidFriends);
 
     useEffect(() => {
         
