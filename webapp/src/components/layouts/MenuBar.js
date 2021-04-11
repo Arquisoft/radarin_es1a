@@ -36,14 +36,15 @@ const Styles = styled.div`
   Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
   */
   .bm-menu-wrap {
-    position: fixed;
+    position: absolute;
+    top: 58px;
     height: 100%;
+
   }
   
   /* General sidebar styles */
   .bm-menu {
     background: #303030;
-    padding: 0.5em 1.5em 0;
     font-size: 1.15em;
     
   }
@@ -57,7 +58,6 @@ const Styles = styled.div`
   .bm-item-list {
     color: #99DE9F;
     padding: 0.8em;
-    margin-left: 15px;
     font-size: 1.5em;
   }
   

@@ -7,6 +7,7 @@ const Styles = styled.div`
   a, .navbar-nav, .navbar-light .nav-link {
     color: #99DE9F;
     &:hover { color: #FFC3A2; }
+    overflow: hidden;
   }
   .navbar-brand {
     font-size: 1.6em;
