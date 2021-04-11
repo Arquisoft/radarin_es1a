@@ -19,11 +19,7 @@ class Settings extends React.Component {
         radius.valueOf();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
-        
     }
-
-    
 
     handleChange(event) {
          this.radius = document.getElementById("radius").value ;
@@ -51,7 +47,6 @@ class Settings extends React.Component {
             </GridWrapper >
         );
     }
-
 }
 
 export default function SettingsForm() {

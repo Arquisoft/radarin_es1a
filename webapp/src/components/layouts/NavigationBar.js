@@ -1,6 +1,5 @@
 import React from "react";
 import { Nav, Navbar, Form, FormControl } from "react-bootstrap";
-import { LoggedIn, LoggedOut } from "@solid/react";
 import auth from "solid-auth-client";
 import styled from "styled-components";
 const Styles = styled.div`
@@ -23,7 +22,6 @@ const Styles = styled.div`
 `;
 export const NavigationBar = () => (
   <Styles>
-    <LoggedIn>
     <Navbar expand="lg">
       <Navbar.Brand href="/">Radarin</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -32,26 +30,11 @@ export const NavigationBar = () => (
       </Form>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-          <Nav.Item><Nav.Link href="/about">About</Nav.Link></Nav.Item>
-          <Nav.Item><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item>
+          <Nav.Item key="home"><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
+          <Nav.Item key="about"><Nav.Link href="/about">About</Nav.Link></Nav.Item>
+          <Nav.Item key="logout"><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item>
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
-    </LoggedIn>
-    <LoggedOut>
-    <Navbar expand="lg">
-      <Navbar.Brand href="/">Radarin</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-          <Nav.Item><Nav.Link href="/about">About</Nav.Link></Nav.Item>
-          <Nav.Item><Nav.Link href="/login">Login</Nav.Link></Nav.Item>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-    </LoggedOut>
-    
+    </Navbar>    
   </Styles>
 );

@@ -5,7 +5,6 @@ const { default: data } = require("@solid/query-ldflex");
 
 export function GetUserName() {
     const name = useLDflexValue("user.name") || "unknown";
-    console.log("The name is: " + name.value);
     return name.value;
 }
 
@@ -38,7 +37,6 @@ export async function GetUserFriends() {
         const profilePic = await GetSpecificProfileImage(webId);
 
         let friendAux = new Friend(webId.toString(), name, profilePic);
-        console.log(friendAux.toString());
         friendsAux.push(friendAux);
     });
     

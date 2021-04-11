@@ -14,14 +14,12 @@ export default function ProfileFriends() {
 
 function FriendCardList() {
 
-    var webId=GetUserWebId();
-
+    const [webId, setWebId] = useState("")
     const [friendsList, setFriendsList] = useState([]);
 
-    cache.loadFriends();
-    useEffect(() => {
-        const list = cache.getFriends();
-        setFriendsList(list);
+    useEffect(() => {      
+        setWebId(GetUserWebId());
+        setFriendsList(cache.getFriends());
     }, []);
 
     const classes = useStyles();
