@@ -14,7 +14,6 @@ import ReactNotification from "react-notifications-component";
 import cache from "./components/friends/UserCache";
 import "react-notifications-component/dist/theme.css";
 
-//const [open, setOpen] = useState(false);
 
 function App() {
   const solidId = useWebId();

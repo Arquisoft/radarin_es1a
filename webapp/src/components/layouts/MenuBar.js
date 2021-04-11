@@ -6,7 +6,7 @@ const Styles = styled.div`
     position: fixed;
     width: 36px;
     height: 30px;
-    left: 4%;
+    left: 20px;
     top: 20px;
   }
   

@@ -20,11 +20,9 @@ const Styles = styled.div`
   }
   .form-center {
     position: absolute !important;
-    left: 60%
-    right: 10%;
+    left: 35%;
+    right: 50%;
   }
-
-
 `;
 
 export const NavigationBar = () => (
