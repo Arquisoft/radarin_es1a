@@ -164,7 +164,7 @@ function Map() {
             }
         );
         setMap(map);
-
+//rama
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
