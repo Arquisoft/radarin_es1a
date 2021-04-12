@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link } from "@material-ui/core";
-import { GetUserWebId, GetUserProfileImage } from "../friends/FriendManager";
+import { GetUserWebId, GetUserProfileImage } from "./SolidManager";
 import { Value } from "@solid/react";
 
 

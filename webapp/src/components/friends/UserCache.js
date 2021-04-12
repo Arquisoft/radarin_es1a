@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { GetUserFriends, GetUserWebId, GetUserName } from "./FriendManager";
+import { GetUserFriends, GetUserWebId, GetUserName } from "../user/SolidManager";
 
 //La utilizamos para cargar los amigos
 export default {

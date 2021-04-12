@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, CardHeader } from "@material-ui/core";
+import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, CardHeader, IconButton } from "@material-ui/core";
 import cache from "./UserCache";
-import { GetUserWebId } from "./FriendManager";
+import { GetUserWebId } from "../user/SolidManager";
+import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 
 export default function ProfileFriends() {
     return (
             <div>
-                <h3>Your friends</h3>
                 <FriendCardList />
             </div>
     );
@@ -19,20 +19,40 @@ function FriendCardList() {
 
     useEffect(() => {      
         setWebId(GetUserWebId());
-        setFriendsList(cache.getFriends());
-    }, []);
+        setFriendsList(cache.getFriends());     
+    },[]);
+   // window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
+    if(friendsList.length)
+        window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
+        
+    const amigosSession = JSON.parse(window.sessionStorage.getItem('friends'));
+    console.log(amigosSession.length);
+    if(!friendsList.length && amigosSession.length){   
+            cache.loadFriends();
+            console.log(friendsList.length);
+    }
 
     const classes = useStyles();
     if (!friendsList.length) {
         return (
             <div className={classes.friendsList}>
-                <h4>You dont have friends</h4>
+                <h4>You don't have friends in your Solid Pod</h4>
                 <h4>You can add new friends in your <Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></h4>
             </div>
         );
     }
 
     return (
+        <div className={classes.root}>             
+             
+            <Grid container>
+                <Grid item >
+                    <Typography className={classes.name} variant="h3" >
+                        Your friends
+                    </Typography>
+                </Grid>  
+            </Grid>
+
         <Grid
             container
             spacing={3}
@@ -47,8 +67,8 @@ function FriendCardList() {
                     </Grid>
                 )
             })}
-
         </Grid>
+        </div>
     );
 }
 
@@ -59,13 +79,19 @@ function FriendCard(props) {
 
     var photo = friend.getPhoto();
     var name = friend.getName();
-    //var webid = friend.getWebId(); De momento no lo utilizamos
+    var webid = friend.getWebId(); 
+
 
     return (
         <Card variant="outlined" className={classes.fCard}>
             <CardHeader
                 avatar={
                     <Avatar src={photo} className={classes.fPhoto} />
+                }
+                action={
+                    <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" href={webid}>
+                        <NotListedLocationIcon />
+                    </IconButton>
                 }
             />
             <CardContent style={{ textAlign: "center" }}>
