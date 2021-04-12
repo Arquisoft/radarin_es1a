@@ -102,7 +102,7 @@ class MenuBar extends React.Component {
                         <i class="fas fa-poll-h"></i>
                         <span> About</span>
                     </a>
-                    <a onClick={ this.showSettings } id="settings" className="menu-item" class="bm-item" href="/settings">
+                    <a id="settings" className="menu-item" class="bm-item" href="/settings">
                         <i class="fa fa-cogs"></i>
                         <span> Settings</span>
                     </a>

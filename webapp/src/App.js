@@ -8,7 +8,6 @@ import { About } from "./About";
 import { SettingsView } from "./components/layouts/SettingsView";
 import { FriendsView } from "./components/layouts/FriendsView";
 import { ProfileView } from "./components/layouts/ProfileView";
-import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
 import { Nav, Navbar } from "react-bootstrap";
@@ -16,7 +15,6 @@ import ReactNotification from "react-notifications-component";
 import cache from "./components/friends/UserCache";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
-
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -112,8 +110,10 @@ function App() {
     return (
       <React.Fragment>
         <ReactNotification />
-        <LoggedOut>      
-          <LoginView />    
+        <LoggedOut>    
+          <Router> 
+            <LoginView />   
+          </Router>  
         </LoggedOut>
         <LoggedIn>
           <Router>
@@ -135,7 +135,9 @@ function App() {
     return (
       <React.Fragment>
         <LoggedOut>
+          <Router>
             <LoginView />
+          </Router>
         </LoggedOut>
         <LoggedIn>
           <Styles>
@@ -147,7 +149,6 @@ function App() {
               </Nav>
             </Navbar>
           </Styles>
-          <AdminView />
         </LoggedIn>
 
       </React.Fragment >

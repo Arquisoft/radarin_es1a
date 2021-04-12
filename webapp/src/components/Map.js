@@ -57,21 +57,6 @@ function Map() {
 
     window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
 
-    var getNotifications = () => {
-        store.addNotification({
-            title: "Bienvenido a Radarin!",
-            message: " ",
-            type: "default",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 5000
-            }
-        });
-    };
-
     // Default distanceRadius  5 km
     const radius = () => {
         if (window.sessionStorage.getItem("radius") != null) {
@@ -192,7 +177,6 @@ function Map() {
             }
         );
         setMap(map);
-        getNotifications();
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
