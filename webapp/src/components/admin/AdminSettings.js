@@ -7,7 +7,7 @@ function AdminSettingsPage() {
 
     // Function that loads the users, SHOULD CHANGE WHEN HEROKU DEPLOY (?)
     var getRespuesta = async function () {
-        var respuesta = await fetch("http://localhost:5000/api/users/lista");
+        var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista");
         var response = await respuesta.json();
 
         var newUsers = [];
@@ -27,7 +27,7 @@ function AdminSettingsPage() {
             "solidId": id
         }
 
-        await fetch("http://localhost:5000/api/users/delete", {
+        await fetch("https://radarines1arestapi.herokuapp.com/api/users/delete", {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
