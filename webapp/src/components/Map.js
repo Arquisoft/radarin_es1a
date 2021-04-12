@@ -174,12 +174,13 @@ function Map() {
             message: "Bienvenido a Radarin!",
             type: "default",
             insert: "top",
-            container: "top-right",
+            container: "top-left",
             animationIn: ["animate__animated", "animate__fadeIn"],
             animationOut: ["animate__animated", "animate__fadeOut"],
             dismiss: {
-                duration: 5000
-            }
+                duration: 2000
+            },
+            dismissable: { click: true }
         });
 
         navigator.geolocation.getCurrentPosition((position) => {
