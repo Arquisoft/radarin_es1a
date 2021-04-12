@@ -59,8 +59,8 @@ function Map() {
 
     var getNotifications = () => {
         store.addNotification({
-            title: "Amigo cercano!",
-            message: "Un amigo se encuentra dentro de tu zona.",
+            title: "Bienvenido a Radarin!",
+            message: " ",
             type: "default",
             insert: "top",
             container: "top-left",
@@ -86,19 +86,20 @@ function Map() {
     var getRespuesta = async function (map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
-        
-        
+        var friends = window.sessionStorage.getItem('friends');
+        var id = window.sessionStorage.getItem('id');
+
+        const list = response.filter(user => friends.includes(user.solidId) ||  user.solidId === id);
+       
         //Borra la ubicación del usuario en sesión ELIMINAR
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
 
         // eslint-disable-next-line
-        response.map((item, index) => {
+        list.map((item, index) => {
 
             if (distanceFilter(item.latitud, item.longitud, userPosition)) {
-                if(index !== 0)
-                    getNotifications();
                 var locationOfMarker = { lat: item.latitud, lng: item.longitud };
                 nuevasMarcas.push({
                     locationOfMarker,
@@ -191,7 +192,7 @@ function Map() {
             }
         );
         setMap(map);
-
+        getNotifications();
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
@@ -269,7 +270,7 @@ function Map() {
             addFriends(map, ui, position);
 
             // Then repeat each 30000
-            setInterval(() => { addFriends(map, ui, position); }, 30000);
+            setInterval(() => { addFriends(map, ui, position); }, 1000);
 
         }, (error) => {
             console.error(error);
