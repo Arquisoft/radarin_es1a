@@ -200,7 +200,19 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
-        
+        store.addNotification({
+            title: "Notificación",
+            message: "Bienvenido a Radarin!",
+            type: "default",
+            insert: "top",
+            container: "top-left",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+                duration: 2000
+            },
+            dismissable: { click: true }
+        });
 
         navigator.geolocation.getCurrentPosition((position) => {
 
