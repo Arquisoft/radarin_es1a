@@ -12,7 +12,7 @@ const Styles = styled.div`
     font-size: 1.6em;
     font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
     color: #99DE9F;
-    &:hover { color: #FFC3A2; }
+    &:hover { color: #99DE9F; }
   }
   .form-center {
     position: absolute !important;
