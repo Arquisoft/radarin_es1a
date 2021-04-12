@@ -145,7 +145,7 @@ function App() {
               <Navbar.Brand href="/">Radarin</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Nav className="ml-auto">
-                <Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link>
+                <Nav.Link href="/login" onSelect={() => window.sessionStorage.clear(), auth.logout() }> Logout </Nav.Link>
               </Nav>
             </Navbar>
           </Styles>

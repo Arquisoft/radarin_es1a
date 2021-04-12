@@ -2,6 +2,8 @@ import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "r
 import { useLDflexValue, useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 import { store } from "react-notifications-component";
+import cache from "./friends/UserCache";
+
 
 function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
@@ -46,7 +48,13 @@ function Map() {
     const [map, setMap] = useState(null);
     const [userPosition, setUserPosition] = useState(null);
 
+    const [friendsList, setFriendsList] = useState([]);
 
+    useEffect(() => {      
+        setFriendsList(cache.getFriends());
+    });
+
+    window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
 
     // Default distanceRadius  5 km
     const radius = () => {
