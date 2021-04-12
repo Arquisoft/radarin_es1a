@@ -4,6 +4,7 @@ const Styles = styled.div`
 
 html {
   box-sizing: border-box;
+  backgroud-color: #474e5d;
 }
 
 *, *:before, *:after {
@@ -12,14 +13,14 @@ html {
 
 .column {
   float: left;
-  width: 33.3%;
+  width: 25%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 8px;
+  margin: 16px;
 }
 
 .about-section {
@@ -50,13 +51,17 @@ html {
   color: grey;
 }
 
+a{
+  color:#99DE9F;
+}
+
 .button {
   border: none;
   outline: 0;
   display: inline-block;
   padding: 8px;
-  color: white;
-  background-color: #000;
+  color: #99DE9F;
+  background-color: #303030;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -74,7 +79,7 @@ button:hover {
   background-color: #555;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .column {
     width: 100%;
     height: 100%;
@@ -99,7 +104,7 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
-          <img src="/img/devsFaces/ismael.png" alt="Ismael"></img>
+          <img src="/img/devsFaces/usuario.png" alt="Ismael"></img>
           <div class = "container">
             <h2> Ismael Alba Areces</h2>
             <p> Front end </p>
@@ -115,7 +120,7 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
-          <img src="/img/devsFaces/alba.png" alt="nombre"></img>
+          <img src="/img/devsFaces/usuario.png" alt="nombre"></img>
           <div class = "container">
             <h3> Alba Aparicio Pérez</h3>
             <p> Front end </p>
@@ -131,9 +136,9 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
-          <img src="/img/devsFaces/kevin.png." alt="Kevin"></img>
+          <img src="/img/devsFaces/usuario.png" alt="Kevin"></img>
           <div class = "container">
-            <h2> Kevin </h2>
+            <h2> Kevin Barbón Garcia</h2>
             <p> Front end </p>
             <p> nombre@correo.com </p>
             <p> 
@@ -165,9 +170,9 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
-          <img src="/img/devsFaces/miguel.png" alt="Miguel"></img>
+          <img src="/img/devsFaces/usuario.png" alt="Miguel"></img>
           <div class = "container">
-            <h2> Migel Guimarey</h2>
+            <h2> Migel Guimarey Lesmes</h2>
             <p> Front end </p>
             <p> nombre@correo.com </p>
             <p> 
@@ -181,9 +186,9 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
-          <img src="/img/devsFaces/daniel.png" alt="nombre"></img>
+          <img src="/img/devsFaces/usuario.png" alt="nombre"></img>
           <div class = "container">
-            <h2> Daniel</h2>
+            <h2> Daniel Menéndez Ron</h2>
             <p> Front end </p>
             <p> nombre@correo.com </p>
             <p> 
@@ -197,9 +202,9 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
-          <img src="/img/devsFaces/victoria.png" alt="nombre"></img>
+          <img src="/img/devsFaces/usuario.png" alt="nombre"></img>
           <div class = "container">
-            <h2> Victoria Álvarez</h2>
+            <h2> Victoria Álvarez Sordo</h2>
             <p> Front end </p>
             <p> nombre@correo.com </p>
             <p> 
