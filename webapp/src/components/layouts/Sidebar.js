@@ -48,6 +48,12 @@ class SideNav extends React.Component {
           css: "fa fa-cogs",
           key: 5
         },
+        , {
+          path: "/login",
+          name: "Log out",
+          css: "fas fa-sign-out-alt",
+          key: 6
+        }
 
       ]
     };
