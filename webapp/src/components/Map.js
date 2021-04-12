@@ -59,8 +59,8 @@ function Map() {
 
     var getNotifications = () => {
         store.addNotification({
-            title: "Amigo cercano!",
-            message: "Un amigo se encuentra dentro de tu zona.",
+            title: "Bienvenido a Radarin!",
+            message: " ",
             type: "default",
             insert: "top",
             container: "top-right",
@@ -97,8 +97,6 @@ function Map() {
         response.map((item, index) => {
 
             if (distanceFilter(item.latitud, item.longitud, userPosition)) {
-                if(index !== 0)
-                    getNotifications();
                 var locationOfMarker = { lat: item.latitud, lng: item.longitud };
                 nuevasMarcas.push({
                     locationOfMarker,
@@ -191,7 +189,7 @@ function Map() {
             }
         );
         setMap(map);
-
+        getNotifications();
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
