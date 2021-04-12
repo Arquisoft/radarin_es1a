@@ -12,7 +12,6 @@ import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
 import { Nav, Navbar } from "react-bootstrap";
-import auth from "solid-auth-client";
 import ReactNotification from "react-notifications-component";
 import cache from "./components/friends/UserCache";
 import styled from "styled-components";
@@ -113,7 +112,9 @@ function App() {
       <React.Fragment>
         <ReactNotification />
         <LoggedOut>
-          <LoginView />
+          <Router>
+            <LoginView />
+          </Router>          
         </LoggedOut>
         <LoggedIn>
           <Router>
@@ -145,7 +146,7 @@ function App() {
               <Navbar.Brand href="/">Radarin</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Nav className="ml-auto">
-                <Nav.Link href="/login" onSelect={() => window.sessionStorage.clear(), auth.logout() }> Logout </Nav.Link>
+                <Nav.Link href="/login" onSelect={() => window.sessionStorage.clear()}> Logout </Nav.Link>
               </Nav>
             </Navbar>
           </Styles>

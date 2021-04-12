@@ -50,11 +50,27 @@ function Map() {
 
     const [friendsList, setFriendsList] = useState([]);
 
+    // eslint-disable-next-line
     useEffect(() => {      
         setFriendsList(cache.getFriends());
     });
 
     window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
+
+    var getNotifications = () => {
+        store.addNotification({
+            title: "Amigo cercano!",
+            message: "Un amigo se encuentra dentro de tu zona.",
+            type: "default",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+                duration: 5000
+            }
+        });
+    };
 
     // Default distanceRadius  5 km
     const radius = () => {
@@ -70,7 +86,8 @@ function Map() {
     var getRespuesta = async function (map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
-
+        
+        
         //Borra la ubicación del usuario en sesión ELIMINAR
         map.removeObjects(map.getObjects());
 
@@ -80,6 +97,8 @@ function Map() {
         response.map((item, index) => {
 
             if (distanceFilter(item.latitud, item.longitud, userPosition)) {
+                if(index !== 0)
+                    getNotifications();
                 var locationOfMarker = { lat: item.latitud, lng: item.longitud };
                 nuevasMarcas.push({
                     locationOfMarker,
@@ -183,18 +202,7 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
-        store.addNotification({
-            title: "Notificación",
-            message: "Bienvenido a Radarin!",
-            type: "default",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 5000
-            }
-        });
+        
 
         navigator.geolocation.getCurrentPosition((position) => {
 
