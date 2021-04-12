@@ -90,7 +90,7 @@ class MenuBar extends React.Component {
                         <i class="fa fa-fw fa-map-marker-alt"></i>
                         <span> Home</span>
                     </a>
-                    <a id="about" className="menu-item" class="bm-item" href="/profile">
+                    <a id="profile" className="menu-item" class="bm-item" href="/profile">
                         <i class="fas fa-user"></i>
                         <span> Perfil</span>
                     </a>
@@ -106,8 +106,8 @@ class MenuBar extends React.Component {
                         <i class="fa fa-cogs"></i>
                         <span> Settings</span>
                     </a>
-                    <a id="about" className="menu-item" class="bm-item" href="/login">
-                        <i onSelect={() => auth.logout()} class="fas fa-sign-out-alt"></i>
+                    <a id="login" className="menu-item" class="bm-item" href="/login" onClick={() => auth.logout()}>
+                        <i class="fas fa-sign-out-alt"></i>
                         <span> Log out</span>
                     </a>
                     
