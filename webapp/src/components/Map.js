@@ -63,7 +63,7 @@ function Map() {
             message: "Un amigo se encuentra dentro de tu zona.",
             type: "default",
             insert: "top",
-            container: "top-right",
+            container: "top-left",
             animationIn: ["animate__animated", "animate__fadeIn"],
             animationOut: ["animate__animated", "animate__fadeOut"],
             dismiss: {
