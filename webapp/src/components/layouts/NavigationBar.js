@@ -18,6 +18,7 @@ const Styles = styled.div`
     left: 15%
     right: 10%;
     padding: 2.2%;
+    height:48px;
   }
   .form-center {
     position: absolute !important;
