@@ -106,7 +106,7 @@ class MenuBar extends React.Component {
                         <i class="fa fa-cogs"></i>
                         <span> Settings</span>
                     </a>
-                    <a id="login" className="menu-item" class="bm-item" href="/login" onClick={() => auth.logout()}>
+                    <a id="login" className="menu-item" class="bm-item" href="/login" onClick={() => {auth.logout(); window.sessionStorage.clear();}}>
                         <i class="fas fa-sign-out-alt"></i>
                         <span> Log out</span>
                     </a>

@@ -8,6 +8,7 @@ import { About } from "./About";
 import { SettingsView } from "./components/layouts/SettingsView";
 import { FriendsView } from "./components/layouts/FriendsView";
 import { ProfileView } from "./components/layouts/ProfileView";
+import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
 import { Nav, Navbar } from "react-bootstrap";
@@ -15,6 +16,7 @@ import ReactNotification from "react-notifications-component";
 import cache from "./components/friends/UserCache";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
+import auth from "solid-auth-client";
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -37,7 +39,7 @@ const Styles = styled.div`
 
 function App() {
   const solidId = useWebId();
-  window.sessionStorage.setItem('id',solidId);
+  window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
@@ -110,10 +112,10 @@ function App() {
     return (
       <React.Fragment>
         <ReactNotification />
-        <LoggedOut>    
-          <Router> 
-            <LoginView />   
-          </Router>  
+        <LoggedOut>
+          <Router>
+            <LoginView />
+          </Router>
         </LoggedOut>
         <LoggedIn>
           <Router>
@@ -145,9 +147,10 @@ function App() {
               <Navbar.Brand href="/">Radarin</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Nav className="ml-auto">
-                <Nav.Link href="/login" onSelect={() => window.sessionStorage.clear()}> Logout </Nav.Link>
+                <Nav.Link href="/login" onSelect={() => { auth.logout(); window.sessionStorage.clear(); }}> Logout </Nav.Link>
               </Nav>
             </Navbar>
+            <AdminView />
           </Styles>
         </LoggedIn>
 
