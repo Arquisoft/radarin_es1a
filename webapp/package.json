@@ -5,6 +5,7 @@
   "dependencies": {
     "@inrupt/solid-react-components": "^0.5.5",
     "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@solid/query-ldflex": "^2.11.3",
     "@solid/react": "^1.10.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -21,6 +22,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "4.0.1",
     "react-select": "^4.2.1",
+    "react-swipeable-views": "^0.13.9",
     "solid-auth-client": "^2.5.5",
     "styled-components": "^4.4.1",
     "web-vitals": "^0.2.4"

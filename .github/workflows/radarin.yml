@@ -32,7 +32,7 @@ jobs:
       - run: npm ci
       - run: npm test
   e2e-tests:
-    # needs: [build-test-webapp, build-test-restapi]
+    needs: [build-test-webapp, build-test-restapi]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -42,7 +42,7 @@ jobs:
       - run: npm --prefix webapp install
       - run: npm --prefix restapi install
   deploy-webapp:
-    # needs: [e2e-tests]
+    needs: [e2e-tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
         env:
           API_URI: "https://radarines1arestapi.herokuapp.com/api"
   deploy-restapi:
-    # needs: [e2e-tests]
+    needs: [e2e-tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

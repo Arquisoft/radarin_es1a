@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link } from "@material-ui/core";
-import { GetUserWebId, GetUserProfileImage } from "../friends/FriendManager";
-import { Value } from '@solid/react';
+import { GetUserWebId, GetUserProfileImage } from "./SolidManager";
+import { Value } from "@solid/react";
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
     //    backgroundColor: "#99DE9F"
     },
     card: {
@@ -93,5 +93,5 @@ export default function UserProfile() {
                 </Card>
                 
             </div>
-    )
+    );
 }

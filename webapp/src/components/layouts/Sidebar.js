@@ -35,18 +35,18 @@ class SideNav extends React.Component {
           path: "/friends",
           name: "FriendsView",
           css: "fas fa-users",
-          key: 2
+          key: 3
         },
         {
           path: "/about",
           name: "About",
           css: "fa fa-fw fa-user-plus",
-          key: 3
+          key: 4
         }, {
           path: "/settings",
           name: "Settings",
           css: "fa fa-cogs",
-          key: 4
+          key: 5
         },
 
       ]

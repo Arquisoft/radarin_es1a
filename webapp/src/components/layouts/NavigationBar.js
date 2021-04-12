@@ -13,7 +13,7 @@ const Styles = styled.div`
     font-size: 1.6em;
     font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
     color: #99DE9F;
-    &:hover { color: #FFC3A2; }
+    &:hover { color: #99DE9F; }
   }
   #basic-navbar-nav{
     left: 15%
@@ -35,9 +35,9 @@ export const NavigationBar = () => (
       </Form>
       <Navbar id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-          <Nav.Item><Nav.Link href="/about">About</Nav.Link></Nav.Item>
-          <Nav.Item><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item>
+          <Nav.Item key="home"><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
+          <Nav.Item key="about"><Nav.Link href="/about">About</Nav.Link></Nav.Item>
+          <Nav.Item key="logout"><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item>
         </Nav>
       </Navbar>
 

@@ -2,25 +2,36 @@ import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "r
 import { useLDflexValue, useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 import { store } from "react-notifications-component";
+import cache from "./friends/UserCache";
+
 
 function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
+    const solidId = useWebId();
+
     useEffect(() => {
+        
         if (webId && nombre && locationOfMarker && ui && map) {
             const H = window.H;
-            var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+            var pngIcon;
+
+            if (webId === solidId) {
+                pngIcon = new H.map.Icon("/img/gps.png", { size: { w: 24, h: 24 } });
+            }
+            else {
+                pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+            }
             var marker = new H.map.Marker(locationOfMarker, { icon: pngIcon });
             map.addObject(marker);
 
             marker.addEventListener("tap", logEvent => {
                 var bubble = new H.ui.InfoBubble({ lat: locationOfMarker.lat, lng: locationOfMarker.lng }, {
-                    content: `${nombre}`,                  
+                    content: `${nombre}`,
                 });
                 ui.addBubble(bubble);
             }, false);
         }
-    }, [webId, nombre, locationOfMarker, ui, map]);
-
+    }, [webId, nombre, locationOfMarker, ui, map, solidId]);
 
     return null;
 }
@@ -37,7 +48,29 @@ function Map() {
     const [map, setMap] = useState(null);
     const [userPosition, setUserPosition] = useState(null);
 
+    const [friendsList, setFriendsList] = useState([]);
 
+    // eslint-disable-next-line
+    useEffect(() => {      
+        setFriendsList(cache.getFriends());
+    });
+
+    window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
+
+    var getNotifications = () => {
+        store.addNotification({
+            title: "Amigo cercano!",
+            message: "Un amigo se encuentra dentro de tu zona.",
+            type: "default",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+                duration: 5000
+            }
+        });
+    };
 
     // Default distanceRadius  5 km
     const radius = () => {
@@ -51,9 +84,10 @@ function Map() {
     };
 
     var getRespuesta = async function (map, ui, userPosition) {
-        var respuesta = await fetch("http://localhost:5000/api/users/lista");
+        var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
-
+        
+        
         //Borra la ubicación del usuario en sesión ELIMINAR
         map.removeObjects(map.getObjects());
 
@@ -63,13 +97,14 @@ function Map() {
         response.map((item, index) => {
 
             if (distanceFilter(item.latitud, item.longitud, userPosition)) {
+                if(index !== 0)
+                    getNotifications();
                 var locationOfMarker = { lat: item.latitud, lng: item.longitud };
                 nuevasMarcas.push({
                     locationOfMarker,
                     webId: item.solidId
                 });
             }
-
         }
         );
 
@@ -157,8 +192,6 @@ function Map() {
         );
         setMap(map);
 
-
-
         // MapEvents enables the event system
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         // This variable is unused and is present for explanatory purposes
@@ -231,7 +264,6 @@ function Map() {
                 ui.addBubble(bubble);
             }, false);
             // show info bubble
-
 
             // First iteration
             addFriends(map, ui, position);
