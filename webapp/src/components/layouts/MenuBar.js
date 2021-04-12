@@ -1,6 +1,7 @@
 import React from "react";
 import { slide as Menu } from 'react-burger-menu';
 import styled from "styled-components";
+import auth from "solid-auth-client";
 const Styles = styled.div`
 .bm-burger-button {
     position: fixed;
@@ -83,23 +84,29 @@ class MenuBar extends React.Component {
     // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
         return (
             <Styles>
+              
                 <Menu>
                     <a id="home" className="menu-item" class= "bm-item" href="/">
                         <i class="fa fa-fw fa-map-marker-alt"></i>
-                        <span>Home</span>
+                        <span> Home</span>
                     </a>
                     <a id="friends" className="menu-item" class="bm-item" href="/friends">
                         <i class="fas fa-users"></i>
-                        <span>Friends</span>
+                        <span> Friends</span>
                     </a>
                     <a id="about" className="menu-item" class="bm-item" href="/about">
                         <i class="fa fa-fw fa-user-plus"></i>
-                        <span>About</span>
+                        <span> About</span>
                     </a>
                     <a onClick={ this.showSettings } id="settings" className="menu-item" class="bm-item" href="/settings">
                         <i class="fa fa-cogs"></i>
-                        <span>Settings</span>
+                        <span> Settings</span>
                     </a>
+                    <a id="about" className="menu-item" class="bm-item" href="/login">
+                        <i onSelect={() => auth.logout()} class="fas fa-sign-out-alt"></i>
+                        <span> Log out</span>
+                    </a>
+                    
                 </Menu>
             </Styles>
         );

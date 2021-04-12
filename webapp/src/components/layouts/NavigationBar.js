@@ -1,6 +1,5 @@
 import React from "react";
-import { Nav, Navbar, Form, FormControl } from "react-bootstrap";
-import auth from "solid-auth-client";
+import { Navbar, Form } from "react-bootstrap";
 import styled from "styled-components";
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -18,6 +17,7 @@ const Styles = styled.div`
   #basic-navbar-nav{
     left: 15%
     right: 10%;
+    padding: 2.2%;
   }
   .form-center {
     position: absolute !important;
@@ -26,19 +26,20 @@ const Styles = styled.div`
   }
 `;
 
+//Comentado, luego podría utilizarse
 export const NavigationBar = () => (
   
   <Styles>
     <Navbar expand="lg">
       <Form class= "d-none d-m-up" className="form-center">
-        <FormControl type="text" placeholder="Search" className="" />
+        {/* <FormControl type="text" placeholder="Search" className="" /> */}
       </Form>
       <Navbar id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Item key="home"><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
+        {/* <Nav className="ml-auto">
+          { <Nav.Item key="home"><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
           <Nav.Item key="about"><Nav.Link href="/about">About</Nav.Link></Nav.Item>
-          <Nav.Item key="logout"><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item>
-        </Nav>
+          <Nav.Item key="logout"><Nav.Link href="/login" onSelect={() => auth.logout()}> Logout </Nav.Link></Nav.Item> }
+        </Nav> */}
       </Navbar>
 
     </Navbar>    

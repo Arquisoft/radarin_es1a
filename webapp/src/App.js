@@ -111,10 +111,8 @@ function App() {
     return (
       <React.Fragment>
         <ReactNotification />
-        <LoggedOut>
-          <Router>
-            <LoginView />
-          </Router>          
+        <LoggedOut>      
+          <LoginView />    
         </LoggedOut>
         <LoggedIn>
           <Router>
@@ -135,11 +133,9 @@ function App() {
   else {
     return (
       <React.Fragment>
-
         <LoggedOut>
-          <LoginView />
+            <LoginView />
         </LoggedOut>
-
         <LoggedIn>
           <Styles>
             <Navbar expand="lg">
