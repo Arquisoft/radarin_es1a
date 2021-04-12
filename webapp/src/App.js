@@ -39,6 +39,7 @@ const Styles = styled.div`
 
 function App() {
   const solidId = useWebId();
+  window.sessionStorage.setItem('id',solidId);
   cache.loadFriends();
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
