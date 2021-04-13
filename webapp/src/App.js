@@ -39,7 +39,7 @@ const Styles = styled.div`
 
 function App() {
   const solidId = useWebId();
-  window.sessionStorage.setItem("id", solidId);
+  window.sessionStorage.setItem('id', solidId);
   cache.loadFriends();
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
@@ -114,7 +114,7 @@ function App() {
         <ReactNotification />
         <LoggedOut>
           <Router>
-            <LoginView />
+           <Route path="/*" component={LoginView} />
           </Router>
         </LoggedOut>
         <LoggedIn>
