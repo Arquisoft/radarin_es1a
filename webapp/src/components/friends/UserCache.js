@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { GetUserFriends, GetUserWebId, GetUserName } from "../user/SolidManager";
+/*import { GetUserFriends, GetUserWebId, GetUserName } from "../user/SolidManager";
 
 //La utilizamos para cargar los amigos
 export default {
@@ -34,4 +34,4 @@ export default {
     clearFriends() {
         this.friends = [];
     },
-};
+};*/

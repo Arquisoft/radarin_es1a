@@ -13,7 +13,6 @@ import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
 import { Nav, Navbar } from "react-bootstrap";
 import ReactNotification from "react-notifications-component";
-import cache from "./components/friends/UserCache";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
 import auth from "solid-auth-client";
@@ -40,7 +39,6 @@ const Styles = styled.div`
 function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem('id', solidId);
-  cache.loadFriends();
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
   const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";

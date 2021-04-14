@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useLDflexValue, useLDflexList } from "@solid/react";
 import Friend from "../../entities/Friend";
 
@@ -23,24 +24,28 @@ export async function GetUserProfileImage() {
     return photo.value;
 }
 
-export async function GetUserFriends() {
+export function useGetUserFriends() {
+    const [friendsList, setFriendsList] = useState([]);
     const friends = useLDflexList("user.friends");
-    let friendsAux = [];
 
-    //For each value (LDflexValue) in friends(LDflexValue [])
-    friends.forEach(async (friendLDflexValue) => {
+    useEffect(() => {
+        async function loadFriendsAsync () {
+            const friendsAux = await Promise.all(friends.map(async friend => {
+                let friendWebIdLDflexValue = friend.value;
+                const webId = data[friendWebIdLDflexValue];
+                //Use the await to retrieve the data from the Promise object.
+                const name = await GetSpecificName(webId);
+                const profilePic = await GetSpecificProfileImage(webId);
+        
+                return new Friend(webId.toString(), name, profilePic);        
+            }));
+            setFriendsList(friendsAux);
 
-        let friendWebIdLDflexValue = friendLDflexValue.value;
-        const webId = data[friendWebIdLDflexValue];
-        //Use the await to retrieve the data from the Promise object.
-        const name = await GetSpecificName(webId);
-        const profilePic = await GetSpecificProfileImage(webId);
-
-        let friendAux = new Friend(webId.toString(), name, profilePic);
-        friendsAux.push(friendAux);
-    });
-    
-    return friendsAux;
+        };
+        loadFriendsAsync();
+    },[friends]);
+   
+    return friendsList;
 }
 
 export async function GetSpecificName(webId) {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, CardHeader, IconButton } from "@material-ui/core";
-import cache from "./UserCache";
-import { GetUserWebId } from "../user/SolidManager";
+import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 
 export default function ProfileFriends() {
@@ -14,24 +13,13 @@ export default function ProfileFriends() {
 
 function FriendCardList() {
 
-    const [webId, setWebId] = useState("")
-    const [friendsList, setFriendsList] = useState([]);
-
-    useEffect(() => {      
+    const [webId, setWebId] = useState("");
+    const friendsList= useGetUserFriends();
+    console.log(friendsList);
+    useEffect(() => {
         setWebId(GetUserWebId());
-        setFriendsList(cache.getFriends());     
     },[]);
-   // window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
-    if(friendsList.length)
-        window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
-        
-    const amigosSession = JSON.parse(window.sessionStorage.getItem('friends'));
-    console.log(amigosSession.length);
-    if(!friendsList.length && amigosSession.length){   
-            cache.loadFriends();
-            console.log(friendsList.length);
-    }
-
+    
     const classes = useStyles();
     if (!friendsList.length) {
         return (
