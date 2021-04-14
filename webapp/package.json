@@ -14,6 +14,7 @@
     "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "here-js-api": "^2.0.0",
+    "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-burger-menu": "^3.0.6",

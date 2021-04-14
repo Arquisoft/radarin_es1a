@@ -5,21 +5,21 @@ import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 
 export default function ProfileFriends() {
     return (
-            <div>
-                <FriendCardList />
-            </div>
+        <div>
+            <FriendCardList />
+        </div>
     );
 }
 
 function FriendCardList() {
 
     const [webId, setWebId] = useState("");
-    const friendsList= useGetUserFriends();
+    const friendsList = useGetUserFriends();
     console.log(friendsList);
     useEffect(() => {
         setWebId(GetUserWebId());
-    },[]);
-    
+    }, []);
+
     const classes = useStyles();
     if (!friendsList.length) {
         return (
@@ -31,31 +31,31 @@ function FriendCardList() {
     }
 
     return (
-        <div className={classes.root}>             
-             
+        <div className={classes.root}>
+
             <Grid container>
                 <Grid item >
                     <Typography className={classes.name} variant="h3" >
                         Your friends
                     </Typography>
-                </Grid>  
+                </Grid>
             </Grid>
 
-        <Grid
-            container
-            spacing={3}
-            alignItems="center"
-            justify="center"
-            className={classes.friends}
-        >
-            {friendsList.map((each, index) => {
-                return (
-                    <Grid item key={index}>
-                        <FriendCard friend={each} />
-                    </Grid>
-                )
-            })}
-        </Grid>
+            <Grid
+                container
+                spacing={3}
+                alignItems="center"
+                justify="center"
+                className={classes.friends}
+            >
+                {friendsList.map((each, index) => {
+                    return (
+                        <Grid item key={index}>
+                            <FriendCard friend={each} />
+                        </Grid>
+                    )
+                })}
+            </Grid>
         </div>
     );
 }
@@ -67,7 +67,16 @@ function FriendCard(props) {
 
     var photo = friend.getPhoto();
     var name = friend.getName();
-    var webid = friend.getWebId(); 
+    var webid = friend.getWebId();
+    var nombre = webid.substring(
+        webid.lastIndexOf("//") + 1,
+        webid.lastIndexOf(".")
+    )
+    var n = nombre.substring(
+        nombre.lastIndexOf("/") + 1,
+        nombre.lastIndexOf(".")
+    )
+    n += "*";
 
 
     return (
@@ -77,7 +86,7 @@ function FriendCard(props) {
                     <Avatar src={photo} className={classes.fPhoto} />
                 }
                 action={
-                    <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" href={webid}>
+                    <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" href={`http://localhost:3000/map/${n}`}>
                         <NotListedLocationIcon />
                     </IconButton>
                 }

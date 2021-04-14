@@ -125,6 +125,8 @@ function App() {
               <Route path="/settings" component={SettingsView} />
               <Route path="/friends" component={FriendsView} />
               <Route path="/profile" component={ProfileView} />
+              <Route  path="/map/:id" component={Home} />
+
             </Switch>
           </Router>
         </LoggedIn>

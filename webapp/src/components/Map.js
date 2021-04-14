@@ -9,7 +9,7 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
     const solidId = useWebId();
 
     useEffect(() => {
-        
+
         if (webId && nombre && locationOfMarker && ui && map) {
             const H = window.H;
             var pngIcon;
@@ -66,15 +66,24 @@ function Map() {
         var response = await respuesta.json();
         var id = window.sessionStorage.getItem('id');
 
-        const list = response.filter(user => friendsList.map(f => f.webId).includes(user.solidId) ||  user.solidId === id);
-       
+        const list = response.filter(user => friendsList.map(f => f.webId).includes(user.solidId) || user.solidId === id);
+
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
-
         // eslint-disable-next-line
         list.map((item, index) => {
+
+
             if (distanceFilter(item.latitud, item.longitud, userPosition)) {
+                var id= window.location.href.substring(
+                    window.location.href.lastIndexOf("/") + 1, 
+                    window.location.href.lastIndexOf("*")
+                )
+                if (item.solidId.includes(id)) {
+                    map.setCenter({ lat: item.latitud, lng: item.longitud });
+                    map.setZoom(18);
+                }
                 var locationOfMarker = { lat: item.latitud, lng: item.longitud };
                 nuevasMarcas.push({
                     locationOfMarker,
@@ -190,7 +199,6 @@ function Map() {
             const H = window.H;
 
             map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-
             // Circulo auxiliar para calcular el zoom al iniciar el mapa.
             var circle = new H.map.Circle(
                 // The central point of the circle
@@ -241,7 +249,7 @@ function Map() {
 
     useEffect(() => {
         if (map && ui && userPosition)
-            getRespuesta(map,ui,userPosition);
+            getRespuesta(map, ui, userPosition);
     }, [map, ui, userPosition, friendsList]);
 
     return (
