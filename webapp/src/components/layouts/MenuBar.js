@@ -110,7 +110,10 @@ class MenuBar extends React.Component {
                         <i class="fas fa-sign-out-alt"></i>
                         <span> Log out</span>
                     </a>
-                    
+                    <a id="friends2" className="menu-item" class="bm-item" href="friends">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span> Test</span>
+                    </a>
                 </Menu>
             </Styles>
         );
