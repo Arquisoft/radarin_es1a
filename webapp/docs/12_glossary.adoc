@@ -12,4 +12,5 @@
 | Server | Program that uses HTTP to serve the files that make up Web pages to users, in response to their requests, being forwarded by the HTTP clients of their computers
 | Solid |  Is a web decentralization project led by Tim Berners-Lee,the goal of Solid is to allow users to have full control of their own data, including access control and storage location
 | W3C |The W3C (World Wide Web Consortium) is a committee dedicated to implementing uniform technologies in the use and development of the Internet.
+| Codacy | Codacy automates code reviews and monitors code quality on every commit and pull request reporting back the impact of every commit or pull request on GitHub, issues concerning code style, best practices, security, and many others. It monitors changes in code coverage, code duplication and code complexity.
 |===
