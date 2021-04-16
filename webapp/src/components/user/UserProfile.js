@@ -44,10 +44,23 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function checkSport(){
+    return sessionStorage.getItem("userState")==="deporte";
+}
+
+function checkDate(){
+    return sessionStorage.getItem("userState")==="cita";
+}
+
+function checkEat(){
+    return sessionStorage.getItem("userState")==="comer";
+}
+
 export default function UserProfile() {
     const classes = useStyles();
 
     const [url, setUrl] = useState("");
+    const [userState, setUserState]= useState(sessionStorage.getItem("userState"));
 
     GetUserProfileImage().then((path) => {
         setUrl(path);
@@ -58,6 +71,12 @@ export default function UserProfile() {
     GetUserWebId().then((url) => {
         setWebId(url);
     });
+
+    const handleChange = event => {
+        setUserState(event.target.value);
+    };
+    
+    sessionStorage.setItem("userState",userState);
 
     return (
             <div className={classes.root}>
@@ -97,11 +116,11 @@ export default function UserProfile() {
 
                                 <Typography className={classes.name} variant="body1" >
                                 <FormControl component="fieldset">
-                                        <RadioGroup aria-label="estado" name="estado1">
-                                            <FormControlLabel value="deporte" control={<Radio color="primary" icon={<DirectionsRunRoundedIcon/>} 
+                                        <RadioGroup aria-label="estado" name="estado1" onChange={handleChange}>
+                                            <FormControlLabel value="deporte" control={<Radio checked={checkSport()} color="primary" icon={<DirectionsRunRoundedIcon/>} 
                                             checkedIcon={<DirectionsRunRoundedIcon/>} />} label="Deporte"  />
-                                            <FormControlLabel value="comer" control={ <RadioFood/> } label="Comer"  />
-                                            <FormControlLabel value="cita" control={<Radio  icon={<FavoriteRoundedIcon/>} 
+                                            <FormControlLabel value="comer" control={ <RadioFood checked={checkEat()}/> } label="Comer"  />
+                                            <FormControlLabel value="cita" control={<Radio checked={checkDate()} icon={<FavoriteRoundedIcon/>} 
                                             checkedIcon={<FavoriteRoundedIcon/>} />} label="Cita"  />
                                             <FormControlLabel value="default" control={<Radio color="default" icon={<DragIndicatorRoundedIcon/>} 
                                             checkedIcon={<DragIndicatorRoundedIcon/>} />} label="Sin especificar"  />

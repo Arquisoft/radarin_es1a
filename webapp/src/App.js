@@ -40,6 +40,9 @@ function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem('id', solidId);
 
+  if(window.sessionStorage.getItem('userState')===null)
+    window.sessionStorage.setItem('userState', 'default');
+
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
   const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
 
@@ -54,6 +57,7 @@ function App() {
             "latitud": position.coords.latitude,
             "longitud": position.coords.longitude
           }
+          //"userState": sessionStorage.getItem("userState")
         };
         //Cambia cuando este subido a heroku
         fetch("https://radarines1arestapi.herokuapp.com/api/users/location ", { //http://localhost:5000/api/users/location
