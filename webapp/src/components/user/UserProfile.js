@@ -1,8 +1,21 @@
 import React, { useState } from "react";
-import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link } from "@material-ui/core";
+import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, FormControl, FormControlLabel, Radio, RadioGroup, withStyles } from "@material-ui/core";
 import { GetUserWebId, GetUserProfileImage } from "./SolidManager";
+import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
+import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import DragIndicatorRoundedIcon from '@material-ui/icons/DragIndicatorRounded';
 import { Value } from "@solid/react";
 
+const RadioFood = withStyles({
+    root: {
+      '&$checked': {
+        color: "#dfc533",
+      },
+    },
+    checked: {},
+  })(props => <Radio color="default" icon={<FastfoodRoundedIcon/>} 
+  checkedIcon={<FastfoodRoundedIcon/>} {...props} />);
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,7 +77,7 @@ export default function UserProfile() {
                                 </Typography>
 
                                 <Typography className={classes.webid} variant="h5" >
-                                    <Link style={{ color: "#303030" }} target="_blank" href={webId}> Your Solid account</Link>
+                                    <Link style={{ color: "#303030" }} target="_blank" href={webId}> Your Solid Account</Link>
                                 </Typography>
                             </Grid>                    
                         </Grid>
@@ -79,12 +92,21 @@ export default function UserProfile() {
                         <Grid container>
                             <Grid item >
                                 <Typography className={classes.name} variant="h3" >
-                                    Your last locations:
+                                    Tu estado
                                 </Typography>
 
                                 <Typography className={classes.name} variant="body1" >
-                                   Here the locations
-                                   Here the locations
+                                <FormControl component="fieldset">
+                                        <RadioGroup aria-label="estado" name="estado1">
+                                            <FormControlLabel value="deporte" control={<Radio color="primary" icon={<DirectionsRunRoundedIcon/>} 
+                                            checkedIcon={<DirectionsRunRoundedIcon/>} />} label="Deporte"  />
+                                            <FormControlLabel value="comer" control={ <RadioFood/> } label="Comer"  />
+                                            <FormControlLabel value="cita" control={<Radio  icon={<FavoriteRoundedIcon/>} 
+                                            checkedIcon={<FavoriteRoundedIcon/>} />} label="Cita"  />
+                                            <FormControlLabel value="default" control={<Radio color="default" icon={<DragIndicatorRoundedIcon/>} 
+                                            checkedIcon={<DragIndicatorRoundedIcon/>} />} label="Sin especificar"  />
+                                        </RadioGroup>
+                                </FormControl>
                                 </Typography>
                             </Grid>
                     
