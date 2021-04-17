@@ -12,7 +12,7 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
 
         if (webId && nombre && locationOfMarker && ui && map) {
             const H = window.H;
-            var pngIcon;
+            let pngIcon;
 
             if (webId === solidId) {
                 pngIcon = new H.map.Icon("/img/gps.png", { size: { w: 24, h: 24 } });
@@ -20,11 +20,11 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
             else {
                 pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
             }
-            var marker = new H.map.Marker(locationOfMarker, { icon: pngIcon });
+            let marker = new H.map.Marker(locationOfMarker, { icon: pngIcon });
             map.addObject(marker);
 
             marker.addEventListener("tap", logEvent => {
-                var bubble = new H.ui.InfoBubble({ lat: locationOfMarker.lat, lng: locationOfMarker.lng }, {
+                let bubble = new H.ui.InfoBubble({ lat: locationOfMarker.lat, lng: locationOfMarker.lng }, {
                     content: `${nombre}`,
                 });
                 ui.addBubble(bubble);
@@ -40,7 +40,6 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
 function Map() {
 
     const mapRef = useRef(null);
-    // eslint-disable-next-line
     const solidId = useWebId();
     const [marcas, setMarcas] = useState([]);
     const [ui, setUI] = useState(null);
@@ -109,7 +108,7 @@ function Map() {
             radius() * 1000,
             {
                 style: {
-                    strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
+                    strokeColor: "rgba(231,76,60,0.6)", // Color of the perimeter
                     lineWidth: 2,
                     fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
                 }
@@ -250,11 +249,10 @@ function Map() {
     useEffect(() => {
         if (map && ui && userPosition)
             getRespuesta(map, ui, userPosition);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [map, ui, userPosition, friendsList]);
 
     return (
-        // Set a height on the map so it will display
-
         <Fragment>
             <div ref={mapRef} id="map" />
             {

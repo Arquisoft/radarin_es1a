@@ -69,7 +69,7 @@ function App() {
 
   useEffect(() => {
     let isMounted = true; // note this flag denote mount status
-
+    
     if (solidId !== adminId && isMounted) {
       setInterval(enviarUbicacionAServidor, 30000);
     }
