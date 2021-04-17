@@ -35,8 +35,6 @@ function MapMarker({ webId, locationOfMarker, ui, map }) {
     return null;
 }
 
-
-
 function Map() {
 
     const mapRef = useRef(null);
@@ -60,88 +58,6 @@ function Map() {
         }
         return window.sessionStorage.getItem("radius").valueOf();
     };
-
-    var getRespuesta = async function (map, ui, userPosition) {
-        var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
-        var response = await respuesta.json();
-        var id = window.sessionStorage.getItem('id');
-
-        const list = response.filter(user => friendsList.map(f => f.webId).includes(user.solidId) || user.solidId === id);
-
-        map.removeObjects(map.getObjects());
-
-        var nuevasMarcas = [];
-        // eslint-disable-next-line
-        list.map((item, index) => {
-
-
-            if (distanceFilter(item.latitud, item.longitud, userPosition)) {
-                var id= window.location.href.substring(
-                    window.location.href.lastIndexOf("/") + 1, 
-                    window.location.href.lastIndexOf("*")
-                )
-                if (item.solidId.includes(id)) {
-                    map.setCenter({ lat: item.latitud, lng: item.longitud });
-                    map.setZoom(18);
-                }
-                var locationOfMarker = { lat: item.latitud, lng: item.longitud };
-                nuevasMarcas.push({
-                    locationOfMarker,
-                    webId: item.solidId
-                });
-            }
-        }
-        );
-
-        //Pinta el radio filtrado sobre el mapa
-        paintRadius(map, userPosition);
-        setMarcas(nuevasMarcas);
-    };
-
-    // Paint the filter radius around user
-    var paintRadius = function (map, userPosition) {
-        const H = window.H;
-        //Paint radius on map
-        map.addObject(new H.map.Circle(
-            // The central point of the circle
-            { lat: userPosition.lat, lng: userPosition.lng },
-            // The radius of the circle in meters
-            radius() * 1000,
-            {
-                style: {
-                    strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
-                    lineWidth: 2,
-                    fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
-                }
-            }
-        ));
-    }
-    // Auxiliar method to convert coords to radians.
-    var toRadianes = function (valor) {
-        return (Math.PI / 180) * valor;
-    }
-    // Calculates the distance between two coordinates according to Haversine Formule.
-    var distanceFilter = function (lat2, lng2, userPosition) {
-        var RadioTierraKm = 6378.0;
-
-        var lat1 = userPosition.lat;
-        var lng1 = userPosition.lng;
-        var difLat = toRadianes(lat2 - lat1);
-        var difLng = toRadianes(lng2 - lng1);
-
-        var a = Math.pow(Math.sin(difLat / 2), 2) +
-            Math.cos(toRadianes(lat1)) *
-            Math.cos(toRadianes(lat2)) *
-            Math.pow(Math.sin(difLng / 2), 2);
-
-        var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-        if (c > radius()) {
-            return false;
-        }
-
-        return true;
-    }
-
 
     useLayoutEffect(() => {
 
@@ -248,8 +164,93 @@ function Map() {
     }, [mapRef]);
 
     useEffect(() => {
+
+        var getRespuesta = async function (map, ui, userPosition) {
+            var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
+            var response = await respuesta.json();
+            var id = window.sessionStorage.getItem('id');
+
+            const list = response.filter(user => friendsList.map(f => f.webId).includes(user.solidId) || user.solidId === id);
+
+            map.removeObjects(map.getObjects());
+
+            var nuevasMarcas = [];
+            // eslint-disable-next-line
+            list.map((item, index) => {
+
+
+                if (distanceFilter(item.latitud, item.longitud, userPosition)) {
+                    var id = window.location.href.substring(
+                        window.location.href.lastIndexOf("/") + 1,
+                        window.location.href.lastIndexOf("*")
+                    )
+                    if (item.solidId.includes(id)) {
+                        map.setCenter({ lat: item.latitud, lng: item.longitud });
+                        map.setZoom(18);
+                    }
+                    var locationOfMarker = { lat: item.latitud, lng: item.longitud };
+                    nuevasMarcas.push({
+                        locationOfMarker,
+                        webId: item.solidId
+                    });
+                }
+            }
+            );
+
+            //Pinta el radio filtrado sobre el mapa
+            paintRadius(map, userPosition);
+            setMarcas(nuevasMarcas);
+        };
+
+        // Auxiliar method to convert coords to radians.
+        var toRadianes = function (valor) {
+            return (Math.PI / 180) * valor;
+        }
+        // Calculates the distance between two coordinates according to Haversine Formule.
+        var distanceFilter = function (lat2, lng2, userPosition) {
+            var RadioTierraKm = 6378.0;
+
+            var lat1 = userPosition.lat;
+            var lng1 = userPosition.lng;
+            var difLat = toRadianes(lat2 - lat1);
+            var difLng = toRadianes(lng2 - lng1);
+
+            var a = Math.pow(Math.sin(difLat / 2), 2) +
+                Math.cos(toRadianes(lat1)) *
+                Math.cos(toRadianes(lat2)) *
+                Math.pow(Math.sin(difLng / 2), 2);
+
+            var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+            if (c > radius()) {
+                return false;
+            }
+
+            return true;
+        }
+
+        // Paint the filter radius around user
+        var paintRadius = function (map, userPosition) {
+            const H = window.H;
+            //Paint radius on map
+            map.addObject(new H.map.Circle(
+                // The central point of the circle
+                { lat: userPosition.lat, lng: userPosition.lng },
+                // The radius of the circle in meters
+                radius() * 1000,
+                {
+                    style: {
+                        strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
+                        lineWidth: 2,
+                        fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
+                    }
+                }
+            ));
+        }
+
+
         if (map && ui && userPosition)
             getRespuesta(map, ui, userPosition);
+            
     }, [map, ui, userPosition, friendsList]);
 
     return (
