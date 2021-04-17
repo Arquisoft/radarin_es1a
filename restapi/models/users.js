@@ -16,8 +16,7 @@ const schema = mongoose.Schema({
     },
     userState: {
         type: String,
-        require: true,
-        defaultStatus: "default" 
+        require: true
     }
 });
 
