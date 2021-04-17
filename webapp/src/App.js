@@ -40,7 +40,7 @@ function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem('id', solidId);
 
-  if(window.sessionStorage.getItem('userState')===null)
+  if (window.sessionStorage.getItem('userState') === null)
     window.sessionStorage.setItem('userState', 'default');
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
@@ -116,20 +116,21 @@ function App() {
         <ReactNotification />
         <LoggedOut>
           <Router>
-           <Route path="/*" component={LoginView} />
+            <Route path="/*" component={LoginView} />
           </Router>
         </LoggedOut>
         <LoggedIn>
           <Router>
             <HomeView />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={LoginView} />
-              <Route path="/about" component={About} />
-              <Route path="/settings" component={SettingsView} />
-              <Route path="/friends" component={FriendsView} />
-              <Route path="/profile" component={ProfileView} />
-              <Route  path="/map/:id" component={Home} />
+              
+              <Route exact path="/" render={() => <Home />} />
+              <Route path="/login" exact render={() => <LoginView />} />
+              <Route path="/about" exact render={() => <About />} />
+              <Route path="/settings" exact render={() => <SettingsView />} />
+              <Route path="/friends" exact render={() => <FriendsView />} />
+              <Route path="/profile" exact render={() => <ProfileView />} />
+              <Route path="/map/:id" render={() => <Home />} />
 
             </Switch>
           </Router>
