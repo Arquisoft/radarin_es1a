@@ -2,6 +2,8 @@ import React from "react";
 import { slide as Menu } from 'react-burger-menu';
 import styled from "styled-components";
 import auth from "solid-auth-client";
+import { FriendsView } from "./FriendsView";
+import { Route, Switch, Link } from "react-router-dom";
 const Styles = styled.div`
 .bm-burger-button {
     position: fixed;
@@ -114,6 +116,9 @@ class MenuBar extends React.Component {
                         <i class="fas fa-sign-out-alt"></i>
                         <span> Test</span>
                     </a>
+                    <Route path="/friends">
+                      <FriendsView/>
+                    </Route>
                 </Menu>
             </Styles>
         );
