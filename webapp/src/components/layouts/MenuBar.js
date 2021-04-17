@@ -3,7 +3,7 @@ import { slide as Menu } from 'react-burger-menu';
 import styled from "styled-components";
 import auth from "solid-auth-client";
 import { FriendsView } from "./FriendsView";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route} from "react-router-dom";
 const Styles = styled.div`
 .bm-burger-button {
     position: fixed;
