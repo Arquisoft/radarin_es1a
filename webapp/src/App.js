@@ -16,6 +16,7 @@ import ReactNotification from "react-notifications-component";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
 import auth from "solid-auth-client";
+import PushNotification from "./components/notifications/PushNotification";
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -114,6 +115,7 @@ function App() {
     return (
       <React.Fragment>
         <ReactNotification />
+        <PushNotification />
         <LoggedOut>
           <Router>
            <Route path="/*" component={LoginView} />
