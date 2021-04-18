@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { HomeView } from "./components/layouts/HomeView";
 import { LoginView } from "./components/layouts/LoginView";
 import { Home } from "./Home";
-import { About } from "./About";
+//import { About } from "./About";
 import { SettingsView } from "./components/layouts/SettingsView";
-import { FriendsView } from "./components/layouts/FriendsView";
+//import { FriendsView } from "./components/layouts/FriendsView";
 import { ProfileView } from "./components/layouts/ProfileView";
 import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
@@ -126,9 +126,8 @@ function App() {
               
               <Route exact path="/" render={() => <Home />} />
               <Route path="/login" exact render={() => <LoginView />} />
-              <Route path="/about" exact render={() => <About />} />
               <Route path="/settings" exact render={() => <SettingsView />} />
-              <Route path="/friends" exact render={() => <FriendsView />} />
+              
               <Route path="/profile" exact render={() => <ProfileView />} />
               <Route path="/map/:id" render={() => <Home />} />
 
