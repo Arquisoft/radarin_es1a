@@ -126,6 +126,7 @@ function App() {
               
               <Route exact path="/" render={() => <Home />} />
               <Route path="/login" exact render={() => <LoginView />} />
+              
               <Route path="/settings" exact render={() => <SettingsView />} />
               
               <Route path="/profile" exact render={() => <ProfileView />} />

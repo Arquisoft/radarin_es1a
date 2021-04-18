@@ -89,12 +89,8 @@ class MenuBar extends React.Component {
         return (
             <Styles>
               <Switch>
-              <Route path="/friends">
-                  <FriendsView />
-                </Route>
-                <Route path="/about">
-                  <About />
-                </Route>
+              <Route path="/friends" exact render={() => <FriendsView />} />
+              <Route path="/about" exact render={() => <About />} />
               </Switch>
                 <Menu>
                     <a id="home" className="menu-item" class= "bm-item" href="/">
