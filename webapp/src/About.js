@@ -13,7 +13,7 @@ html {
 
 .column {
   float: left;
-  width: 25%;
+  width: 33.3%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
@@ -21,6 +21,7 @@ html {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 16px;
+  
 }
 
 .about-section {
@@ -38,6 +39,7 @@ html {
   content: "";
   clear: both;
   display: table;
+  
 }
 
 .row {
@@ -71,12 +73,14 @@ h2{
 }
 
 img{
-  style="width:100%"
-  style="height:100%"
+  min-width:0;
+  width:100%;
+  height:100%;
+  flex-shrink: 0;
 }
 
 button:hover {
-  background-color: #555;
+  background-color: #555;re distorted 
 }
 
 @media screen and (max-width: 800px) {
@@ -120,6 +124,7 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
+          
           <img src="/img/devsFaces/usuario.png" alt="nombre"></img>
           <div class = "container">
             <h3> Alba Aparicio Pérez</h3>
@@ -152,7 +157,7 @@ export const About = () => (
 
       <div class = "column">
         <div class="card">
-          <img src="/img/devsFaces/taso.png" alt="nombre"></img>
+          <img src="/img/devsFaces/usuario.png" alt="nombre"></img>
           <div class = "container">
             <h2> Taso Rodriguez Meana</h2>
             <p> Front end </p>
