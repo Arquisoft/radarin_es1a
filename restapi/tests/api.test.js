@@ -86,37 +86,57 @@ describe("user ", () => {
     });
 
     /* Test that we can change the location of a user from the db*/
-    it('add and get user from db', async () => {
+    it('change location of a user from db', async () => {
         
         //parte 1, metemos un solo usuario
         // Primero guardamos el usuario en la base de datos
-        webId = 'aaa-testWebID';    //para que aparezca el primero en la lista
+        webId = 'aaa-testWebID'; 
         posicion = {latitud : 55.7, longitud: 37.6};
-        console.log("inicio prueba 1, get user");
         let response = await request(app).post('/api/users/location')
             .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
-        console.log("pasado el response");
-
 
 
         //para actualizar la posicion simplemente volvemos a "introducir" el usuario
         posicion = {latitud : 39.5, longitud: 116.2};
         response = await request(app).post('/api/users/location')
-            .send({solidId: webId,posicion: posicion});
+            .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
         
         response = await request(app).get('/api/users/lista');
         expect(response.statusCode).toBe(200);
-        console.log(response.body[0]);
         //comprobamos que la respuesta coincida con los nuevos datos
         expect(response.body[0].solidId).toBe(webId);
         
         //fallo, no se actualiza bien la posicion
         //expect(response.body[0].latitud).toBe(posicion.latitud);
         //expect(response.body[0].longitud).toBe(posicion.longitud);
+
+        console.log(response.body[0]);
+
         //comprobamos que solo hay un dato, que no se han duplicado
         expect(response.body[1]).toBe(undefined);
 
         
+    });
+
+    it('delete user from db', async () => {
+        
+        //parte 1, metemos un solo usuario
+        // Primero guardamos el usuario en la base de datos
+        webId = 'aaa-testWebID'; 
+        posicion = {latitud : 55.7, longitud: 37.6};
+        let response = await request(app).post('/api/users/location')
+            .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
+
+
+        //probamos a borrarlo de la base de datoss
+        response = await request(app).post('/api/users/delete')
+            .send({solidId: webId}).set('Accept', 'application/json');
+
+        
+        response = await request(app).get('/api/users/lista');
+        expect(response.statusCode).toBe(200);
+        //comprobamos que la respuesta coincida con los nuevos datos
+        expect(response.body[0]).toBe(undefined);    
     });
 
     
