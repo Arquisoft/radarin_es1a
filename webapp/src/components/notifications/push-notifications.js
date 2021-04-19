@@ -2,7 +2,7 @@ const pushServerPublicKey = "BCbSgw55YAqE9urspV9tfTeddhzXl2DHNFIZmPwqrd2uNiAdXEO
 /**
  * checks if Push notification and service workers are supported by your browser
  */
- function isPushNotificationSupported() {
+  function isPushNotificationSupported() {
     return "serviceWorker" in navigator && "PushManager" in window;
   }
   
@@ -11,6 +11,38 @@ const pushServerPublicKey = "BCbSgw55YAqE9urspV9tfTeddhzXl2DHNFIZmPwqrd2uNiAdXEO
    */
   async function askUserPermission() {
     return await Notification.requestPermission();
+  }
+
+    /**
+   * Registers a service worker
+   */
+  function registerServiceWorker() {
+      navigator.serviceWorker.register("/ServiceWorker.js");
+  }
+
+  async function createNotificationSubscription() {
+    //wait for service worker installation to be ready
+    const serviceWorker = await navigator.serviceWorker.ready;
+    // Register suscription
+    return await serviceWorker.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(pushServerPublicKey)
+    });
+  }
+
+  function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
+   
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+   
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
   }
 
   /**
@@ -33,23 +65,6 @@ const pushServerPublicKey = "BCbSgw55YAqE9urspV9tfTeddhzXl2DHNFIZmPwqrd2uNiAdXEO
       serviceWorker.showNotification(title, options);
     });
   }
-  
-  /**
-   * Registers a service worker
-   */
-  function registerServiceWorker() {
-    navigator.serviceWorker.register("./ServiceWorker.js");
-}
-  
-async function createNotificationSubscription() {
-    //wait for service worker installation to be ready
-    const serviceWorker = await navigator.serviceWorker.ready;
-    // subscribe and return the subscription
-    return await serviceWorker.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: pushServerPublicKey
-    });
-  }
 
   /**
  * returns the subscription if present or nothing
@@ -64,7 +79,7 @@ function getUserSubscription() {
         return pushSubscription;
       });
   }
-  
+
   export {
     isPushNotificationSupported,
     askUserPermission,

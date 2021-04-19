@@ -114,7 +114,6 @@ function App() {
   if (solidId !== adminId) {
     return (
       <React.Fragment>
-        <ReactNotification />
         <PushNotification />
         <LoggedOut>
           <Router>
@@ -142,6 +141,7 @@ function App() {
   else {
     return (
       <React.Fragment>
+        <PushNotification />
         <LoggedOut>
           <Router>
             <LoginView />

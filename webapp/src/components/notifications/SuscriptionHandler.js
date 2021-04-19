@@ -27,22 +27,24 @@ function handlePushNotificationSubscription(req, res) {
 function sendPushNotification(req, res) {
   const subscriptionId = req.params.id;
   const pushSubscription = subscriptions[subscriptionId];
-  webpush
-    .sendNotification(
-      pushSubscription,
-      JSON.stringify({
-        title: "New Product Available ",
-        text: "HEY! Take a look at this brand new t-shirt!",
-        image: "../img/map_preview.PNG",  //Cambiar
-        tag: "new-product",
-        url: "/index.html"     //Cambiar
-      })
-    )
+
+  // Send 201 - resource created
+  res.status(201).json({});
+
+  const payload = JSON.stringify({
+    title: "New Product Available ",
+    text: "HEY! Take a look at this brand new t-shirt!",
+    image: "../img/map_preview.PNG",  //Cambiar
+    tag: "new-product",
+    url: "/index.html"     //Cambiar
+  });
+
+  webpush.sendNotification(pushSubscription, payload)
     .catch(err => {
       console.log(err);
     });
 
-  res.status(202).json({});
+  
 }
 
 module.exports = { handlePushNotificationSubscription, sendPushNotification };
