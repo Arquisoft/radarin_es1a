@@ -139,6 +139,30 @@ describe("user ", () => {
         expect(response.body[0]).toBe(undefined);    
     });
 
+
+    it('add and delete admins', async () => {
+        
+        //añadimos un par de administradores a la bd
+        webId1 = 'aaa-testWebID'; 
+        let response = await request(app).post('/api/admin/add')
+            .send({solidId: webId1}).set('Accept', 'application/json');
+
+        webId2 = 'aab-testWebID'; 
+        response = await request(app).post('/api/admin/add')
+            .send({solidId: webId2}).set('Accept', 'application/json');
+
+
+        //los listamos para comprobar que se han añadido correctamente
+        response = await request(app).get('/api/admin/list');
+
+        
+        expect(response.statusCode).toBe(200);
+        //comprobamos que la respuesta coincida con los nuevos datos
+        expect(response.body[0].solidId).toBe(webId2);    
+        expect(response.body[1].solidId).toBe(webId1);              
+        expect(response.body[1].solidId).toBe(undefined);  
+    });
+
     
 });
 
