@@ -2,7 +2,7 @@ import React from "react";
 import { slide as Menu } from 'react-burger-menu';
 import styled from "styled-components";
 import auth from "solid-auth-client";
-import { Route, Switch } from "react-router";
+import { Route, Switch, Link } from "react-router-dom";
 import { FriendsView } from "./FriendsView";
 import  {About}  from "./../../About";
 
@@ -117,7 +117,9 @@ class MenuBar extends React.Component {
                         <i class="fas fa-sign-out-alt"></i>
                         <span> Log out</span>
                     </a>                  
-                    
+                    <li class= "nav-item">
+                      <Link to="/friends" label="Test" value="friendsTest">FriendsTest</Link>
+                    </li>
                 </Menu>
             </Styles>
         );
