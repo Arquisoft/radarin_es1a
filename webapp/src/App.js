@@ -4,15 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { HomeView } from "./components/layouts/HomeView";
 import { LoginView } from "./components/layouts/LoginView";
 import { Home } from "./Home";
-import { ProfileView } from "./components/layouts/ProfileView";
 import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
-import { Nav, Navbar } from "react-bootstrap";
 import ReactNotification from "react-notifications-component";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
-import auth from "solid-auth-client";
 import cache from "./components/friends/UserCache";
 
 const Styles = styled.div`
@@ -121,12 +118,8 @@ function App() {
           <Router>
             <HomeView />
             <Switch>
-              
               <Route exact path="/" render={() => <Home />} />
-              <Route path="/login" exact render={() => <LoginView />} />              
-              <Route path="/profile" exact render={() => <ProfileView />} />
               <Route path="/map/:id" render={() => <Home />} />
-
             </Switch>
           </Router>
         </LoggedIn>
@@ -142,14 +135,7 @@ function App() {
           </Router>
         </LoggedOut>
         <LoggedIn>
-          <Styles>
-            <Navbar expand="lg">
-              <Navbar.Brand href="/">Radarin</Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Nav className="ml-auto">
-                <Nav.Link href="/login" onSelect={() => { auth.logout(); window.sessionStorage.clear(); }}> Logout </Nav.Link>
-              </Nav>
-            </Navbar>
+          <Styles>      
             <AdminView />
           </Styles>
         </LoggedIn>
