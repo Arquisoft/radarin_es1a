@@ -57,7 +57,25 @@ export async function GetSpecificName(webId) {
         return webId.toString().substring(8, webId.toString().length - 1);
     }
 }
+export async function GetUserFriends() {
+    const friends = useLDflexList("user.friends");
+    let friendsAux = [];
 
+    //For each value (LDflexValue) in friends(LDflexValue [])
+    friends.forEach(async (friendLDflexValue) => {
+
+        let friendWebIdLDflexValue = friendLDflexValue.value;
+        const webId = data[friendWebIdLDflexValue];
+        //Use the await to retrieve the data from the Promise object.
+        const name = await GetSpecificName(webId);
+        const profilePic = await GetSpecificProfileImage(webId);
+
+        let friendAux = new Friend(webId.toString(), name, profilePic);
+        friendsAux.push(friendAux);
+    });
+    
+    return friendsAux;
+}
 export async function GetSpecificProfileImage(webId) {
     const photo = await webId.vcard_hasPhoto;
     try {
