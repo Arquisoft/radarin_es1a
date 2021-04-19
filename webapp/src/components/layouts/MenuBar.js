@@ -102,7 +102,7 @@ class MenuBar extends React.Component {
               <Route path="/friends" exact render={() => <FriendsView />} />
               <Route path="/about" exact render={() => <About />} />
               <Route path="/settings" exact render={() => <SettingsView />} />
-              <Route path="/login" exact render={() => <LoginView />} />
+              <Route path="/" exact render={() => <LoginView />} />
               
               </Switch>
                 <Menu>
@@ -128,7 +128,7 @@ class MenuBar extends React.Component {
                     </li>
                     <li class= "nav-item" onClick={() => {auth.logout(); window.sessionStorage.clear();}}>
                       <i class="fas fa-sign-out-alt"></i>
-                      <Link className="link" to="/login" label="Login" value="login">Logout</Link>
+                      <Link className="link" to="/" label="Login" value="login">Logout</Link>
                     </li>
                 </Menu>
             </Styles>
