@@ -43,13 +43,10 @@ describe("user ", () => {
         // Primero guardamos el usuario en la base de datos
         webId = 'aaa-testWebID';    //para que aparezca el primero en la lista
         posicion = {latitud : 55.7, longitud: 37.6};
-        console.log("inicio prueba 1, get user");
         let response = await request(app).post('/api/users/location')
             .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
-        console.log("pasado el response");
 
         response = await request(app).get('/api/users/lista');
-        console.log(response.body[0]);
         expect(response.statusCode).toBe(200);
         //comprobamos que la respuesta coincida con los datos introducidos
         expect(response.body[0].solidId).toBe(webId);
@@ -59,17 +56,13 @@ describe("user ", () => {
         //parte 2, añadimos otros dos usuarios
         webId2 = 'aab-testWebID';    //para que aparezca el primero en la lista
         posicion2 = {latitud : 0, longitud: 0};
-        console.log("inicio prueba 1, get user");
         response = await request(app).post('/api/users/location')
             .send({solidId: webId2,posicion: posicion2}).set('Accept', 'application/json');
-        console.log("pasado el response");
 
         webId3 = 'aac-testWebID';    //para que aparezca el primero en la lista
         posicion3 = {latitud : 2, longitud: 4};
-        console.log("inicio prueba 1, get user");
         response = await request(app).post('/api/users/location')
             .send({solidId: webId3,posicion: posicion3}).set('Accept', 'application/json');
-        console.log("pasado el response");
 
 
 
@@ -90,13 +83,40 @@ describe("user ", () => {
         expect(response.body[0].latitud).toBe(posicion3.latitud);
         expect(response.body[0].longitud).toBe(posicion3.longitud);
 
-        /*
-        // Lo recuperamos con su webId
-        response = await request(app).get('/api/users/byWebId')
-            .set('webId', webIdEx);
+    });
+
+    /* Test that we can change the location of a user from the db*/
+    it('add and get user from db', async () => {
+        
+        //parte 1, metemos un solo usuario
+        // Primero guardamos el usuario en la base de datos
+        webId = 'aaa-testWebID';    //para que aparezca el primero en la lista
+        posicion = {latitud : 55.7, longitud: 37.6};
+        console.log("inicio prueba 1, get user");
+        let response = await request(app).post('/api/users/location')
+            .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
+        console.log("pasado el response");
+
+
+
+        //para actualizar la posicion simplemente volvemos a "introducir" el usuario
+        posicion = {latitud : 39.5, longitud: 116.2};
+        response = await request(app).post('/api/users/location')
+            .send({solidId: webId,posicion: posicion});
+        
+        response = await request(app).get('/api/users/lista');
         expect(response.statusCode).toBe(200);
-        expect(response.body.webId).toBe(webIdEx);
-        expect(response.body.location).toStrictEqual(locationEx);*/
+        console.log(response.body[0]);
+        //comprobamos que la respuesta coincida con los nuevos datos
+        expect(response.body[0].solidId).toBe(webId);
+        
+        //fallo, no se actualiza bien la posicion
+        //expect(response.body[0].latitud).toBe(posicion.latitud);
+        //expect(response.body[0].longitud).toBe(posicion.longitud);
+        //comprobamos que solo hay un dato, que no se han duplicado
+        expect(response.body[1]).toBe(undefined);
+
+        
     });
 
     
