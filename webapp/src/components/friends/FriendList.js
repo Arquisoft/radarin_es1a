@@ -86,7 +86,7 @@ function FriendCard(props) {
                     <Avatar src={photo} className={classes.fPhoto} />
                 }
                 action={
-                    <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" href={`http://localhost:3000/map/${n}`}>
+                    <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" onClick={window.sessionStorage.setItem('visitado', 'false')} href={`http://localhost:3000/map/${n}`}>
                         <NotListedLocationIcon />
                     </IconButton>
                 }

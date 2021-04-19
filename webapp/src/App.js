@@ -16,6 +16,7 @@ import ReactNotification from "react-notifications-component";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
 import auth from "solid-auth-client";
+import cache from "./components/friends/UserCache";
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -39,7 +40,7 @@ const Styles = styled.div`
 function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem('id', solidId);
-
+  cache.loadFriends();
   if (window.sessionStorage.getItem('userState') === null)
     window.sessionStorage.setItem('userState', 'default');
 
