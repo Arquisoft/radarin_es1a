@@ -102,7 +102,7 @@ class MenuBar extends React.Component {
               <Route path="/friends" exact render={() => <FriendsView />} />
               <Route path="/about" exact render={() => <About />} />
               <Route path="/settings" exact render={() => <SettingsView />} />
-              <Route path="/" exact render={() => <LoginView />} />
+              <Route path="/login" exact render={() => <LoginView />} />
               
               </Switch>
                 <Menu>
