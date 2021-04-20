@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, FormControl, FormControlLabel, Radio, RadioGroup, withStyles } from "@material-ui/core";
+import cx from 'clsx';
+import { Card, Avatar, CardContent, Link, FormControl,
+     FormControlLabel, Radio, RadioGroup, Divider,withStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 import { GetUserWebId, GetUserProfileImage } from "./SolidManager";
 import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
 import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import DragIndicatorRoundedIcon from '@material-ui/icons/DragIndicatorRounded';
+import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
+
 import { Value } from "@solid/react";
 
 const RadioFood = withStyles({
@@ -17,31 +22,24 @@ const RadioFood = withStyles({
   })(props => <Radio color="default" icon={<FastfoodRoundedIcon/>} 
   checkedIcon={<FastfoodRoundedIcon/>} {...props} />);
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-        flexDirection: "column",
-    //    backgroundColor: "#99DE9F"
-    },
+const useStyles = makeStyles((palette) => ({
     card: {
-        marginTop: theme.spacing(5),
-    },
-    photo: {
-        width: theme.spacing(23),
-        height: theme.spacing(23),
-        margin: theme.spacing(3),
-    },
-    image: {
-        width: theme.spacing(100),
-        height: theme.spacing(23),
-        margin: theme.spacing(3),
-    },
-    name: {
-        margin: theme.spacing(5),
-    },
-    webid: {
-        textAlign: "center",
-    }
+        borderRadius: 12,
+        minWidth: 256,
+        textAlign: 'center',
+      },
+      avatar: {
+        width: 80,
+        height: 80,
+        margin: 'auto',
+      },
+      heading: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        letterSpacing: '0.5px',
+        marginTop: 8,
+        marginBottom: 0,
+      }
 }));
 
 function checkSport(){
@@ -57,7 +55,7 @@ function checkEat(){
 }
 
 export default function UserProfile() {
-    const classes = useStyles();
+    
 
     const [url, setUrl] = useState("");
     const [userState, setUserState]= useState(sessionStorage.getItem("userState"));
@@ -78,61 +76,35 @@ export default function UserProfile() {
     
     sessionStorage.setItem("userState",userState);
 
+    const classes = useStyles();
+    const shadowStyles = useFadedShadowStyles();
+
     return (
-            <div className={classes.root}>
-                 <Card
-                    className={classes.card}
-                    variant="outlined"
-                >
-                    <CardContent>
-                        <Grid container>
-                            <Grid item>
-                                <Avatar alt="Profile photo" src={url} className={classes.photo} />
-                            </Grid>
-
-                            <Grid item >
-                                <Typography className={classes.name} variant="h3" >
-                                    <Value src="user.name" />
-                                </Typography>
-
-                                <Typography className={classes.webid} variant="h5" >
-                                    <Link style={{ color: "#303030" }} target="_blank" href={webId}> Your Solid Account</Link>
-                                </Typography>
-                            </Grid>                    
-                        </Grid>
+        <div>
+            <Card className={cx(classes.card, shadowStyles.root)}>
+                <CardContent>
+                  <Avatar className={classes.avatar} src={url} />
+                  <h3 className={classes.heading}><Value src="user.name" /> </h3>
+                  <Link style={{ color: "#303030" }} target="_blank" href={webId}> Account</Link>
+                </CardContent>
+                <Divider light />
+            </Card>
+              <Card className={classes.card} variant="outlined">
+                <CardContent>
+                  <h3 className={classes.heading}>State:</h3>
+                  <br/>
+                  <FormControl component="fieldset">
+                    <RadioGroup aria-label="estado" name="estado1" onChange={handleChange}>
+                        <FormControlLabel value="deporte" control={<Radio checked={checkSport()} color="primary" icon={<DirectionsRunRoundedIcon/>}                                         checkedIcon={<DirectionsRunRoundedIcon/>} />} label="Sport"  />
+                        <FormControlLabel value="comer" control={ <RadioFood checked={checkEat()}/> } label="Meal"  />
+                        <FormControlLabel value="cita" control={<Radio checked={checkDate()} icon={<FavoriteRoundedIcon/>} 
+                        checkedIcon={<FavoriteRoundedIcon/>} />} label="Date"  />
+                        <FormControlLabel value="default" control={<Radio color="default" icon={<DragIndicatorRoundedIcon/>} 
+                        checkedIcon={<DragIndicatorRoundedIcon/>} />} label="Unspecified"  />
+                    </RadioGroup>
+                    </FormControl>
                     </CardContent>
-                </Card>
-
-                <Card
-                    className={classes.card}
-                    variant="outlined"
-                >
-                    <CardContent>
-                        <Grid container>
-                            <Grid item >
-                                <Typography className={classes.name} variant="h3" >
-                                    Tu estado
-                                </Typography>
-
-                                <Typography className={classes.name} variant="body1" >
-                                <FormControl component="fieldset">
-                                        <RadioGroup aria-label="estado" name="estado1" onChange={handleChange}>
-                                            <FormControlLabel value="deporte" control={<Radio checked={checkSport()} color="primary" icon={<DirectionsRunRoundedIcon/>} 
-                                            checkedIcon={<DirectionsRunRoundedIcon/>} />} label="Deporte"  />
-                                            <FormControlLabel value="comer" control={ <RadioFood checked={checkEat()}/> } label="Comer"  />
-                                            <FormControlLabel value="cita" control={<Radio checked={checkDate()} icon={<FavoriteRoundedIcon/>} 
-                                            checkedIcon={<FavoriteRoundedIcon/>} />} label="Cita"  />
-                                            <FormControlLabel value="default" control={<Radio color="default" icon={<DragIndicatorRoundedIcon/>} 
-                                            checkedIcon={<DragIndicatorRoundedIcon/>} />} label="Sin especificar"  />
-                                        </RadioGroup>
-                                </FormControl>
-                                </Typography>
-                            </Grid>
-                    
-                        </Grid>
-                    </CardContent>
-                </Card>
-                
-            </div>
+              </Card>
+        </div>
     );
 }

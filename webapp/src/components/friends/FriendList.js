@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Typography, makeStyles, Grid, Card, Avatar, CardContent, CardHeader, IconButton } from "@material-ui/core";
+import cx from 'clsx';
+import { makeStyles, Avatar, Divider, Button  } from "@material-ui/core";
 import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 import { Route, Switch, Link } from "react-router-dom";
 import  Map  from "../map/Map";
+import { Column, Row, Item } from '@mui-treasury/components/flex';
+import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
+
 export default function ProfileFriends() {
     return (
         <div>
@@ -11,20 +15,73 @@ export default function ProfileFriends() {
         </div>
     );
 }
+const usePersonStyles = makeStyles(() => ({
+    text: {
+      fontFamily: 'Barlow, san-serif',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+    },
+    name: {
+      fontWeight: 600,
+      fontSize: '1rem',
+      color: '#122740',
+    },
+    caption: {
+      fontSize: '0.875rem',
+      color: '#758392',
+      marginTop: -4,
+    },
+    btn: {
+      borderRadius: 20,
+      padding: '0.125rem 0.75rem',
+      borderColor: '#becddc',
+      fontSize: '0.75rem',
+    },
+  }));
+  const useStyles = makeStyles(() => ({
+    card: {
+      width: '100%',
+      borderRadius: 16,
+      boxShadow: '0 8px 16px 0 #BDC9D7',
+      overflow: 'hidden',
+    },
+    header: {
+      fontFamily: 'Barlow, san-serif',
+      backgroundColor: '#fff',
+    },
+    headline: {
+      color: '#122740',
+      fontSize: '1.25rem',
+      fontWeight: 600,
+    },
+    link: {
+      color: '#2281bb',
+      padding: '0 0.25rem',
+      fontSize: '0.875rem',
+    },
+    actions: {
+      color: '#BDC9D7'
+    },
+    divider: {
+      backgroundColor: '#d9e2ee',
+      margin: '0 20px',
+    }
+  }));
 
 function FriendCardList() {
-
     const [webId, setWebId] = useState("");
     const friendsList = useGetUserFriends();
-    console.log(friendsList);
+    
     useEffect(() => {
         setWebId(GetUserWebId());
     }, []);
 
+    console.log(webId);
     const classes = useStyles();
     if (!friendsList.length) {
         return (
-            <div className={classes.friendsList}>
+            <div className={classes.header}>
                 <h4>You don't have friends in your Solid Pod</h4>
                 <h4>You can add new friends in your <Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></h4>
             </div>
@@ -32,37 +89,30 @@ function FriendCardList() {
     }
 
     return (
-        <div className={classes.root}>
-
-            <Grid container>
-                <Grid item >
-                    <Typography className={classes.name} variant="h3" >
-                        Your friends
-                    </Typography>
-                </Grid>
-            </Grid>
-
-            <Grid
-                container
-                spacing={3}
-                alignItems="center"
-                justify="center"
-                className={classes.friends}
-            >
-                {friendsList.map((each, index) => {
+        <>
+        <Column p={0} gap={0} className={classes.card}>
+        <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
+          <Item stretched className={classes.headline}>Friends</Item>
+          <Item className={classes.actions}>
+            <Link className={classes.link} target="_blank" href={webId}>Add new friends</Link> 
+          </Item>
+        </Row>
+        {friendsList.map((each, index) => {
                     return (
-                        <Grid item key={index}>
-                            <FriendCard friend={each} />
-                        </Grid>
+                        <>
+                            <PersonItem friend={each} />
+                            <Divider variant={'middle'} className={classes.divider} />
+                        </>
                     )
                 })}
-            </Grid>
-        </div>
+      </Column>
+        </>
     );
 }
 
-function FriendCard(props) {
-    const classes = useStyles();
+function PersonItem(props) {
+    const avatarStyles = useDynamicAvatarStyles({ size: 56 });
+    const styles = usePersonStyles();
 
     const { friend } = props;
 
@@ -79,66 +129,29 @@ function FriendCard(props) {
     )
     n += "*";
 
-
     return (
-        <Card variant="outlined" className={classes.fCard}>
+        <Row gap={2} p={2.5}>
             <Switch>
                 <Route path={`/map/${n}`} exact render={() => <Map />} />
             </Switch>
-            <CardHeader
-                avatar={
-                    <Avatar src={photo} className={classes.fPhoto} />
-                }
-                action={
-                    <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem('visitado', 'false')}>
-                        <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" >
-                            <NotListedLocationIcon />    
-                        </IconButton>
-                    </Link>
-                }
-            />
-
-            <CardContent style={{ textAlign: "center" }}>
-                <Typography variant="h6" color="textSecondary" component="p">
-                    {name}
-                </Typography>
-            </CardContent>
-        </Card>
+        <Item>
+          <Avatar classes={avatarStyles} src={photo} />
+        </Item>
+        <Row wrap grow gap={0.5} minWidth={0}>
+          <Item grow minWidth={0}>
+            <div className={cx(styles.name, styles.text)}>{name}</div>
+            <div className={cx(styles.caption, styles.text)}>
+              Distancia en km?
+            </div>
+          </Item>
+          <Item position={'middle'}>
+          <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem('visitado', 'false')}>
+            <Button className={styles.btn} variant={'outlined'}>
+              Go map <NotListedLocationIcon style={{ color: "#99DE9F" }}/>    
+            </Button>
+            </Link>
+          </Item>
+        </Row>
+      </Row>
     );
 }
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-        flexDirection: "column",
-    },
-    main: {
-        marginTop: theme.spacing(8),
-        marginBottom: theme.spacing(2),
-    },
-    paper: {
-        borderBottom: "1px solid #e8e8e8",
-        marginTop: theme.spacing(2),
-        backgroundColor: "#99de9f",
-        width: "100%"
-    },
-    friends: {
-        marginTop: theme.spacing(5),
-    },
-    fPhoto: {
-        width: theme.spacing(13),
-        height: theme.spacing(13),
-        marginLeft: "3rem",
-        marginTop: "1rem"
-    },
-    fCard: {
-        display: "block",
-        width: "15rem",
-        height: theme.spacing(30)
-    },
-    friendsList: {
-        textAlign: "center",
-        marginTop: theme.spacing(7),
-        marginBottom: theme.spacing(50)
-    }
-}));
