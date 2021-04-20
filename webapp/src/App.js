@@ -16,6 +16,7 @@ import ReactNotification from "react-notifications-component";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
 import auth from "solid-auth-client";
+import Welcome from "./views/welcome/Welcome";
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -112,7 +113,8 @@ function App() {
         <ReactNotification />
         <LoggedOut>
           <Router>
-           <Route path="/*" component={LoginView} />
+           <Route path="/*" component={Welcome} />
+            <Route path="/login" component={LoginView} />
           </Router>
         </LoggedOut>
         <LoggedIn>
@@ -138,7 +140,7 @@ function App() {
       <React.Fragment>
         <LoggedOut>
           <Router>
-            <LoginView />
+            <Welcome />
           </Router>
         </LoggedOut>
         <LoggedIn>

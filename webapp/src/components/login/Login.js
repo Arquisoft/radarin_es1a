@@ -1,11 +1,6 @@
 import { ProviderLogin } from "@inrupt/solid-react-components";
 import { Link } from "@solid/react";
 import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Button,
-  Typography,
   Container,
   Card,
   CssBaseline,
@@ -25,20 +20,8 @@ export default function Login() {
   const classes = useStyles();
 
   return (
- 
+
     <div >
-
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-
       <Container component="main" maxWidth="sm">
         <Card
           className={classes.root}

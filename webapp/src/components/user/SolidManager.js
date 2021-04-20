@@ -48,6 +48,7 @@ export function useGetUserFriends() {
     return friendsList;
 }
 
+
 export async function GetSpecificName(webId) {
     const personName = await webId.name;
     try {
