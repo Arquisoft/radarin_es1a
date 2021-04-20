@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Typography, makeStyles, Grid, Card, Avatar, CardContent, Link, CardHeader, IconButton } from "@material-ui/core";
+import { Typography, makeStyles, Grid, Card, Avatar, CardContent, CardHeader, IconButton } from "@material-ui/core";
 import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
-
+import { Route, Switch, Link } from "react-router-dom";
+import  Map  from "../map/Map";
 export default function ProfileFriends() {
     return (
         <div>
@@ -81,16 +82,22 @@ function FriendCard(props) {
 
     return (
         <Card variant="outlined" className={classes.fCard}>
+            <Switch>
+                <Route path={`/map/${n}`} exact render={() => <Map />} />
+            </Switch>
             <CardHeader
                 avatar={
                     <Avatar src={photo} className={classes.fPhoto} />
                 }
                 action={
-                    <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" onClick={window.sessionStorage.setItem('visitado', 'false')} href={`/map/${n}`}>
-                        <NotListedLocationIcon />
-                    </IconButton>
+                    <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem('visitado', 'false')}>
+                        <IconButton style={{ color: "#99DE9F" }} aria-label="go to map" >
+                            <NotListedLocationIcon />    
+                        </IconButton>
+                    </Link>
                 }
             />
+
             <CardContent style={{ textAlign: "center" }}>
                 <Typography variant="h6" color="textSecondary" component="p">
                     {name}
