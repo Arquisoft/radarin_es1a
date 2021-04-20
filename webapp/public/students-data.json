@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1",
+    "image": "/img/devsFaces/victoria.png",
+    "fullName": "Victoria Alvarez",
+    "description": "Full Stack developer",
+    "github": "https://github.com/UO266618"
+  },
+  {
+    "id": "2",
+    "image": "/img/devsFaces/victoria.png",
+    "fullName": "Create React App Sample",
+    "description": "Developer",
+    "github": ""
+  },
+  {
+    "id": "3",
+    "image": "/img/devsFaces/victoria.png",
+    "fullName": "Create React App Sample",
+    "description": "Developer",
+    "github": ""
+  },
+  {
+    "id": "4",
+    "image": "/img/devsFaces/victoria.png",
+    "fullName": "Create React App Sample",
+    "description": "Developer",
+    "github": ""
+  },
+  {
+    "id": "5",
+    "image": "/img/devsFaces/victoria.png",
+    "fullName": "Create React App Sample",
+    "description": "Developer",
+    "github": ""
+  },
+  {
+    "id": "6",
+    "image": "/img/devsFaces/victoria.png",
+    "fullName": "Create React App Sample",
+    "description": "Developer",
+    "github": ""
+  },
+  {
+    "id": "7",
+    "image": "/img/devsFaces/victoria.png",
+    "fullName": "Create React App Sample",
+    "description": "Developer",
+    "github": ""
+  }
+]
