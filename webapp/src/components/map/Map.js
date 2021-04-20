@@ -1,8 +1,7 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
-import { useLDflexValue, useWebId } from "@solid/react";
+import { useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 import { store } from "react-notifications-component";
-import { useGetUserFriends } from "../user/SolidManager";
 import {MapMarker} from  "./MapMarker";
 import cache from "../friends/UserCache";
 
@@ -210,7 +209,7 @@ function Map() {
             window.addEventListener("resize", () => map.getViewPort().resize());
 
             // Create a marker icon from an image URL:
-            var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+            //var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
 
             // First iteration
             addFriends(map, ui, position);
