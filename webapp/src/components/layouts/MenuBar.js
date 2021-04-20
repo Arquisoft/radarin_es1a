@@ -2,6 +2,12 @@ import React from "react";
 import { slide as Menu } from 'react-burger-menu';
 import styled from "styled-components";
 import auth from "solid-auth-client";
+import { Route, Switch, Link } from "react-router-dom";
+import { FriendsView } from "./FriendsView";
+import  {About}  from "./../../About";
+import { SettingsView } from "./SettingsView";
+import { ProfileView } from "./ProfileView";
+
 const Styles = styled.div`
 .bm-burger-button {
     position: fixed;
@@ -68,6 +74,12 @@ const Styles = styled.div`
     display: inline-block;
     color: #99DE9F;
   }
+
+  .link{
+    padding-top: 4%;
+    display: inline-block;
+    color: #99DE9F;
+  }
   
   /* Styling of overlay */
   .bm-overlay {
@@ -84,33 +96,38 @@ class MenuBar extends React.Component {
     // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
         return (
             <Styles>
+              <Switch>
+              <Route path="/profile" exact render={() => <ProfileView/>} />
+              <Route path="/friends" exact render={() => <FriendsView />} />
+              <Route path="/about" exact render={() => <About />} />
+              <Route path="/settings" exact render={() => <SettingsView />} />
               
+              </Switch>
                 <Menu>
-                    <a id="home" className="menu-item" class= "bm-item" href="/">
-                        <i class="fa fa-fw fa-map-marker-alt"></i>
-                        <span> Home</span>
-                    </a>
-                    <a id="profile" className="menu-item" class="bm-item" href="/profile">
-                        <i class="fas fa-user"></i>
-                        <span> Perfil</span>
-                    </a>
-                    <a id="friends" className="menu-item" class="bm-item" href="/friends">
-                        <i class="fas fa-users"></i>
-                        <span> Friends</span>
-                    </a>
-                    <a id="about" className="menu-item" class="bm-item" href="/about">
-                        <i class="fas fa-poll-h"></i>
-                        <span> About</span>
-                    </a>
-                    <a id="settings" className="menu-item" class="bm-item" href="/settings">
-                        <i class="fa fa-cogs"></i>
-                        <span> Settings</span>
-                    </a>
-                    <a id="login" className="menu-item" class="bm-item" href="/login" onClick={() => {auth.logout(); window.sessionStorage.clear();}}>
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span> Log out</span>
-                    </a>
-                    
+                    <li class= "nav-item">
+                      <i class="fa fa-fw fa-map-marker-alt"></i>
+                      <Link className="link" to="/" label="Home" value="home">Home</Link>
+                    </li>             
+                    <li class= "nav-item">
+                      <i class="fas fa-user"></i>
+                      <Link className="link" to="/profile" label="Profile" value="profile">Profile</Link>
+                    </li>
+                    <li class= "nav-item">
+                      <i class="fas fa-users"></i>
+                      <Link className="link" to="/friends" label="Friends" value="friends">Friends</Link>
+                    </li>
+                    <li class= "nav-item">
+                      <i class="fas fa-poll-h"></i>
+                      <Link className="link" to="/about" label="About" value="about">About</Link>
+                    </li>
+                    <li class= "nav-item">
+                      <i class="fa fa-cogs"></i>
+                      <Link className="link" to="/settings" label="Settings" value="settings">Settings</Link>
+                    </li>
+                    <li class= "nav-item" onClick={() => {auth.logout(); window.sessionStorage.clear(); }}>
+                      <i class="fas fa-sign-out-alt"></i>
+                      <Link className="link" to="/" label="Login" value="login">Logout</Link>
+                    </li>
                 </Menu>
             </Styles>
         );

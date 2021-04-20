@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
-import { useWebId } from "@solid/react";
+import { useLDflexValue, useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 import { store } from "react-notifications-component";
 import { useGetUserFriends } from "../user/SolidManager";
@@ -8,14 +8,21 @@ import {MapMarker} from  "./MapMarker";
 function Map() {
 
     const mapRef = useRef(null);
+    // eslint-disable-next-line
     const solidId = useWebId();
     const [marcas, setMarcas] = useState([]);
     const [ui, setUI] = useState(null);
     const [map, setMap] = useState(null);
     const [userPosition, setUserPosition] = useState(null);
 
-    //Obtengo los amigos de solid
-    const friendsList = useGetUserFriends();
+    const [friendsList, setFriendsList] = useState([]);
+
+    // eslint-disable-next-line
+    useEffect(() => {
+        setFriendsList(cache.getFriends());
+    });
+
+    window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
 
     // Default distanceRadius  5 km
     const radius = () => {
@@ -31,25 +38,31 @@ function Map() {
     var getRespuesta = async function (map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
+        var friends = window.sessionStorage.getItem('friends');
         var id = window.sessionStorage.getItem('id');
 
-        const list = response.filter(user => friendsList.map(f => f.webId).includes(user.solidId) || user.solidId === id);
+        const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
 
+        //Borra la ubicación del usuario en sesión ELIMINAR
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
+
         // eslint-disable-next-line
         list.map((item, index) => {
 
-
             if (distanceFilter(item.latitud, item.longitud, userPosition)) {
-                var id= window.location.href.substring(
-                    window.location.href.lastIndexOf("/") + 1, 
+                var id = window.location.href.substring(
+                    window.location.href.lastIndexOf("/") + 1,
                     window.location.href.lastIndexOf("*")
                 )
-                if (item.solidId.includes(id)) {
-                    map.setCenter({ lat: item.latitud, lng: item.longitud });
-                    map.setZoom(18);
+
+                if (window.sessionStorage.getItem('visitado') !== 'true') {
+                    if (item.solidId.includes(id) ) {
+                        map.setCenter({ lat: item.latitud, lng: item.longitud });
+                        map.setZoom(18);
+                        window.sessionStorage.setItem('visitado', 'true');
+                    }
                 }
                 var locationOfMarker = { lat: item.latitud, lng: item.longitud };
                 nuevasMarcas.push({
@@ -62,6 +75,12 @@ function Map() {
 
         //Pinta el radio filtrado sobre el mapa
         paintRadius(map, userPosition);
+
+        /*
+                var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
+                map.addObject(marker);
+        */
+
         setMarcas(nuevasMarcas);
     };
 
@@ -71,12 +90,12 @@ function Map() {
         //Paint radius on map
         map.addObject(new H.map.Circle(
             // The central point of the circle
-            { lat: userPosition.lat, lng: userPosition.lng },
+            { lat: userPosition.coords.latitude, lng: userPosition.coords.longitude },
             // The radius of the circle in meters
             radius() * 1000,
             {
                 style: {
-                    strokeColor: "rgba(231,76,60,0.6)", // Color of the perimeter
+                    strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
                     lineWidth: 2,
                     fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
                 }
@@ -91,8 +110,8 @@ function Map() {
     var distanceFilter = function (lat2, lng2, userPosition) {
         var RadioTierraKm = 6378.0;
 
-        var lat1 = userPosition.lat;
-        var lng1 = userPosition.lng;
+        var lat1 = userPosition.coords.latitude;
+        var lng1 = userPosition.coords.longitude;
         var difLat = toRadianes(lat2 - lat1);
         var difLng = toRadianes(lng2 - lng1);
 
@@ -112,9 +131,9 @@ function Map() {
 
     useLayoutEffect(() => {
 
-        // function addFriends(map, ui, userPosition) {
-        //     getRespuesta(map, ui, userPosition);
-        // }
+        function addFriends(map, ui, userPosition) {
+            getRespuesta(map, ui, userPosition);
+        }
 
         if (!mapRef.current) { return; }
 
@@ -162,6 +181,7 @@ function Map() {
 
         navigator.geolocation.getCurrentPosition((position) => {
 
+            console.log(position);
             setUserPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
             const H = window.H;
 
@@ -191,20 +211,11 @@ function Map() {
             // Create a marker icon from an image URL:
             var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
 
-            var LocationOfMarker = { lat: position.coords.latitude, lng: position.coords.longitude };
+            // First iteration
+            addFriends(map, ui, position);
 
-            // Create a marker using the previously instantiated icon:
-            ///var marker = new H.map.Marker(LocationOfMarker, { icon: icon });  
-            var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
-            // Add the marker to the map:
-            map.addObject(marker);
-
-            marker.addEventListener("tap", logEvent => {
-                var bubble = new H.ui.InfoBubble({ lng: position.coords.longitude, lat: position.coords.latitude }, {
-                    content: "Mi usuario"
-                });
-                ui.addBubble(bubble);
-            }, false);
+            // Then repeat each 30000
+            setInterval(() => { addFriends(map, ui, position); }, 1000);
 
         }, (error) => {
             console.error(error);
@@ -212,15 +223,12 @@ function Map() {
         return () => {
             map.dispose();
         }
-    }, [mapRef]);
-
-    useEffect(() => {
-        if (map && ui && userPosition)
-            getRespuesta(map, ui, userPosition);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [map, ui, userPosition, friendsList]);
+    }, // eslint-disable-next-line
+        [mapRef]);
 
     return (
+        // Set a height on the map so it will display
+
         <Fragment>
             <div ref={mapRef} id="map" />
             {

@@ -15,7 +15,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import ReactNotification from "react-notifications-component";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
-import auth from "solid-auth-client";
+import cache from "./components/friends/UserCache";
 import Welcome from "./views/welcome/Welcome";
 
 const Styles = styled.div`
@@ -40,6 +40,9 @@ const Styles = styled.div`
 function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem('id', solidId);
+  cache.loadFriends();
+  if (window.sessionStorage.getItem('userState') === null)
+    window.sessionStorage.setItem('userState', 'default');
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
   const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
@@ -55,6 +58,7 @@ function App() {
             "latitud": position.coords.latitude,
             "longitud": position.coords.longitude
           }
+          //"userState": sessionStorage.getItem("userState")
         };
         //Cambia cuando este subido a heroku
         fetch("https://radarines1arestapi.herokuapp.com/api/users/location ", { //http://localhost:5000/api/users/location
@@ -70,7 +74,7 @@ function App() {
 
   useEffect(() => {
     let isMounted = true; // note this flag denote mount status
-    
+
     if (solidId !== adminId && isMounted) {
       setInterval(enviarUbicacionAServidor, 30000);
     }
@@ -121,14 +125,8 @@ function App() {
           <Router>
             <HomeView />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={LoginView} />
-              <Route path="/about" component={About} />
-              <Route path="/settings" component={SettingsView} />
-              <Route path="/friends" component={FriendsView} />
-              <Route path="/profile" component={ProfileView} />
-              <Route  path="/map/:id" component={Home} />
-
+              <Route exact path="/" render={() => <Home />} />
+              <Route path="/map/:id" render={() => <Home />} />
             </Switch>
           </Router>
         </LoggedIn>
@@ -145,13 +143,6 @@ function App() {
         </LoggedOut>
         <LoggedIn>
           <Styles>
-            <Navbar expand="lg">
-              <Navbar.Brand href="/">Radarin</Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Nav className="ml-auto">
-                <Nav.Link href="/login" onSelect={() => { auth.logout(); window.sessionStorage.clear(); }}> Logout </Nav.Link>
-              </Nav>
-            </Navbar>
             <AdminView />
           </Styles>
         </LoggedIn>

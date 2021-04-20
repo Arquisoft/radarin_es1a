@@ -13,6 +13,10 @@ const schema = mongoose.Schema({
     solidId: {
         type: String,
         required: true
+    },
+    userState: {
+        type: String,
+        require: true
     }
 });
 
