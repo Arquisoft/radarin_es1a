@@ -4,6 +4,7 @@ import "here-js-api/styles/mapsjs-ui.css";
 import { store } from "react-notifications-component";
 import { useGetUserFriends } from "../user/SolidManager";
 import {MapMarker} from  "./MapMarker";
+import cache from "../friends/UserCache";
 
 function Map() {
 
