@@ -4,9 +4,9 @@ import styled from "styled-components";
 import auth from "solid-auth-client";
 import { Route, Switch, Link } from "react-router-dom";
 import { FriendsView } from "./FriendsView";
-import  {About}  from "./../../About";
 import { SettingsView } from "./SettingsView";
 import { ProfileView } from "./ProfileView";
+import Welcome from "../../views/welcome/Welcome";
 
 const Styles = styled.div`
 .bm-burger-button {
@@ -119,9 +119,8 @@ class MenuBar extends React.Component {
               <Switch>
               <Route path="/profile" exact render={() => <ProfileView/>} />
               <Route path="/friends" exact render={() => <FriendsView />} />
-              <Route path="/about" exact render={() => <About />} />
               <Route path="/settings" exact render={() => <SettingsView />} />
-              
+
               </Switch>
                 <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
                     <li class= "nav-item">
@@ -137,12 +136,8 @@ class MenuBar extends React.Component {
                       <Link className="link" to="/friends" label="Friends" value="friends" onClick={()=>this.handleLinkClick()}> Friends</Link>
                     </li>
                     <li class= "nav-item">
-                      <i class="fas fa-poll-h"></i>
-                      <Link className="link" to="/about" label="About" value="about" onClick={()=>this.handleLinkClick()}> About</Link>
-                    </li>
-                    <li class= "nav-item">
                       <i class="fa fa-cogs"></i>
-                      <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}>Settings</Link>
+                      <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}> Settings</Link>
                     </li>
                     <li class= "nav-item" onClick={() => {auth.logout(); window.sessionStorage.clear(); }}>
                       <i class="fas fa-sign-out-alt"></i>
