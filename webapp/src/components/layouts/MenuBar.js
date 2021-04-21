@@ -10,7 +10,7 @@ import { ProfileView } from "./ProfileView";
 
 const Styles = styled.div`
 .bm-burger-button {
-    position: fixed;
+    position: absolute;
     width: 36px;
     height: 30px;
     left: 20px;
@@ -88,8 +88,28 @@ const Styles = styled.div`
 `;
 
 class MenuBar extends React.Component {
-  showSettings (event) {
-    event.preventDefault();
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            menuOpen: false
+        }
+
+        this.handleStateChange=this.handleStateChange.bind(this);
+        this.handleLinkClick=this.handleLinkClick.bind(this);
+    }
+
+    handleStateChange(state) {
+        this.setState({menuOpen:state.isOpen})
+    }
+
+    handleLinkClick(e) {
+        this.setState({menuOpen:false})
+    }
+
+    showSettings (event) {
+        event.preventDefault();
     }
 
   render () {
@@ -103,30 +123,30 @@ class MenuBar extends React.Component {
               <Route path="/settings" exact render={() => <SettingsView />} />
               
               </Switch>
-                <Menu>
+                <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
                     <li class= "nav-item">
                       <i class="fa fa-fw fa-map-marker-alt"></i>
-                      <Link className="link" to="/" label="Home" value="home">Home</Link>
+                      <Link className="link" to="/" label="Home" value="home" onClick={()=>this.handleLinkClick()}> Home</Link>
                     </li>             
                     <li class= "nav-item">
                       <i class="fas fa-user"></i>
-                      <Link className="link" to="/profile" label="Profile" value="profile">Profile</Link>
+                      <Link className="link" to="/profile" label="Profile" value="profile" onClick={()=>this.handleLinkClick()}> Profile</Link>
                     </li>
                     <li class= "nav-item">
                       <i class="fas fa-users"></i>
-                      <Link className="link" to="/friends" label="Friends" value="friends">Friends</Link>
+                      <Link className="link" to="/friends" label="Friends" value="friends" onClick={()=>this.handleLinkClick()}> Friends</Link>
                     </li>
                     <li class= "nav-item">
                       <i class="fas fa-poll-h"></i>
-                      <Link className="link" to="/about" label="About" value="about">About</Link>
+                      <Link className="link" to="/about" label="About" value="about" onClick={()=>this.handleLinkClick()}> About</Link>
                     </li>
                     <li class= "nav-item">
                       <i class="fa fa-cogs"></i>
-                      <Link className="link" to="/settings" label="Settings" value="settings">Settings</Link>
+                      <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}>Settings</Link>
                     </li>
                     <li class= "nav-item" onClick={() => {auth.logout(); window.sessionStorage.clear(); }}>
                       <i class="fas fa-sign-out-alt"></i>
-                      <Link className="link" to="/" label="Login" value="login">Logout</Link>
+                      <Link className="link" to="/" label="Login" value="login" onClick={()=>this.handleLinkClick()}> Logout</Link>
                     </li>
                 </Menu>
             </Styles>

@@ -215,7 +215,7 @@ function Map() {
             addFriends(map, ui, position);
 
             // Then repeat each 30000
-            setInterval(() => { addFriends(map, ui, position); }, 1000);
+            setInterval(() => { addFriends(map, ui, position); }, 10000);
 
         }, (error) => {
             console.error(error);
@@ -223,8 +223,7 @@ function Map() {
         return () => {
             map.dispose();
         }
-    }, // eslint-disable-next-line
-        [mapRef]);
+    }, [mapRef]);
 
     return (
         // Set a height on the map so it will display

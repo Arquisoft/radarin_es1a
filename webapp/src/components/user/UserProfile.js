@@ -72,9 +72,34 @@ export default function UserProfile() {
 
     const handleChange = event => {
         setUserState(event.target.value);
+        sessionStorage.setItem("userState", event.target.value);
+        enviarUbicacionAServidor();
     };
-    
-    sessionStorage.setItem("userState",userState);
+
+    function enviarUbicacionAServidor() {
+        if (webId) {
+            navigator.geolocation.getCurrentPosition((position) => {
+
+                const datos = {
+                    "solidId": webId,
+                    "posicion": {
+                        "latitud": position.coords.latitude,
+                        "longitud": position.coords.longitude,
+                    },
+                    "userState": sessionStorage.getItem("userState")
+                };
+
+                //Cambia cuando este subido a heroku
+                fetch("https://radarines1arestapi.herokuapp.com/api/users/location", { // http://localhost:5000/api/users/location
+                    method: "post",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(datos)
+                });
+            });
+        }
+    }
 
     const classes = useStyles();
     const shadowStyles = useFadedShadowStyles();

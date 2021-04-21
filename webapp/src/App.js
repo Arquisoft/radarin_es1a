@@ -52,12 +52,13 @@ function App() {
           "solidId": solidId,
           "posicion": {
             "latitud": position.coords.latitude,
-            "longitud": position.coords.longitude
-          }
-          //"userState": sessionStorage.getItem("userState")
+            "longitud": position.coords.longitude,
+          },
+          "userState": sessionStorage.getItem("userState")
         };
+
         //Cambia cuando este subido a heroku
-        fetch("https://radarines1arestapi.herokuapp.com/api/users/location ", { //http://localhost:5000/api/users/location
+        fetch("https://radarines1arestapi.herokuapp.com/api/users/location", { //  http://localhost:5000/api/users/location
           method: "post",
           headers: {
             "Content-Type": "application/json"

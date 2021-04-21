@@ -13,6 +13,7 @@ router.post("/users/location", async (req, res) => {
     const solidId = req.body.solidId;
     const latitud = req.body.posicion.latitud;
     const longitud = req.body.posicion.longitud;
+    const userState = req.body.userState;
 
     let user = await User.findOne({ solidId });
 
@@ -20,8 +21,14 @@ router.post("/users/location", async (req, res) => {
         user = new User({
             latitud,
             longitud,
-            solidId
+            solidId,
+            userState
         });
+    }else {
+        user.latitud = latitud;
+        user.longitud = longitud;
+        user.solidId = solidId;
+        user.userState = userState;
     }
     await user.save();
     res.send(user); //aqui debe devolver los amigos
