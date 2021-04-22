@@ -3,49 +3,49 @@
     "id": "1",
     "image": "/img/devsFaces/victoria.png",
     "fullName": "Victoria Alvarez",
-    "description": "Full Stack developer",
+    "description": "Developer",
     "github": "https://github.com/UO266618"
   },
   {
     "id": "2",
-    "image": "/img/devsFaces/victoria.png",
-    "fullName": "Create React App Sample",
+    "image": "/img/devsFaces/ismael.png",
+    "fullName": "Ismael Alba",
     "description": "Developer",
-    "github": ""
+    "github": "https://github.com/UO270176"
   },
   {
     "id": "3",
-    "image": "/img/devsFaces/victoria.png",
-    "fullName": "Create React App Sample",
+    "image": "/img/devsFaces/daniel.png",
+    "fullName": "Daniel Menéndez",
     "description": "Developer",
-    "github": ""
+    "github": "https://github.com/UO263745"
   },
   {
     "id": "4",
-    "image": "/img/devsFaces/victoria.png",
-    "fullName": "Create React App Sample",
+    "image": "/img/devsFaces/kevin.png",
+    "fullName": "Kevin Barbón",
     "description": "Developer",
-    "github": ""
+    "github": "https://github.com/kevin1123699"
   },
   {
     "id": "5",
-    "image": "/img/devsFaces/victoria.png",
-    "fullName": "Create React App Sample",
+    "image": "/img/devsFaces/taso.png",
+    "fullName": "Taso Rodríguez",
     "description": "Developer",
-    "github": ""
+    "github": "https://github.com/uo251434"
   },
   {
     "id": "6",
-    "image": "/img/devsFaces/victoria.png",
-    "fullName": "Create React App Sample",
+    "image": "/img/devsFaces/alba.png",
+    "fullName": "Alba Aparicio",
     "description": "Developer",
-    "github": ""
+    "github": "https://github.com/albaaparicio12"
   },
   {
     "id": "7",
-    "image": "/img/devsFaces/victoria.png",
-    "fullName": "Create React App Sample",
+    "image": "/img/devsFaces/miguel.png",
+    "fullName": "Miguel Guimarey",
     "description": "Developer",
-    "github": ""
+    "github": "https://github.com/UO247134"
   }
 ]

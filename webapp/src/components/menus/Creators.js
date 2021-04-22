@@ -97,7 +97,6 @@ export default function Album() {
                                     <CardMedia
                                         className={classes.cardMedia}
                                         image={ student.image }
-                                        title="Image title"
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5" component="h2">
