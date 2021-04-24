@@ -1,5 +1,5 @@
 import React from "react";
-import {render, fireEvent, getByText}  from "@testing-library/react";
+import {render, fireEvent, cleanup, pwgetByText}  from "@testing-library/react";
 
 test("check that the list of users renders propertly", async () => {
    //     const userList = [{name: 'Pablo', email: 'gonzalezgpablo@uniovi.es' }];
