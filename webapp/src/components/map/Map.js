@@ -1,9 +1,9 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
 import { useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
-import { store } from "react-notifications-component";
 import {MapMarker} from  "./MapMarker";
 import cache from "../friends/UserCache";
+import * as LocationFunctions from './LocationFunctions'
 
 function Map() {
 
@@ -24,16 +24,9 @@ function Map() {
 
     window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
 
-    // Default distanceRadius  5 km
-    const radius = () => {
-        if (window.sessionStorage.getItem("radius") != null) {
-            return window.sessionStorage.getItem("radius").valueOf();
-        }
-        else {
-            window.sessionStorage.setItem("radius", "5");
-        }
-        return window.sessionStorage.getItem("radius").valueOf();
-    };
+    //radius
+
+    let nearFriends = new Set();
 
     var getRespuesta = async function (map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
@@ -43,35 +36,35 @@ function Map() {
 
         const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
 
-        //Borra la ubicación del usuario en sesión ELIMINAR
         map.removeObjects(map.getObjects());
+
+        //aqui
 
         var nuevasMarcas = [];
 
-        // eslint-disable-next-line
-        list.map((item, index) => {
+        let newNearFriends = LocationFunctions.findNearFriends(list, userPosition);
 
-            if (distanceFilter(item.latitud, item.longitud, userPosition)) {
-                var id = window.location.href.substring(
-                    window.location.href.lastIndexOf("/") + 1,
-                    window.location.href.lastIndexOf("*")
-                )
+        for(const friend of newNearFriends){
+            const id = window.location.href.substring(
+                window.location.href.lastIndexOf("/") + 1,
+                window.location.href.lastIndexOf("*")
+            )
 
-                if (window.sessionStorage.getItem('visitado') !== 'true') {
-                    if (item.solidId.includes(id) ) {
-                        map.setCenter({ lat: item.latitud, lng: item.longitud });
-                        map.setZoom(18);
-                        window.sessionStorage.setItem('visitado', 'true');
-                    }
+            if (window.sessionStorage.getItem('visitado') !== 'true') {
+                if (friend.solidId.includes(id)) {
+                    map.setCenter({ lat: friend.latitud, lng: friend.longitud });
+                    map.setZoom(18);
+                    window.sessionStorage.setItem('visitado', 'true');
                 }
-                var locationOfMarker = { lat: item.latitud, lng: item.longitud };
-                nuevasMarcas.push({
-                    locationOfMarker,
-                    webId: item.solidId
-                });
             }
+            const locationOfMarker = { lat: friend.latitud, lng: friend.longitud };
+            nuevasMarcas.push({
+                locationOfMarker,
+                webId: friend.solidId
+            });
         }
-        );
+
+        nearFriends = LocationFunctions.notifyNearFriends(nearFriends, newNearFriends);
 
         //Pinta el radio filtrado sobre el mapa
         paintRadius(map, userPosition);
@@ -92,7 +85,7 @@ function Map() {
             // The central point of the circle
             { lat: userPosition.coords.latitude, lng: userPosition.coords.longitude },
             // The radius of the circle in meters
-            radius() * 1000,
+            LocationFunctions.radius() * 1000,
             {
                 style: {
                     strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
@@ -102,32 +95,8 @@ function Map() {
             }
         ));
     }
-    // Auxiliar method to convert coords to radians.
-    var toRadianes = function (valor) {
-        return (Math.PI / 180) * valor;
-    }
-    // Calculates the distance between two coordinates according to Haversine Formule.
-    var distanceFilter = function (lat2, lng2, userPosition) {
-        var RadioTierraKm = 6378.0;
 
-        var lat1 = userPosition.coords.latitude;
-        var lng1 = userPosition.coords.longitude;
-        var difLat = toRadianes(lat2 - lat1);
-        var difLng = toRadianes(lng2 - lng1);
-
-        var a = Math.pow(Math.sin(difLat / 2), 2) +
-            Math.cos(toRadianes(lat1)) *
-            Math.cos(toRadianes(lat2)) *
-            Math.pow(Math.sin(difLng / 2), 2);
-
-        var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-        if (c > radius()) {
-            return false;
-        }
-
-        return true;
-    }
-
+    //toRadian
 
     useLayoutEffect(() => {
 
@@ -165,20 +134,6 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
-        store.addNotification({
-            title: "Notificación",
-            message: "Bienvenido a Radarin!",
-            type: "default",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 2000
-            },
-            dismissable: { click: true }
-        });
-
         navigator.geolocation.getCurrentPosition((position) => {
 
             console.log(position);
@@ -191,7 +146,7 @@ function Map() {
                 // The central point of the circle
                 { lat: position.coords.latitude, lng: position.coords.longitude },
                 // The radius of the circle in meters
-                radius() * 1000,
+                LocationFunctions.radius() * 1000,
                 {
                     style: {
                         strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
@@ -223,7 +178,8 @@ function Map() {
         return () => {
             map.dispose();
         }
-    }, [mapRef]);
+    }, // eslint-disable-next-line
+        [mapRef]);
 
     return (
         // Set a height on the map so it will display

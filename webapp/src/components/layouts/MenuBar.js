@@ -6,7 +6,6 @@ import { Route, Switch, Link } from "react-router-dom";
 import { FriendsView } from "./FriendsView";
 import { SettingsView } from "./SettingsView";
 import { ProfileView } from "./ProfileView";
-import Welcome from "../../views/welcome/Welcome";
 
 const Styles = styled.div`
 .bm-burger-button {
