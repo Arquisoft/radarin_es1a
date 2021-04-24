@@ -1,10 +1,3 @@
-/*import { render } from '@testing-library/react';
-import { fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-import { Provider } from "react-redux";
-import ProfileView from "../components/layouts/ProfileView";
-import { BrowserRouter } from 'react-router-dom';*/
-
 import React from "react";
 import {render, screen, fireEvent, cleanup, pwgetByText, waitFor}  from "@testing-library/react";
 import 'globalthis/auto';
@@ -14,15 +7,9 @@ import UserProfile from "../components/user/UserProfile";
 import { Provider } from "react-redux";
 import { BrowserRouter } from 'react-router-dom';
 import "@testing-library/jest-dom/extend-expect";
-import App from '../App';
-import { act } from 'react-dom/test-utils';
-
-
-
 
 test("user can view its profile", async () => {
-
-    render(<UserProfile />);
+   render(<UserProfile />);
     
     //expect(getByText("Meal")).toBeInTheDocument();
     await waitFor(() => {
@@ -34,18 +21,7 @@ test("user can view its profile", async () => {
         expect(element2).toBeInTheDocument();
         const element3 = screen.getByText("Unspecified");
         expect(element3).toBeInTheDocument();
-});
+    });
 
-/*
-    const { getAllByRole, getByPla ceholderText } = render(<BrowserRouter><Provider store={store}><LoginPage/></Provider></BrowserRouter>);
 
-    const providerTextField = getByPlaceholderText(correctProvider);
-
-    expect(providerTextField).toBeInTheDocument();
-    
-    fireEvent.change(providerTextField, {target: { value: correctProvider }});
-
-    const signInButton = getAllByRole("button", { name: "Sign In" }).find(element => element.className.includes("MuiButton"));
-
-    expect(signInButton).toBeInTheDocument();*/
 });
