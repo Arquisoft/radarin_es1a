@@ -58,7 +58,8 @@ export default function UserProfile() {
     
 
     const [url, setUrl] = useState("");
-    const [userState, setUserState]= useState(sessionStorage.getItem("userState"));
+    //const [userState, setUserState]= useState(sessionStorage.getItem("userState"));
+    const [setUserState]= useState(sessionStorage.getItem("userState"));
 
     GetUserProfileImage().then((path) => {
         setUrl(path);
