@@ -139,7 +139,7 @@ class MenuBar extends React.Component {
                       <i class="fa fa-cogs"></i>
                       <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}> Settings</Link>
                     </li>
-                    <li class= "nav-item" onClick={() => {auth.logout().then(() => window.location.reload());;window.sessionStorage.clear();}}>
+                    <li class= "nav-item" onClick={() => {auth.logout().then(() => window.location.reload());;}}>
                       <i class="fas fa-sign-out-alt"></i>
                       <Link className="link" to="/welcome" label="Login" value="welcome" onClick={()=>{this.handleLinkClick();}}> Logout</Link>
                     </li>
