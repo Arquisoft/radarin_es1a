@@ -11,8 +11,6 @@ import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
 import cache from "./components/friends/UserCache";
 import Welcome from "./views/welcome/Welcome";
-import Creators from "./views/welcome/Creators";
-import WelcomePage from "./views/welcome/WelcomePage";
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -123,8 +121,6 @@ function App() {
         <LoggedOut>
           <Router>
            <Route path="/*" component={Welcome} />
-              <Route path="/welcome" component={WelcomePage} />
-            <Route path="/creators" component={Creators} />
           </Router>
         </LoggedOut>
         <LoggedIn>

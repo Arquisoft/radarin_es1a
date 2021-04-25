@@ -8,20 +8,17 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Switch, Route ,Link } from "react-router-dom";
 import { LoginView } from "../../components/layouts/LoginView";
+import  Creators  from "../../views/welcome/Creators";
+import  Welcome  from "../../views/welcome/WelcomePage";
 import {
     Divider,
     Drawer,
-    Hidden,
-    ListItem,
-    ListItemText
+    Hidden
 } from "@material-ui/core";
 import theme from "./Theme";
 
 const drawerWidth = 280;
 
-function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,12 +70,13 @@ export default function WelcomeMenu() {
     };
 
     return (
-
         <div className={classes.root}>
             <MuiThemeProvider theme={theme}>
             <AppBar position="relative" color="primary" className={classes.appBar}>
             
                 <Switch>
+                    <Route path="/welcome" component={Welcome} />
+                    <Route path="/creators" component= {Creators} />
                     <Route path="/login" component={LoginView} />
                 </Switch>
             
@@ -91,10 +89,13 @@ export default function WelcomeMenu() {
                     <Typography variant="h6" className={classes.title}>
                         Radarin
                     </Typography>
-                    <Hidden smDown>
-                        <Button color="inherit" href="/welcome">Welcome</Button>
-                        <Button color="inherit" href="/creators">Creators</Button>
-
+                    <Hidden smDown>                        
+                        <Link  to="/welcome" >
+                            <Button color="inherit">Welcome</Button>
+                        </Link>
+                        <Link  to="/creators">
+                            <Button color="inherit">Creators</Button>
+                        </Link>
                         <Link  to="/login">
                             <Button color="inherit">Login</Button>
                         </Link>
@@ -112,25 +113,22 @@ export default function WelcomeMenu() {
             >
                 <Toolbar />
                 <div className={classes.drawerContainer}>
-                <Link className="link" to="/welcome" label="Welcome" value="Welcome" onClick={()=>this.handleLinkClick()}>
-                    <ListItemLink href="/welcome">
-                        <ListItemText primary="Welcome" />
-                    </ListItemLink>
-                </Link>
-                <Link className="creators" to="/creators" label="Creators" value="Creators" onClick={()=>this.handleLinkClick()}>
-                    <ListItemLink href="/creators">
-                        <ListItemText primary="Creators" />
-                    </ListItemLink>
-                </Link>
-                <Divider />
-                <Link className="login" to="/login" label="Login" value="Login" onClick={()=>this.handleLinkClick()}>
-                    Login
-                </Link>
+                <Link  to="/welcome" >
+                            <Button color="inherit">Welcome</Button>
+                        </Link>
+                        <Divider />
+                        <Link  to="/creators">
+                            <Button color="inherit">Creators</Button>
+                        </Link>
+                        <Divider />
+                        <Link  to="/login">
+                            <Button color="inherit">Login</Button>
+                        </Link>
+                
                 </div>
             </Drawer>
             </MuiThemeProvider>
         </div>
-
 
     );
 }
