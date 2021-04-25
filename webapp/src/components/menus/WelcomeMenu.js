@@ -94,10 +94,10 @@ export default function WelcomeMenu() {
                     <Hidden smDown>
                         <Button color="inherit" href="/welcome">Welcome</Button>
                         <Button color="inherit" href="/creators">Creators</Button>
-                        <Link className="login" to="/login" label="Login" value="Login" onClick={()=>this.handleLinkClick()}>
-                            <Button color="inherit" href="/login">Login</Button>
+
+                        <Link  to="/login">
+                            <Button color="inherit">Login</Button>
                         </Link>
-                        
                     </Hidden>
                 </Toolbar>
             </AppBar>
