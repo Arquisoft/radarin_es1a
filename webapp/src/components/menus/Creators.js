@@ -120,10 +120,10 @@ export default function Album() {
             {/* Footer */}
             <footer className={classes.footer}>
                 <Typography variant="h6" align="center" gutterBottom>
-                    Footer
+                    Radarin
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Something here to give the footer a purpose!
+                    Universidad de Oviedo - Arquitectura del Software
                 </Typography>
             </footer>
             {/* End footer */}

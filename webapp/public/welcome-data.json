@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "image": "/img/welcome-page/solid.png",
+    "title": "Solid",
+    "description": "We guarantee your security using a decentralized information storage tool to save sensitive data.",
+    "url": "https://solidproject.org/",
+    "urlName": "official page",
+    "target": "_blank"
+  },
+  {
+    "id": "2",
+    "image": "/img/welcome-page/developers.png",
+    "title": "Developers",
+    "description": "Get to know the development team and the work environment by accessing the open source available",
+    "url": "/creators",
+    "urlName": "creators",
+    "target": ""
+  },
+  {
+    "id": "3",
+    "image": "/img/welcome-page/documentation.png",
+    "title": "Documentation",
+    "description": "To better understand the project structure and implemented design decisions, as well as other relevant information, it can be found in the official documentation.",
+    "url": "https://radarines1awebapp.herokuapp.com/docs/",
+    "urlName": "official documentation",
+    "target": "_blank"
+  }
+]
