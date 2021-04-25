@@ -4,7 +4,6 @@ import "here-js-api/styles/mapsjs-ui.css";
 import { MapMarker } from "./MapMarker";
 import cache from "../friends/UserCache";
 import * as LocationFunctions from "./LocationFunctions"
-
 function Map() {
 
     const mapRef = useRef(null);
@@ -22,7 +21,7 @@ function Map() {
         setFriendsList(cache.getFriends());
     });
 
-    window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
+    window.sessionStorage.setItem("friends", JSON.stringify(friendsList));
 
     //radius
 
@@ -31,8 +30,8 @@ function Map() {
     async function getRespuesta(map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
-        var friends = window.sessionStorage.getItem('friends');
-        var id = window.sessionStorage.getItem('id');
+        var friends = window.sessionStorage.getItem("friends");
+        var id = window.sessionStorage.getItem("id");
 
         const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
 
@@ -50,11 +49,11 @@ function Map() {
                 window.location.href.lastIndexOf("*")
             )
 
-            if (window.sessionStorage.getItem('visitado') !== 'true') {
+            if (window.sessionStorage.getItem("visitado") !== "true") {
                 if (friend.solidId.includes(id)) {
                     map.setCenter({ lat: friend.latitud, lng: friend.longitud });
                     map.setZoom(18);
-                    window.sessionStorage.setItem('visitado', 'true');
+                    window.sessionStorage.setItem("visitado", "true");
                 }
             }
             const locationOfMarker = { lat: friend.latitud, lng: friend.longitud };
@@ -158,14 +157,7 @@ function Map() {
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());
 
-            // Create a marker icon from an image URL:
-            //var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
-
-            // First iteration
-            addFriends(map, ui, position);
-
-            // Then repeat each 30000
-            setInterval(() => { addFriends(map, ui, position); }, 1000);
+            new Worker(setInterval(() => { addFriends(map, ui, position); }, 1000));
 
         }, (error) => {
             console.error(error);
