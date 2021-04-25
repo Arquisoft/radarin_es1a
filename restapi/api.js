@@ -7,13 +7,13 @@ const router = express.Router();
 
 // Get all users
 router.get("/users/lista", async (req, res) => {
-    logger.info("Finding users");
+   // logger.info("Finding users");
     const users = await User.find({}).sort("-_id"); //Inverse order
     res.send(users);
 });
 
 router.post("/users/location", async (req, res) => {
-    logger.info("Saving users information");
+   // logger.info("Saving users information");
     const solidId = req.body.solidId;
     const latitud = req.body.posicion.latitud;
     const longitud = req.body.posicion.longitud;

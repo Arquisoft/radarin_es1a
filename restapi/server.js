@@ -3,7 +3,7 @@ const promBundle = require("express-prom-bundle");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const api = require("./api");
-const logger = require("./monitoring/logging/logger").logger;
+//const logger = require("./monitoring/logging/logger").logger;
 
 function connect(){
     //The MONGO_URI variable is the connection string to MongoDB Atlas (for production). This env variable is created in heroku.
@@ -22,7 +22,7 @@ function connect(){
 
 
         app.listen(process.env.PORT || 5000, () => {
-            logger.info("Server has started! Using db in " + mongo_uri);
+            //logger.info("Server has started! Using db in " + mongo_uri);
             console.log("Server has started! Using db in "+mongo_uri);
         });
     });
