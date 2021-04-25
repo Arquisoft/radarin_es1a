@@ -123,7 +123,7 @@ class MenuBar extends React.Component {
               <Route path="/settings" exact render={() => <SettingsView />} />
               
               </Switch>
-                <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
+                <Menu id = "menu-desplegable" onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
                     <li className= "nav-item">
                       <i class="fa fa-fw fa-map-marker-alt"></i>
                       <Link className="link" to="/" label="Home" value="home" onClick={()=>this.handleLinkClick()}> Home</Link>
