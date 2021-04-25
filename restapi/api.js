@@ -1,4 +1,5 @@
-const logger = require("./monitoring/logging/logger").logger;
+//const logger = require("./monitoring/logging/logger").logger;
+
 const express = require("express");
 const User = require("./models/users");
 const Admin = require("./models/admins");
@@ -40,7 +41,7 @@ router.post("/users/location", async (req, res) => {
 
 // Deletes the user that has the id send on the body.
 router.post("/users/delete", async (req, res) => {
-    logger.info("Deleting users");
+    //logger.info("Deleting users");
     const user = await User.find({ "solidId": req.body.solidId });
     await user[0].remove();
     res.send(true);
@@ -48,7 +49,7 @@ router.post("/users/delete", async (req, res) => {
 
 // Get all admins ids.
 router.get("/admin/list", async (req, res) => {
-    logger.info("Getting users");
+    //logger.info("Getting users");
     const admins = await Admin.find({});
     res.send(admins);
 });
