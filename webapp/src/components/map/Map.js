@@ -3,7 +3,7 @@ import { useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 import { MapMarker } from "./MapMarker";
 import cache from "../friends/UserCache";
-import * as LocationFunctions from ""./LocationFunctions"
+import * as LocationFunctions from "./LocationFunctions"
 
 function Map() {
 
