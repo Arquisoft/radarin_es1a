@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {LoggedOut } from "@solid/react";
+import {Switch, Route ,Link } from "react-router-dom";
+import { LoginView } from "../../components/layouts/LoginView";
 import {
     Divider,
     Drawer,
@@ -14,7 +17,7 @@ import {
     ListItemText
 } from "@material-ui/core";
 import theme from "./Theme";
-import {Link } from "react-router-dom";
+
 const drawerWidth = 280;
 
 function ListItemLink(props) {
@@ -75,6 +78,11 @@ export default function WelcomeMenu() {
         <div className={classes.root}>
             <MuiThemeProvider theme={theme}>
             <AppBar position="relative" color="primary" className={classes.appBar}>
+            <LoggedOut>
+                <Switch>
+                    <Route path="/login" component={LoginView} />
+                </Switch>
+            </LoggedOut>
                 <Toolbar>
                     <Hidden mdUp>
                         <IconButton color="secondary" edge="start" className={classes.menuButton} aria-label="menu" onClick={toggleDrawer(true)}>

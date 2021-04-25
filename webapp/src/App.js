@@ -2,7 +2,6 @@ import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { HomeView } from "./components/layouts/HomeView";
-import { LoginView } from "./components/layouts/LoginView";
 import { Home } from "./Home";
 import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
@@ -126,7 +125,6 @@ function App() {
            <Route path="/*" component={Welcome} />
               <Route path="/welcome" component={WelcomePage} />
             <Route path="/creators" component={Creators} />
-            <Route path="/login" component={LoginView} />
           </Router>
         </LoggedOut>
         <LoggedIn>
