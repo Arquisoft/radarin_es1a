@@ -6,6 +6,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import { FriendsView } from "./FriendsView";
 import { SettingsView } from "./SettingsView";
 import { ProfileView } from "./ProfileView";
+import Welcome from "../../views/welcome/Welcome";
 
 const Styles = styled.div`
 .bm-burger-button {
@@ -138,9 +139,9 @@ class MenuBar extends React.Component {
                       <i class="fa fa-cogs"></i>
                       <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}> Settings</Link>
                     </li>
-                    <li class= "nav-item" onClick={() => {auth.logout();}}>
+                    <li class= "nav-item" onClick={() => {auth.logout().then(() => window.location.reload());;window.sessionStorage.clear();}}>
                       <i class="fas fa-sign-out-alt"></i>
-                      <Link className="link" to="/*" label="Login" value="welcome" onClick={()=>this.handleLinkClick()}> Logout</Link>
+                      <Link className="link" to="/welcome" label="Login" value="welcome" onClick={()=>{this.handleLinkClick();}}> Logout</Link>
                     </li>
                 </Menu>
             </Styles>
