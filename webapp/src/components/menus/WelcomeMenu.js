@@ -114,9 +114,7 @@ export default function WelcomeMenu() {
                 </Link>
                 <Divider />
                 <Link className="login" to="/login" label="Login" value="Login" onClick={()=>this.handleLinkClick()}>
-                    <ListItemLink href="/login">
-                        <ListItemText primary="Login" />
-                    </ListItemLink>
+                    Login
                 </Link>
                 </div>
             </Drawer>
