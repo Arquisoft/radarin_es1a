@@ -14,7 +14,7 @@ import {
     ListItemText
 } from "@material-ui/core";
 import theme from "./Theme";
-
+import {Link } from "react-router-dom";
 const drawerWidth = 280;
 
 function ListItemLink(props) {
@@ -102,16 +102,22 @@ export default function WelcomeMenu() {
             >
                 <Toolbar />
                 <div className={classes.drawerContainer}>
+                <Link className="link" to="/welcome" label="Welcome" value="Welcome" onClick={()=>this.handleLinkClick()}>
                     <ListItemLink href="/welcome">
                         <ListItemText primary="Welcome" />
                     </ListItemLink>
+                </Link>
+                <Link className="creators" to="/creators" label="Creators" value="Creators" onClick={()=>this.handleLinkClick()}>
                     <ListItemLink href="/creators">
                         <ListItemText primary="Creators" />
                     </ListItemLink>
-                    <Divider />
+                </Link>
+                <Divider />
+                <Link className="login" to="/login" label="Login" value="Login" onClick={()=>this.handleLinkClick()}>
                     <ListItemLink href="/login">
                         <ListItemText primary="Login" />
                     </ListItemLink>
+                </Link>
                 </div>
             </Drawer>
             </MuiThemeProvider>

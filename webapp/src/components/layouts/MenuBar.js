@@ -120,7 +120,7 @@ class MenuBar extends React.Component {
               <Route path="/profile" exact render={() => <ProfileView/>} />
               <Route path="/friends" exact render={() => <FriendsView />} />
               <Route path="/settings" exact render={() => <SettingsView />} />
-              <Route path="/welcome" exact render={() => <Welcome />} />
+              <Route path="/welcome" exact render={() => <Welcome/>} />
               </Switch>
                 <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
                     <li class= "nav-item">
