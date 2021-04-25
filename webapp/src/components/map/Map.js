@@ -1,9 +1,9 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
 import { useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
-import {MapMarker} from  "./MapMarker";
+import { MapMarker } from "./MapMarker";
 import cache from "../friends/UserCache";
-import * as LocationFunctions from './LocationFunctions'
+import * as LocationFunctions from ""./LocationFunctions"
 
 function Map() {
 
@@ -28,7 +28,7 @@ function Map() {
 
     let nearFriends = new Set();
 
-    async function getRespuesta (map, ui, userPosition) {
+    async function getRespuesta(map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
         var friends = window.sessionStorage.getItem('friends');
@@ -44,7 +44,7 @@ function Map() {
 
         let newNearFriends = LocationFunctions.findNearFriends(list, userPosition);
 
-        for(const friend of newNearFriends){
+        for (const friend of newNearFriends) {
             const id = window.location.href.substring(
                 window.location.href.lastIndexOf("/") + 1,
                 window.location.href.lastIndexOf("*")
@@ -68,11 +68,6 @@ function Map() {
 
         //Pinta el radio filtrado sobre el mapa
         paintRadius(map, userPosition);
-
-        /*
-                var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
-                map.addObject(marker);
-        */
 
         setMarcas(nuevasMarcas);
     };
@@ -136,7 +131,7 @@ function Map() {
 
         navigator.geolocation.getCurrentPosition((position) => {
 
-            console.log(position);
+
             setUserPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
             const H = window.H;
 
@@ -170,7 +165,7 @@ function Map() {
             addFriends(map, ui, position);
 
             // Then repeat each 30000
-            setInterval(() => { addFriends(map, ui, position); }, 10000);
+            setInterval(() => { addFriends(map, ui, position); }, 1000);
 
         }, (error) => {
             console.error(error);
