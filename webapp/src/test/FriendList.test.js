@@ -9,7 +9,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 test("check that the list of users renders propertly", async () => {
    
-   render(<FriendList />);
+   //render(<FriendList />);
     
    //await waitFor(() => {
    //});
