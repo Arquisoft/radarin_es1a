@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLDflexValue, useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 
-export default function MapMarker({ webId, locationOfMarker, ui, map }) {
+export function MapMarker({ webId, locationOfMarker, ui, map }) {
     const nombre = useLDflexValue("[" + webId + "].name");
     const solidId = useWebId();
 

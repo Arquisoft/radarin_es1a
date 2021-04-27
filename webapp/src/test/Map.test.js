@@ -3,7 +3,7 @@ import {render, screen, fireEvent, cleanup, pwgetByText, waitFor}  from "@testin
 import 'globalthis/auto';
 import ReactDOM from 'react-dom';
 import Map from "../components/map/Map";
-import MapMarker from "../components/map/MapMarker";
+import { MapMarker } from "../components/map/MapMarker";
 import "@testing-library/jest-dom/extend-expect";
 
 test ("check that Map is rendering propertly", async () => {
