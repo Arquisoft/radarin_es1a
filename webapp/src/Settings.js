@@ -1,5 +1,9 @@
 import React from "react";
-import { Card, CardContent } from "@material-ui/core";
+
+import { Card, CardContent, Button, Input, InputLabel } from "@material-ui/core";
+
+
+
 class Settings extends React.Component {
 
     constructor(props) {
@@ -11,7 +15,13 @@ class Settings extends React.Component {
     }
 
     handleChange(event) {
-        this.radius = document.getElementById("radius").value;
+        if (document.getElementById("radius").value > 0) {
+            this.radius = document.getElementById("radius").value;
+            document.getElementById("button").disabled = false;
+        }
+        else {
+            document.getElementById("button").disabled = true;
+        }
     }
 
     handleSubmit(event) {
@@ -26,13 +36,22 @@ class Settings extends React.Component {
                 <CardContent>
                     <div className="settings">
                         <h2>Settings</h2>
-                        <form className="form-horizontal" onSubmit={this.handleSubmit} >
-                            <div>
-                                <label>Radius in km around the user to load on the map (has to be between 1 and 100) :</label>
-                                <input type="number" defaultValue={window.sessionStorage.getItem("radius")} placeholder="Default = 5" id="radius" name="radius" min="1" max="100" onChange={this.handleChange} />
-                            </div>
-                            <input href="/" type="submit" className="btn btn-primary" value="Apply" />
-                        </form>
+                        <Card>
+                            <form className="form-horizontal" onSubmit={this.handleSubmit} >
+                                <CardContent>
+                                    <div>
+                                        <InputLabel>
+                                            <label>Radius in km around the user to load on the map (has to be between 1 and 100) :</label>
+                                        </InputLabel>
+                                        <Input type="number" placeholder="Default = 5" id="radius" name="radius" min="1" max="100" onChange={this.handleChange}>
+                                        </Input>
+                                    </div>
+                                </CardContent>
+                                <Button>
+                                    <input href="/" id="button" type="submit" className="btn btn-primary" disabled={true} value="Apply" />
+                                </Button>
+                            </form>
+                        </Card>
                     </div>
                 </CardContent>
             </Card>
