@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import {Switch, Route ,Link } from "react-router-dom";
+import {Switch, Route ,Link , BrowserRouter} from "react-router-dom";
 import { LoginView } from "../../components/layouts/LoginView";
 import  Creators  from "../../views/welcome/Creators";
 import  Welcome  from "../../views/welcome/WelcomePage";
@@ -73,6 +73,7 @@ export default function WelcomeMenu() {
         <div className={classes.root}>
             <MuiThemeProvider theme={theme}>
             <AppBar position="relative" color="primary" className={classes.appBar}>
+                <BrowserRouter>
             
                 <Switch>
                     <Route path="/welcome" component={Welcome} />
@@ -101,6 +102,8 @@ export default function WelcomeMenu() {
                         </Link>
                     </Hidden>
                 </Toolbar>
+
+                </BrowserRouter>
             </AppBar>
             <Drawer
                 className={classes.drawer}
