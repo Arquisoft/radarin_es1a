@@ -2,7 +2,7 @@ import React from "react";
 import { slide as Menu } from 'react-burger-menu';
 import styled from "styled-components";
 import auth from "solid-auth-client";
-import { Route, Switch, Link, Router, BrowserRouter } from "react-router-dom";
+import { Route, Switch, Link,  BrowserRouter } from "react-router-dom";
 import { FriendsView } from "./FriendsView";
 import { SettingsView } from "./SettingsView";
 import { ProfileView } from "./ProfileView";
