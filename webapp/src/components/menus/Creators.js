@@ -123,7 +123,7 @@ export default function Album() {
                     Radarin
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Universidad de Oviedo - Arquitectura del Software
+                    University of Oviedo - Software Architecture
                 </Typography>
             </footer>
             {/* End footer */}

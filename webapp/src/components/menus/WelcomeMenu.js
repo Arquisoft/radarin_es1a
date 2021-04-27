@@ -3,22 +3,22 @@ import { MuiThemeProvider, makeStyles } from "@material-ui/core/styles";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import {Switch, Route ,Link , BrowserRouter} from "react-router-dom";
-import { LoginView } from "../../components/layouts/LoginView";
-import  Creators  from "../../views/welcome/Creators";
-import  Welcome  from "../../views/welcome/WelcomePage";
 import {
     Divider,
     Drawer,
-    Hidden
+    Hidden,
+    ListItem,
+    ListItemText
 } from "@material-ui/core";
 import theme from "./Theme";
 
 const drawerWidth = 280;
 
+function ListItemLink(props) {
+    return <ListItem button component="a" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,7 +53,7 @@ export default function WelcomeMenu() {
     const classes = useStyles();
 
     const [state, setState] = React.useState({
-            drawer: false
+        drawer: false
     });
 
     // eslint-disable-next-line
@@ -70,70 +70,52 @@ export default function WelcomeMenu() {
     };
 
     return (
+
         <div className={classes.root}>
             <MuiThemeProvider theme={theme}>
-            <AppBar position="relative" color="primary" className={classes.appBar}>
-                <BrowserRouter>
-            
-                <Switch>
-                    <Route path="/welcome" component={Welcome} />
-                    <Route path="/creators" component= {Creators} />
-                    <Route path="/login" component={LoginView} />
-                </Switch>
-            
-                <Toolbar>
-                    <Hidden mdUp>
-                        <IconButton color="secondary" edge="start" className={classes.menuButton} aria-label="menu" onClick={toggleDrawer(true)}>
-                            <MenuIcon />
-                        </IconButton>
-                    </Hidden>
-                    <Typography variant="h6" className={classes.title}>
-                        Radarin
-                    </Typography>
-                    <Hidden smDown>                        
-                        <Link  to="/welcome" >
-                            <Button color="inherit">Welcome</Button>
-                        </Link>
-                        <Link  to="/creators">
-                            <Button color="inherit">Creators</Button>
-                        </Link>
-                        <Link  to="/login">
-                            <Button color="inherit">Login</Button>
-                        </Link>
-                    </Hidden>
-                </Toolbar>
+                <AppBar position="relative" color="primary" className={classes.appBar}>
+                    <Toolbar>
+                        <Hidden mdUp>
+                            <IconButton color="secondary" edge="start" className={classes.menuButton} aria-label="menu" onClick={toggleDrawer(true)}>
+                                <MenuIcon />
+                            </IconButton>
+                        </Hidden>
+                        <Typography variant="h6" className={classes.title}>
+                            Radarin
+                        </Typography>
+                        <Hidden smDown>
+                            <Button color="inherit" href="/welcome">Welcome</Button>
+                            <Button color="inherit" href="/creators">Creators</Button>
+                            <Button color="inherit" href="/login">Login</Button>
+                        </Hidden>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    className={classes.drawer}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    open = {state.drawer}
+                    onClick = {toggleDrawer(false)}
 
-                </BrowserRouter>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                open = {state.drawer}
-                onClick = {toggleDrawer(false)}
-
-            >
-                <Toolbar />
-                <div className={classes.drawerContainer}>
-                <Link  to="/welcome" >
-                            <Button color="inherit">Welcome</Button>
-                        </Link>
+                >
+                    <Toolbar />
+                    <div className={classes.drawerContainer}>
+                        <ListItemLink href="/welcome">
+                            <ListItemText primary="Welcome" />
+                        </ListItemLink>
+                        <ListItemLink href="/creators">
+                            <ListItemText primary="Creators" />
+                        </ListItemLink>
                         <Divider />
-                        <Link  to="/creators">
-                            <Button color="inherit">Creators</Button>
-                        </Link>
-                        <Divider />
-                        <Link  to="/login">
-                            <Button color="inherit">Login</Button>
-                        </Link>
-                
-                </div>
-            </Drawer>
+                        <ListItemLink href="/login">
+                            <ListItemText primary="Login" />
+                        </ListItemLink>
+                    </div>
+                </Drawer>
             </MuiThemeProvider>
         </div>
 
+
     );
 }
-
-

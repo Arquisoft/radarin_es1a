@@ -121,7 +121,7 @@ class MenuBar extends React.Component {
               <Route path="/profile" exact render={() => <ProfileView/>} />
               <Route path="/friends" exact render={() => <FriendsView />} />
               <Route path="/settings" exact render={() => <SettingsView />} />
-              <Route path="/*" exact render={() => <Welcome/>} />
+              <Route path="/welcome" exact render={() => <Welcome/>} />
               </Switch>
                 <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
                     <li className= "nav-item">
@@ -141,9 +141,9 @@ class MenuBar extends React.Component {
                       <i className="fa fa-cogs"></i>
                       <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}> Settings</Link>
                     </li>
-                    <li className= "nav-item" onClick={() => {auth.logout().then(() => window.location.reload());;}}>
+                    <li class= "nav-item" onClick={() => {auth.logout().then(() => window.location.reload());;window.sessionStorage.clear();}}>
                       <i className="fas fa-sign-out-alt"></i>
-                      <Link className="link" to="/*" label="Login" value="welcome" onClick={()=>{this.handleLinkClick();}}> Logout</Link>
+                        <Link className="link" to="/welcome" label="Login" value="welcome" onClick={()=>{this.handleLinkClick();}}> Logout</Link>
                     </li>
                 </Menu>
                 </BrowserRouter>

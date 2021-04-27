@@ -69,7 +69,7 @@ export default function WelcomePage() {
                     <Box maxWidth="sm">
                         <img src="/img/welcome-page/principal-image.png" alt="principal"/>
                         <Button class="btn" variant="contained" color="primary" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
-                            <i className="fas fa-play-circle"></i>  Watch the trailer
+                            Watch the trailer <i className="fas fa-play-circle"></i>
                         </Button>
                     </Box>
                 </div>
@@ -128,7 +128,7 @@ export default function WelcomePage() {
                     Radarin
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Universidad de Oviedo - Arquitectura del Software
+                    University of Oviedo - Software Architecture
                 </Typography>
             </footer>
             {/* End footer */}

@@ -12,6 +12,9 @@ import "react-notifications-component/dist/theme.css";
 import cache from "./components/friends/UserCache";
 import { GetUserState } from "./components/user/StateManager";
 import Welcome from "./views/welcome/Welcome";
+import { LoginView } from "./components/layouts/LoginView";
+import WelcomePage from "./components/menus/Welcome";
+import CreatorsView from "./views/welcome/Creators";
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -91,6 +94,9 @@ function App() {
         <LoggedOut>
           <Router>
            <Route path="/*" component={Welcome} />
+            <Route path="/welcome" component={WelcomePage} />
+            <Route path="/creators" component={CreatorsView} />
+            <Route path="/login" component={LoginView} />
           </Router>
         </LoggedOut>
         <LoggedIn>
