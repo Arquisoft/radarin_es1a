@@ -11,6 +11,6 @@ test ("check that everything is rendering propertly", async () => {
   await waitFor(() => {
     const element = screen.getByText("Radarin");
     expect(element).toBeInTheDocument();
-});*/
+  });*/
   //expect(getByText("Home")).toBeInTheDocument();
 });
