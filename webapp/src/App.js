@@ -10,6 +10,7 @@ import ReactNotification from "react-notifications-component";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
 import cache from "./components/friends/UserCache";
+import { GetUserState } from "./components/user/StateManager";
 import Welcome from "./views/welcome/Welcome";
 
 const Styles = styled.div`
@@ -35,8 +36,12 @@ function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
-  if (window.sessionStorage.getItem("userState") === null)
-    window.sessionStorage.setItem("userState", "default");
+  
+  if (window.sessionStorage.getItem('userState') === null){
+    GetUserState().then(function(result) {
+      window.sessionStorage.setItem('userState', result);
+    });   
+  }
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña "radarinA1*"
   const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";

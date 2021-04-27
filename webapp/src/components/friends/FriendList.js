@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import cx from "clsx";
 import { makeStyles, Avatar, Divider, Button } from "@material-ui/core";
 import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
-import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
+import { GetFriendState } from "../user/StateManager";
+import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
+import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
+import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import { Route, Switch, Link } from "react-router-dom";
 import Map from "../map/Map";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
@@ -116,42 +120,89 @@ function PersonItem(props) {
 
   const { friend } = props;
 
-  var photo = friend.getPhoto();
-  var name = friend.getName();
-  var webid = friend.getWebId();
-  var nombre = webid.substring(
-    webid.lastIndexOf("//") + 1,
-    webid.lastIndexOf(".")
-  )
-  var n = nombre.substring(
-    nombre.lastIndexOf("/") + 1,
-    nombre.lastIndexOf(".")
-  )
-  n += "*";
+    var photo = friend.getPhoto();
+    var name = friend.getName();
+    var webid = friend.getWebId();
+    var nombre = webid.substring(
+        webid.lastIndexOf("//") + 1,
+        webid.lastIndexOf(".")
+    )
+    var n = nombre.substring(
+        nombre.lastIndexOf("/") + 1,
+        nombre.lastIndexOf(".")
+    )
+    n += "*";
+   
+    const state=GetFriendState(webid);
 
-  return (
-    <Row gap={2} p={2.5}>
-      <Switch>
-        <Route path={`/map/${n}`} exact render={() => <Map />} />
-      </Switch>
-      <Item>
-        <Avatar classes={avatarStyles} src={photo} />
-      </Item>
-      <Row wrap grow gap={0.5} minWidth={0}>
-        <Item grow minWidth={0}>
-          <div className={cx(styles.name, styles.text)}>{name}</div>
-          <div className={cx(styles.caption, styles.text)}>
-            Distancia en km?
-            </div>
+    return (
+        <Row gap={2} p={2.5}>
+            <Switch>
+                <Route path={`/map/${n}`} exact render={() => <Map />} />
+            </Switch>
+        <Item>
+          <Avatar classes={avatarStyles} src={photo} />
         </Item>
-        <Item position={"middle"}>
-          <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem("visitado", "false")}>
-            <Button className={styles.btn} variant={"outlined"}>
-              Go map <NotListedLocationIcon style={{ color: "#99DE9F" }} />
+        <Row wrap grow gap={0.5} minWidth={0}>
+          <Item grow minWidth={0}>
+            <div className={cx(styles.name, styles.text)}>{name}</div>
+            <CoolState state={state}/>
+          </Item>
+          <Item position={'middle'}>
+          <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem('visitado', 'false')}>
+            <Button className={styles.btn} variant={'outlined'}>
+              Go map <NotListedLocationIcon style={{ color: "#99DE9F" }}/>    
             </Button>
           </Link>
         </Item>
       </Row>
     </Row>
+  );
+}
+//Modifica el State para que se vea mas bonito
+function CoolState(props){
+ var beautyState="";
+ const stylesState = usePersonStyles();
+ const argtest=props.state;
+
+ if(argtest==="comer"){
+    beautyState="Meal";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+          <FastfoodRoundedIcon htmlColor="#dfc533"/>
+      </div>
+    );
+  }
+  if(argtest==="deporte"){
+    beautyState="Sport";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+          <DirectionsRunRoundedIcon htmlColor="#075bdc"/>
+      </div>
+    );
+  }
+  if(argtest==="default"){
+    beautyState="Unspecified";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+      </div>
+    );
+  }
+  if(argtest==="cita"){
+    beautyState="Date";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+          <FavoriteRoundedIcon htmlColor="#dd1007"/>
+      </div>
+    );
+  }
+  return(
+    <div className={cx(stylesState.caption, stylesState.text)}>
+          It has occured an error
+      </div>
   );
 }
