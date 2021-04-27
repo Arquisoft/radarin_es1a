@@ -157,7 +157,7 @@ function Map() {
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());
 
-            new Worker(setInterval(() => { addFriends(map, ui, position); }, 1000));
+            setInterval(() => { addFriends(map, ui, position); }, 1000);
 
         }, (error) => {
             console.error(error);

@@ -123,24 +123,24 @@ class MenuBar extends React.Component {
               <Route path="/*" exact render={() => <Welcome/>} />
               </Switch>
                 <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
-                    <li class= "nav-item">
-                      <i class="fa fa-fw fa-map-marker-alt"></i>
+                    <li className= "nav-item">
+                      <i className="fa fa-fw fa-map-marker-alt"></i>
                       <Link className="link" to="/" label="Home" value="home" onClick={()=>this.handleLinkClick()}> Home</Link>
                     </li>             
-                    <li class= "nav-item">
-                      <i class="fas fa-user"></i>
+                    <li className= "nav-item">
+                      <i className="fas fa-user"></i>
                       <Link className="link" to="/profile" label="Profile" value="profile" onClick={()=>this.handleLinkClick()}> Profile</Link>
                     </li>
-                    <li class= "nav-item">
-                      <i class="fas fa-users"></i>
+                    <li className= "nav-item">
+                      <i className="fas fa-users"></i>
                       <Link className="link" to="/friends" label="Friends" value="friends" onClick={()=>this.handleLinkClick()}> Friends</Link>
                     </li>
-                    <li class= "nav-item">
-                      <i class="fa fa-cogs"></i>
+                    <li className= "nav-item">
+                      <i className="fa fa-cogs"></i>
                       <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}> Settings</Link>
                     </li>
-                    <li class= "nav-item" onClick={() => {auth.logout().then(() => window.location.reload());;}}>
-                      <i class="fas fa-sign-out-alt"></i>
+                    <li className= "nav-item" onClick={() => {auth.logout().then(() => window.location.reload());;}}>
+                      <i className="fas fa-sign-out-alt"></i>
                       <Link className="link" to="/*" label="Login" value="welcome" onClick={()=>{this.handleLinkClick();}}> Logout</Link>
                     </li>
                 </Menu>

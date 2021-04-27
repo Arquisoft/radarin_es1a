@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import cx from 'clsx';
+import cx from "clsx";
 import { Card, Avatar, CardContent, Link, FormControl,
      FormControlLabel, Radio, RadioGroup, Divider,withStyles } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import { GetUserWebId, GetUserProfileImage } from "./SolidManager";
-import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
-import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import DragIndicatorRoundedIcon from '@material-ui/icons/DragIndicatorRounded';
-import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
+import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded";
+import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
+import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
+import DragIndicatorRoundedIcon from "@material-ui/icons/DragIndicatorRounded";
+import { useFadedShadowStyles } from "@mui-treasury/styles/shadow/faded";
 
 import { Value } from "@solid/react";
 
 const RadioFood = withStyles({
     root: {
-      '&$checked': {
+      "&$checked": {
         color: "#dfc533",
       },
     },
@@ -26,17 +26,17 @@ const useStyles = makeStyles((palette) => ({
     card: {
         borderRadius: 12,
         minWidth: 256,
-        textAlign: 'center',
+        textAlign: "center",
       },
       avatar: {
         width: 80,
         height: 80,
-        margin: 'auto',
+        margin: "auto",
       },
       heading: {
         fontSize: 18,
-        fontWeight: 'bold',
-        letterSpacing: '0.5px',
+        fontWeight: "bold",
+        letterSpacing: "0.5px",
         marginTop: 8,
         marginBottom: 0,
       }

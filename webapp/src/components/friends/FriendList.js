@@ -1,157 +1,157 @@
 import React, { useEffect, useState } from "react";
-import cx from 'clsx';
-import { makeStyles, Avatar, Divider, Button  } from "@material-ui/core";
+import cx from "clsx";
+import { makeStyles, Avatar, Divider, Button } from "@material-ui/core";
 import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
-import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
+import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
 import { Route, Switch, Link } from "react-router-dom";
-import  Map  from "../map/Map";
-import { Column, Row, Item } from '@mui-treasury/components/flex';
-import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
+import Map from "../map/Map";
+import { Column, Row, Item } from "@mui-treasury/components/flex";
+import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";
 
 export default function ProfileFriends() {
-    return (
-        <div>
-            <FriendCardList />
-        </div>
-    );
+  return (
+    <div>
+      <FriendCardList />
+    </div>
+  );
 }
 const usePersonStyles = makeStyles(() => ({
-    text: {
-      fontFamily: 'Barlow, san-serif',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-    },
-    name: {
-      fontWeight: 600,
-      fontSize: '1rem',
-      color: '#122740',
-    },
-    caption: {
-      fontSize: '0.875rem',
-      color: '#758392',
-      marginTop: -4,
-    },
-    btn: {
-      borderRadius: 20,
-      padding: '0.125rem 0.75rem',
-      borderColor: '#becddc',
-      fontSize: '0.75rem',
-    },
-  }));
-  const useStyles = makeStyles(() => ({
-    card: {
-      width: '100%',
-      borderRadius: 16,
-      boxShadow: '0 8px 16px 0 #BDC9D7',
-      overflow: 'hidden',
-    },
-    header: {
-      fontFamily: 'Barlow, san-serif',
-      backgroundColor: '#fff',
-    },
-    headline: {
-      color: '#122740',
-      fontSize: '1.25rem',
-      fontWeight: 600,
-    },
-    link: {
-      color: '#2281bb',
-      padding: '0 0.25rem',
-      fontSize: '0.875rem',
-    },
-    actions: {
-      color: '#BDC9D7'
-    },
-    divider: {
-      backgroundColor: '#d9e2ee',
-      margin: '0 20px',
-    }
-  }));
+  text: {
+    fontFamily: "Barlow, san-serif",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+  },
+  name: {
+    fontWeight: 600,
+    fontSize: "1rem",
+    color: "#122740",
+  },
+  caption: {
+    fontSize: "0.875rem",
+    color: "#758392",
+    marginTop: -4,
+  },
+  btn: {
+    borderRadius: 20,
+    padding: "0.125rem 0.75rem",
+    borderColor: "#becddc",
+    fontSize: "0.75rem",
+  },
+}));
+const useStyles = makeStyles(() => ({
+  card: {
+    width: "100%",
+    borderRadius: 16,
+    boxShadow: "0 8px 16px 0 #BDC9D7",
+    overflow: "hidden",
+  },
+  header: {
+    fontFamily: "Barlow, san-serif",
+    backgroundColor: "#fff",
+  },
+  headline: {
+    color: "#122740",
+    fontSize: "1.25rem",
+    fontWeight: 600,
+  },
+  link: {
+    color: "#2281bb",
+    padding: "0 0.25rem",
+    fontSize: "0.875rem",
+  },
+  actions: {
+    color: "#BDC9D7"
+  },
+  divider: {
+    backgroundColor: "#d9e2ee",
+    margin: "0 20px",
+  }
+}));
 
 function FriendCardList() {
-    const [webId, setWebId] = useState("");
-    const friendsList = useGetUserFriends();
-    
-    useEffect(() => {
-        setWebId(GetUserWebId());
-    }, []);
+  const [webId, setWebId] = useState("");
+  const friendsList = useGetUserFriends();
 
-    console.log(webId);
-    const classes = useStyles();
-    if (!friendsList.length) {
-        return (
-            <div className={classes.header}>
-                <h4>You don't have friends in your Solid Pod</h4>
-                <h4>You can add new friends in your <Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></h4>
-            </div>
-        );
-    }
+  useEffect(() => {
+    setWebId(GetUserWebId());
+  }, []);
 
+  console.log(webId);
+  const classes = useStyles();
+  if (!friendsList.length) {
     return (
-        <>
-        <Column p={0} gap={0} className={classes.card}>
-        <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
+      <div className={classes.header}>
+        <h4>You don"t have friends in your Solid Pod</h4>
+        <h4>You can add new friends in your <Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></h4>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <Column p={0} gap={0} className={classes.card}>
+        <Row wrap p={2} alignItems={"baseline"} className={classes.header}>
           <Item stretched className={classes.headline}>Friends</Item>
           <Item className={classes.actions}>
-            <Link className={classes.link} target="_blank" href={webId}>Add new friends</Link> 
+            <Link className={classes.link} target="_blank" href={webId}>Add new friends</Link>
           </Item>
         </Row>
         {friendsList.map((each, index) => {
-                    return (
-                        <>
-                            <PersonItem friend={each} />
-                            <Divider variant={'middle'} className={classes.divider} />
-                        </>
-                    )
-                })}
+          return (
+            <>
+              <PersonItem friend={each} />
+              <Divider variant={"middle"} className={classes.divider} />
+            </>
+          )
+        })}
       </Column>
-        </>
-    );
+    </>
+  );
 }
 
 function PersonItem(props) {
-    const avatarStyles = useDynamicAvatarStyles({ size: 56 });
-    const styles = usePersonStyles();
+  const avatarStyles = useDynamicAvatarStyles({ size: 56 });
+  const styles = usePersonStyles();
 
-    const { friend } = props;
+  const { friend } = props;
 
-    var photo = friend.getPhoto();
-    var name = friend.getName();
-    var webid = friend.getWebId();
-    var nombre = webid.substring(
-        webid.lastIndexOf("//") + 1,
-        webid.lastIndexOf(".")
-    )
-    var n = nombre.substring(
-        nombre.lastIndexOf("/") + 1,
-        nombre.lastIndexOf(".")
-    )
-    n += "*";
+  var photo = friend.getPhoto();
+  var name = friend.getName();
+  var webid = friend.getWebId();
+  var nombre = webid.substring(
+    webid.lastIndexOf("//") + 1,
+    webid.lastIndexOf(".")
+  )
+  var n = nombre.substring(
+    nombre.lastIndexOf("/") + 1,
+    nombre.lastIndexOf(".")
+  )
+  n += "*";
 
-    return (
-        <Row gap={2} p={2.5}>
-            <Switch>
-                <Route path={`/map/${n}`} exact render={() => <Map />} />
-            </Switch>
-        <Item>
-          <Avatar classes={avatarStyles} src={photo} />
-        </Item>
-        <Row wrap grow gap={0.5} minWidth={0}>
-          <Item grow minWidth={0}>
-            <div className={cx(styles.name, styles.text)}>{name}</div>
-            <div className={cx(styles.caption, styles.text)}>
-              Distancia en km?
+  return (
+    <Row gap={2} p={2.5}>
+      <Switch>
+        <Route path={`/map/${n}`} exact render={() => <Map />} />
+      </Switch>
+      <Item>
+        <Avatar classes={avatarStyles} src={photo} />
+      </Item>
+      <Row wrap grow gap={0.5} minWidth={0}>
+        <Item grow minWidth={0}>
+          <div className={cx(styles.name, styles.text)}>{name}</div>
+          <div className={cx(styles.caption, styles.text)}>
+            Distancia en km?
             </div>
-          </Item>
-          <Item position={'middle'}>
-          <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem('visitado', 'false')}>
-            <Button className={styles.btn} variant={'outlined'}>
-              Go map <NotListedLocationIcon style={{ color: "#99DE9F" }}/>    
+        </Item>
+        <Item position={"middle"}>
+          <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem("visitado", "false")}>
+            <Button className={styles.btn} variant={"outlined"}>
+              Go map <NotListedLocationIcon style={{ color: "#99DE9F" }} />
             </Button>
-            </Link>
-          </Item>
-        </Row>
+          </Link>
+        </Item>
       </Row>
-    );
+    </Row>
+  );
 }

@@ -1,4 +1,3 @@
-
 // Default distanceRadius  5 km
 export const radius = () => {
     if (window.sessionStorage.getItem("radius") != null) {
@@ -58,9 +57,11 @@ export function notifyNearFriends(nearFriends, newNearFriends){
     nearFriends = new Set(newNearFriends.map((friend)=>friend.solidId));
 
     if(show){
+        /*
         new Notification("Radarin", {
             body: "There are friends near you"
         });
+        */
     }
 
     return nearFriends;

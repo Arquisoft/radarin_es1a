@@ -33,12 +33,12 @@ const Styles = styled.div`
 
 function App() {
   const solidId = useWebId();
-  window.sessionStorage.setItem('id', solidId);
+  window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
-  if (window.sessionStorage.getItem('userState') === null)
-    window.sessionStorage.setItem('userState', 'default');
+  if (window.sessionStorage.getItem("userState") === null)
+    window.sessionStorage.setItem("userState", "default");
 
-  // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña 'radarinA1*'
+  // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña "radarinA1*"
   const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
 
   function enviarUbicacionAServidor() {
@@ -72,12 +72,6 @@ function App() {
 
     Notification.requestPermission();
 
-    // then(()=>{
-    //   if(Notification.permission === 'granted'){
-    //     installServiceWorker();
-    //   }
-    // });
-
     if (solidId !== adminId && isMounted) {
       setInterval(enviarUbicacionAServidor, 30000);
     }
@@ -85,35 +79,6 @@ function App() {
     return () => { isMounted = false; }; // use effect cleanup to set flag false, if unmounted
   });
 
-
-  /*// Metodos para usar Mongo para la busqueda de admins, NO FUNCIONAN.
-    // Metodo para añadir admins, lo dejo aqui de momento, añadiria el usuario logeado a la lista de admins.
-    var addAdmin = async function () {
-   
-      const datos = {
-        "solidId": solidId
-      };
-   
-      var respuesta = await fetch("http://localhost:5000/api/admin/add", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(datos)
-      });
-   
-    }
-   
-    // Get admins, si estas en la tabla de admins te redirecciona a la vista de admin.
-    var getRespuesta = async function () {
-      var respuesta = await fetch("http://localhost:5000/api/admin/list");
-      var response = await respuesta.json();
-      console.log(response);
-      return (response);
-    }
-  */
-
-  // Actualmente coge el admin de una variable, seria interesante cogerlo del servidor, pero no consegui hacerlo.
   if (solidId !== adminId) {
     return (
       <React.Fragment>

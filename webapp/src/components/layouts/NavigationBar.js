@@ -32,7 +32,7 @@ export const NavigationBar = () => (
   
   <Styles>
     <Navbar expand="lg">
-      <Form class= "d-none d-m-up" className="form-center">
+      <Form className= "d-none d-m-up form-center">
         {/* <FormControl type="text" placeholder="Search" className="" /> */}
       </Form>
       <Navbar id="basic-navbar-nav">
