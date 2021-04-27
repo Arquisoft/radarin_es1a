@@ -6,6 +6,7 @@ export default {
     name: "",
     webId: null,
     friends: [],
+
     getName() {
         console.log("The name is: " + this.getName);
         return this.name;

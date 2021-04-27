@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import cx from 'clsx';
 import { makeStyles, Avatar, Divider, Button  } from "@material-ui/core";
 import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
+import { GetFriendState } from "../user/StateManager";
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
+import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
+import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import { Route, Switch, Link } from "react-router-dom";
 import  Map  from "../map/Map";
 import { Column, Row, Item } from '@mui-treasury/components/flex';
@@ -77,7 +81,6 @@ function FriendCardList() {
         setWebId(GetUserWebId());
     }, []);
 
-    console.log(webId);
     const classes = useStyles();
     if (!friendsList.length) {
         return (
@@ -128,6 +131,8 @@ function PersonItem(props) {
         nombre.lastIndexOf(".")
     )
     n += "*";
+   
+    const state=GetFriendState(webid);
 
     return (
         <Row gap={2} p={2.5}>
@@ -140,9 +145,7 @@ function PersonItem(props) {
         <Row wrap grow gap={0.5} minWidth={0}>
           <Item grow minWidth={0}>
             <div className={cx(styles.name, styles.text)}>{name}</div>
-            <div className={cx(styles.caption, styles.text)}>
-              Distancia en km?
-            </div>
+            <CoolState state={state}/>
           </Item>
           <Item position={'middle'}>
           <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem('visitado', 'false')}>
@@ -154,4 +157,51 @@ function PersonItem(props) {
         </Row>
       </Row>
     );
+}
+//Modifica el State para que se vea mas bonito
+function CoolState(props){
+ var beautyState="";
+ const stylesState = usePersonStyles();
+ const argtest=props.state;
+
+ if(argtest==="comer"){
+    beautyState="Meal";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+          <FastfoodRoundedIcon htmlColor="#dfc533"/>
+      </div>
+    );
+  }
+  if(argtest==="deporte"){
+    beautyState="Sport";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+          <DirectionsRunRoundedIcon htmlColor="#075bdc"/>
+      </div>
+    );
+  }
+  if(argtest==="default"){
+    beautyState="Unspecified";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+      </div>
+    );
+  }
+  if(argtest==="cita"){
+    beautyState="Date";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          {beautyState}
+          <FavoriteRoundedIcon htmlColor="#dd1007"/>
+      </div>
+    );
+  }
+  return(
+    <div className={cx(stylesState.caption, stylesState.text)}>
+          It has occured an error
+      </div>
+  );
 }

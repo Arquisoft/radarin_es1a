@@ -22,6 +22,16 @@ const RadioFood = withStyles({
   })(props => <Radio color="default" icon={<FastfoodRoundedIcon/>} 
   checkedIcon={<FastfoodRoundedIcon/>} {...props} />);
 
+  const RadioDefault = withStyles({
+    root: {
+      '&$checked': {
+        color: "#000000",
+      },
+    },
+    checked: {},
+  })(props => <Radio color="default" icon={<DragIndicatorRoundedIcon/>} 
+  checkedIcon={<DragIndicatorRoundedIcon/>} {...props} />);
+
 const useStyles = makeStyles((palette) => ({
     card: {
         borderRadius: 12,
@@ -52,6 +62,9 @@ function checkDate(){
 
 function checkEat(){
     return sessionStorage.getItem("userState")==="comer";
+}
+function checkDefault(){
+    return sessionStorage.getItem("userState")==="default";
 }
 
 export default function UserProfile() {
@@ -125,8 +138,7 @@ export default function UserProfile() {
                         <FormControlLabel value="comer" control={ <RadioFood checked={checkEat()}/> } label="Meal"  />
                         <FormControlLabel value="cita" control={<Radio checked={checkDate()} icon={<FavoriteRoundedIcon/>} 
                         checkedIcon={<FavoriteRoundedIcon/>} />} label="Date"  />
-                        <FormControlLabel value="default" control={<Radio color="default" icon={<DragIndicatorRoundedIcon/>} 
-                        checkedIcon={<DragIndicatorRoundedIcon/>} />} label="Unspecified"  />
+                        <FormControlLabel value="default" control={<RadioDefault checked={checkDefault()} />} label="Unspecified"  />
                     </RadioGroup>
                     </FormControl>
                     </CardContent>
