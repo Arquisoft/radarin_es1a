@@ -2,7 +2,7 @@ import React from "react";
 import { slide as Menu } from 'react-burger-menu';
 import styled from "styled-components";
 import auth from "solid-auth-client";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, Router, BrowserRouter } from "react-router-dom";
 import { FriendsView } from "./FriendsView";
 import { SettingsView } from "./SettingsView";
 import { ProfileView } from "./ProfileView";
@@ -116,6 +116,7 @@ class MenuBar extends React.Component {
     // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
         return (
             <Styles>
+              <BrowserRouter >
               <Switch>
               <Route path="/profile" exact render={() => <ProfileView/>} />
               <Route path="/friends" exact render={() => <FriendsView />} />
@@ -125,6 +126,7 @@ class MenuBar extends React.Component {
                 <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
                     <li className= "nav-item">
                       <i className="fa fa-fw fa-map-marker-alt"></i>
+
                       <Link className="link" to="/" label="Home" value="home" onClick={()=>this.handleLinkClick()}> Home</Link>
                     </li>             
                     <li className= "nav-item">
@@ -144,6 +146,7 @@ class MenuBar extends React.Component {
                       <Link className="link" to="/*" label="Login" value="welcome" onClick={()=>{this.handleLinkClick();}}> Logout</Link>
                     </li>
                 </Menu>
+                </BrowserRouter>
             </Styles>
         );
     }

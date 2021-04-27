@@ -4,13 +4,13 @@ import 'globalthis/auto';
 import ReactDOM from 'react-dom';
 import Login from "../components/login/Login.js";
 import "@testing-library/jest-dom/extend-expect";
-import App from "../App";
 
-test ("check that everything is rendering propertly", async () => {
-  /*render(<App/>);
-  await waitFor(() => {
-    const element = screen.getByText("Radarin");
-    expect(element).toBeInTheDocument();
-});*/
-  //expect(getByText("Home")).toBeInTheDocument();
+test("login render properly", async () => {
+   render(<Login />);
+    
+   await waitFor(() => {
+      const element = screen.getByText("Radarin");
+      expect(element).toBeInTheDocument();
+  });
+
 });
