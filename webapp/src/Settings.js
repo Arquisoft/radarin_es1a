@@ -15,7 +15,8 @@ class Settings extends React.Component {
     }
 
     handleChange(event) {
-        if (document.getElementById("radius").value > 0) {
+        
+        if (document.getElementById("radius").value > 0 && document.getElementById("radius").value <= 100) {
             this.radius = document.getElementById("radius").value;
             document.getElementById("button").disabled = false;
         }
