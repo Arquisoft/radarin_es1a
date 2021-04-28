@@ -7,7 +7,7 @@ import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
 import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import { Route, Switch, Link, BrowserRouter } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import Map from "../map/Map";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
 import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";
@@ -87,8 +87,7 @@ function FriendCardList() {
     return (
       <div className={classes.header}>
         <h4>You don"t have friends in your Solid Pod</h4>
-        <h4>You can add new friends in your  <BrowserRouter><Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link>
-        </BrowserRouter> </h4>
+        <h4>You can add new friends in your pod <Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></h4>
       </div>
     );
   }
