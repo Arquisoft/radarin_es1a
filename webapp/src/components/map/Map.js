@@ -30,7 +30,7 @@ function Map() {
     async function getRespuesta(map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
-        var friends = window.sessionStorage.getItem("friends");
+        var friends = window.sessionStorage.getItem("friends") ?? [];
         var id = window.sessionStorage.getItem("id");
 
         const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);

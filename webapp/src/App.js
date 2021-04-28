@@ -94,6 +94,7 @@ function App() {
         <LoggedOut>
           <Router>
            <Route path="/*" component={Welcome} />
+            <Route path="/" component={WelcomePage} exact={true} />
             <Route path="/welcome" component={WelcomePage} />
             <Route path="/creators" component={CreatorsView} />
             <Route path="/login" component={LoginView} />
@@ -103,6 +104,7 @@ function App() {
           <Router>
             <HomeView />
             <Switch>
+              <Route path="/welcome" component={WelcomePage} />
               <Route exact path="/" render={() => <Home />} />
               <Route path="/map/:id" render={() => <Home />} />
             </Switch>
@@ -116,7 +118,11 @@ function App() {
       <React.Fragment>
         <LoggedOut>
           <Router>
-            <Welcome />
+            <Route path="/*" component={Welcome} />
+            <Route path="/" component={WelcomePage} exact={true} />
+            <Route path="/welcome" component={WelcomePage} />
+            <Route path="/creators" component={CreatorsView} />
+            <Route path="/login" component={LoginView} />
           </Router>
         </LoggedOut>
         <LoggedIn>

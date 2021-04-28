@@ -24,8 +24,16 @@ img {
   border-radius: 5px;
 }
 
-.box .btn:hover {
+.btn:hover {
   background-color: #425c5a;
+}
+
+.sidebar {
+  color:#303030;
+}
+
+a {
+  color:white !important;
 }
 
 @media (max-width: 200px) {

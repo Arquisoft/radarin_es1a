@@ -13,11 +13,12 @@ import {
     ListItemText
 } from "@material-ui/core";
 import theme from "./Theme";
+import { Link as RouterLink } from "react-router-dom";
 
 const drawerWidth = 280;
 
 function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
+    return <ListItem button component={RouterLink} {...props} />;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -41,12 +42,12 @@ const useStyles = makeStyles((theme) => ({
         width: drawerWidth,
     },
     drawerContainer: {
-        overflow: 'auto',
+        overflow: "auto",
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
-    }
+    },
 }));
 
 export default function WelcomeMenu() {
@@ -84,9 +85,9 @@ export default function WelcomeMenu() {
                             Radarin
                         </Typography>
                         <Hidden smDown>
-                            <Button color="inherit" href="/welcome">Welcome</Button>
-                            <Button color="inherit" href="/creators">Creators</Button>
-                            <Button color="inherit" href="/login">Login</Button>
+                            <Button color="inherit" component={RouterLink} to="/welcome">Welcome</Button>
+                            <Button color="inherit" component={RouterLink} to="/creators">Creators</Button>
+                            <Button color="inherit" component={RouterLink} to="/login">Login</Button>
                         </Hidden>
                     </Toolbar>
                 </AppBar>
@@ -101,15 +102,15 @@ export default function WelcomeMenu() {
                 >
                     <Toolbar />
                     <div className={classes.drawerContainer}>
-                        <ListItemLink href="/welcome">
-                            <ListItemText primary="Welcome" />
+                        <ListItemLink to="/welcome">
+                            <ListItemText class={"sidebar"} primary="Welcome" />
                         </ListItemLink>
-                        <ListItemLink href="/creators">
-                            <ListItemText primary="Creators" />
+                        <ListItemLink to="/creators">
+                            <ListItemText class={"sidebar"} primary="Creators" />
                         </ListItemLink>
                         <Divider />
-                        <ListItemLink href="/login">
-                            <ListItemText primary="Login" />
+                        <ListItemLink to="/login">
+                            <ListItemText class={"sidebar"} primary="Login" />
                         </ListItemLink>
                     </div>
                 </Drawer>

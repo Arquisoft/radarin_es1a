@@ -40,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
     },
+    button: {
+        '&:hover': {
+            backgroundColor: "#425c5a"
+        }
+    }
 }));
 
 export default function Album() {
@@ -75,12 +80,12 @@ export default function Album() {
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
-                                    <Button variant="contained" color="primary" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
+                                    <Button className={classes.button} variant="contained" color="primary" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
                                         Group Github
                                     </Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button variant="outlined" color="primary" target="_blank" rel="noopener" href={"https://arquisoft.github.io/"}>
+                                    <Button className={classes.button} variant="contained" color="primary" target="_blank" rel="noopener" href={"https://arquisoft.github.io/"}>
                                         Subject Github
                                     </Button>
                                 </Grid>
