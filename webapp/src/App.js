@@ -1,6 +1,6 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { HomeView } from "./components/layouts/HomeView";
 import { Home } from "./Home";
 import { AdminView } from "./components/layouts/AdminView";
@@ -15,6 +15,9 @@ import Welcome from "./views/welcome/Welcome";
 import { LoginView } from "./components/layouts/LoginView";
 import WelcomePage from "./components/menus/Welcome";
 import CreatorsView from "./views/welcome/Creators";
+import { FriendsView } from "./components/layouts/FriendsView";
+import { SettingsView } from "./components/layouts/SettingsView";
+import { ProfileView } from "./components/layouts/ProfileView";
 
 const Styles = styled.div`
   .navbar { background-color: #303030; }
@@ -99,6 +102,7 @@ function App() {
             <Route path="/creators" component={CreatorsView} />
             <Route path="/login" component={LoginView} />
           </Router>
+          
         </LoggedOut>
         <LoggedIn>
           <Router>
@@ -107,6 +111,9 @@ function App() {
               <Route path="/welcome" component={WelcomePage} />
               <Route exact path="/" render={() => <Home />} />
               <Route path="/map/:id" render={() => <Home />} />
+              <Route path="/profile" exact render={() => <ProfileView/>} />
+              <Route path="/friends" exact render={() => <FriendsView />} />
+              <Route path="/settings" exact render={() => <SettingsView />} />
             </Switch>
           </Router>
         </LoggedIn>
