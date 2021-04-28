@@ -115,7 +115,6 @@ class MenuBar extends React.Component {
     // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
         return (
             <Styles>
-              <BrowserRouter >
               <Switch>
               <Route path="/profile" exact render={() => <ProfileView/>} />
               <Route path="/friends" exact render={() => <FriendsView />} />
@@ -149,7 +148,6 @@ class MenuBar extends React.Component {
                         }}> Logout</Link>
                     </li>
                 </Menu>
-                </BrowserRouter>
             </Styles>
         );
     }
