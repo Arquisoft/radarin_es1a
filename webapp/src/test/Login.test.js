@@ -7,7 +7,6 @@ import "@testing-library/jest-dom/extend-expect";
 
 test("login render properly", async () => {
    render(<Login />);
-    
    await waitFor(() => {
       const element = screen.getByText("Radarin");
       expect(element).toBeInTheDocument();

@@ -7,11 +7,12 @@ import { MapMarker } from "../components/map/MapMarker";
 import "@testing-library/jest-dom/extend-expect";
 
 test ("check that Map is rendering propertly", async () => {
-    //render(<  Map />)
+
+    let webID = "Https://tasorodri.solidcommunity.net";
+    //render(<  Map window={window}  />)
 });
 
 test ("check that MapMarker is rendering propertly", async () => {
-    let webID = "Https://tasorodri.solidcommunity.net/profile/card#me";
     render(<  MapMarker />);
     await waitFor(() => {
         //const element = screen.getByText("Radarin");
