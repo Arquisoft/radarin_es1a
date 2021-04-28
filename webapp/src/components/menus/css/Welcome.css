@@ -11,7 +11,7 @@ img {
 
 .box .btn {
   position: absolute;
-  bottom: 0.5%;
+  bottom: 0.2%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -30,16 +30,6 @@ img {
 
 .sidebar {
   color:#303030;
-}
-
-a {
-  color:white !important;
-}
-
-@media (max-width: 200px) {
-  .box .btn {
-
-  }
 }
 
 

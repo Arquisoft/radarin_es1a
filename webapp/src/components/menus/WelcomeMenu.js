@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
+    button: {
+        '&:hover': {
+            color: "#99DE9F"
+        }
+    }
 }));
 
 export default function WelcomeMenu() {
@@ -85,9 +90,9 @@ export default function WelcomeMenu() {
                             Radarin
                         </Typography>
                         <Hidden smDown>
-                            <Button color="inherit" component={RouterLink} to="/welcome">Welcome</Button>
-                            <Button color="inherit" component={RouterLink} to="/creators">Creators</Button>
-                            <Button color="inherit" component={RouterLink} to="/login">Login</Button>
+                            <Button className={classes.button} color="inherit" component={RouterLink} to="/welcome">Welcome</Button>
+                            <Button className={classes.button} color="inherit" component={RouterLink} to="/creators">Creators</Button>
+                            <Button className={classes.button} color="inherit" component={RouterLink} to="/login">Login</Button>
                         </Hidden>
                     </Toolbar>
                 </AppBar>

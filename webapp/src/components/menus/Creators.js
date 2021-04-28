@@ -42,7 +42,13 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         '&:hover': {
-            backgroundColor: "#425c5a"
+            backgroundColor: "#425c5a",
+            color: "white"
+        }
+    },
+    externallink: {
+        '&:hover': {
+            color: "#425C5A"
         }
     }
 }));
@@ -112,7 +118,7 @@ export default function Album() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary" target="_blank" rel="noopener" href={student.github}>
+                                        <Button className={classes.externallink} size="small" color="primary" target="_blank" rel="noopener" href={student.github}>
                                             Github account
                                         </Button>
                                     </CardActions>
