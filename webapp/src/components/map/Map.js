@@ -4,7 +4,6 @@ import "here-js-api/styles/mapsjs-ui.css";
 import { MapMarker } from "./MapMarker";
 import cache from "../friends/UserCache";
 import * as LocationFunctions from "./LocationFunctions"
-
 function Map() {
 
     const mapRef = useRef(null);
@@ -24,8 +23,6 @@ function Map() {
 
     window.sessionStorage.setItem("friends", JSON.stringify(friendsList));
 
-    //radius
-
     let nearFriends = new Set();
 
     async function getRespuesta(map, ui, userPosition) {
@@ -37,8 +34,6 @@ function Map() {
         const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
 
         map.removeObjects(map.getObjects());
-
-        //aqui
 
         var nuevasMarcas = [];
 
@@ -66,32 +61,8 @@ function Map() {
 
         nearFriends = LocationFunctions.notifyNearFriends(id, nearFriends, newNearFriends);
 
-        //Pinta el radio filtrado sobre el mapa
-        paintRadius(map, userPosition);
-
         setMarcas(nuevasMarcas);
     };
-
-    // Paint the filter radius around user
-    var paintRadius = function (map, userPosition) {
-        const H = window.H;
-        //Paint radius on map
-        map.addObject(new H.map.Circle(
-            // The central point of the circle
-            { lat: userPosition.coords.latitude, lng: userPosition.coords.longitude },
-            // The radius of the circle in meters
-            LocationFunctions.radius() * 1000,
-            {
-                style: {
-                    strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
-                    lineWidth: 2,
-                    fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
-                }
-            }
-        ));
-    }
-
-    //toRadian
 
     useLayoutEffect(() => {
 
@@ -131,7 +102,6 @@ function Map() {
 
         navigator.geolocation.getCurrentPosition((position) => {
 
-
             setUserPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
             const H = window.H;
 
@@ -144,9 +114,9 @@ function Map() {
                 LocationFunctions.radius() * 1000,
                 {
                     style: {
-                        strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
+                        strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
                         lineWidth: 2,
-                        fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
+                        fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
                     }
                 }
             );
@@ -173,6 +143,7 @@ function Map() {
         // Set a height on the map so it will display
 
         <Fragment>
+
             <div ref={mapRef} id="map" />
             {
                 marcas.map((marca, i) => <MapMarker
@@ -188,7 +159,8 @@ function Map() {
                 locationOfMarker={userPosition}
                 ui={ui}
                 map={map} />
-        </Fragment>
+
+        </Fragment >
     );
 }
 
