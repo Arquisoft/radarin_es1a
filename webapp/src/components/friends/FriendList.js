@@ -7,8 +7,7 @@ import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
 import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import { Route, Switch, Link } from "react-router-dom";
-import Map from "../map/Map";
+import {  Link } from "react-router-dom";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
 import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";
 
@@ -137,9 +136,6 @@ function PersonItem(props) {
 
     return (
         <Row gap={2} p={2.5}>
-            <Switch>
-                <Route path={`/map/${n}`} exact render={() => <Map />} />
-            </Switch>
         <Item>
           <Avatar classes={avatarStyles} src={photo} />
         </Item>
