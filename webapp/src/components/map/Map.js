@@ -4,6 +4,7 @@ import "here-js-api/styles/mapsjs-ui.css";
 import { MapMarker } from "./MapMarker";
 import cache from "../friends/UserCache";
 import * as LocationFunctions from "./LocationFunctions"
+
 function Map() {
 
     const mapRef = useRef(null);
@@ -63,7 +64,7 @@ function Map() {
             });
         }
 
-        nearFriends = LocationFunctions.notifyNearFriends(nearFriends, newNearFriends);
+        nearFriends = LocationFunctions.notifyNearFriends(id, nearFriends, newNearFriends);
 
         //Pinta el radio filtrado sobre el mapa
         paintRadius(map, userPosition);
@@ -157,7 +158,7 @@ function Map() {
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());
 
-            setInterval(() => { addFriends(map, ui, position); }, 1000);
+            setInterval(() => { addFriends(map, ui, position); }, 3000);
 
         }, (error) => {
             console.error(error);

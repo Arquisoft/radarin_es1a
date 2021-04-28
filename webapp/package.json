@@ -24,6 +24,7 @@
     "react-bootstrap": "^1.4.3",
     "react-burger-menu": "^3.0.6",
     "react-dom": "^17.0.1",
+    "react-notifications": "^1.7.2",
     "react-notifications-component": "^3.0.3",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.0.1",

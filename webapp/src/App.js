@@ -6,12 +6,13 @@ import { Home } from "./Home";
 import { AdminView } from "./components/layouts/AdminView";
 import React, { useEffect } from "react";
 import { LoggedIn, LoggedOut, useWebId } from "@solid/react";
-import ReactNotification from "react-notifications-component";
 import styled from "styled-components";
 import "react-notifications-component/dist/theme.css";
 import cache from "./components/friends/UserCache";
 import { GetUserState } from "./components/user/StateManager";
 import Welcome from "./views/welcome/Welcome";
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import { LoginView } from "./components/layouts/LoginView";
 import WelcomePage from "./components/menus/Welcome";
 import CreatorsView from "./views/welcome/Creators";
@@ -81,7 +82,6 @@ function App() {
   useEffect(() => {
     let isMounted = true; // note this flag denote mount status
 
-    Notification.requestPermission();
 
     if (solidId !== adminId && isMounted) {
       setInterval(enviarUbicacionAServidor, 30000);
@@ -93,7 +93,7 @@ function App() {
   if (solidId !== adminId) {
     return (
       <React.Fragment>
-        <ReactNotification />
+        <ReactNotification/>
         <LoggedOut>
           <Router>
            <Route path="/*" component={Welcome} />

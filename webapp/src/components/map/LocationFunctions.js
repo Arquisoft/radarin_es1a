@@ -1,3 +1,5 @@
+import { store } from 'react-notifications-component';
+
 // Default distanceRadius  5 km
 export const radius = () => {
     if (window.sessionStorage.getItem("radius") != null) {
@@ -45,11 +47,11 @@ export function findNearFriends (list, userPosition){
  * @param nearFriends {Set}
  * @param newNearFriends {{solidId: string}[]}
  */
-export function notifyNearFriends(nearFriends, newNearFriends){
+export function notifyNearFriends(solidId, nearFriends, newNearFriends){
     let show = false;
 
     for(const friend of newNearFriends){
-        if(!nearFriends.has(friend.solidId)){
+        if(!nearFriends.has(friend.solidId) && friend.solidId !== solidId){
             show = true;
             break;
         }
@@ -57,12 +59,21 @@ export function notifyNearFriends(nearFriends, newNearFriends){
     nearFriends = new Set(newNearFriends.map((friend)=>friend.solidId));
 
     if(show){
-        /*
-        new Notification("Radarin", {
-            body: "There are friends near you"
-        });
-        */
-    }
+        store.addNotification({
+            title: "Radarin",
+            message: "Hay amigos cerca tuya!",
+            type: "info",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 5000,
+              showIcon: true
+            }
+          });
+          show = false;
+      }
 
     return nearFriends;
 }
