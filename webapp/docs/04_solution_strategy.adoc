@@ -1,13 +1,6 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-
-[role="arc42help"]
-****
-
-****
-
-
 === Technology decisions
 The radarin app will be a web app capable of run on smartphones.
 
@@ -16,7 +9,11 @@ The radarin app will be a web app capable of run on smartphones.
 * Material-ui: makes it easy to create login components and info cards.
 * Solid-react-components: is an API provided by Inrupt, is managing the solid session across the app.
 * Solid-Auth-Client: is an API which allows users to safely login into their SOLID pods.
-
+* Color-Oracle: is a open source app that applies a colorblind filter to test the application and ensure it works for the 3 most common types of colorblindness.
+* Jest: is a API for testing react components.
+* React-Notification-component: is an API for react used to show notifications
+* React-burger-menu: is a react module used to create the sliding menu.
+* Grafana and Prometheus: are the tools used to monitor the app performance.
 
 
 
