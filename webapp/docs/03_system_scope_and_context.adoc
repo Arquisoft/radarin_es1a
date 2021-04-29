@@ -7,7 +7,7 @@ Radarin should have the following features:
 
 * The application will allow to notify a user when there is some friend nearby so they can get in contact.
 * The system will be compatible with the SOLID project and it will not store personal information in a centralized way.
-* The system only can store locations and timestamps in which those locations happens.
+* The system only can store locations, user state and timestamps in which those locations happens.
 *  The system will avoid to store any other type of personal information about the users.
 
 
@@ -28,6 +28,8 @@ image:03_ContextDiagram.png["Business & Tecnical Context"]
 
 Our goal is to follow Solid (Social Linked Data) is a web decentralization project led by Tim Berners-Lee. The project aims to give users the control of his own data by developing a platform for linked-data applications that are completely decentralized and fully under users' control rather than controlled by other entities.
 
-To accomplish this we will use PODs that will store the user information and send this to the server and other friends/users when the user decides it.
+To accomplish this we will use PODs that will store the user information, and a mongo database to store locations and send this to the server and other friends/users when the user decides it.
 
 The application will use the React technology that is an open source Javascript library designed to create user interfaces with the aim of facilitating application development on a single page. It is maintained by Facebook and the free software community, will help us a lot on the development.
+
+To test the efficiency and performance of our application once its deployed we will user monitorization software like...
