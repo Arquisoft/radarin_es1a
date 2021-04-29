@@ -19,7 +19,7 @@ For interaction between users, each will share their location with the applicati
 
 image:06_Represent_Map.png["Way that an user get the Ubication of near Users"]
 
-=== Adding an User as a Friend
+=== Share Users State
 
-A user who wants to be able to access the location of another and their user information, the user must pre-send a friend request and this be a user by the target user as follows:
-image:06_Add_A_Friend.png["Adding a Friend to your POD"]
+An User can update his state (doing sport, being in a date, eating...) and this state can be seeing by his friends in the radar of the map
+image:06_Share_User_State.png["Sharing your State with App"]
