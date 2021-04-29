@@ -16,7 +16,9 @@
 .Rejected alternatives
 |===
 |Decision rejected| Reason
-|Use React Native | It has been decided not to use it due to its complexity and the short period of time that the development team has to learn about and experiment with this technology
+|Use React Native | It has been decided not to use it due to its complexity and the short period of time that the development team has to learn about and experiment with this technology.
 |Pigeon Maps | The map was in black and white and also, the location markers can give problems
-|Google Maps | It works correctly but we have to enter a credit card to use it
+|Google Maps | It works correctly but we have to enter a credit card to use it.
+|Background execution | We have tried to find a solution so that the page remains active in the background, both to update the users locations and to send notifications, but it has caused us many problems when trying to implement it, besides to being not compatible with mobile devices.
+|Push Notifications | As well as in the background execution, the library used for the notifications, which was API Notifications, that are sent to the operating system was not supported by mobile devices.
 |===

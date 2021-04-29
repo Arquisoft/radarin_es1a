@@ -2,7 +2,7 @@
 
 
 == Deployment View
-=== 7.1. Infrastructure Level 1
+=== Infrastructure Level 1
 
 image::07_DeploymentView.PNG[Deployment View]
 
@@ -36,7 +36,7 @@ The main components of the infrastructure are:
 | MongoDB | Is the database used in our application, specifically a NoSQL. Here are located all registered users, including the administrators.
 |===
 
-=== 7.2. Infrastructure Level 2
+=== Infrastructure Level 2
 
 image::07_DeploymentView_Docker.PNG[Deployment View]
 
