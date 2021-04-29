@@ -2,13 +2,13 @@
 
 
 == Deployment View
-
+=== 7.1. Infrastructure Level 1
 
 image::07_DeploymentView.PNG[Deployment View]
 
 .Motivation
 
-With this deployment structure the user can interact with the web application in their devices, which must be conected to the Internet. This web application will comunicate with the application server via the protocol HTTP, and the application server will comunicate with the SOLID server, so the users can access to their own data which is in their respective POD, like their friends list, or access the PODS of other users who have given them permission to do so. Also, the application needs to access to the users locations, which are located in a cloud database. This database is MongoDB which is composed of a cluster that stores two types of different users list, one for normal users and the other for administrators.
+With this deployment structure the user can interact with the web application in their devices, which must be conected to the Internet. This web application will comunicate with the application server via the protocol HTTPS, and the application server will comunicate with the SOLID server, so the users can access to their own data which is in their respective POD, like their friends list. Also, the application needs to access to the users locations, which are located in a cloud database. This database is MongoDB which is composed of a cluster that stores a users list.
 
 With this design the users can interact with other users safely and trust that their data is protected and only public to those whom they have previously given permission.
 
@@ -33,5 +33,12 @@ The main components of the infrastructure are:
 | Heroku | It's a Cloud Application Platform that we are going to use as a Web Server.
 | SOLID Server | The SOLID server is where we are going to store the users's data securely in decentralized data stores, the PODS.
 | User POD | The user POD is where their data is stored. Each user has their own POD and they can control who and what can access it.
-| MongoDB | Is the database used in our application, specifically a NoSQL. Here are located all registered users, also the administrator users.
+| MongoDB | Is the database used in our application, specifically a NoSQL. Here are located all registered users, including the administrators.
 |===
+
+=== 7.2. Infrastructure Level 2
+
+image::07_DeploymentView_Docker.PNG[Deployment View]
+
+As we can see from the above diagram, the application is entirely deployed in Docker.
+When the project is launched in Heroku, two docker images are created, one image contains the webapp and the restapi, and the other one launch a mongo container database.

@@ -46,6 +46,12 @@ On the other hand, the Front End interacts with the authentication system so tha
 
 image:05_diagrama_level3.png["First design level 3"]
 
+The third level is divided into the Front End in the main views of login, friends list and map.
+The credentials entered in the LoginView will be verified by the LoginManager that is responsible for accessing the user's pod and allowing access to the application.
+On the other hand, the friends list shows the user's friends obtained in RequestsManager, their statuses obtained in StateManager, a button to access their location on the map and a link to solid so that the user can add new friends that he want from there.
+The map shows the locations of the user in session and his friends obtained from LocationsManager and also shows the user a notification if there are friends near him obtained thanks to NotificationsManager.
+Finally, in the database the locations of the users and their statuses are saved from time to time. These will also be requested by the application to treat it and show it where it is needed.
+
 .Contained blackboxes
 
 ==== Authentication System WhiteBox
@@ -54,7 +60,7 @@ image:05_diagrama_level3.png["First design level 3"]
 .Black box descriptions of Authentication System
 |===
 |Name|Responsability
-|Login Manager | Manage the user's login credentials by connecting to his pod
+|Login Manager | Manage the user's login credentials by connecting to his pod.
 |===
 
 ==== Front End WhiteBox
@@ -63,7 +69,8 @@ image:05_diagrama_level3.png["First design level 3"]
 .Black box descriptions of Front End 
 |===
 |Name|Responsability
-|List of friends | It shows to the user, through the graphical interface, their friends, their friend requests, send requests to other users and manage their friends with the typical options of accepting or rejecting requests and deleting friendships
+|List of friends | It shows the user his solid friends and gives him the possibility to locate them on the map by clicking on a button.
+|Map | It is responsible for showing the map, the location of the user in session, the locations of their friends and additional data such as the status and time of the last connection.
 |===
 
 ==== Back End WhiteBox
@@ -72,7 +79,8 @@ image:05_diagrama_level3.png["First design level 3"]
 .Black box descriptions of Back End 
 |===
 |Name|Responsability
-|Locations Manager | Treat the data of the locations and save them in a database only while the user is in session
-|Notifications Manager | Treat the notifications that will be received by the user as when a friend of his is nearby
-|Requests Manager | Manages the addition or deletion made by the user in his list of friends, relating his pod with the pod of his friends
+|Locations Manager | Treat the data of the locations, save them in a database only while the user is in session and gets it to be able to display it.
+|Notifications Manager | Treat the notifications that will be received by the user as when a friend of his is nearby.
+|State Manager | It deals with the state changes made by the user using the interface. Stores the change of state and gets it to be able to display it.
+|Requests Manager | Manage the logic to obtain the solid friends that the user has.
 |===

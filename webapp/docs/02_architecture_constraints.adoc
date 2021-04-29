@@ -2,29 +2,13 @@
 == Architecture Constraints
 
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
-
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
-
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
-
 === Technical constraints
 
 [options="header",cols="1,2"]
 .Technical constraints
 |===
 |Constraint|Explanation
-| Software Components | A web app that runs on a server and stores locations and a mobile app that sends locations and recieves notifications from other users.
+| Software Components | A app that runs on a server and stores locations and a web app designed for mobile that sends locations and recieves notifications from other users.
 | Testing | Automated tests must be develop to test the functionality of the application.
 | SOLID and PODs| A requirement of this project is the use of SOLID as the data storage technology, Solid is based around decentralization of the data, secured in the users PODs.
 | Github | The code will be deployed in a public gitHub repository.
@@ -49,8 +33,8 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 .Conventions
 |===
 | Constraint | Explanation
-| UI Desing | The user interface has to be easy to use and learn, following the common usability recomendations for mobile apps.
-| W3C Standards | We will try to follow as close as possible the rules and recommendation stated by the W3C organization in order to comply with international standards.
+| UI Desing | The user interface has to be easy to use and learn, following the common usability recomendations for mobile apps, as well as maintaining consistent colors, look and feel.
+| W3C Standards | We will try to follow as close as possible the rules and recommendation stated by the W3C organization as well as any api that we use in order to comply with international standards.
 | Documentation | We will follow the Arc42 arquitechture for the realization of this documentation, also it will be written in it's entirety in English.
 | Acessibility | We will develop the UI of the application aiming to provide a good user experience to people with colorblind issues.
 |===

@@ -15,6 +15,12 @@ In every application there are high-level requirements that are sought to be met
 * There must be administration options for user management.
 * Server status can be monitored.
 
+.Optional requirements
+* A user can define its state (sports, date...) and watch it's friend's state to plan meetings acordingly.
+* When looking and the list of friends, you can locate a friend in the map by clicking a button.
+* The Radious at which you can see friends is visible on the map and modifiable in the settings.
+* There is a presentation page that serves as an introduction to Radarin.
+
 === Quality Goals
 
 [options="header"]

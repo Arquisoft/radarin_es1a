@@ -71,7 +71,6 @@ const Styles = styled.div`
     display: inline-block;
     color: #99DE9F;
   }
-
   .nav-link{
     padding-top: 4%;
     display: inline-block;
@@ -116,7 +115,7 @@ class MenuBar extends React.Component {
                 <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
                   
                     <li className= "nav-item">
-                      <i className="fa fa-fw fa-map-marker-alt"></i>
+                      <i className="fa fa-fw fa-map-marker-alt" ></i>
                       <Nav.Link href="/" className="nav-link">Home</Nav.Link>
                     </li>
                     <li className= "nav-item">

@@ -74,11 +74,12 @@ function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
-
-  if (window.sessionStorage.getItem("userState") === null) {
-    GetUserState().then(function (result) {
-      window.sessionStorage.setItem("userState", result);
-    });
+  
+  if (window.sessionStorage.getItem("userState") === null){
+    GetUserState().then(function(result) {
+      if(result!==null)
+        window.sessionStorage.setItem("userState", result);
+    });   
   }
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña "radarinA1*"
