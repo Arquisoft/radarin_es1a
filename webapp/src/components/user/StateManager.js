@@ -8,7 +8,7 @@ export async function GetUserState() {
 
         const list = response.filter(user => user.solidId === id);
         const state = list[0].userState;
-      
+        
         return state;
     } catch (TypeError) {
         return null;

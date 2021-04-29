@@ -46,7 +46,8 @@ function App() {
   
   if (window.sessionStorage.getItem("userState") === null){
     GetUserState().then(function(result) {
-      window.sessionStorage.setItem("userState", result);
+      if(result!==null)
+        window.sessionStorage.setItem("userState", result);
     });   
   }
 
