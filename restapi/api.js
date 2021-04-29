@@ -20,8 +20,7 @@ router.post("/users/location", async (req, res) => {
     const userState = req.body.userState;
     const timeStamp = req.body.timeStamp;
     let user = await User.findOne({ solidId });
-
-    if (user == null) {
+    if (user == null || user == undefined) {
         user = new User({
             latitud,
             longitud,

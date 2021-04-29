@@ -5,11 +5,10 @@ Radarin can get access to the mobile phone localization of the users who volunta
 
 Radarin should have the following features:
 
-* The application will allow to notify a user when there is some friend nearby so they can get in contact.
+* The application will allow to notify a user when there is some friend nearby so they can get in contact, the radius to seek around the user will be customizable.
 * The system will be compatible with the SOLID project and it will not store personal information in a centralized way.
 * The system only can store locations, user state and timestamps in which those locations happens.
-*  The system will avoid to store any other type of personal information about the users.
-
+* The system will avoid to store any other type of personal information about the users.
 
 === Business Context
 
@@ -17,19 +16,19 @@ Radarin should have the following features:
 [cols="1,2,3" options="header"]
 |===
 | **Entity** | **Input**|**Output**
-| User | Other users locations.| His current location when he wants to share it.
-| Friends | Notifications from server and other friend location. | Their current locations. 
-| Web server | The shared locations of the users.| The relative notifications to each user if needed.
+| User | Other users locations, and states.| His current location and state, when he wants to share it.
+| UserPod | The user adds his friends to the pod | The user friends.
+| Web server | The shared locations,states and timestamps of the users.| The relative notifications to each user if needed.
+| MongoDB | Locations, states and timestamps. | All the info mentioned above.
 |===
 image:03_ContextDiagram.png["Business & Tecnical Context"]
-
 
 === Technical Context
 
 Our goal is to follow Solid (Social Linked Data) is a web decentralization project led by Tim Berners-Lee. The project aims to give users the control of his own data by developing a platform for linked-data applications that are completely decentralized and fully under users' control rather than controlled by other entities.
 
-To accomplish this we will use PODs that will store the user information, and a mongo database to store locations and send this to the server and other friends/users when the user decides it.
+To accomplish this we will use PODs that will store the user friend list, and MongoDB to store locations, state and timestamps.
 
 The application will use the React technology that is an open source Javascript library designed to create user interfaces with the aim of facilitating application development on a single page. It is maintained by Facebook and the free software community, will help us a lot on the development.
 
-To test the efficiency and performance of our application once its deployed we will user monitorization software like...
+To test the efficiency and performance of our application once its deployed we will user monitorization software like Prometheus and Grafana.To use monitoring tools in heroku you must pay a subscription, so we have only been able to monitorize the app on localhost. 
