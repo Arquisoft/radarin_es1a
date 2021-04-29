@@ -96,9 +96,6 @@ function FriendCardList() {
       <Column p={0} gap={0} className={classes.card}>
         <Row wrap p={2} alignItems={"baseline"} className={classes.header}>
           <Item stretched className={classes.headline}>Friends</Item>
-          <Item className={classes.actions}>
-            <Link className={classes.link} target="_blank" href={webId}>Add new friends</Link>
-          </Item>
         </Row>
         {friendsList.map((each, index) => {
           return (
