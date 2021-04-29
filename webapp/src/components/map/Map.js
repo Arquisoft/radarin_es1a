@@ -3,7 +3,7 @@ import { useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
 import { MapMarker } from "./MapMarker";
 import cache from "../friends/UserCache";
-import * as LocationFunctions from "./LocationFunctions"
+import * as LocationFunctions from "./LocationFunctions";
 function Map() {
 
     const mapRef = useRef(null);
@@ -43,7 +43,7 @@ function Map() {
             const id = window.location.href.substring(
                 window.location.href.lastIndexOf("/") + 1,
                 window.location.href.lastIndexOf("*")
-            )
+            );
 
             if (window.sessionStorage.getItem("visitado") !== "true") {
                 if (friend.solidId.includes(id)) {
@@ -62,7 +62,7 @@ function Map() {
         nearFriends = LocationFunctions.notifyNearFriends(id, nearFriends, newNearFriends);
 
         setMarcas(nuevasMarcas);
-    };
+    }
 
     useLayoutEffect(() => {
 
@@ -135,7 +135,7 @@ function Map() {
         });
         return () => {
             map.dispose();
-        }
+        };
     }, // eslint-disable-next-line
         [mapRef]);
 

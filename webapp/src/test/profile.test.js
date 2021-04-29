@@ -1,11 +1,11 @@
 import React from "react";
 import {render, screen, fireEvent, cleanup, pwgetByText, waitFor}  from "@testing-library/react";
-import 'globalthis/auto';
-import ReactDOM from 'react-dom';
+import "globalthis/auto";
+import ReactDOM from "react-dom";
 import ProfileView from "../components/layouts/ProfileView";
 import UserProfile from "../components/user/UserProfile";
 import { Provider } from "react-redux";
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 
 test("user can view its profile", async () => {

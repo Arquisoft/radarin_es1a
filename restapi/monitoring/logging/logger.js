@@ -1,4 +1,4 @@
-const winston = require('winston');
+const winston = require("winston");
 
 const myformat = winston.format.combine(
     winston.format.colorize(),
@@ -15,8 +15,8 @@ const logger = winston.createLogger({
     ]
 });
 
-logger.info('Information message');
+logger.info("Information message");
 
 module.exports = {
     logger: logger
-}
+};

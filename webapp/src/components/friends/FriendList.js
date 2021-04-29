@@ -3,10 +3,10 @@ import cx from "clsx";
 import { makeStyles, Avatar, Divider, Button } from "@material-ui/core";
 import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
 import { GetFriendState } from "../user/StateManager";
-import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
-import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
-import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
+import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded";
+import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
+import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import {  Link } from "react-router-dom";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
 import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";
@@ -106,7 +106,7 @@ function FriendCardList() {
               <PersonItem friend={each} />
               <Divider variant={"middle"} className={classes.divider} />
             </>
-          )
+          );
         })}
       </Column>
     </>
@@ -144,9 +144,9 @@ function PersonItem(props) {
             <div className={cx(styles.name, styles.text)}>{name}</div>
             <CoolState state={state}/>
           </Item>
-          <Item position={'middle'}>
-          <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem('visitado', 'false')}>
-            <Button className={styles.btn} variant={'outlined'}>
+          <Item position={"middle"}>
+          <Link className="link" to={`/map/${n}`} label="MapFriends" value="mapFriend" onClick={window.sessionStorage.setItem("visitado", "false")}>
+            <Button className={styles.btn} variant={"outlined"}>
               Go map <NotListedLocationIcon style={{ color: "#99DE9F" }}/>    
             </Button>
           </Link>

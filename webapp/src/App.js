@@ -1,6 +1,6 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { HomeView } from "./components/layouts/HomeView";
 import { Home } from "./Home";
 import { AdminView } from "./components/layouts/AdminView";
@@ -11,8 +11,8 @@ import "react-notifications-component/dist/theme.css";
 import cache from "./components/friends/UserCache";
 import { GetUserState } from "./components/user/StateManager";
 import Welcome from "./views/welcome/Welcome";
-import ReactNotification from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import { LoginView } from "./components/layouts/LoginView";
 import WelcomePage from "./components/menus/Welcome";
 import CreatorsView from "./views/welcome/Creators";
@@ -44,9 +44,9 @@ function App() {
   window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
   
-  if (window.sessionStorage.getItem('userState') === null){
+  if (window.sessionStorage.getItem("userState") === null){
     GetUserState().then(function(result) {
-      window.sessionStorage.setItem('userState', result);
+      window.sessionStorage.setItem("userState", result);
     });   
   }
 

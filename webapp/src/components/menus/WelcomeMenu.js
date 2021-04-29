@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MuiThemeProvider, makeStyles } from "@material-ui/core/styles";
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 import {
     Divider,
     Drawer,
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     button: {
-        '&:hover': {
+        "&:hover": {
             color: "#99DE9F"
         }
     }
@@ -69,7 +69,7 @@ export default function WelcomeMenu() {
     }, []);
 
     const toggleDrawer = (open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
             return;
         }
         setState({ ...state, drawer: open });

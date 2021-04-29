@@ -41,13 +41,13 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(6),
     },
     button: {
-        '&:hover': {
+        "&:hover": {
             backgroundColor: "#425c5a",
             color: "white"
         }
     },
     externallink: {
-        '&:hover': {
+        "&:hover": {
             color: "#425C5A"
         }
     }

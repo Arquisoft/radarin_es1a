@@ -1,6 +1,6 @@
 import React, { useRef, useState, useLayoutEffect, Fragment } from "react";
 import { Card, CardContent, Button, TableRow, Box } from "@material-ui/core";
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid } from "@material-ui/data-grid";
 import "./adminSettings.css";
 
 function AdminSettingsPage() {
@@ -9,11 +9,11 @@ function AdminSettingsPage() {
     const [selectionModel, setSelectionModel] = React.useState([]);
 
     const columns = [
-        { field: 'id', headerName: 'User', width: 400 },
-        { field: 'lat', headerName: 'Latitude', width: 150 },
-        { field: 'lng', headerName: 'Longitude', width: 150 },
-        { field: 'userState', headerName: 'User State', width: 150 },
-        { field: 'isOnline', headerName: 'isOnline', width: 150 },
+        { field: "id", headerName: "User", width: 400 },
+        { field: "lat", headerName: "Latitude", width: 150 },
+        { field: "lng", headerName: "Longitude", width: 150 },
+        { field: "userState", headerName: "User State", width: 150 },
+        { field: "isOnline", headerName: "isOnline", width: 150 },
     ];
 
     var onlineUsers = 0;
@@ -54,7 +54,7 @@ function AdminSettingsPage() {
         users.map(async (user) => {
             const datos = {
                 "solidId": user
-            }
+            };
 
             await fetch("https://radarines1arestapi.herokuapp.com/api/users/delete", {
                 method: "post",

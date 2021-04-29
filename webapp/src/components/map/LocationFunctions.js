@@ -1,4 +1,4 @@
-import { store } from 'react-notifications-component';
+import { store } from "react-notifications-component";
 
 // Default distanceRadius  5 km
 export const radius = () => {

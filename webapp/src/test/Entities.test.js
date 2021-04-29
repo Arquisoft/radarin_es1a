@@ -1,7 +1,7 @@
 import React from "react";
 import {render, screen, fireEvent, cleanup, pwgetByText, waitFor}  from "@testing-library/react";
-import 'globalthis/auto';
-import ReactDOM from 'react-dom';
+import "globalthis/auto";
+import ReactDOM from "react-dom";
 import Friend from "../entities/Friend";
 import "@testing-library/jest-dom/extend-expect";
 import App from "../App";

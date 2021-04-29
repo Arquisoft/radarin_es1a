@@ -24,7 +24,7 @@ const RadioFood = withStyles({
 
   const RadioDefault = withStyles({
     root: {
-      '&$checked': {
+      "&$checked": {
         color: "#000000",
       },
     },

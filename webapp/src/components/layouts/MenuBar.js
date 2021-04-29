@@ -1,8 +1,8 @@
 import React from "react";
-import { slide as Menu } from 'react-burger-menu';
+import { slide as Menu } from "react-burger-menu";
 import styled from "styled-components";
 import auth from "solid-auth-client";
-import Nav from 'react-bootstrap/Nav';
+import Nav from "react-bootstrap/Nav";
 
 
 const Styles = styled.div`
