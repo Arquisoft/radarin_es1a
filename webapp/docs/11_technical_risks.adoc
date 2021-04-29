@@ -17,6 +17,8 @@ pages and forums specialized in SOLID.
 | We will have to learn to work as a team, in addition to leaving the team members
 develop and present their own ideas. All this must be complemented with a correct
 use of github.
+| Impossibility of deployment due to test failures 
+| When it comes to make some changes in the code, there is a possibility that these changes affect the test already implemented, possibly making them fail, thereby impeding the deployment of the application.
 |===
 .Technical Debts
 * We must commit to correct documentation and functional application within 3 months of the start of the project.
