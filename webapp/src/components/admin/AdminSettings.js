@@ -13,11 +13,13 @@ function AdminSettingsPage() {
         { field: "lat", headerName: "Latitude", width: 150 },
         { field: "lng", headerName: "Longitude", width: 150 },
         { field: "userState", headerName: "User State", width: 150 },
+        { field: "lastLogin", headerName: "Last Update", width: 250 },
         { field: "isOnline", headerName: "isOnline", width: 150 },
+
     ];
 
     var onlineUsers = 0;
-   const timeLimit = 30000;
+    const timeLimit = 30000;
     function incrementOnlineUsers() {
         onlineUsers++;
     }
@@ -39,7 +41,7 @@ function AdminSettingsPage() {
                 online = true;
             }
 
-            var user = { id: item.solidId, lat: item.latitud, lng: item.longitud, userState: item.userState, isOnline: online, timeStamp: item.timeStamp };
+            var user = { id: item.solidId, lat: item.latitud, lng: item.longitud, userState: item.userState, lastLogin:new Date(item.timeStamp).toUTCString(), isOnline: online, timeStamp: item.timeStamp };
             //newUsers.push(user);
             newUsers.push(user);
         });

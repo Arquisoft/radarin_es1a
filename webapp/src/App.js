@@ -39,72 +39,68 @@ const Styles = styled.div`
   }
 `;
 
+
+function enviarUbicacionAServidor(solidId) {
+  if (solidId) {
+    console.log("Enviando ubicacion");
+
+    navigator.geolocation.getCurrentPosition((position) => {
+
+      let time = new Date();
+      const datos = {
+        "solidId": solidId,
+        "posicion": {
+          "latitud": position.coords.latitude,
+          "longitud": position.coords.longitude,
+        },
+        "userState": sessionStorage.getItem("userState"),
+        "timeStamp": time.getTime()
+      };
+
+      //Cambia cuando este subido a heroku
+      fetch("https://radarines1arestapi.herokuapp.com/api/users/location", { //  http://localhost:5000/api/users/location
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+      });
+      new Promise(resolve => setTimeout(resolve, 2000));
+    });
+  }
+}
+
 function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
-  
-  if (window.sessionStorage.getItem("userState") === null){
-    GetUserState().then(function(result) {
+
+  if (window.sessionStorage.getItem("userState") === null) {
+    GetUserState().then(function (result) {
       window.sessionStorage.setItem("userState", result);
-    });   
+    });
   }
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña "radarinA1*"
   const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
 
-  function enviarUbicacionAServidor() {
-    if (solidId) {
-      console.log("Enviando ubicacion");
-      navigator.geolocation.getCurrentPosition((position) => {
-
-        let time = new Date();
-        const datos = {
-          "solidId": solidId,
-          "posicion": {
-            "latitud": position.coords.latitude,
-            "longitud": position.coords.longitude,
-          },
-          "userState": sessionStorage.getItem("userState"),
-          "timeStamp": time.getTime()
-        };
-
-        //Cambia cuando este subido a heroku
-        fetch("https://radarines1arestapi.herokuapp.com/api/users/location", { //  http://localhost:5000/api/users/location
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(datos)
-        });
-      });
-    }
-  }
-
   useEffect(() => {
-    let isMounted = true; // note this flag denote mount status
-
-
-    if (solidId !== adminId && isMounted) {
-      setInterval(enviarUbicacionAServidor, 30000);
-    }
-
-    return () => { isMounted = false; }; // use effect cleanup to set flag false, if unmounted
+    setInterval(enviarUbicacionAServidor(solidId), 30000);
   });
 
   if (solidId !== adminId) {
     return (
       <React.Fragment>
-        <ReactNotification/>
+        <ReactNotification />
         <LoggedOut>
           <Router>
-           <Route path="/*" component={Welcome} />
+            <Route path="/*" component={Welcome} />
             <Route path="/" component={WelcomePage} exact={true} />
             <Route path="/welcome" component={WelcomePage} />
             <Route path="/creators" component={CreatorsView} />
             <Route path="/login" component={LoginView} />
           </Router>
-          
+
         </LoggedOut>
         <LoggedIn>
           <Router>
@@ -113,7 +109,7 @@ function App() {
               <Route path="/welcome" component={WelcomePage} />
               <Route exact path="/" render={() => <Home />} />
               <Route path="/map/:id" render={() => <Home />} />
-              <Route path="/profile" exact render={() => <ProfileView/>} />
+              <Route path="/profile" exact render={() => <ProfileView />} />
               <Route path="/friends" exact render={() => <FriendsView />} />
               <Route path="/settings" exact render={() => <SettingsView />} />
             </Switch>

@@ -55,7 +55,9 @@ function Map() {
             const locationOfMarker = { lat: friend.latitud, lng: friend.longitud };
             nuevasMarcas.push({
                 locationOfMarker,
-                webId: friend.solidId
+                webId: friend.solidId,
+                timeStamp:friend.timeStamp,
+                userState:friend.userState
             });
         }
 
@@ -150,6 +152,8 @@ function Map() {
                     key={`marca_${i}`}
                     webId={marca.webId}
                     locationOfMarker={marca.locationOfMarker}
+                    timeStamp={marca.timeStamp}
+                    state={marca.userState}
                     ui={ui}
                     map={map} />)
             }
@@ -157,6 +161,8 @@ function Map() {
             <MapMarker
                 webId={solidId}
                 locationOfMarker={userPosition}
+                timeStamp={new Date().toUTCString()}
+                state={""}
                 ui={ui}
                 map={map} />
 
