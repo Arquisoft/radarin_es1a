@@ -58,13 +58,15 @@ function App() {
       console.log("Enviando ubicacion");
       navigator.geolocation.getCurrentPosition((position) => {
 
+        let time = new Date();
         const datos = {
           "solidId": solidId,
           "posicion": {
             "latitud": position.coords.latitude,
             "longitud": position.coords.longitude,
           },
-          "userState": sessionStorage.getItem("userState")
+          "userState": sessionStorage.getItem("userState"),
+          "timeStamp": time.getTime()
         };
 
         //Cambia cuando este subido a heroku

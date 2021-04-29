@@ -17,6 +17,10 @@ const schema = mongoose.Schema({
     userState: {
         type: String,
         require: true
+    },
+    timeStamp: {
+        type: Number,
+        required: true
     }
 });
 
