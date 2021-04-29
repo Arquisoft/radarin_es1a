@@ -61,7 +61,7 @@ export function notifyNearFriends(solidId, nearFriends, newNearFriends){
     if(show){
         store.addNotification({
             title: "Radarin",
-            message: "There are friends close to you!",
+            message: "There are friends near you!",
             type: "info",
             insert: "top",
             container: "top-right",
