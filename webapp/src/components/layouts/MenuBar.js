@@ -1,12 +1,9 @@
 import React from "react";
-import { slide as Menu } from 'react-burger-menu';
+import { slide as Menu } from "react-burger-menu";
 import styled from "styled-components";
 import auth from "solid-auth-client";
-import { Route, Switch, Link } from "react-router-dom";
-import { FriendsView } from "./FriendsView";
-import { SettingsView } from "./SettingsView";
-import { ProfileView } from "./ProfileView";
-import Welcome from "../../views/welcome/Welcome";
+import Nav from "react-bootstrap/Nav";
+
 
 const Styles = styled.div`
 .bm-burger-button {
@@ -74,8 +71,7 @@ const Styles = styled.div`
     display: inline-block;
     color: #99DE9F;
   }
-
-  .link{
+  .nav-link{
     padding-top: 4%;
     display: inline-block;
     color: #99DE9F;
@@ -115,33 +111,33 @@ class MenuBar extends React.Component {
   render () {
     // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
         return (
-            <Styles>
-              <Switch>
-              <Route path="/profile" exact render={() => <ProfileView/>} />
-              <Route path="/friends" exact render={() => <FriendsView />} />
-              <Route path="/settings" exact render={() => <SettingsView />} />
-
-              </Switch>
+            <Styles>              
                 <Menu onStateChange={this.handleStateChange}  isOpen={ this.state.menuOpen }>
-                    <li class= "nav-item">
-                      <i class="fa fa-fw fa-map-marker-alt"></i>
-                      <Link className="link" to="/" label="Home" value="home" onClick={()=>this.handleLinkClick()}> Home</Link>
-                    </li>             
-                    <li class= "nav-item">
-                      <i class="fas fa-user"></i>
-                      <Link className="link" to="/profile" label="Profile" value="profile" onClick={()=>this.handleLinkClick()}> Profile</Link>
+                  
+                    <li className= "nav-item">
+                      <i className="fa fa-fw fa-map-marker-alt" ></i>
+                      <Nav.Link href="/" className="nav-link">Home</Nav.Link>
+                    </li>
+                    <li className= "nav-item">
+                      <i className="fas fa-user"></i>
+                      <Nav.Link href="/profile" className="nav-link">Profile</Nav.Link>
+                    </li>
+                    <li className= "nav-item">
+                      <i className="fas fa-users"></i>
+                      <Nav.Link href="/friends" className="nav-link">Friends</Nav.Link>
+                    </li>
+                    <li className= "nav-item">
+                      <i className="fa fa-cogs"></i>
+                      <Nav.Link href="/settings" className="nav-link">Settings</Nav.Link>
                     </li>
                     <li class= "nav-item">
-                      <i class="fas fa-users"></i>
-                      <Link className="link" to="/friends" label="Friends" value="friends" onClick={()=>this.handleLinkClick()}> Friends</Link>
-                    </li>
-                    <li class= "nav-item">
-                      <i class="fa fa-cogs"></i>
-                      <Link className="link" to="/settings" label="Settings" value="settings" onClick={()=>this.handleLinkClick()}> Settings</Link>
-                    </li>
-                    <li class= "nav-item" onClick={() => {auth.logout(); window.sessionStorage.clear(); }}>
-                      <i class="fas fa-sign-out-alt"></i>
-                      <Link className="link" to="/" label="Login" value="login" onClick={()=>this.handleLinkClick()}> Logout</Link>
+                      <i className="fas fa-sign-out-alt"></i>
+                        <Nav.Link href="/welcome" className="nav-link" onClick={()=>{
+                            this.handleLinkClick();
+                            auth.logout();
+                            window.sessionStorage.clear();
+                            window.location.href = "/welcome";
+                        }}> Logout</Nav.Link>
                     </li>
                 </Menu>
             </Styles>

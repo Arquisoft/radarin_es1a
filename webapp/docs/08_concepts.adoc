@@ -2,52 +2,7 @@
 == Cross-cutting Concepts
 
 
-[role="arc42help"]
-****
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
 
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
-
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
-
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
-
-.Form
-The form can be varied:
-
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
-
-.Structure
-A potential (but not mandatory) structure for this section could be:
-
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
 
 
 === Domain model
@@ -56,7 +11,7 @@ image:08_dom_diagram.png["Example UML Diagram"]
 
 
 
-=== Security and consistenc
+=== Security and consistency
 
 Security is one of the key aspect of any software project, and as such it'll be one of the main focus of our application, we will be following the SOLID recommendations in terms of security
 as well as using secure web protocols like HTTPS. Also we must be certain that the data we are managing is consistent both in the server side as well as in the client.
@@ -67,13 +22,17 @@ Nowadays software applications are never in a fixed state, they are always chang
 always be well structured to allow for easy comprehension by other members of the team (or future software developers) and allow for mantainment, scalability and reusability.
 To archive this, we will be using automatic code-analyzing tools to find any problems in our code, and desing patterns to get to the best solution.
 
-=== Internationalization
-Our application will only be in Spanish and English in its first version, but by using standarized ways of internationalization from the beginning it should be easy to add
-any language that we deem necesary in the future.
 
 === Usability
 On the modern mobile market, usability is one of the most important features for the succes of any application. One of our main focus is to provide the user the most easy and satisfying experience while
 using our application, and will be a focus from the start, specially in the desing of the UI.
 
+=== Acessibility
+Our application is desing to be able to be used by colorblind people, as such we will avoid using color queues as the only indication of functionality/state.
+
 === Package Structure
-TBD 
+Our application is divided in two main sides, one used for the webApp and another for the server side. On the server side there's 3 packages: models (for the domain model), 
+monitoring (used to monitor the performance of the app) and test, to test the functionality provided by the server.
+On the webApp side, we have 3 packages, the first one for the public files and images called public, another for the documentation called docs and the last one src where all the code is hosted. 
+Inside of src there's an api folder, an entities folder(domain classes that are exclusive of the webApp), a views folder (which contain all high level pages), 
+a test folder and a components folder for every other low level component in the app. Apart from those folders, there's also the typical node structure with modules, app.js as main app...

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(8),
     },
     card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
     },
     cardMedia: {
-        paddingTop: '60.25%',
+        paddingTop: "60.25%",
     },
     cardContent: {
         flexGrow: 1,
@@ -40,6 +40,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
     },
+    button: {
+        "&:hover": {
+            backgroundColor: "#425c5a",
+            color: "white"
+        }
+    },
+    externallink: {
+        "&:hover": {
+            color: "#425C5A"
+        }
+    }
 }));
 
 export default function Album() {
@@ -50,7 +61,7 @@ export default function Album() {
         fetch("students-data.json")
             .then((res) => {
                 return res.json();
-            } )
+            })
             .then((data) => setData(data));
 
     }, []);
@@ -75,12 +86,12 @@ export default function Album() {
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
-                                    <Button variant="contained" color="primary" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
+                                    <Button className={classes.button} variant="contained" color="primary" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
                                         Group Github
                                     </Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button variant="outlined" color="primary" target="_blank" rel="noopener" href={"https://arquisoft.github.io/"}>
+                                    <Button className={classes.button} variant="contained" color="primary" target="_blank" rel="noopener" href={"https://arquisoft.github.io/"}>
                                         Subject Github
                                     </Button>
                                 </Grid>
@@ -96,18 +107,18 @@ export default function Album() {
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
-                                        image={ student.image }
+                                        image={student.image}
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            { student.fullName }
+                                            {student.fullName}
                                         </Typography>
                                         <Typography>
-                                            { student.description }
+                                            {student.description}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary" target="_blank" rel="noopener" href={student.github}>
+                                        <Button className={classes.externallink} size="small" color="primary" target="_blank" rel="noopener" href={student.github}>
                                             Github account
                                         </Button>
                                     </CardActions>
@@ -120,10 +131,10 @@ export default function Album() {
             {/* Footer */}
             <footer className={classes.footer}>
                 <Typography variant="h6" align="center" gutterBottom>
-                    Footer
+                    Radarin
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Something here to give the footer a purpose!
+                    University of Oviedo - Software Architecture
                 </Typography>
             </footer>
             {/* End footer */}

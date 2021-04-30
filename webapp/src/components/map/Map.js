@@ -1,10 +1,9 @@
 import React, { useRef, useLayoutEffect, useEffect, useState, Fragment } from "react";
 import { useWebId } from "@solid/react";
 import "here-js-api/styles/mapsjs-ui.css";
-import { store } from "react-notifications-component";
-import {MapMarker} from  "./MapMarker";
+import { MapMarker } from "./MapMarker";
 import cache from "../friends/UserCache";
-
+import * as LocationFunctions from "./LocationFunctions";
 function Map() {
 
     const mapRef = useRef(null);
@@ -22,112 +21,50 @@ function Map() {
         setFriendsList(cache.getFriends());
     });
 
-    window.sessionStorage.setItem('friends', JSON.stringify(friendsList));
+    window.sessionStorage.setItem("friends", JSON.stringify(friendsList));
 
-    // Default distanceRadius  5 km
-    const radius = () => {
-        if (window.sessionStorage.getItem("radius") != null) {
-            return window.sessionStorage.getItem("radius").valueOf();
-        }
-        else {
-            window.sessionStorage.setItem("radius", "5");
-        }
-        return window.sessionStorage.getItem("radius").valueOf();
-    };
+    let nearFriends = new Set();
 
-    var getRespuesta = async function (map, ui, userPosition) {
+    async function getRespuesta(map, ui, userPosition) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
-        var friends = window.sessionStorage.getItem('friends');
-        var id = window.sessionStorage.getItem('id');
+        var friends = window.sessionStorage.getItem("friends") ?? [];
+        var id = window.sessionStorage.getItem("id");
 
         const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
 
-        //Borra la ubicación del usuario en sesión ELIMINAR
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
 
-        // eslint-disable-next-line
-        list.map((item, index) => {
+        let newNearFriends = LocationFunctions.findNearFriends(list, userPosition);
 
-            if (distanceFilter(item.latitud, item.longitud, userPosition)) {
-                var id = window.location.href.substring(
-                    window.location.href.lastIndexOf("/") + 1,
-                    window.location.href.lastIndexOf("*")
-                )
+        for (const friend of newNearFriends) {
+            const id = window.location.href.substring(
+                window.location.href.lastIndexOf("/") + 1,
+                window.location.href.lastIndexOf("*")
+            );
 
-                if (window.sessionStorage.getItem('visitado') !== 'true') {
-                    if (item.solidId.includes(id) ) {
-                        map.setCenter({ lat: item.latitud, lng: item.longitud });
-                        map.setZoom(18);
-                        window.sessionStorage.setItem('visitado', 'true');
-                    }
+            if (window.sessionStorage.getItem("visitado") !== "true") {
+                if (friend.solidId.includes(id)) {
+                    map.setCenter({ lat: friend.latitud, lng: friend.longitud });
+                    map.setZoom(18);
+                    window.sessionStorage.setItem("visitado", "true");
                 }
-                var locationOfMarker = { lat: item.latitud, lng: item.longitud };
-                nuevasMarcas.push({
-                    locationOfMarker,
-                    webId: item.solidId
-                });
             }
+            const locationOfMarker = { lat: friend.latitud, lng: friend.longitud };
+            nuevasMarcas.push({
+                locationOfMarker,
+                webId: friend.solidId,
+                timeStamp:friend.timeStamp,
+                userState:friend.userState
+            });
         }
-        );
 
-        //Pinta el radio filtrado sobre el mapa
-        paintRadius(map, userPosition);
-
-        /*
-                var marker = new H.map.Marker(LocationOfMarker, { icon: pngIcon });
-                map.addObject(marker);
-        */
+        nearFriends = LocationFunctions.notifyNearFriends(id, nearFriends, newNearFriends);
 
         setMarcas(nuevasMarcas);
-    };
-
-    // Paint the filter radius around user
-    var paintRadius = function (map, userPosition) {
-        const H = window.H;
-        //Paint radius on map
-        map.addObject(new H.map.Circle(
-            // The central point of the circle
-            { lat: userPosition.coords.latitude, lng: userPosition.coords.longitude },
-            // The radius of the circle in meters
-            radius() * 1000,
-            {
-                style: {
-                    strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
-                    lineWidth: 2,
-                    fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
-                }
-            }
-        ));
     }
-    // Auxiliar method to convert coords to radians.
-    var toRadianes = function (valor) {
-        return (Math.PI / 180) * valor;
-    }
-    // Calculates the distance between two coordinates according to Haversine Formule.
-    var distanceFilter = function (lat2, lng2, userPosition) {
-        var RadioTierraKm = 6378.0;
-
-        var lat1 = userPosition.coords.latitude;
-        var lng1 = userPosition.coords.longitude;
-        var difLat = toRadianes(lat2 - lat1);
-        var difLng = toRadianes(lng2 - lng1);
-
-        var a = Math.pow(Math.sin(difLat / 2), 2) +
-            Math.cos(toRadianes(lat1)) *
-            Math.cos(toRadianes(lat2)) *
-            Math.pow(Math.sin(difLng / 2), 2);
-
-        var c = RadioTierraKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-        if (c > radius()) {
-            return false;
-        }
-
-        return true;
-    }
-
 
     useLayoutEffect(() => {
 
@@ -165,23 +102,8 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
-        store.addNotification({
-            title: "Notificación",
-            message: "Bienvenido a Radarin!",
-            type: "default",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 2000
-            },
-            dismissable: { click: true }
-        });
-
         navigator.geolocation.getCurrentPosition((position) => {
 
-            console.log(position);
             setUserPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
             const H = window.H;
 
@@ -191,12 +113,12 @@ function Map() {
                 // The central point of the circle
                 { lat: position.coords.latitude, lng: position.coords.longitude },
                 // The radius of the circle in meters
-                radius() * 1000,
+                LocationFunctions.radius() * 1000,
                 {
                     style: {
-                        strokeColor: "rgba(231, 76, 60, 0.6)", // Color of the perimeter
+                        strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
                         lineWidth: 2,
-                        fillColor: "rgba(231, 76, 60, 0.1)"  // Color of the circle
+                        fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
                     }
                 }
             );
@@ -208,33 +130,30 @@ function Map() {
             //Resize of map in window
             window.addEventListener("resize", () => map.getViewPort().resize());
 
-            // Create a marker icon from an image URL:
-            //var pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
-
-            // First iteration
-            addFriends(map, ui, position);
-
-            // Then repeat each 30000
-            setInterval(() => { addFriends(map, ui, position); }, 10000);
+            setInterval(() => { addFriends(map, ui, position); }, 3000);
 
         }, (error) => {
             console.error(error);
         });
         return () => {
             map.dispose();
-        }
-    }, [mapRef]);
+        };
+    }, // eslint-disable-next-line
+        [mapRef]);
 
     return (
         // Set a height on the map so it will display
 
         <Fragment>
+
             <div ref={mapRef} id="map" />
             {
                 marcas.map((marca, i) => <MapMarker
                     key={`marca_${i}`}
                     webId={marca.webId}
                     locationOfMarker={marca.locationOfMarker}
+                    timeStamp={marca.timeStamp}
+                    state={marca.userState}
                     ui={ui}
                     map={map} />)
             }
@@ -242,9 +161,12 @@ function Map() {
             <MapMarker
                 webId={solidId}
                 locationOfMarker={userPosition}
+                timeStamp={new Date().toUTCString()}
+                state={""}
                 ui={ui}
                 map={map} />
-        </Fragment>
+
+        </Fragment >
     );
 }
 

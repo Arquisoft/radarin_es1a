@@ -1,10 +1,10 @@
 var express = require("express");
 var app = express();
 var port =  process.env.PORT || 3000;
+const path = require("path");
 app.use(express.static("build"));
 app.listen(port);
 
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
-}
+app.get("*" , (req, res) => {
+    res.sendFile(path.join(__dirname,"build","index.html")); 
+});

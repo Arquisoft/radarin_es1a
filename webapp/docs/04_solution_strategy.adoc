@@ -1,13 +1,6 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-
-[role="arc42help"]
-****
-
-****
-
-
 === Technology decisions
 The radarin app will be a web app capable of run on smartphones.
 
@@ -16,8 +9,21 @@ The radarin app will be a web app capable of run on smartphones.
 * Material-ui: makes it easy to create login components and info cards.
 * Solid-react-components: is an API provided by Inrupt, is managing the solid session across the app.
 * Solid-Auth-Client: is an API which allows users to safely login into their SOLID pods.
+* Color-Oracle: is a open source app that applies a colorblind filter to test the application and ensure it works for the 3 most common types of colorblindness.
+* Jest: is a API for testing react components.
+* React-Notification-component: is an API for react used to show notifications
+* React-burger-menu: is a react module used to create the sliding menu.
+* Grafana and Prometheus: are the tools used to monitor the app performance.
 
-
-
+=== How to achieve key quality objectives
+[options="header"]
+.How to achieve key quality objectives
+|===
+|Quality goal|Scenario|Solution approach
+|Privacy | The user feels safe using the application because their data is stored in a decentralized way | Solid's decentralized information project is used
+|Usability | The user learns to use the application quickly because the interface is intuitive, the components used are adequate and it is adaptable | Use of Material-UI and React-burger-menu components to make the application adaptable and usable, a suitable range of colors has been selected and an easy-to-use map with several display options is used
+|System robustness | The user expects not to find errors or, if they exist, that they do not affect the operation of the application | Potential errors have been studied and fixed and tests have been carried out to verify correct operation
+|Efficiency | The user hopes to be able to use the application fluently | The Solid Pods are accessed as little as possible, the data is updated repeatedly and the cache is used to save the user's friends and not have to constantly obtain them
+|===
 
 
