@@ -31,13 +31,13 @@ function Map() {
         var friends = window.sessionStorage.getItem("friends") ?? [];
         var id = window.sessionStorage.getItem("id");
 
-        const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
+        const list = response.filter((user) => friends.includes(user.solidId) || user.solidId === id);
 
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
 
-        let newNearFriends = LocationFunctions.findNearFriends(list, list.filter(user => user.solidId === id)[0]);
+        let newNearFriends = LocationFunctions.findNearFriends(list, list.filter((user) => user.solidId === id)[0]);
 
         for (const friend of newNearFriends) {
             const id = window.location.href.substring(
@@ -106,24 +106,14 @@ function Map() {
         // es casi mejor cogerla directamente del hardware que consultar en la base.
         navigator.geolocation.getCurrentPosition((position) => {
             var circle = new H.map.Circle(
-                // The central point of the circle
                 { lat: position.coords.latitude, lng: position.coords.longitude },
-                // The radius of the circle in meters
-                LocationFunctions.radius() * 1000,
-                {
-                    style: {
-                        strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
-                        lineWidth: 2,
-                        fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
-                    }
-                }
+                LocationFunctions.radius() * 1000
             );
+            // Centra el mapa en el bounding box del circulo.
             map.getViewModel().setLookAtData({
                 bounds: circle.getBoundingBox()
             });
-        }, (error) => {
-            console.error(error);
-        });
+        }, (error) => { console.error(error); }, { enableHighAccuracy: true });
 
         // Intervalo de tiempo en el que busca los amigos alrededor del usuario, tambien pinta en el mapa los marcadores, y notificaciones.
         setInterval(() => { addFriends(map, ui); }, 3000);
