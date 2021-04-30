@@ -65,7 +65,6 @@ function enviarUbicacionAServidor(solidId) {
         },
         body: JSON.stringify(datos)
       });
-      new Promise(resolve => setTimeout(resolve, 2000));
     });
   }
 }
@@ -74,19 +73,25 @@ function App() {
   const solidId = useWebId();
   window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
-  
-  if (window.sessionStorage.getItem("userState") === null){
-    GetUserState().then(function(result) {
-      if(result!==null)
+
+  if (window.sessionStorage.getItem("userState") === null) {
+    GetUserState().then(function (result) {
+      if (result !== null)
         window.sessionStorage.setItem("userState", result);
-    });   
+    });
   }
 
   // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña "radarinA1*"
   const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
 
+  enviarUbicacionAServidor(solidId);
+
   useEffect(() => {
-    setInterval(enviarUbicacionAServidor(solidId), 30000);
+    let isMounted = true; // note this flag denote mount status
+    if (solidId !== adminId && isMounted) {
+      setInterval(enviarUbicacionAServidor(solidId), 30000);
+    }
+    return () => { isMounted = false; };
   });
 
   if (solidId !== adminId) {
