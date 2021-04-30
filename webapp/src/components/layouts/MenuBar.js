@@ -130,7 +130,7 @@ class MenuBar extends React.Component {
                       <i className="fa fa-cogs"></i>
                       <Nav.Link href="/settings" className="nav-link">Settings</Nav.Link>
                     </li>
-                    <li class= "nav-item">
+                    <li className= "nav-item">
                       <i className="fas fa-sign-out-alt"></i>
                         <Nav.Link href="/welcome" className="nav-link" onClick={()=>{
                             this.handleLinkClick();

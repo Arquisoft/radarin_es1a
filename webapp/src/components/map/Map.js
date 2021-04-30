@@ -24,6 +24,7 @@ function Map() {
 
     let nearFriends = new Set();
 
+    /** Busca los amigos alrededor del usuario, tambien pinta en el mapa los marcadores de cada uno, incluido el propio usuario de la app, ademas manda las notificaciones correspondientes*/
     async function getRespuesta(map, ui) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
@@ -31,7 +32,7 @@ function Map() {
         var id = window.sessionStorage.getItem("id");
 
         const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
-        
+
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
@@ -101,40 +102,32 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
+        // Circulo auxiliar para calcular el zoom al iniciar el mapa, necesita la posicion del usuario, 
+        // es casi mejor cogerla directamente del hardware que consultar en la base.
+        navigator.geolocation.getCurrentPosition((position) => {
+            var circle = new H.map.Circle(
+                // The central point of the circle
+                { lat: position.coords.latitude, lng: position.coords.longitude },
+                // The radius of the circle in meters
+                LocationFunctions.radius() * 1000,
+                {
+                    style: {
+                        strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
+                        lineWidth: 2,
+                        fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
+                    }
+                }
+            );
+            map.getViewModel().setLookAtData({
+                bounds: circle.getBoundingBox()
+            });
+        }, (error) => {
+            console.error(error);
+        });
+
+        // Intervalo de tiempo en el que busca los amigos alrededor del usuario, tambien pinta en el mapa los marcadores, y notificaciones.
         setInterval(() => { addFriends(map, ui); }, 3000);
-        /*
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const H = window.H;
-        
-                    map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-                    // Circulo auxiliar para calcular el zoom al iniciar el mapa.
-                    var circle = new H.map.Circle(
-                        // The central point of the circle
-                        { lat: position.coords.latitude, lng: position.coords.longitude },
-                        // The radius of the circle in meters
-                        LocationFunctions.radius() * 1000,
-                        {
-                            style: {
-                                strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
-                                lineWidth: 2,
-                                fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
-                            }
-                        }
-                    );
-                    map.addObject(circle);
-                    map.getViewModel().setLookAtData({
-                        bounds: circle.getBoundingBox()
-                    });
-        
-                    //Resize of map in window
-                    window.addEventListener("resize", () => map.getViewPort().resize());
-        
-                  
-        
-                }, (error) => {
-                    console.error(error);
-                });
-        */
+
         return () => {
             map.dispose();
         };
@@ -142,11 +135,10 @@ function Map() {
         [mapRef]);
 
     return (
-        // Set a height on the map so it will display
-
         <Fragment>
 
             <div ref={mapRef} id="map" />
+
             {
                 marcas.map((marca, i) => <MapMarker
                     key={`marca_${i}`}
@@ -157,6 +149,7 @@ function Map() {
                     ui={ui}
                     map={map} />)
             }
+
         </Fragment >
     );
 }
