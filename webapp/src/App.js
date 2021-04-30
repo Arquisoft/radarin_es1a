@@ -82,9 +82,9 @@ function App() {
           },
           body: JSON.stringify(datos)
         });
-        
+
       }, (error) => { console.error(error); }
-        , { enableHighAccuracy: true });
+        , { enableHighAccuracy: true, timeout: 5000 });
     }
   }
 
