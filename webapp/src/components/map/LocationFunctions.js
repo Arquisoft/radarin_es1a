@@ -17,11 +17,11 @@ export const toRadianes = function (valor) {
 }
 
 // Calculates the distance between two coordinates according to Haversine Formule.
-export function distanceFilter (lat2, lng2, userPosition) {
+export function distanceFilter (lat2, lng2, user) {
     var RadioTierraKm = 6378.0;
 
-    var lat1 = userPosition.coords.latitude;
-    var lng1 = userPosition.coords.longitude;
+    var lat1 = user.latitud;
+    var lng1 = user.longitud;
     var difLat = toRadianes(lat2 - lat1);
     var difLng = toRadianes(lng2 - lng1);
 
@@ -38,9 +38,9 @@ export function distanceFilter (lat2, lng2, userPosition) {
     return true;
 }
 
-export function findNearFriends (list, userPosition){
+export function findNearFriends (list, user){
     // eslint-disable-next-line
-    return list.filter((item, index) => distanceFilter(item.latitud, item.longitud, userPosition));
+    return list.filter((item, index) => distanceFilter(item.latitud, item.longitud, user));
 }
 
 /**

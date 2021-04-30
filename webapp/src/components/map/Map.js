@@ -12,7 +12,6 @@ function Map() {
     const [marcas, setMarcas] = useState([]);
     const [ui, setUI] = useState(null);
     const [map, setMap] = useState(null);
-    const [userPosition, setUserPosition] = useState(null);
 
     const [friendsList, setFriendsList] = useState([]);
 
@@ -25,19 +24,19 @@ function Map() {
 
     let nearFriends = new Set();
 
-    async function getRespuesta(map, ui, userPosition) {
+    async function getRespuesta(map, ui) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
         var friends = window.sessionStorage.getItem("friends") ?? [];
         var id = window.sessionStorage.getItem("id");
 
         const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
-
+        
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
 
-        let newNearFriends = LocationFunctions.findNearFriends(list, userPosition);
+        let newNearFriends = LocationFunctions.findNearFriends(list, list.filter(user => user.solidId === id)[0]);
 
         for (const friend of newNearFriends) {
             const id = window.location.href.substring(
@@ -56,8 +55,8 @@ function Map() {
             nuevasMarcas.push({
                 locationOfMarker,
                 webId: friend.solidId,
-                timeStamp:friend.timeStamp,
-                userState:friend.userState
+                timeStamp: friend.timeStamp,
+                userState: friend.userState
             });
         }
 
@@ -68,8 +67,8 @@ function Map() {
 
     useLayoutEffect(() => {
 
-        function addFriends(map, ui, userPosition) {
-            getRespuesta(map, ui, userPosition);
+        function addFriends(map, ui) {
+            getRespuesta(map, ui);
         }
 
         if (!mapRef.current) { return; }
@@ -102,39 +101,40 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
-        navigator.geolocation.getCurrentPosition((position) => {
-
-            setUserPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
-            const H = window.H;
-
-            map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-            // Circulo auxiliar para calcular el zoom al iniciar el mapa.
-            var circle = new H.map.Circle(
-                // The central point of the circle
-                { lat: position.coords.latitude, lng: position.coords.longitude },
-                // The radius of the circle in meters
-                LocationFunctions.radius() * 1000,
-                {
-                    style: {
-                        strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
-                        lineWidth: 2,
-                        fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
-                    }
-                }
-            );
-            map.addObject(circle);
-            map.getViewModel().setLookAtData({
-                bounds: circle.getBoundingBox()
-            });
-
-            //Resize of map in window
-            window.addEventListener("resize", () => map.getViewPort().resize());
-
-            setInterval(() => { addFriends(map, ui, position); }, 3000);
-
-        }, (error) => {
-            console.error(error);
-        });
+        setInterval(() => { addFriends(map, ui); }, 3000);
+        /*
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const H = window.H;
+        
+                    map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+                    // Circulo auxiliar para calcular el zoom al iniciar el mapa.
+                    var circle = new H.map.Circle(
+                        // The central point of the circle
+                        { lat: position.coords.latitude, lng: position.coords.longitude },
+                        // The radius of the circle in meters
+                        LocationFunctions.radius() * 1000,
+                        {
+                            style: {
+                                strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
+                                lineWidth: 2,
+                                fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
+                            }
+                        }
+                    );
+                    map.addObject(circle);
+                    map.getViewModel().setLookAtData({
+                        bounds: circle.getBoundingBox()
+                    });
+        
+                    //Resize of map in window
+                    window.addEventListener("resize", () => map.getViewPort().resize());
+        
+                  
+        
+                }, (error) => {
+                    console.error(error);
+                });
+        */
         return () => {
             map.dispose();
         };
@@ -157,15 +157,6 @@ function Map() {
                     ui={ui}
                     map={map} />)
             }
-
-            <MapMarker
-                webId={solidId}
-                locationOfMarker={userPosition}
-                timeStamp={new Date().toUTCString()}
-                state={""}
-                ui={ui}
-                map={map} />
-
         </Fragment >
     );
 }

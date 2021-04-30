@@ -82,7 +82,7 @@ function App() {
           },
           body: JSON.stringify(datos)
         });
-      });
+      }, null, { enableHighAccuracy: true });
     }
   }
 
