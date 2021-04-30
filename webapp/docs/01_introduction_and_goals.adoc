@@ -13,13 +13,13 @@ In every application there are high-level requirements that are sought to be met
 * A user receives notifications from other known users who are nearby and can know their locations.
 * The information of the users, like their friends, will be saved in the user's Pod.
 * There must be administration options for user management.
-* Server status can be monitored.
 
 .Optional requirements
-* A user can define its state (sports, date...) and watch it's friend's state to plan meetings acordingly.
+* A user can define his state (sport, date...) and watch their friends' state to plan meetings acordingly.
 * When looking and the list of friends, you can locate a friend in the map by clicking a button.
-* The Radious at which you can see friends is visible on the map and modifiable in the settings.
+* The radious at which you can see friends is visible on the map and modifiable in the settings.
 * There is a presentation page that serves as an introduction to Radarin.
+* Server status can be monitored.
 
 === Quality Goals
 
@@ -29,7 +29,7 @@ In every application there are high-level requirements that are sought to be met
 |Quality Goal|Motivation|Importance
 | Privacy | Control over user information will be decentralized, guaranteeing the security and privacy of their data | High
 | Usability | Any user, with or without experience in the use of the application, must be able to understand and use it easily | High
-| System robustness | Ability to handle errors while users are using the application | High
+| System robustness | Ability to handle errors while users are using the application | Medium - High
 | Efficiency | Use the least amount of resources possible to generate the greatest amount of results, in order to improve response and load times | Medium - High
 |===
 
