@@ -19,24 +19,51 @@ router.post("/users/location", async (req, res) => {
     const longitud = req.body.posicion.longitud;
     const userState = req.body.userState;
     const timeStamp = req.body.timeStamp;
-    let user = await User.findOne({ solidId });
-    if (user == null || user == undefined) {
-        user = new User({
+
+    let users = [];
+    users = await User.find({ solidId });
+
+    if (users.length == 0 || users == null || users == undefined) {
+        var user = new User({
             latitud,
             longitud,
             solidId,
             userState,
             timeStamp
-        })
+        });
+        await user.save();
+        res.send(user); //aqui debe devolver los amigos
+
     } else {
-        user.latitud = latitud;
-        user.longitud = longitud;
-        user.solidId = solidId;
-        user.userState = userState;
-        user.timeStamp = timeStamp;
+        // Si encuentra mas de un usuario borrar
+        if (users.length != 1) {
+            for (i = 0; i < users.length - 1; i++) {
+                try {
+                    await User.findOneAndRemove({ solidId });
+                    console.log("borrado" + solidId);
+                } catch (error) {
+                    console.log("no se encontro " + solidId)
+                }
+            }
+            console.log(solidId);
+            await User.findOneAndUpdate(solidId, {
+                latitud: latitud,
+                longitud: longitud,
+                userState: userState,
+                timeStamp: timeStamp
+            });
+        } else {
+            console.log(users);
+            users[0].latitud = latitud;
+            users[0].longitud = longitud;
+            users[0].solidId = solidId;
+            users[0].userState = userState;
+            users[0].timeStamp = timeStamp;
+            console.log("actualizado" + users[0])
+            await users[0].save();
+            res.send(users[0]); //aqui debe devolver los amigos
+        }
     }
-    await user.save();
-    res.send(user); //aqui debe devolver los amigos
 
 });
 
