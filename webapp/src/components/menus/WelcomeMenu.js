@@ -92,7 +92,7 @@ export default function WelcomeMenu() {
                         <Hidden smDown>
                             <Button className={classes.button} color="inherit" component={RouterLink} to="/welcome">Welcome</Button>
                             <Button className={classes.button} color="inherit" component={RouterLink} to="/creators">Creators</Button>
-                            <Button className={classes.button} color="inherit" component={RouterLink} to="/login">Login</Button>
+                            <Button className={classes.button} variant="outlined" color="inherit" component={RouterLink} to="/login">Sign in</Button>
                         </Hidden>
                     </Toolbar>
                 </AppBar>
