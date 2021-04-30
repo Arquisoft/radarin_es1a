@@ -41,12 +41,15 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(6),
     },
     button: {
+        backgroundColor: "#303030",
+        color: "white",
         "&:hover": {
             backgroundColor: "#425c5a",
             color: "white"
         }
     },
     externallink: {
+        color: "#303030",
         "&:hover": {
             color: "#425C5A"
         }
@@ -86,12 +89,12 @@ export default function Album() {
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
-                                    <Button className={classes.button} variant="contained" color="primary" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
+                                    <Button className={classes.button} variant="contained" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
                                         Group Github
                                     </Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button className={classes.button} variant="contained" color="primary" target="_blank" rel="noopener" href={"https://arquisoft.github.io/"}>
+                                    <Button className={classes.button} variant="contained" target="_blank" rel="noopener" href={"https://arquisoft.github.io/"}>
                                         Subject Github
                                     </Button>
                                 </Grid>
@@ -118,7 +121,7 @@ export default function Album() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button className={classes.externallink} size="small" color="primary" target="_blank" rel="noopener" href={student.github}>
+                                        <Button className={classes.externallink} size="small" target="_blank" rel="noopener" href={student.github}>
                                             Github account
                                         </Button>
                                     </CardActions>
