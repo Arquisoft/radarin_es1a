@@ -7,7 +7,8 @@ import "@testing-library/jest-dom/extend-expect";
 import App from "../App";
 
 test ("check that everything is rendering propertly", async () => {
-  /*render(<App/>);
+  render(<App/>);
+  /*
   await waitFor(() => {
     const element = screen.getByText("Radarin");
     expect(element).toBeInTheDocument();
