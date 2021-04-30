@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cx from "clsx";
-import { Card, Avatar, CardContent, Link, FormControl,
+import { Card, Avatar, CardContent, Link, FormControl, Switch, 
      FormControlLabel, Radio, RadioGroup, Divider,withStyles } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GetUserWebId, GetUserProfileImage } from "./SolidManager";
@@ -9,7 +9,6 @@ import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import DragIndicatorRoundedIcon from "@material-ui/icons/DragIndicatorRounded";
 import { useFadedShadowStyles } from "@mui-treasury/styles/shadow/faded";
-
 import { Value } from "@solid/react";
 
 const RadioFood = withStyles({
@@ -43,6 +42,14 @@ const useStyles = makeStyles((palette) => ({
         height: 80,
         margin: "auto",
       },
+      imagen: {
+          height: '15rem',
+          width: '15rem',
+          marginTop: -50
+      },
+      covid: {
+          marginTop: 10
+      },
       heading: {
         fontSize: 18,
         fontWeight: "bold",
@@ -65,6 +72,9 @@ function checkEat(){
 }
 function checkDefault(){
     return sessionStorage.getItem("userState")==="default";
+}
+function checkCovid(){
+    return sessionStorage.getItem("userState")==="covid";
 }
 
 export default function UserProfile() {
@@ -89,6 +99,21 @@ export default function UserProfile() {
         sessionStorage.setItem("userState", event.target.value);
         enviarUbicacionAServidor();
     };
+
+    const handleCovidChange = event => {
+      if(sessionStorage.getItem("userState")==="covid"){
+        setUserState("default");
+        sessionStorage.setItem("userState", "default");
+        enviarUbicacionAServidor();
+      }else{ 
+        setUserState(event.target.value);
+        sessionStorage.setItem("userState", event.target.value);
+        enviarUbicacionAServidor();
+      }
+    };
+
+    const omsUrl="https://www.who.int/emergencies/diseases/novel-coronavirus-2019";
+    const omsLogo="https://www.who.int/ResourcePackages/WHO/assets/dist/images/logos/en/h-logo-blue.svg"
 
     function enviarUbicacionAServidor() {
         if (webId) {
@@ -132,16 +157,29 @@ export default function UserProfile() {
                 <CardContent>
                   <h3 className={classes.heading}>State:</h3>
                   <br/>
-                  <FormControl component="fieldset">
-                    <RadioGroup aria-label="estado" name="estado1" onChange={handleChange}>
-                        <FormControlLabel value="deporte" control={<Radio checked={checkSport()} color="primary" icon={<DirectionsRunRoundedIcon/>}                                         checkedIcon={<DirectionsRunRoundedIcon/>} />} label="Sport"  />
+                  <FormControl component="fieldset" disabled={checkCovid()}>
+                    <RadioGroup aria-label="estado" name="estado1"  onChange={handleChange} >
+                        <FormControlLabel value="deporte" control={<Radio checked={checkSport()} color="primary" icon={<DirectionsRunRoundedIcon/>} 
+                        checkedIcon={<DirectionsRunRoundedIcon/>} />} label="Sport"  />
                         <FormControlLabel value="comer" control={ <RadioFood checked={checkEat()}/> } label="Meal"  />
                         <FormControlLabel value="cita" control={<Radio checked={checkDate()} icon={<FavoriteRoundedIcon/>} 
                         checkedIcon={<FavoriteRoundedIcon/>} />} label="Date"  />
                         <FormControlLabel value="default" control={<RadioDefault checked={checkDefault()} />} label="Unspecified"  />
                     </RadioGroup>
-                    </FormControl>
+                  </FormControl>
                     </CardContent>
+              </Card>
+              <Card className={classes.card} variant="outlined">
+                <CardContent>                 
+                  <h3 className={classes.heading}>Do you have any covid symptoms?</h3>
+                  <h4 className={classes.heading}><Link style={{ color: "#99DE9F" }} target="_blank" href={omsUrl}> Check it</Link> </h4>
+                 <FormControlLabel  value="covid"  className={classes.covid} 
+                    control={<Switch checked={checkCovid()} onChange={handleCovidChange}  color="primary" />}
+                    label="I have Covid-19"
+                  />
+                  <br/>
+                  <img alt="Logo OMS" src={omsLogo} className={classes.imagen}/>
+                  </CardContent>
               </Card>
         </div>
     );
