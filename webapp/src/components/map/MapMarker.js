@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core";
 import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded";
 import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
+import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
 import ReactDOMServer from "react-dom/server";
 
 export function MapMarker({ webId, locationOfMarker, timeStamp, state, ui, map }) {
@@ -40,8 +41,12 @@ export function MapMarker({ webId, locationOfMarker, timeStamp, state, ui, map }
                 );
                 map.addObject(circle);
             }
+
             else {
-                pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
+                if (state === "covid")
+                    pngIcon = new H.map.Icon("/img/covid_marker.png", { size: { w: 24, h: 24 } });
+                else
+                    pngIcon = new H.map.Icon("/img/marker.png", { size: { w: 24, h: 24 } });
             }
             let marker = new H.map.Marker(locationOfMarker, { icon: pngIcon });
             map.addObject(marker);
@@ -122,6 +127,15 @@ function CoolState(props) {
             <div className={cx(stylesState.caption, stylesState.text)}>
                 {beautyState}
                 <FavoriteRoundedIcon htmlColor="#dd1007" />
+            </div>
+        );
+    }
+    if (argtest === "covid") {
+        beautyState = "Friend with Covid-19";
+        return (
+            <div className={cx(stylesState.caption, stylesState.text)}>
+                {beautyState}
+                <WarningRoundedIcon htmlColor="#ff2300" />
             </div>
         );
     }
