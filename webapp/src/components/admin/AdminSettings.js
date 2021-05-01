@@ -41,7 +41,7 @@ function AdminSettingsPage() {
                 online = true;
             }
 
-            var user = { id: item.solidId, lat: item.latitud, lng: item.longitud, userState: item.userState, lastLogin:new Date(item.timeStamp).toUTCString(), isOnline: online, timeStamp: item.timeStamp };
+            var user = { id: item.solidId, lat: item.latitud, lng: item.longitud, userState: item.userState, lastLogin:new Date(item.timeStamp).toLocaleString(), isOnline: online, timeStamp: item.timeStamp };
             //newUsers.push(user);
             newUsers.push(user);
         });

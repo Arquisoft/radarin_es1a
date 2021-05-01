@@ -37,9 +37,7 @@ router.post("/users/location", async (req, res) => {
             for (var i = 0; i < users.length - 1; i++)
                 try {
                     await User.findOneAndRemove({ solidId });
-                    console.log("borrado" + solidId);
                 } catch (error) {
-                    console.log("no se encontro " + solidId);
                 }
 
             await User.findOneAndUpdate(solidId,

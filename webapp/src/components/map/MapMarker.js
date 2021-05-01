@@ -49,7 +49,7 @@ export function MapMarker({ webId, locationOfMarker, timeStamp, state, ui, map }
             marker.addEventListener("tap", logEvent => {
                 let bubble = new H.ui.InfoBubble({ lat: locationOfMarker.lat, lng: locationOfMarker.lng }, {
                     // eslint-disable-next-line
-                    content: `${nombre}` + '<p></p>' + `${new Date(timeStamp).toUTCString()}` + '<p></p>' + `${ReactDOMServer.renderToString(CoolState(state))}`,
+                    content: `${nombre}` + '<p></p>' + `${new Date(timeStamp).toLocaleString()}` + '<p></p>' + `${ReactDOMServer.renderToString(CoolState(state))}`,
                 });
 
                 ui.addBubble(bubble);

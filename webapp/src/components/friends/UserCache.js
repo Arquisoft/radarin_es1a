@@ -8,7 +8,7 @@ export default {
     friends: [],
 
     getName() {
-        console.log("The name is: " + this.getName);
+        //console.log("The name is: " + this.getName);
         return this.name;
     },
     async loadName() {

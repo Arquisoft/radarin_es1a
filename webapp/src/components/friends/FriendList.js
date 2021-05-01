@@ -81,7 +81,6 @@ function FriendCardList() {
     setWebId(GetUserWebId());
   }, []);
 
-  console.log(webId);
   const classes = useStyles();
   if (!friendsList.length) {
     return (

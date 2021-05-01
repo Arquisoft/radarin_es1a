@@ -59,7 +59,7 @@ function App() {
 
   function enviarUbicacionAServidor() {
     if (solidId) {
-      console.log("Enviando ubicacion");
+      //console.log("Enviando ubicacion");
 
       navigator.geolocation.getCurrentPosition((position) => {
 
