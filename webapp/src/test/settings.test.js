@@ -25,9 +25,3 @@ test("settings view render properly", async () => {
      
      //expect(getByText("Meal")).toBeInTheDocument();
  });
-
-test("admim settings render properly", async () => {
-    render(<AdminSettings />);
-     
-     //expect(getByText("Meal")).toBeInTheDocument();
- });

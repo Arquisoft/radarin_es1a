@@ -15,6 +15,12 @@ test("check that the list renders properly without any friends", async () => {
       //No se carga ningun amigo de la Base de datos
       expect(friendList.container).toHaveTextContent("You don't have friends in your Solid Pod");
       expect(friendList.container).toHaveTextContent("You can add new friends in your pod");
+      expect(friendList.container).toHaveTextContent("Solid profile");
+      expect(friendList.container.firstChild.classList.contains('makeStyles-header-2'))
+      expect(friendList.container.firstChild.classList.contains('MuiBox-root MuiBox-root-7 FlexItem FlexColumn makeStyles-card-1'))
       
+      //const style = window.getComputedStyle(MyHeaderRoots[0])
+      //expect(style.position).toBe('fixed')
+      //expect(style.top).toBe('0px')
    });
 });

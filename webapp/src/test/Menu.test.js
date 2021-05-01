@@ -3,6 +3,7 @@ import {render, screen, fireEvent, cleanup, pwgetByText, waitFor}  from "@testin
 import "globalthis/auto";
 import ReactDOM from "react-dom";
 import MenuBar from "../components/layouts/MenuBar";
+import {NavigationBar} from "../components/layouts/NavigationBar";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from '@testing-library/user-event';
 test("MenuBar render properly", async () => {
@@ -19,5 +20,11 @@ test("MenuBar render properly", async () => {
       userEvent.click(screen.getByText('Settings'));
       expect(screen.getByText("Logout")).toBeInTheDocument();
       userEvent.click(screen.getByText('Logout'));
+   });
+});
+test("NavigationBar render properly", async () => {
+
+   render(<NavigationBar />);  
+   await waitFor(() => {
    });
 });

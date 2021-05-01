@@ -6,7 +6,7 @@ import "@testing-library/jest-dom/extend-expect";
 import Admin from "../components/admin/AdminSettings";
 import userEvent from '@testing-library/user-event';
 test ("check that everything is rendering propertly", async () => {
-   render(<Admin/>)
+  const admin = render(<Admin/>)
   await waitFor(() => {
     expect(screen.getByText("Admin Panel")).toBeInTheDocument();
     expect(screen.getByText("User List")).toBeInTheDocument();
@@ -16,10 +16,12 @@ test ("check that everything is rendering propertly", async () => {
     userEvent.click(screen.getByRole("checkbox"))
     expect(screen.getByRole("checkbox")).toBeChecked()
     expect(screen.getByText("User")).toBeInTheDocument();
+    userEvent.click(screen.getByText("User"))
     expect(screen.getByText("Latitude")).toBeInTheDocument();
+    userEvent.click(screen.getByText("Latitude"))
     
     //Columnas no encontradas
-    //expect(screen.getByText("Longitude")).toBeInTheDocument();
+    //expect(admin.container).toHaveTextContent("Longitude");
     //expect(screen.getByText("User State")).toBeInTheDocument();
     //expect(screen.getByText("Last Update")).toBeInTheDocument();
     //expect(screen.get("isOnline")).toBeInTheDocument();
@@ -27,4 +29,6 @@ test ("check that everything is rendering propertly", async () => {
     expect(screen.getByText("Delete")).toBeInTheDocument();
     userEvent.click(screen.getByText('Delete'))
   });
+
+
 });
