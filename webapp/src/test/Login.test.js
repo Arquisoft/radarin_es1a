@@ -21,6 +21,8 @@ test("login render properly", async () => {
       expect(solidcommunity).toBeInTheDocument();
       userevent.click(solidcommunity);
       userevent.click(login);
+      
+      /*
       await waitFor( () =>{
         userevent.click(login);
         console.log("prueba");
@@ -28,6 +30,7 @@ test("login render properly", async () => {
         expect(username).notToBeInTheDocument();
 
       });
+      */
 
 
       
@@ -63,16 +66,6 @@ test("login render properly", async () => {
        expect(input).toBeInTheDocument();
        */
   
-
-  await waitFor(() => {
-
-   //fireEvent.change(input, {target : {value: 'Hello' } })
-
-   //var component = screen.getByText("hola que tal");
-   //var component = screen.getByText("prueba");
-   //sexpect(component).toBeInTheDocument();*
-
-  })
 
   
 
