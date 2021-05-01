@@ -22,21 +22,21 @@ public class MainTest {
 
 	// En Windows (Debe ser la versión 65.0.1 y desactivar las actualizacioens
 	// automáticas)):
-	static String PathFirefox86 = 
+	private static String PathFirefox86 = 
 			"C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = System.getProperty("user.dir") 
+	private static String Geckdriver024 = System.getProperty("user.dir") 
 			+ "\\lib\\geckodriver024win64.exe";
 
-	static String testUsername = "radarines1atest";
-	static String testPass ="R@darines1atest";
+	private static String testUsername = "radarines1atest";
+	private static String testPass ="R@darines1atest";
 	
-	static String adminUser = "radarines1a";
-	static String adminPass = "radarinA1*";
+	private static String adminUser = "radarines1a";
+	private static String adminPass = "radarinA1*";
 	
-	static String webID = "https://radarines1atest.solidcommunity.net";
-	static WebDriver driver = getDriver(PathFirefox86, Geckdriver024);
-	static String URL = "https://radarines1awebapp.herokuapp.com/welcome";
-	static int timeout = 10;
+	private static String webID = "https://radarines1atest.solidcommunity.net";
+	private static WebDriver driver = getDriver(PathFirefox86, Geckdriver024);
+	private static String URL = "https://radarines1awebapp.herokuapp.com/welcome";
+	private static int timeout = 10;
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -60,11 +60,6 @@ public class MainTest {
 		driver = getDriver(PathFirefox86, Geckdriver024);
 	}
 
-	// Antes de la primera prueba
-	@BeforeClass
-	static public void begin() {
-
-	}
 
 	// Al finalizar la última prueba
 	@AfterClass
@@ -103,11 +98,11 @@ public class MainTest {
 		
 		clickMenu(3);
 		//cambiamos el rango
-		WebElement input = SeleniumUtils.EsperaCargaPagina(driver, "id", "radius", timeout).get(0);
+		WebElement input = SeleniumUtils.esperaCargaPagina(driver, "id", "radius", timeout).get(0);
 		input.click();
 		input.sendKeys("100");
 		//pulsamos el boton de aceptar
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "button", timeout).get(0).click();
+		SeleniumUtils.esperaCargaPagina(driver, "id", "button", timeout).get(0).click();
 		SeleniumUtils.esperarSegundos(driver, 7);		
 	}
 	
@@ -121,15 +116,15 @@ public class MainTest {
 		//navegamos hasta las settings para tener rango suficiente como para ver amigos		
 		clickMenu(3);
 		//cambiamos el rango
-		WebElement input = SeleniumUtils.EsperaCargaPagina(driver, "id", "radius", timeout).get(0);
+		WebElement input = SeleniumUtils.esperaCargaPagina(driver, "id", "radius", timeout).get(0);
 		input.click();
 		input.sendKeys("100");
 		//pulsamos el boton de aceptar
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "button", timeout).get(0).click();
+		SeleniumUtils.esperaCargaPagina(driver, "id", "button", timeout).get(0).click();
 		//vamos hasta la lista de amigos
 		clickMenu(2);
 		//pulsamos el votor de ir al mapa en miguel
-		SeleniumUtils.EsperaCargaPagina(driver, "class", "MuiButton-label", timeout).get(1).click();
+		SeleniumUtils.esperaCargaPagina(driver, "class", "MuiButton-label", timeout).get(1).click();
 		//comprobamos que hemos ido a su localizacion( tenemos que verlo manualmente)
 		SeleniumUtils.esperarSegundos(driver, 9);	
 	}
@@ -144,7 +139,7 @@ public class MainTest {
 		//navegamos hasta el perfil
 		clickMenu(1);
 		//probamos a pulsar los botones comprobando que funciona
-		List<WebElement> buttons =  SeleniumUtils.EsperaCargaPagina(driver, "class", "MuiFormControlLabel-root", timeout);
+		List<WebElement> buttons =  SeleniumUtils.esperaCargaPagina(driver, "class", "MuiFormControlLabel-root", timeout);
 		buttons.get(0).click();
 		SeleniumUtils.esperarSegundos(driver, 1);
 		buttons.get(1).click();
@@ -152,10 +147,10 @@ public class MainTest {
 		buttons.get(2).click();
 		SeleniumUtils.esperarSegundos(driver, 1);
 		//pulsamos el botón del covid
-		SeleniumUtils.EsperaCargaPagina(driver, "class", "MuiButtonBase-root MuiIconButton-root jss7 MuiSwitch-switchBase MuiSwitch-colorPrimary", timeout).get(0).click();
+		SeleniumUtils.esperaCargaPagina(driver, "class", "MuiButtonBase-root MuiIconButton-root jss7 MuiSwitch-switchBase MuiSwitch-colorPrimary", timeout).get(0).click();
 		SeleniumUtils.esperarSegundos(driver, 1);
 		//lo volvemos a pulsar para comprobar que funciona bien
-		SeleniumUtils.EsperaCargaPagina(driver, "class", "MuiButtonBase-root MuiIconButton-root jss7 MuiSwitch-switchBase MuiSwitch-colorPrimary", timeout).get(0).click();
+		SeleniumUtils.esperaCargaPagina(driver, "class", "MuiButtonBase-root MuiIconButton-root jss7 MuiSwitch-switchBase MuiSwitch-colorPrimary", timeout).get(0).click();
 		SeleniumUtils.esperarSegundos(driver, 1);
 		//volvemos al estado de antes
 		SeleniumUtils.esperarSegundos(driver, 1);
@@ -169,9 +164,9 @@ public class MainTest {
 	@Test 
 	public void test05() { 
 		loginAsAdminUser();
-		SeleniumUtils.EsperaCargaPagina(driver, "text", "Total users", timeout);
-		SeleniumUtils.EsperaCargaPagina(driver, "text", "Latitude", timeout);
-		SeleniumUtils.EsperaCargaPagina(driver, "text", "User State", timeout);
+		SeleniumUtils.esperaCargaPagina(driver, "text", "Total users", timeout);
+		SeleniumUtils.esperaCargaPagina(driver, "text", "Latitude", timeout);
+		SeleniumUtils.esperaCargaPagina(driver, "text", "User State", timeout);
 	
 	}
 	
@@ -182,8 +177,8 @@ public class MainTest {
 	 * @param option
 	 */
 	private void clickMenu(int option) {
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "react-burger-menu-btn", timeout).get(0).click();
-		SeleniumUtils.EsperaCargaPagina(driver, "class", "nav-link nav-link", timeout).get(option).click();
+		SeleniumUtils.esperaCargaPagina(driver, "id", "react-burger-menu-btn", timeout).get(0).click();
+		SeleniumUtils.esperaCargaPagina(driver, "class", "nav-link nav-link", timeout).get(option).click();
 		
 	}
 	
@@ -217,18 +212,18 @@ public class MainTest {
 				webIDInput.click();
 				webIDInput.sendKeys("https://" + username + ".solidcommunity.net");
 				//pulsamos botón de login
-				List<WebElement> list =  SeleniumUtils.EsperaCargaPagina(driver, "class", "sc-gzVnrw isbeaB", 10);
+				List<WebElement> list =  SeleniumUtils.esperaCargaPagina(driver, "class", "sc-gzVnrw isbeaB", 10);
 				WebElement submit = list.get(0);
 				submit.click();
 				//rellenamos el usuario y la contraseña
-				WebElement usernameInput = SeleniumUtils.EsperaCargaPagina(driver, "id", "username", timeout).get(0);
+				WebElement usernameInput = SeleniumUtils.esperaCargaPagina(driver, "id", "username", timeout).get(0);
 				usernameInput.click();
 				usernameInput.sendKeys(username);
-				WebElement passInput = SeleniumUtils.EsperaCargaPagina(driver, "id", "password", timeout).get(0);
+				WebElement passInput = SeleniumUtils.esperaCargaPagina(driver, "id", "password", timeout).get(0);
 				passInput.click();
 				passInput.sendKeys(password);
 				//confirmamos y pulsamos el botón de login
-				SeleniumUtils.EsperaCargaPagina(driver, "id", "login", timeout).get(0).click();
+				SeleniumUtils.esperaCargaPagina(driver, "id", "login", timeout).get(0).click();
 	}
 
 

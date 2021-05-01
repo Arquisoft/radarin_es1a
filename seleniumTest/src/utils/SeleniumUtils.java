@@ -3,7 +3,6 @@ package utils;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +30,7 @@ public class SeleniumUtils {
 	 * @param timeout: el tiempo máximo que se esperará por la aparición del elemento a buscar con xpath
 	 * @return  Se retornará la lista de elementos resultantes de la búsqueda con xpath.
 	 */
-	static public List<WebElement> EsperaCargaPaginaxpath(WebDriver driver, String xpath, int timeout)
+	static public List<WebElement> esperaCargaPaginaxpath(WebDriver driver, String xpath, int timeout)
 	{
 		WebElement resultado = 
 				(new WebDriverWait(driver, timeout)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
@@ -51,7 +50,7 @@ public class SeleniumUtils {
 	 * @param timeout: el tiempo máximo que se esperará por la apareción del elemento a buscar con criterio/text.
 	 * @return Se retornará la lista de elementos resultantes de la búsqueda.
 	 */
-	static public List<WebElement> EsperaCargaPagina(WebDriver driver, String criterio, String text, int timeout)
+	static public List<WebElement> esperaCargaPagina(WebDriver driver, String criterio, String text, int timeout)
 	{
 		String busqueda;
 		if (criterio.equals("id")) busqueda = "//*[contains(@id,'" + text + "')]";
