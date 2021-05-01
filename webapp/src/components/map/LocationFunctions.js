@@ -1,5 +1,4 @@
 import { store } from "react-notifications-component";
-
 // Default distanceRadius  5 km
 export const radius = () => {
     if (window.sessionStorage.getItem("radius") != null) {
@@ -49,31 +48,46 @@ export function findNearFriends (list, user){
  */
 export function notifyNearFriends(solidId, nearFriends, newNearFriends){
     let show = false;
-
+    let covid = false;
     for(const friend of newNearFriends){
         if(!nearFriends.has(friend.solidId) && friend.solidId !== solidId){
             show = true;
-            break;
+            if(hasCovid(friend)){
+                covid = true;
+                break;       
+            }     
         }
     }
     nearFriends = new Set(newNearFriends.map((friend)=>friend.solidId));
 
     if(show){
-        store.addNotification({
-            title: "Radarin",
-            message: "There are friends near you!",
-            type: "info",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 5000,
-              showIcon: true
-            }
-          });
-          show = false;
-      }
+        let message = "There are friends near you!";
+        let type = "info";       
+        let title = "Radarin" 
+        if(covid){
+            message = "Caution! A friend near you has symptoms of Covid-19";
+            type = "danger";
+            title = "There are friends near you"
+        }
+            store.addNotification({
+                title: title,
+                message: message,
+                type: type,
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                duration: 5000,
+                showIcon: true
+                }
+            });
+        }        
+        show = false;
 
     return nearFriends;
+}
+
+function hasCovid (friend){
+    return friend.userState === "covid";
 }

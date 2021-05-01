@@ -38,7 +38,7 @@ function Map() {
         var nuevasMarcas = [];
 
         let newNearFriends = LocationFunctions.findNearFriends(list, list.filter((user) => user.solidId === id)[0]);
-
+        
         for (const friend of newNearFriends) {
             const id = window.location.href.substring(
                 window.location.href.lastIndexOf("/") + 1,
@@ -60,7 +60,7 @@ function Map() {
                 userState: friend.userState
             });
         }
-
+        
         nearFriends = LocationFunctions.notifyNearFriends(id, nearFriends, newNearFriends);
 
         setMarcas(nuevasMarcas);
