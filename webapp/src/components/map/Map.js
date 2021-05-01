@@ -12,7 +12,6 @@ function Map() {
     const [marcas, setMarcas] = useState([]);
     const [ui, setUI] = useState(null);
     const [map, setMap] = useState(null);
-    const [userPosition, setUserPosition] = useState(null);
 
     const [friendsList, setFriendsList] = useState([]);
 
@@ -25,19 +24,20 @@ function Map() {
 
     let nearFriends = new Set();
 
-    async function getRespuesta(map, ui, userPosition) {
+    /** Busca los amigos alrededor del usuario, tambien pinta en el mapa los marcadores de cada uno, incluido el propio usuario de la app, ademas manda las notificaciones correspondientes*/
+    async function getRespuesta(map, ui) {
         var respuesta = await fetch("https://radarines1arestapi.herokuapp.com/api/users/lista"); //http://localhost:5000/api/users/lista
         var response = await respuesta.json();
         var friends = window.sessionStorage.getItem("friends") ?? [];
         var id = window.sessionStorage.getItem("id");
 
-        const list = response.filter(user => friends.includes(user.solidId) || user.solidId === id);
+        const list = response.filter((user) => friends.includes(user.solidId) || user.solidId === id);
 
         map.removeObjects(map.getObjects());
 
         var nuevasMarcas = [];
 
-        let newNearFriends = LocationFunctions.findNearFriends(list, userPosition);
+        let newNearFriends = LocationFunctions.findNearFriends(list, list.filter((user) => user.solidId === id)[0]);
 
         for (const friend of newNearFriends) {
             const id = window.location.href.substring(
@@ -56,8 +56,8 @@ function Map() {
             nuevasMarcas.push({
                 locationOfMarker,
                 webId: friend.solidId,
-                timeStamp:friend.timeStamp,
-                userState:friend.userState
+                timeStamp: friend.timeStamp,
+                userState: friend.userState
             });
         }
 
@@ -68,8 +68,8 @@ function Map() {
 
     useLayoutEffect(() => {
 
-        function addFriends(map, ui, userPosition) {
-            getRespuesta(map, ui, userPosition);
+        function addFriends(map, ui) {
+            getRespuesta(map, ui);
         }
 
         if (!mapRef.current) { return; }
@@ -102,39 +102,22 @@ function Map() {
         const ui = H.ui.UI.createDefault(map, defaultLayers);
         setUI(ui);
 
+        // Circulo auxiliar para calcular el zoom al iniciar el mapa, necesita la posicion del usuario, 
+        // es casi mejor cogerla directamente del hardware que consultar en la base.
         navigator.geolocation.getCurrentPosition((position) => {
-
-            setUserPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
-            const H = window.H;
-
-            map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-            // Circulo auxiliar para calcular el zoom al iniciar el mapa.
             var circle = new H.map.Circle(
-                // The central point of the circle
                 { lat: position.coords.latitude, lng: position.coords.longitude },
-                // The radius of the circle in meters
-                LocationFunctions.radius() * 1000,
-                {
-                    style: {
-                        strokeColor: "rgba(231, 76, 60, 0)", // Color of the perimeter
-                        lineWidth: 2,
-                        fillColor: "rgba(231, 76, 60, 0)"  // Color of the circle
-                    }
-                }
+                LocationFunctions.radius() * 1000
             );
-            map.addObject(circle);
+            // Centra el mapa en el bounding box del circulo.
             map.getViewModel().setLookAtData({
                 bounds: circle.getBoundingBox()
             });
+        }, (error) => { console.error(error); }, { enableHighAccuracy: true });
 
-            //Resize of map in window
-            window.addEventListener("resize", () => map.getViewPort().resize());
+        // Intervalo de tiempo en el que busca los amigos alrededor del usuario, tambien pinta en el mapa los marcadores, y notificaciones.
+        setInterval(() => { addFriends(map, ui); }, 3000);
 
-            setInterval(() => { addFriends(map, ui, position); }, 3000);
-
-        }, (error) => {
-            console.error(error);
-        });
         return () => {
             map.dispose();
         };
@@ -142,11 +125,10 @@ function Map() {
         [mapRef]);
 
     return (
-        // Set a height on the map so it will display
-
         <Fragment>
 
             <div ref={mapRef} id="map" />
+
             {
                 marcas.map((marca, i) => <MapMarker
                     key={`marca_${i}`}
@@ -157,14 +139,6 @@ function Map() {
                     ui={ui}
                     map={map} />)
             }
-
-            <MapMarker
-                webId={solidId}
-                locationOfMarker={userPosition}
-                timeStamp={new Date().toUTCString()}
-                state={""}
-                ui={ui}
-                map={map} />
 
         </Fragment >
     );

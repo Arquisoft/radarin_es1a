@@ -7,7 +7,8 @@ import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
 import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded";
 import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
-import {  BrowserRouter, Link } from "react-router-dom";
+import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
+import {  Link } from "react-router-dom";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
 import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";
 
@@ -85,9 +86,10 @@ function FriendCardList() {
   if (!friendsList.length) {
     return (
       <div className={classes.header}>
-        <h4>You don"t have friends in your Solid Pod</h4>
-        <h4>You can add new friends in your pod <BrowserRouter>
-        <Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></BrowserRouter> </h4>
+        <Column p={0} gap={0} className={classes.card}>
+        <h3>You don"t have friends in your Solid Pod</h3>
+        <h4>You can add new friends in your pod <Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></h4>  
+      </Column>
       </div>
     );
   }
@@ -194,9 +196,19 @@ function CoolState(props){
       </div>
     );
   }
+  if(argtest==="covid"){
+    beautyState="Friend with Covid-19";
+    return(
+      <div className={cx(stylesState.caption, stylesState.text)}>
+          <WarningRoundedIcon htmlColor="#ff2300"/>
+          {beautyState}
+          <WarningRoundedIcon htmlColor="#ff2300"/>
+      </div>
+    );
+  }
   return(
     <div className={cx(stylesState.caption, stylesState.text)}>
-          It has occured an error
-      </div>
+      Unspecified
+    </div>
   );
 }

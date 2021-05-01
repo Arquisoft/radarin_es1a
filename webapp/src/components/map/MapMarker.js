@@ -128,7 +128,7 @@ function CoolState(props) {
 
     return (
         <div className={cx(stylesState.caption, stylesState.text)}>
-           
+
         </div>
     );
 }

@@ -40,37 +40,12 @@ const Styles = styled.div`
 `;
 
 
-function enviarUbicacionAServidor(solidId) {
-  if (solidId) {
-    console.log("Enviando ubicacion");
-
-    navigator.geolocation.getCurrentPosition((position) => {
-
-      let time = new Date();
-      const datos = {
-        "solidId": solidId,
-        "posicion": {
-          "latitud": position.coords.latitude,
-          "longitud": position.coords.longitude,
-        },
-        "userState": sessionStorage.getItem("userState"),
-        "timeStamp": time.getTime()
-      };
-
-      //Cambia cuando este subido a heroku
-      fetch("https://radarines1arestapi.herokuapp.com/api/users/location", { //  http://localhost:5000/api/users/location
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(datos)
-      });
-    });
-  }
-}
 
 function App() {
   const solidId = useWebId();
+  // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña "radarinA1*"
+  const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
+
   window.sessionStorage.setItem("id", solidId);
   cache.loadFriends();
 
@@ -81,17 +56,43 @@ function App() {
     });
   }
 
-  // Deberia de sacar la lista de admins de mongo, ahora mismo esta hardcodeado, contraseña "radarinA1*"
-  const adminId = "https://radarines1a.solidcommunity.net/profile/card#me";
 
-  enviarUbicacionAServidor(solidId);
+  function enviarUbicacionAServidor() {
+    if (solidId) {
+      console.log("Enviando ubicacion");
 
-  useEffect(() => {
-    let isMounted = true; // note this flag denote mount status
-    if (solidId !== adminId && isMounted) {
-      setInterval(enviarUbicacionAServidor(solidId), 30000);
+      navigator.geolocation.getCurrentPosition((position) => {
+
+        let time = new Date();
+        const datos = {
+          "solidId": solidId,
+          "posicion": {
+            "latitud": position.coords.latitude,
+            "longitud": position.coords.longitude,
+          },
+          "userState": sessionStorage.getItem("userState"),
+          "timeStamp": time.getTime()
+        };
+
+        //Cambia cuando este subido a heroku
+        fetch("https://radarines1arestapi.herokuapp.com/api/users/location", { //  http://localhost:5000/api/users/location
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(datos)
+        });
+
+      }, (error) => { console.error(error); }
+        , { enableHighAccuracy: true, timeout: 5000 });
     }
-    return () => { isMounted = false; };
+  }
+
+  enviarUbicacionAServidor();
+  useEffect(() => {
+    if (solidId !== adminId) {
+      setInterval(enviarUbicacionAServidor, 15000);
+    }
   });
 
   if (solidId !== adminId) {
@@ -127,6 +128,7 @@ function App() {
   else {
     return (
       <React.Fragment>
+
         <LoggedOut>
           <Router>
             <Route path="/*" component={Welcome} />
@@ -136,6 +138,7 @@ function App() {
             <Route path="/login" component={LoginView} />
           </Router>
         </LoggedOut>
+
         <LoggedIn>
           <Styles>
             <AdminView />

@@ -115,7 +115,7 @@ export default function WelcomeMenu() {
                         </ListItemLink>
                         <Divider />
                         <ListItemLink to="/login">
-                            <ListItemText class={"sidebar"} primary="Login" />
+                            <ListItemText class={"sidebar"} primary="Sign in" />
                         </ListItemLink>
                     </div>
                 </Drawer>

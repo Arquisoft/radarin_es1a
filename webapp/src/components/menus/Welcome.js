@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(6),
     },
     externallink: {
+        color: "#303030",
         "&:hover": {
             color: "#425C5A"
         }
@@ -97,7 +98,7 @@ export default function WelcomePage() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button className={classes.externallink} size="small" color="primary" target={infor.target} rel="noopener" href={infor.url}>
+                                        <Button className={classes.externallink} size="small" target={infor.target} rel="noopener" href={infor.url}>
                                             {infor.urlName}
                                         </Button>
                                     </CardActions>
