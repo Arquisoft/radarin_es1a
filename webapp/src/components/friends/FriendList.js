@@ -86,7 +86,7 @@ function FriendCardList() {
     return (
       <div className={classes.header}>
         <Column p={0} gap={0} className={classes.card}>
-        <h3>You don"t have friends in your Solid Pod</h3>
+        <h3>You don't have friends in your Solid Pod</h3>
         <h4>You can add new friends in your pod 
           <BrowserRouter><Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></BrowserRouter> </h4>  
       </Column>
