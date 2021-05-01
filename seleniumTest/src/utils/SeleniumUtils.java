@@ -13,21 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumUtils {
 
-	
-
-	
-	
-	/**
-	 * devuelve true si lo encuentra false si no
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param texto: texto a buscar
-	 */
-	static public boolean textoPresentePaginaBool(WebDriver driver, String texto)
-	{
-		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + texto + "')]"));		
-		return( list.size() > 0);			
-	}
-	
 	/**
 	 * devuelve true si lo encuentra false si no
 	 * @param driver: apuntando al navegador abierto actualmente.
@@ -38,51 +23,7 @@ public class SeleniumUtils {
 		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + texto + "')]"));		
 		assertTrue( list.size() > 0);			
 	}
-
-	/**
-	 * Aborta si el "texto" está presente en la página actual
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param texto: texto a buscar
-	 */
-	static public void textoNoPresentePagina(WebDriver driver, String texto)
-	{
-		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + texto + "')]"));		
-		assertTrue("Texto " + texto + " aun presente !", list.size() == 0);			
-	}
-
-	/**
-	 * Aborta si el "texto" está presente en la página actual tras timeout segundos.
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param texto: texto a buscar
-	 * @param timeout: el tiempo máximo que se esperará por la aparición del texto a buscar
-	 */
-	static public void EsperaCargaPaginaNoTexto(WebDriver driver, String texto, int timeout)
-	{
-		Boolean resultado = 
-				(new WebDriverWait(driver, timeout)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(text(),'" + texto + "')]")));
-
-		assertTrue(resultado);	
-	}
 	
-	
-	/**
-	 * retorna si el "texto" está presente en la página actual tras timeout segundos.
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param texto: texto a buscar
-	 * @param timeout: el tiempo máximo que se esperará por la aparición del texto a buscar
-	 */
-	static public boolean EsperaCargaPaginaTextoBool(WebDriver driver, String texto, int timeout)
-	{
-		Boolean resultado = 
-				(new WebDriverWait(driver, timeout)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(text(),'" + texto + "')]")));
-
-		return !(resultado);	
-	}
-	
-	
-
-
-
 	/**
 	 * Espera por la visibilidad de un elemento/s en la vista actualmente cargandose en driver. Para ello se empleará una consulta xpath.
 	 * @param driver: apuntando al navegador abierto actualmente.
@@ -124,7 +65,6 @@ public class SeleniumUtils {
 
 
 	/**
-	 * PROHIBIDO USARLO PARA VERSIÓN FINAL.
 	 * Esperar "segundos" durante la ejecucion del navegador 
 	 * @param driver: apuntando al navegador abierto actualmente.
 	 * @param segundos: Segundos de bloqueo de la ejecución en el navegador.
