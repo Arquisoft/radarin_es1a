@@ -9,11 +9,7 @@ import "@testing-library/jest-dom/extend-expect";
 test("login render properly", async () => {
       render(<Login />);
         
-      //var input =  screen.getByPlaceholderText("Enter the url of your webId");
-      //expect(input).toBeInTheDocument();
-      //userevent.type(input , "https://tasorodri.solidcommunity.net/");
-      //userevent.type(input , "tasorodri.solidcommunity.net");
-      //expect(input).toHaveValue("tasorodri.solidcommunity.net");
+
       var buttons = screen.getAllByRole('button');
       var provider = buttons[0];
       var login = buttons[1];
