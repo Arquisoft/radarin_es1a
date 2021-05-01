@@ -15,7 +15,7 @@ test("check that the list renders properly without any friends", async () => {
    await waitFor(() => {
       console.log(GetUserWebId());
    });
-   //render(<FriendList />);
+   render(<FriendList />);
     
    //await waitFor(() => {
    //});

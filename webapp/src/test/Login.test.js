@@ -8,8 +8,6 @@ import "@testing-library/jest-dom/extend-expect";
 
 test("login render properly", async () => {
    render(<Login />);
-
-   
     waitFor(() => {
       var input =  screen.getByPlaceholderText("Enter the url of your webId");
       expect(input).toBeInTheDocument();
@@ -49,6 +47,9 @@ test("login render properly", async () => {
 
       //Comprobar que estamos en la vista del mapa
        input = screen.getByTestId("react-burguer-menu-btn");
+       expect(input).toBeInTheDocument();
+
+       input = screen.getByPlaceholderText("react-4353453-menu-btn");
        expect(input).toBeInTheDocument();
   });
 
