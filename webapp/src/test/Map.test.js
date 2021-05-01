@@ -3,27 +3,25 @@ import {render, screen, fireEvent, cleanup, pwgetByText, waitFor}  from "@testin
 import "globalthis/auto";
 import ReactDOM from "react-dom";
 import Map from "../components/map/Map";
-import {toRadianes, distanceFilter, radius} from "../components/map/LocationFunctions";
 import { MapMarker } from "../components/map/MapMarker";
 import "@testing-library/jest-dom/extend-expect";
+import {toRadianes, distanceFilter, radius} from "../components/map/LocationFunctions";
 
 test ("check that Map is rendering propertly", async () => {
-    //const map = render(<  MapMarker />);
-    // waitFor(() => {
-        
-  //    });
+
+    let webID = "Https://tasorodri.solidcommunity.net";
+    //render(<  Map window={window}  />)
 });
-/**
+
 test ("check that MapMarker is rendering propertly", async () => {
     render(<  MapMarker />);
     await waitFor(() => {
-        
+        //const element = screen.getByText("Radarin");
+        //expect(element).toBeInTheDocument();
       });
 });
- 
 test ("check that locationFunctions work properly", async () => {
     var assert = require('assert');
-    console.log("Patata")
     var radio  = radius();    //5 por defecto
     assert.equal(radio, 5);
     var rad = toRadianes(180);
@@ -37,4 +35,3 @@ test ("check that locationFunctions work properly", async () => {
     assert.equal(distanceFilter(0.01, 0.01, user), true);   //dentro del radio
     
 });
-*/
