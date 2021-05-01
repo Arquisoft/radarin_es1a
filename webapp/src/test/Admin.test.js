@@ -8,8 +8,7 @@ import Admin from "../components/admin/AdminSettings";
 test ("check that everything is rendering propertly", async () => {
    render(<Admin/>)
   await waitFor(() => {
-    const element = screen.getByText("Admin Panel");
-    expect(element).toBeInTheDocument();
+    expect(screen.getByText("Admin Panel")).toBeInTheDocument();
     expect(screen.getByText("User List")).toBeInTheDocument();
     expect(screen.getByText("Total users")).toBeInTheDocument();
     expect(screen.getByText("Online users")).toBeInTheDocument();
