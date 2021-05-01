@@ -61,6 +61,35 @@ function App() {
     if (solidId) {
       //console.log("Enviando ubicacion");
 
+      if (navigator.geolocation) {
+        var watchID = navigator.geolocation.watchPosition((position) => {
+          let time = new Date();
+          const datos = {
+            "solidId": solidId,
+            "posicion": {
+              "latitud": position.coords.latitude,
+              "longitud": position.coords.longitude,
+            },
+            "userState": sessionStorage.getItem("userState"),
+            "timeStamp": time.getTime()
+          };
+
+          //Cambia cuando este subido a heroku
+          fetch("https://radarines1arestapi.herokuapp.com/api/users/location", { //  http://localhost:5000/api/users/location
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+          });
+
+        }, (error) => { console.error(error); }
+          , { enableHighAccuracy: true, timeout: 5000 });
+
+        setTimeout(function () { navigator.geolocation.clearWatch(watchID); }, 5000);
+      }
+
+      /*
       navigator.geolocation.getCurrentPosition((position) => {
 
         let time = new Date();
@@ -84,7 +113,8 @@ function App() {
         });
 
       }, (error) => { console.error(error); }
-        , { enableHighAccuracy: true, timeout: 5000 });
+        , { enableHighAccuracy: true, maximumAge=5000, timeout: 5000 });
+        */
     }
   }
 
