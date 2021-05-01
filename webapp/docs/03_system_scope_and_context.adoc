@@ -15,11 +15,10 @@ Radarin should have the following features:
 .Business Context
 [cols="1,2,3" options="header"]
 |===
-| **Entity** | **Input**|**Output**
+| **Entity** | **Input** | **Output** 
 | User | Other users locations, and states.| His current location and state, when he wants to share it.
 | UserPod | The user adds his friends to the pod | The user friends.
-| Web server | The shared locations,states and timestamps of the users.| The relative notifications to each user if needed.
-| MongoDB | Locations, states and timestamps. | All the info mentioned above.
+| Web App | The shared locations,states and timestamps of the users.| The relative notifications to each user if needed.
 |===
 image:03_ContextDiagram.png["Business & Tecnical Context"]
 
@@ -32,3 +31,4 @@ To accomplish this we will use PODs that will store the user friend list, and Mo
 The application will use the React technology that is an open source Javascript library designed to create user interfaces with the aim of facilitating application development on a single page. It is maintained by Facebook and the free software community, will help us a lot on the development.
 
 To test the efficiency and performance of our application once its deployed we will user monitorization software like Prometheus and Grafana.To use monitoring tools in heroku you must pay a subscription, so we have only been able to monitorize the app on localhost. 
+image:03_TecnicalContextDiagram.png["Business & Tecnical Context"]
