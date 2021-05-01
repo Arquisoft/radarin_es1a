@@ -6,13 +6,12 @@ import Map from "../components/map/Map";
 import {toRadianes, distanceFilter, radius} from "../components/map/LocationFunctions";
 import { MapMarker } from "../components/map/MapMarker";
 import "@testing-library/jest-dom/extend-expect";
-import console from "node:console";
 
 test ("check that Map is rendering propertly", async () => {
-    render(<  MapMarker />);
-    await waitFor(() => {
+    //const map = render(<  MapMarker />);
+    // waitFor(() => {
         
-      });
+  //    });
 });
 /**
 test ("check that MapMarker is rendering propertly", async () => {
