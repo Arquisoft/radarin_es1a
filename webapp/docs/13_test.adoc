@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [[section-test]]
 == Test
 
@@ -30,3 +31,26 @@ image:over_time.png["response time information over time"]
 In the lower below we can observe the number of request per second:
 
 image:request_per_second.png["request information per second information"]
+=======
+[[section-glossary]]
+== Glossary
+
+[options="header"]
+|===
+| Term         | Definition
+| API | A set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service. 
+| arc42 | Provides a template for documentation and communication of software and system architectures.
+| Codacy | Codacy automates code reviews and monitors code quality on every commit and pull request reporting back the impact of every commit or pull request on GitHub, issues concerning code style, best practices, security, and many others. It monitors changes in code coverage, code duplication and code complexity.
+| Grafana | Grafana is a free software , which allows the display and format of metric data. Create dashboards and charts from multiple sources.
+| Heroku | Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+| Jest | Is a JavaScript testing framework maintained by Facebook, Inc. with a focus on simplicity and support for large web applications. 
+| Material-ui | Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.
+| Monitoring | In this area, it refers to the revision of the system in terms of performance, for example number of requests, or cpu time. 
+| Pod | Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data.
+| Prometheus | Prometheus is a free software application used for event monitoring and alerting. It records real-time metrics in a time series database built using an HTTP extraction model, with flexible queries and real-time alerts. 
+| React | It is an open source Javascript library designed to create user interfaces with the aim of facilitating the development of applications on a single page
+| Server | Program that uses HTTP to serve the files that make up Web pages to users, in response to their requests, being forwarded by the HTTP clients of their computers
+| Solid |  Is a web decentralization project led by Tim Berners-Lee,the goal of Solid is to allow users to have full control of their own data, including access control and storage location
+| W3C |The W3C (World Wide Web Consortium) is a committee dedicated to implementing uniform technologies in the use and development of the Internet.
+|===
+>>>>>>> Stashed changes
