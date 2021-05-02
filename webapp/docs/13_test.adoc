@@ -1,4 +1,4 @@
-[[section-glossary]]
+[[section-testing]]
 == Testing
 
 === Cover tests
