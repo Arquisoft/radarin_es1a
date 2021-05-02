@@ -34,7 +34,7 @@ The load will be tested with 500 users over 60 seconds in the part of the applic
 ==== Global information
 We can see in the image below that all the requests have been made with a time less than 800 ms and with success:
 
-image:global.png["Global information"]
+image:global.PNG["Global information"]
 
 ==== Active users along the simulation
 We can see that for most of the time the number of users was around 54:
