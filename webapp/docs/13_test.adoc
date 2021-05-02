@@ -39,28 +39,28 @@ image:global.PNG["Global information"]
 ==== Active users along the simulation
 We can see that for most of the time the number of users was around 54:
 
-image:users.png["Users information"]
+image:users.PNG["Users information"]
 
 ==== Response time distribution
 In the graph below we observe that 72.03% of the requests occurred in 51 ms, 10.83% in 63 ms and the rest between 191 ms and 226 ms:
 
-image:respose_time.png["response time information"]
+image:respose_time.PNG["response time information"]
 
 
 ==== Response time over time
 In the lower graph we can see the percentiles of response times over time:
 
-image:over_time.png["response time information over time"]
+image:over_time.PNG["response time information over time"]
 
 
 ==== Response time over time
 In the lower below we can observe the number of request per second:
 
-image:request_per_second.png["request information per second information"]
+image:request_per_second.PNG["request information per second information"]
 
 
 === Monitoring the App
 
 The App is monitored using Prometheus and Grafana, to check all the stats an admin would need.To access the dashboard, you must start the application with docker and enter localhost: 9091.
 
-image:08_monitor.png["Sample Grafana dashboard"]
+image:08_monitor.PNG["Sample Grafana dashboard"]
