@@ -3,7 +3,7 @@ import {render, screen, fireEvent, cleanup, pwgetByText, waitFor}  from "@testin
 import "globalthis/auto";
 import ReactDOM from "react-dom";
 import Map from "../components/map/Map";
-import { MapMarker } from "../components/map/MapMarker";
+import { MapMarker , CoolState} from "../components/map/MapMarker";
 import "@testing-library/jest-dom/extend-expect";
 import {toRadianes, distanceFilter, radius} from "../components/map/LocationFunctions";
 
@@ -33,11 +33,11 @@ test ("check that locationFunctions work properly", async () => {
     assert.equal(distanceFilter(0.01, 0.01, user), true);   //dentro del radio
     
 });
-/*
+
 test("check that coolstate doesnt crash", async () => {
     CoolState("comer");
     CoolState("deporte");
     CoolState("cita");
     CoolState("covid");
     CoolState("deporte");
-});*/
+});

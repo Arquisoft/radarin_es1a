@@ -67,7 +67,7 @@ export function MapMarker({ webId, locationOfMarker, timeStamp, state, ui, map }
 }
 
 //Modifica el State para que se vea mas bonito
-function CoolState(props) {
+export function CoolState(props) {
     var beautyState = "";
     const stylesState = makeStyles(() => ({
         text: {
