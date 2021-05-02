@@ -23,3 +23,8 @@ image:06_Represent_Map.png["Way that an user get the Ubication of near Users"]
 
 An User can update his state (doing sport, being in a date, eating...) and this state can be seeing by his friends in the radar of the map
 image:06_Share_User_State.png["Sharing your State with App"]
+
+=== Delete Users (Admin)
+
+The administrator of the service can delete a user , or multiple users at once, from the database.
+image:06_Delete_User.png["Deleting users"]

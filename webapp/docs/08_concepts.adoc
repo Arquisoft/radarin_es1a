@@ -9,7 +9,11 @@
 
 image:08_dom_diagram.png["Example UML Diagram"]
 
+=== Monitoring the App
 
+The App is monitored using Prometheus and Grafana, to check all the stats an admin would need.To access the dashboard, you must start the application with docker and enter localhost: 9091.
+
+image:08_monitor.png["Sample Grafana dashboard"]
 
 === Security and consistency
 
