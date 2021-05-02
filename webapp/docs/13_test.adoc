@@ -1,0 +1,32 @@
+[[section-test]]
+== Test
+
+=== Load Test
+
+The load will be tested with 500 users over 60 seconds in the part of the application where most of the functionalities are carried out, specifically, the user's location will be shown along with the locations of their closest friends, in addition to you will receive a notification.
+==== Global information
+We can see in the image below that all the requests have been made with a time less than 800 ms and with success:
+
+image:global.png["Global information"]
+
+==== Active users along the simulation
+We can see that for most of the time the number of users was around 54:
+
+image:users.png["Users information"]
+
+==== Response time distribution
+In the graph below we observe that 72.03% of the requests occurred in 51 ms, 10.83% in 63 ms and the rest between 191 ms and 226 ms:
+
+image:respose_time.png["response time information"]
+
+
+==== Response time over time
+In the lower graph we can see the percentiles of response times over time:
+
+image:over_time.png["response time information over time"]
+
+
+==== Response time over time
+In the lower below we can observe the number of request per second:
+
+image:request_per_second.png["request information per second information"]
