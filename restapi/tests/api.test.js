@@ -44,7 +44,7 @@ describe("user ", () => {
         webId = 'aaa-testWebID';    //para que aparezca el primero en la lista
         posicion = {latitud : 55.7, longitud: 37.6};
         let response = await request(app).post('/api/users/location')
-            .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
+            .send({solidId: webId,posicion: posicion, timeStamp : 10}).set('Accept', 'application/json');
 
         response = await request(app).get('/api/users/lista');
         expect(response.statusCode).toBe(200);
@@ -57,12 +57,12 @@ describe("user ", () => {
         webId2 = 'aab-testWebID';    //para que aparezca el primero en la lista
         posicion2 = {latitud : 0, longitud: 0};
         response = await request(app).post('/api/users/location')
-            .send({solidId: webId2,posicion: posicion2}).set('Accept', 'application/json');
+            .send({solidId: webId2,posicion: posicion2, timeStamp:10}).set('Accept', 'application/json');
 
         webId3 = 'aac-testWebID';    //para que aparezca el primero en la lista
         posicion3 = {latitud : 2, longitud: 4};
         response = await request(app).post('/api/users/location')
-            .send({solidId: webId3,posicion: posicion3}).set('Accept', 'application/json');
+            .send({solidId: webId3,posicion: posicion3, timeStamp:10}).set('Accept', 'application/json');
 
 
 
@@ -93,13 +93,13 @@ describe("user ", () => {
         webId = 'aaa-testWebID'; 
         posicion = {latitud : 55.7, longitud: 37.6};
         let response = await request(app).post('/api/users/location')
-            .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
+            .send({solidId: webId,posicion: posicion, timeStamp : 10}).set('Accept', 'application/json');
 
 
         //actualizamos el usuario
         posicion = {latitud : 39.5, longitud: 116.2};
         response = await request(app).post('/api/users/location')
-            .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
+            .send({solidId: webId,posicion: posicion, timeStamp : 10}).set('Accept', 'application/json');
         
         response = await request(app).get('/api/users/lista');
         expect(response.statusCode).toBe(200);
@@ -110,7 +110,6 @@ describe("user ", () => {
         expect(response.body[0].latitud).toBe(posicion.latitud);
         expect(response.body[0].longitud).toBe(posicion.longitud);
 
-        console.log(response.body[0]);
 
         //comprobamos que solo hay un dato, que no se han duplicado
         expect(response.body[1]).toBe(undefined);
@@ -125,7 +124,7 @@ describe("user ", () => {
         webId = 'aaa-testWebID'; 
         posicion = {latitud : 55.7, longitud: 37.6};
         let response = await request(app).post('/api/users/location')
-            .send({solidId: webId,posicion: posicion}).set('Accept', 'application/json');
+            .send({solidId: webId,posicion: posicion, timeStamp : 10}).set('Accept', 'application/json');
 
 
         //probamos a borrarlo de la base de datoss
@@ -156,10 +155,7 @@ describe("user ", () => {
         response = await request(app).get('/api/admin/list');
 
         
-        expect(response.statusCode).toBe(200);
-        //comprobamos que la respuesta coincida con los nuevos datos
-        expect(response.body[1].solidId).toBe(webId2);    
-        expect(response.body[0].solidId).toBe(webId1);              
+        expect(response.statusCode).toBe(404);            
         expect(response.body[2]).toBe(undefined);  
     });
 

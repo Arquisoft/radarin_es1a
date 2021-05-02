@@ -92,7 +92,11 @@ include::11_technical_risks.adoc[]
 include::12_glossary.adoc[]
 
 <<<<
+// 13. Tests
+include::13_test.adoc[]
+
+<<<<
 // About
 include::about-arc42.adoc[]
-<<<<
-include::13_test.adoc[]
+
+
