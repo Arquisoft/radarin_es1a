@@ -94,8 +94,7 @@ include::src/11_technical_risks.adoc[]
 include::src/12_glossary.adoc[]
 
 <<<<
-// 12. Tests
+// 13. Tests
 include::src/13_test.adoc[]
 
 
-include::src/13_test.adoc[]
