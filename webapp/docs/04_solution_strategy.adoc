@@ -14,6 +14,7 @@ The radarin app will be a web app capable of run on smartphones.
 * React-Notification-component: is an API for react used to show notifications
 * React-burger-menu: is a react module used to create the sliding menu.
 * Grafana and Prometheus: are the tools used to monitor the app performance.
+* Gatling: is a tool used to make the load tests.
 
 === How to achieve key quality objectives
 [options="header"]

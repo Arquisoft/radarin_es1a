@@ -5,8 +5,8 @@
 
 One of the requisites of this project was the implementation of automatic tests that cover around 50% of the application. 
 To archive this, we used the TestingLibrary, a light weight library used for testing webApps, compatible with many technologies like React. 
-We achived our goal of reaching 50% of the code, checked with the Codecov tool. 
-For this kind of test we checked that our components worked properly on their own, and that many of our functions worked properly and didnt crashed the application.
+The goal of reaching 50% of code coverage was achieved, checked with the Codecov tool. 
+For this kind of test we checked that our components worked properly on their own, and that many of our functions worked as intended and didnt crashed the application.
 
 === Acceptance test
 
@@ -29,6 +29,7 @@ some of the checks have to be done by a human that visually checks that everythi
 
 === Load Test
 
+Gatling was the technology used to test make the load tests of the application.
 The load will be tested with 500 users over 60 seconds in the part of the application where most of the functionalities are carried out, specifically, the user's location will be shown along with the locations of their closest friends, in addition to you will receive a notification.
 ==== Global information
 We can see in the image below that all the requests have been made with a time less than 800 ms and with success:

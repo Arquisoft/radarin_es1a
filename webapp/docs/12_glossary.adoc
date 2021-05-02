@@ -15,6 +15,7 @@
 | Pod | Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data.
 | Prometheus | Prometheus is a free software application used for event monitoring and alerting. It records real-time metrics in a time series database built using an HTTP extraction model, with flexible queries and real-time alerts. 
 | React | It is an open source Javascript library designed to create user interfaces with the aim of facilitating the development of applications on a single page
+| Selenium | Is a framework for web testing, used to automate testing on the web, supporting a lot of web browsers and languages.
 | Server | Program that uses HTTP to serve the files that make up Web pages to users, in response to their requests, being forwarded by the HTTP clients of their computers
 | Solid |  Is a web decentralization project led by Tim Berners-Lee,the goal of Solid is to allow users to have full control of their own data, including access control and storage location
 | W3C |The W3C (World Wide Web Consortium) is a committee dedicated to implementing uniform technologies in the use and development of the Internet.
