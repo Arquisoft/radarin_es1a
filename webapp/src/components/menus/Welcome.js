@@ -74,7 +74,7 @@ export default function WelcomePage() {
                 <div className={classes.heroContent} class="box">
                     <Box maxWidth="sm">
                         <img src="/img/welcome-page/principal-image.png" alt="principal"/>
-                        <Button class="btn" variant="contained" color="primary" target="_blank" rel="noopener" href={"https://github.com/Arquisoft/radarin_es1a"}>
+                        <Button class="btn" variant="contained" color="primary" target="_blank" rel="noopener" href={"https://unioviedo-my.sharepoint.com/:v:/g/personal/uo270176_uniovi_es/EarW5aa9seVJko-vf28GaHEBArf36Umj3yYn3HPF4eIc4w?e=9vXSN6"}>
                             Watch the trailer <i className="fas fa-play-circle"></i>
                         </Button>
                     </Box>
