@@ -5,6 +5,7 @@
 === Load Test
 
 The load will be tested with 500 users over 60 seconds in the part of the application where most of the functionalities are carried out, specifically, the user's location will be shown along with the locations of their closest friends, in addition to you will receive a notification.
+
 ==== Global information
 We can see in the image below that all the requests have been made with a time less than 800 ms and with success:
 
