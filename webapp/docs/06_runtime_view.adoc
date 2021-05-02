@@ -28,3 +28,8 @@ image:06_Share_User_State.png["Sharing your State with App"]
 
 The administrator of the service can delete a user , or multiple users at once, from the database.
 image:06_Delete_User.png["Deleting users"]
+
+=== Delete Users (Admin)
+
+The administrator of the service can delete a user , or multiple users at once, from the database.
+image:06_Delete_User.png["Deleting users"]
