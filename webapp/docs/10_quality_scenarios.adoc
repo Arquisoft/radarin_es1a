@@ -15,16 +15,14 @@ The priority column contains two values, the first for the development team and 
 |===
 |Priority Position|Quality attribute|Action|Response|Priority
 |1|Privacy|A user wants the application to only be able to access the data that he chooses|The application is developed with Solid technology so the user can choose which data the application handles.|Very high, Very high
-|2|Efficiency|The user wants to know which friends are nearby while he is in the area|The position of friends on the map and the search of new friends is updated every 3 seconds and the send of the position of the user to the database every 15 seconds. | Very high, Very high
-|3|Security|The application must be protected from external attacks that directly affect the application such as the DOS attack|The application is hosted on heroku so it is safe from a large number of simultaneous requests|Very high, Very high
+|2|Usability|A new user tries to use the application's functionalities for the first time|The functionalities of the application are described with an easy to identify title and adapts well to the screen needs of mobile devices|Very high, Very high
+|3|Accessibility|A color blind user wants to use the app|The application does not use colors that can be confusing for a color blind|Very high, Very high
+|4|Security|The application must be protected from external attacks that directly affect the application such as the DOS attack and XSS attacks|The application is hosted on heroku so it is safe from a large number of simultaneous requests and it is also protected against xss attacks by the protection offered by the solid login|Very high, Very high
 
-|4|Usability|A new user tries to use the application's functionalities for the first time|The functionalities of the application are described with an easy to identify title and adapts well to the screen needs of mobile devices|High, High
+|5|Efficiency|The user wants to know which friends are nearby while he is in the area|The position of friends on the map and the search of new friends is updated every 3 seconds and the send of the position of the user to the database every 15 seconds. |  High, High
 
+|6|System robustness|The application handles the possible failures produced|All kinds of tests have been carried out to mitigate any errors that may arise|Medium, High
 
-|5|System robustness|The application handles the failures produced because the map is not available|The application displays a message instead of being in an indefinite wait state|High, High
-
-
-|6|Accessibility|A color blind user wants to use the app|The application does not use colors that can be confusing for a color blind|Medium, Medium
 
 |===
 
