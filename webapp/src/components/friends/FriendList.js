@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import cx from "clsx";
 import { makeStyles, Avatar, Divider, Button } from "@material-ui/core";
-import { GetUserWebId, useGetUserFriends } from "../user/SolidManager";
+import { useGetUserFriends } from "../user/SolidManager";
 import { GetFriendState } from "../user/StateManager";
 import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
 import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded";
 import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
-import {  Link, BrowserRouter } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
 import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";
 
@@ -74,12 +74,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 function FriendCardList() {
-  const [webId, setWebId] = useState("");
   const friendsList = useGetUserFriends();
-
-  useEffect(() => {
-    setWebId(GetUserWebId());
-  }, []);
 
   const classes = useStyles();
   if (!friendsList.length) {
@@ -87,8 +82,7 @@ function FriendCardList() {
       <div className={classes.header}>
         <Column p={0} gap={0} className={classes.card}>
         <h3>You don't have friends in your Solid Pod</h3>
-        <h4>You can add new friends in your pod 
-          <BrowserRouter><Link style={{ color: "#7c4dff" }} target="_blank" href={webId}>Solid profile</Link></BrowserRouter> </h4>  
+        <h4>You can add new friends in your pod Solid profile</h4>  
       </Column>
       </div>
     );

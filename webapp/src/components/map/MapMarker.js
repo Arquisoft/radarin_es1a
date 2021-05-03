@@ -131,7 +131,7 @@ export function CoolState(props) {
         );
     }
     if (argtest === "covid") {
-        beautyState = "Friend with Covid-19";
+        beautyState = "User with Covid-19";
         return (
             <div className={cx(stylesState.caption, stylesState.text)}>
                 {beautyState}
