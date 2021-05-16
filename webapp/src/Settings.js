@@ -14,13 +14,14 @@ class Settings extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+ 
+
     handleChange(event) {
-        
+
         if (document.getElementById("radius").value > 0 && document.getElementById("radius").value <= 100) {
             this.radius = document.getElementById("radius").value;
             document.getElementById("button").disabled = false;
-        }
-        else {
+        }  else {
             document.getElementById("button").disabled = true;
         }
     }
@@ -44,7 +45,7 @@ class Settings extends React.Component {
                                         <InputLabel>
                                             <label>Radius in km around the user to load on the map (has to be between 1 and 100) :</label>
                                         </InputLabel>
-                                        <Input type="number" placeholder="Default = 5" id="radius" name="radius" min="1" max="100" onChange={this.handleChange}>
+                                        <Input type="number" placeholder={"Current = " + window.sessionStorage.getItem("radius")} id="radius" name="radius" min="1" max="100"  onChange={this.handleChange}>
                                         </Input>
                                     </div>
                                 </CardContent>
