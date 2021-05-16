@@ -12,7 +12,7 @@ import userEvent from '@testing-library/user-event';
 test("settings render properly", async () => {
    render(<Settings />);
    await waitFor(() => {
-     var input =  screen.getByPlaceholderText("Default = 5");
+     var input =  screen.getByPlaceholderText("Current = null");
     expect(input).toBeInTheDocument();
     userEvent.type(input , "32343");
     //expect(screen.getByText("32343")).toBeInTheDocument();
